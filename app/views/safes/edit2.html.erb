@@ -1,0 +1,77 @@
+
+
+<div class="container-fluid">
+<div class="" style="padding:20px 15% 60px 15%;">
+  
+<h1 style="margin-bottom: 30px;"><i class="fa fa-pencil-square-o" style="margin-right: 10px;"></i>Edit class</h1>
+<br><br>
+<div class="" style="padding:20px 10% 60px 10%;">
+  
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('5MB以下のサイズにしてください。');
+    }
+  });
+</script>
+
+<%#= form_for(@safe, url: "/safes", html: {:class => 'form-group'}) do |f| %>
+<%= form_for(@safe) do |f| %>
+<%= render 'shared/error_message', object: f.object %>
+
+<% if @safe.photo.present? %>
+<label for="picture" class="col-md-12" style="padding-left: 0">Screenshot of Evidence<i class="fa fa-picture-o"></i>
+<%#= @safe.photo  %>
+<img src="<%= @safe.photo %>" style="width: 100px;" >
+</label>
+<% else %>
+<label for="picture" class="col-md-12" style="padding-left: 0">Screenshot of Evidence<i class="fa fa-picture-o"></i>
+<%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png', class: 'form-control'  %>
+</label>
+<% end %>
+
+<br><br><br><br><br><br>
+
+
+<label for="price" style="margin-top: 10px;">Duration of call<span style="color:red; font-weight: bold;">*</span><small>（half-width alphanumeric)</small></label>
+<%= f.text_field :time , :placeholder => 'ex. 0:13:54 → 13  ,  1:23:38 → 83', class: 'form-control' , :style => 'width:300px;'%>
+
+
+<br><br>
+
+<label style="margin-top: 10px;">Status<span style="color:red; font-weight: bold;">*</span></label>
+<div class="radio" style="margin-bottom: 10px;">
+<label><%= f.radio_button :status_teacher, "yet" %>yet</label>
+<label><%= f.radio_button :status_teacher, "done" %>done</label>
+</div>
+
+<br><br>
+
+<div style="margin-bottom: 10px;">
+<label for="remarks" style="margin-top: 10px;">remarks</label>
+<%= f.text_area :remarks , :placeholder => '', class: 'form-control' , :style => 'width:500px;' %>
+</div>
+
+
+
+
+
+
+
+  
+<button class="btn btn-lg btn-info col-md-5 col-xs-5" style="margin-top: 20px;" name="edit"> <i class='fa fa-save'></i> submit
+<%= f.submit data: { disable_with: "Please wait...", confirm: 'Are you sure？' }, :style => 'display:none', name: "edit" %>
+</button>
+
+
+<a class="btn btn-lg btn-danger col-md-offset-1 col-md-5 col-xs-offset-1 col-xs-5" style="margin-top: 20px;" href="/"><i class='fa fa-mail-reply'></i> Back</a>
+</div>
+
+<% end %>     
+</div>
+</div>
+</div>
+</div>
+
+

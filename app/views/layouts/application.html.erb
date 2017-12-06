@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title))%></title>
+  <!--ヘルパーに設定必要-->
+  <meta name="viewport" content="width=300" >
+  <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+</script>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+</style>
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Acme|Open+Sans|Pacifico|Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Black+Ops+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Work+Sans:200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Work+Sans:200" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://tympanus.net/Development/HoverEffectIdeas/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+
+<script type="text/javascript"
+src="https://credit.j-payment.co.jp/gateway/js/jquery.js"></script> <script type="text/javascript"
+src="https://credit.j-payment.co.jp/gateway/js/CPToken.js"></script>
+
+
+
+
+
+
+
+<script src="jquery.min.js" type="text/javascript"></script>
+<script src="mosaic.1.0.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function($){
+$('.fade').mosaic();
+$('.bar').mosaic({
+animation:'slide'
+});
+$('.bar2').mosaic({
+animation:'slide'
+});
+$('.bar3').mosaic({
+animation:'slide',
+anchor_y:'top'
+});
+$('.cover').mosaic({
+animation:'slide',
+hover_x:'400px'
+});
+$('.cover2').mosaic({
+animation:'slide',
+anchor_y:'top',
+hover_y:'80px'
+});
+$('.cover3').mosaic({
+animation:'slide',
+hover_x:'400px',
+hover_y:'300px'
+});
+});
+</script>
+
+
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <%= csrf_meta_tags %>
+  
+  <script src="js/load-image.all.min.js"></script>
+  
+
+  
+</head>
+<body>
+  
+  
+<% if current_user && current_user.admin? %>
+  <%= render "layouts/header" %>
+  <!-- <div class="container top_padding"> -->
+    <div>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
+    <%= yield %>
+<!--  </div> -->
+  <%= render "layouts/footer" %>
+</div>
+
+<% else %>
+
+  <%= render "layouts/header" %>
+  <div class="container top_padding">
+    <div>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
+  <%= render "layouts/footer" %>
+</div>
+
+<% end %>
+
+  
+</body>
+</html>

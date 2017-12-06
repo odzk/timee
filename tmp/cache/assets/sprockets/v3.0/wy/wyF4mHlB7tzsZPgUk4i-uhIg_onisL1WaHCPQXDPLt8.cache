@@ -1,0 +1,11 @@
+I"¿(function() {
+  $(".datetimepicker").datetimepicker({
+    locale: 'ja',
+    sideBySide: true,
+    format: 'MM/DD',
+    dayViewHeaderFormat: 'YYYY MMMM',
+    stepping: 5
+  });
+
+}).call(this);
+:ET

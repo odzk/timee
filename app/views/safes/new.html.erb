@@ -1,0 +1,348 @@
+<% provide(:title,"入庫") %>
+
+<%     session.delete(:fowarding_url)
+    store_location
+    %>
+
+<div class="container-fluid" style="padding-left: 0; padding-right: 0;">
+
+<div class="col-md-offset-3 col-md-6 col-xs-12">
+<h1 class="text-center" style="margin-bottom: 30px;"><i class="fa fa-folder-open-o" style="margin-right: 10px;"></i>入庫</h1>
+
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('5MB以下のサイズにしてください。');
+    }
+  });
+
+  function checkNumber() {
+    var q = document.getElementById('safe_number').value;
+    $.ajax({
+        type: "GET",
+        url: "/check?q=" + q,
+        dataType: "json",
+        success: function(result){
+    
+             for(term in result) {
+              var check = JSON.stringify(result[term]);
+              if (check.indexOf(q) >=0) {
+                $("#number_status").html(" <i class='fa fa-close' style='color:red;'></i>");
+
+              } else {
+                $("#number_status").html(" <i class='fa fa-check' style='color:green;'></i>");
+              }
+            
+             }
+
+        }
+  })
+  };
+
+  function checkFrame() {
+    var qframe = document.getElementById('safe_number_of_frame').value;
+    $.ajax({
+        type: "GET",
+        url: "/check?qframe=" + qframe,
+        dataType: "json",
+        success: function(result){
+    
+             for(term in result) {
+              var check = JSON.stringify(result[term]);
+              if (check.indexOf(qframe) >=0) {
+                $("#frame_status").html(" <i class='fa fa-close' style='color:red;'></i>");
+
+              } else {
+                $("#frame_status").html(" <i class='fa fa-check' style='color:green;'></i>");
+              }
+            
+             }
+
+        }
+  })
+  };
+
+  function checkFoundation() {
+    var qfoundation = document.getElementById('safe_number_of_foundation').value;
+    $.ajax({
+        type: "GET",
+        url: "/check?qfoundation=" + qfoundation,
+        dataType: "json",
+        success: function(result){
+    
+             for(term in result) {
+              var check = JSON.stringify(result[term]);
+              if (check.indexOf(qfoundation) >=0) {
+                $("#foundation_status").html(" <i class='fa fa-close' style='color:red;'></i>");
+
+              } else {
+                $("#foundation_status").html(" <i class='fa fa-check' style='color:green;'></i>");
+              }
+            
+             }
+
+        }
+  })
+  };
+
+    function checkSlot() {
+    var qslot = document.getElementById('safe_number_slot').value;
+    $.ajax({
+        type: "GET",
+        url: "/check?qslot=" + qslot,
+        dataType: "json",
+        success: function(result){
+    
+             for(term in result) {
+              var check = JSON.stringify(result[term]);
+              if (check.indexOf(qslot) >=0) {
+                $("#slot_status").html(" <i class='fa fa-close' style='color:red;'></i>");
+
+              } else {
+                $("#slot_status").html(" <i class='fa fa-check' style='color:green;'></i>");
+              }
+            
+             }
+
+        }
+  })
+  };
+
+function generateAll() {
+
+var number_cell = document.getElementById('safe_number').value;
+var number_frame = document.getElementById('safe_number_of_frame').value;
+var number_foundation = document.getElementById('safe_number_of_foundation').value;
+
+if (number_cell) {
+var base_number = number_cell.slice(2);
+} else if (number_frame) {
+var base_number = number_frame.slice(2);
+} else {
+  base_number = number_foundation.slice(2);
+}
+
+var number_cell = "P1" + base_number;
+var number_frame = "P0" + base_number;
+var number_foundation = "P2" + base_number;
+document.getElementById('safe_number').value = number_cell;
+document.getElementById('safe_number_of_frame').value = number_frame;
+document.getElementById('safe_number_of_foundation').value = number_foundation;
+
+checkNumber();
+checkFrame();
+checkFoundation();
+}
+
+function removeStatus() {
+  $("#number_status").html("");
+  $("#frame_status").html("");
+  $("#foundation_status").html("");
+
+
+}
+
+function openThis() {
+  alert("working");
+}
+
+</script>
+<div class="form-group">
+
+<div class="container-fluid" style="border: 1px dashed blue; margin-bottom: 30px; padding: 30px; padding-right: 30px;">
+<%= link_to "全消し", newclear_safes_url , :class => "btn btn-primary"%>
+</div>
+  
+<%= form_for(@safe, url: "/safes", name: "pachi") do |f| %>
+<%= render 'shared/error_message', object: f.object %>
+
+<label>機種<span style="color:red; font-weight: bold;">*</span></label>
+<div class="radio" style="margin-bottom: 10px;">
+    <label><input type="radio" name="type_machine" value="hoge1" onclick="entryChange1();" checked />パチンコ</label>　
+    <label><input type="radio" name="type_machine" value="hoge2" onclick="entryChange1();" />スロット</label>
+</div>
+
+
+<div id="secondBox">
+  <div class="container-fluid" style="border: 1px dashed green; padding-top: 30px; padding-right: 30px;">
+    <div class="col-md-12 text-center">
+<label for="number" class="col-md-12">機器番号(QR)<span style="font-size: 25px; " id="slot_status"></label>
+
+<%= f.text_field :number_slot , :class => 'qrcode-text', :placeholder => '例：1T-5-094/000048', class: 'form-control', :onchange => 'checkSlot()' %>
+
+<label><i class="fa fa-qrcode" style="margin-top: 10px; text-align: center; font-size: 10em;"></i>
+  <%= f.file_field :number_slot , :accept => 'image/*', :capture => 'environment', :onchange => 'openQRCamera(this);', class: 'width80', :style => 'display:none;' %>
+</label>
+
+    </div>
+  </div>
+
+</div>
+
+<div id="firstBox">
+
+<label>タイプ<span style="color:red; font-weight: bold;">*</span></label>
+<div class="radio" style="margin-bottom: 10px;">
+  <label><%= f.radio_button :type_machine, "本体" , :checked => "checked" %>本体</label>
+  <label><%= f.radio_button :type_machine, "セル"  %>セル</label>
+  <label><%= f.radio_button :type_machine, "枠"  %>枠</label>
+</div>
+
+<label>機器番号(QR)</label>
+
+
+<div class="container-fluid" style="border: 1px dashed red; padding-top: 20px; padding-bottom: 10px; padding-right: 30px;">
+<button type="button" class="btn btn-default" onclick="generateAll()"><i class="fa fa-barcode"></i> ALL</button>
+<button type="reset" class="btn btn-default" onclick="removeStatus()"><i class="fa fa-trash"></i> CLEAR</button>
+<div class="col-md-12 text-center">
+<label for="number" class="col-md-12">セル<span style="font-size: 25px; " id="number_status"></span></label>
+
+<%= f.text_field :number , :class => 'qrcode-text', :placeholder => '例：P1SS160135622', class: 'form-control', :onchange => 'checkNumber()' %>
+
+<label class="form-margin"><i class="fa fa-qrcode" style="margin-top: 10px; text-align: center; font-size: 10em;"></i>
+  <%= f.file_field :number , :accept => 'image/*', :capture => 'environment', :onchange => 'openQRCamera(this);', class: 'width80', :style => 'display:none;' %>
+</label>
+
+</div>
+</div>
+
+<div class="container-fluid" style="border: 1px dashed red; padding-top: 20px; padding-bottom: 10px; margin-top: 30px; padding-right: 30px;">
+
+<div class="col-md-12 text-center">
+<label for="number" class="col-md-12">枠<span style="font-size: 25px; " id="frame_status"></span></label>
+
+<%= f.text_field :number_of_frame , :class => 'qrcode-text', :placeholder => '例：P0SS160135622', class: 'form-control', :onchange => 'checkFrame()'%>
+
+<label class="form-margin"><i class="fa fa-qrcode" style="margin-top: 10px; text-align: center; font-size: 10em;"></i>
+  <%= f.file_field :number_of_frame , :accept => 'image/*', :capture => 'environment', :onchange => 'openQRCamera(this);', class: 'width80', :style => 'display:none;' %>
+</label>
+
+</div>
+</div>
+
+<div class="container-fluid" style="border: 1px dashed red; padding-top: 20px; padding-bottom: 10px; margin-top: 30px; padding-right: 30px;">
+
+<div class="col-md-12 text-center">
+<label for="number" class="col-md-12">基盤<span style="font-size: 25px; " id="foundation_status"></span></label>
+
+<%= f.text_field :number_of_foundation , :class => 'qrcode-text', :placeholder => '例：P2SS160135622', class: 'form-control', :onchange => 'checkFoundation()' %>
+
+<label class="form-margin"><i class="fa fa-qrcode" style="margin-top: 10px; text-align: center; font-size: 10em;"></i>
+  <%= f.file_field :number_of_foundation , :accept => 'image/*', :capture => 'environment', :onchange => 'openQRCamera(this);', class: 'width80', :style => 'display:none;' %>
+</label>
+
+</div>
+</div>
+</div>
+
+
+<div class="col-md-12" style="padding-left: 0; padding-right: 30px;">
+  
+  
+
+
+<label for="picture" class="col-md-12" style="padding-left: 0; margin-top: 20px;">写真<i class="fa fa-picture-o"></i>
+
+      <%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' %>
+
+</label>
+
+<label for="machine_name" style="margin-top: 10px;">機器名</label>
+<%= f.text_field :name , :placeholder => '例：海物語', :value => session[:name], class: 'form-control', data: { behavior: "autocomplete" }, :autocomplete =>"off", :id => 'machine_name', :style => 'margin-bottom: 10px; ' %>
+
+<label for="from" style="margin-top: 10px;">入庫先</label>
+
+<%= f.text_field :from , :placeholder => '例：タイヨー', :value => session[:from], class: 'form-control',  :id => 'from', :style => 'margin-bottom: 10px;' %>
+
+<!--<label for="price" style="margin-top: 10px;">価格<span style="color:red; font-weight: bold;">*</span><small>（半角英数字)</small></label>-->
+
+<%#= f.text_field :price_from , :placeholder => '例：300000', :value => session[:price_from], class: 'form-control' , :id => 'price', :style => 'margin-bottom:10px' %>
+
+
+<label style="margin-top: 10px;">倉庫</label>
+
+<div class="radio" style="margin-bottom: 10px;">
+
+<% if(session[:place]) != "菊水" %>
+<label><%= f.radio_button :place, "本社", :value => @place, :checked => "checked" %>本社</label>
+<label><%= f.radio_button :place, "菊水", :value => @place2 %>菊水</label>
+
+<% else %>
+
+<label><%= f.radio_button :place, "本社", :value => @place %>本社</label>
+<label><%= f.radio_button :place, "菊水", :value => @place2, :checked => "checked" %>菊水</label>
+
+<% end %>
+
+</div>
+<!-- 表示非表示切り替え -->
+
+<!--<p>種別-->
+<!--<b style="color:red;">*</b>-->
+<!--<br>-->
+<!--<div id="firstBox">-->
+<!--本体 <%#= f.radio_button :type_machine, "本体" %>-->
+<!--　セル <%#= f.radio_button :type_machine, "セル" %>-->
+<!--</div>-->
+<!--<div id="secondBox">-->
+<!--シリンダー有 <%#= f.radio_button :type_machine , 'シリンダー有', {} %>　シリンダー無 <%#= f.radio_button :type_machine, 'シリンダー無', {} %>-->
+<!--</div>-->
+
+<!--</p>-->
+
+<label for="remarks" style="margin-top: 10px;">備考</label>
+
+<%= f.text_area :remarks , :placeholder => '例：傷あり', :value => session[:remarks], class: 'form-control', :id =>'remarks' %>
+
+<!--<p>担当者<br>-->
+<!--<%#= f.text_field :staff , :placeholder => '例：山田太郎', :value => session[:staff], class: 'form-control' %></p>-->
+<!--<br><br>-->
+<%= f.hidden_field :status , :value => "在庫中" %>
+<%= f.hidden_field :staff , :value => current_user.name %>
+
+
+
+<!--<p>FROM<br>-->
+<!--<%#= f.text_field :from , :placeholder => '例：藤商事', class: "width20vw"%></p>-->
+<!--<br>-->
+
+<!--<p>TO<br>-->
+<!--<%#= f.text_field :to , :placeholder => '例：タイヨー', class: "width20vw"%></p>-->
+<!--<br>-->
+
+
+<div id="secondNotice">
+
+<%= f.submit :style => "margin-top: 20px;", :class => "btn btn-lg btn-success col-md-5 col-xs-5", name: "slot", id: "slot"  %>
+
+<a class="btn btn-lg btn-danger col-md-offset-1 col-md-5 col-xs-offset-1 col-xs-5" style="margin-top: 20px;" href="/"><i class='fa fa-mail-reply'></i> 戻る</a>
+
+<FORM>
+<INPUT type="button" value="登録+別タブ" onClick="open_win()" class="btn btn-lg btn-success col-md-5 col-xs-5" style="margin-top: 20px;">
+</FORM>
+</div>
+
+<div id="firstNotice">
+<button class="btn btn-lg btn-info col-md-5 col-xs-5" style="margin-top: 20px;" name="pachinko"> <i class='fa fa-save'></i> 登録
+<%#= f.submit "登録1", class: "btn btn-primary", data: { disable_with: "登録中...", confirm: '本当に登録しますか？' }, name: "pachinko" %>
+<%= f.submit :style => 'display:none', name: "pachinko", id: "pachinko" %>
+</button>
+<a class="btn btn-lg btn-danger col-md-offset-1 col-md-5 col-xs-offset-1 col-xs-5" style="margin-top: 20px;" href="/"><i class='fa fa-mail-reply'></i> 戻る</a>
+
+<FORM>
+<INPUT type="button" value="登録+別タブ" onClick="open_win2()" class="btn btn-lg btn-info col-md-5 col-xs-5" style="margin-top: 20px;">
+</FORM>
+
+</div>
+
+
+
+
+<% end %>     
+
+
+</div>
+</div>
+</div>
+</div>

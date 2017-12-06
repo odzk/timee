@@ -1,0 +1,151 @@
+
+<% provide(:title,"在庫表") %>
+
+<% 
+session.delete(:fowarding_url)
+store_location 
+%>
+    
+
+<div class="row">
+    
+<div class="container-fluid" style="margin-right: 20px; margin-left: 10%;"> 
+<h3 class="float-left" style="margin-top: -20px; " >
+  <b><i class='fa fa-newspaper-o'></i> 在庫表</b>
+</h3>
+</div>
+
+<div class="btn-group float-left" style="right: -150px; width:100%; margin-top: 20px;"  >
+<a href="/analyze" class="btn btn-default"><i class="fa fa-building-o"></i> 本社</a>
+<a href="/analyze2" class="btn btn-default"><i class="fa fa-building"></i> 菊水</a>
+</div>
+
+<div class="float-left" style="width:65%;">
+<div class="container-fluid" style="margin-right: 10%; margin-left: 20%;">  
+
+<h4>
+  <b><i class='fa fa-building-o'></i> 本社</b>
+</h4> 
+
+
+
+<h6>
+  <b style="zoom:1.2;"><i class='fa fa-bars'></i> 本体</b>
+</h6>
+<div  class="float-left" style="margin-top: -30px; margin-left:10%; ">
+<b style="zoom:0.9;">機種数 <span style="font-size:20px;"><%= @safes.count %></span> 種</b>
+</div>
+<div  class="float-left" style="margin-top: -30px; margin-left:20%; ">
+<b style="zoom:0.9;">在庫数 <span style="font-size:20px;"><%= @safes1_1.count %></span> コ</b>
+</div>
+
+<table class="table table-bordered table-hover table-condensed" style=" width:90%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-2" style="font-size:12px"><%= sortable "name", "機器名" %></th>
+      <th class="col-md-1" style="font-size: 12px">在庫数</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @safes.each do |safe| %>
+        <tr scope="row">
+          <td style="font-size:11px"><%= safe.name %></td>
+          <% @code = "name \= \'" + safe.name + "\'" %>
+          <td style="font-size:9px"><%= @safes1_1.where("#{@code}").count %>コ</td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h6>
+  <b style="zoom:1.2;"><i class='fa fa-bolt'></i> セル</b>
+</h6>
+<div  class="float-left" style="margin-top: -30px; margin-left:10%; ">
+<b style="zoom:0.9;">機種数 <span style="font-size:20px;"><%= @safes2.count %></span> 種</b>
+</div>
+<div  class="float-left" style="margin-top: -30px; margin-left:20%; ">
+<b style="zoom:0.9;">在庫数 <span style="font-size:20px;"><%= @safes2_1.count %></span> コ</b>
+</div>
+
+<table class="table table-bordered table-hover table-condensed" style="width:90%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-2" style="font-size:12px"><%= sortable "name", "機器名" %></th>
+      <th class="col-md-1" style="font-size: 12px">在庫数</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @safes2.each do |safe| %>
+        <tr scope="row">
+          <td style="font-size:11px"><%= safe.name %></td>
+          <% @code = "name \= \'" + safe.name + "\'" %>
+          <td style="font-size:9px"><%= @safes2_1.where("#{@code}").count %>コ</td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+
+<h6>
+  <b style="zoom:1.2;"><i class='fa fa-clone'></i> 枠</b>
+</h6>
+<div  class="float-left" style="margin-top: -30px; margin-left:10%; ">
+<b style="zoom:0.9;">機種数 <span style="font-size:20px;"><%= @safes3.count %></span> 種</b>
+</div>
+<div  class="float-left" style="margin-top: -30px; margin-left:20%; ">
+<b style="zoom:0.9;">在庫数 <span style="font-size:20px;"><%= @safes3_1.count %></span> コ</b>
+</div>
+
+<table class="table table-bordered table-hover table-condensed" style=" width:90%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-2" style="font-size:12px"><%= sortable "name", "機器名" %></th>
+      <th class="col-md-1" style="font-size: 12px">在庫数</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @safes3.each do |safe| %>
+        <tr scope="row">
+          <td style="font-size:11px"><%= safe.name %></td>
+          <% @code = "name \= \'" + safe.name + "\'" %>
+          <td style="font-size:9px"><%= @safes3_1.where("#{@code}").count %>コ</td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h6>
+  <b style="zoom:1.2;"><i class='fa fa-plus'></i> スロット</b>
+</h6>
+<div  class="float-left" style="margin-top: -30px; margin-left:10%; ">
+<b style="zoom:0.9;">機種数 <span style="font-size:20px;"><%= @safes4.count %></span> 種</b>
+</div>
+<div  class="float-left" style="margin-top: -30px; margin-left:20%; ">
+<b style="zoom:0.9;">在庫数 <span style="font-size:20px;"><%= @safes4_1.count %></span> コ</b>
+</div>
+
+<table class="table table-bordered table-hover table-condensed" style=" width:90%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-2" style="font-size:12px"><%= sortable "name", "機器名" %></th>
+      <th class="col-md-1" style="font-size: 12px">在庫数</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @safes4.each do |safe| %>
+        <tr scope="row">
+          <td style="font-size:11px"><%= safe.name %></td>
+          <% @code = "name \= \'" + safe.name + "\'" %>
+          <td style="font-size:9px"><%= @safes4_1.where("#{@code}").count %>コ</td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>

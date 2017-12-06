@@ -1,0 +1,48 @@
+<% provide(:title, "USER追加") %>
+<div class="container">
+ 
+ <h3>ユーザー追加</h3>
+  <div class="col-md-6">
+   
+   
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+
+  <br>
+     <%= f.label :ユーザーネーム %>
+      <%#= f.label :name %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :name, class: 'form-control' %>
+
+  <br>
+     <%= f.label :メールアドレス %>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.email_field :email, class: 'form-control' %>
+      
+
+  <br>
+     <%= f.label :パスワード %>
+      <%#= f.label :password %>
+     <b style="color:red;">*</b>
+      <%= f.password_field :password, class: 'form-control' %>
+<!-- -- --> 
+  <br>
+     <%= f.label :確認用パスワード %>
+     <b style="color:red;">*</b>
+      <%#= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+<!-- -- --> 
+  <br>
+     <%= f.label :管理者権限 %>
+<%= f.check_box 'admin', {}, true, false %>
+     <br><br><br>
+     
+<%= f.hidden_field :time, :value => 0 %>
+
+      <%= f.submit "変更する", class: "btn btn-primary" %>
+    <% end %>
+    
+    
+  </div>
+</div>

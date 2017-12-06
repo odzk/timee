@@ -1,0 +1,59 @@
+<%= fields_for @flow, new_flow_path do |c| %>
+
+
+<p>現在の残高　<%= @user.money %>　円</p>
+<br>
+<p>会社名　<%= @user.company_name %></p>
+<br>
+<p>口座情報<br><br>
+銀行名：　<%= @user.bank_name %><br>
+支店：　<%= @user.bank_branch %><br>
+口座名義：　<%= @user.bank_username %><br>
+口座タイプ：　<%= @user.bank_type %><br>
+口座番号：　<%= @user.bank_number %><br>
+<br></p>
+
+
+
+<%#= hidden_field_tag 'pass_company', "中古パチスロ機器売買掲示板　管理部" %>
+<%= c.hidden_field :pass_company, :value => "中古パチスロ機器売買掲示板管理部" %>
+
+<%#= hidden_field_tag 'recieve_company', @user.company_name  %>
+<%= c.hidden_field :recieve_company, :value =>  @user.company_name %>
+<%= c.hidden_field :company, :value =>  @user.company_name %>
+<%#= hidden_field_tag 'before_price', @user.money  %>
+<%= c.hidden_field :before_price, :value => @user.money %>
+
+<%= c.hidden_field :content, :value => @content %>
+
+<p>入金日　
+<%= c.text_field :year_date %>
+　年　
+<%= c.text_field :month_date %>
+　月　
+<%= c.text_field :day_date %>
+　日</p>
+<br>
+
+<p>入金額　
+<%= c.text_field :price %>
+　円</p>
+<br>
+
+<p>担当者名　
+<%= c.text_field :staff %>
+</p>
+<br>
+
+<p>メモ(任意)
+<%= c.text_field :memo %>
+</p>
+<br>
+
+<!--<p>after priceだよん -->
+<!--<%#= c.text_field :after_price %>-->
+<!--</p>-->
+<!--<br>-->
+
+
+<% end %>  

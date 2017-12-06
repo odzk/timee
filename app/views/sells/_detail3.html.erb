@@ -1,0 +1,78 @@
+<h3>物品の詳細</h3>
+<div class="width_table">
+<table class="table font-small sampleTable">
+
+
+
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">種別</th>
+  <td width="150" ><%= @sell.type_machine %></td>
+<tr>
+  
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">物件名</th>
+  <td width="150" ><%= @sell.name %></td>
+<tr>
+  
+  
+  
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">状況</th>
+  <td width="150" ><%= @sell.status %></td>
+<tr>
+  
+  
+  
+  
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">数量</th>
+  <td width="150" ><%= @sell.number %></td>
+<tr>
+  
+ <tr scope="row"> 
+  <th width="50"  class="thead-inverse">価格</th>
+  <td width="150" ><%= @sell.price.to_s(:delimited) %>円</td>
+<tr>  
+  
+ <tr scope="row"> 
+  <th width="50"  class="thead-inverse">前設置</th>
+  <td width="150" ><%= @sell.place %></td>
+<tr>
+   
+  
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">撤去日</th>
+  <td width="150" ><%= @sell.removal_date %></td>
+<tr> 
+
+
+  
+ 
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">備考</th>
+  <td width="150" ><%= @sell.remarks %></td>
+<tr> 
+
+  
+<tr scope="row"> 
+  <th width="50"  class="thead-inverse">更新日</th>
+  <td width="150" ><%= @sell.created_at.strftime("%m/%d") %></td>
+<tr>
+  
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+

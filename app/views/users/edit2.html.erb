@@ -1,0 +1,89 @@
+<% provide(:title, "Dashboard") %>
+
+<!--先生ダッシュボード-->
+
+
+  <div style="width:100%; margin:0 15% 0 15%;">
+    
+    <div class="box1" style="padding:0 0 30px 30px; width:200px; float:left; margin:0 10px 0 10px;">
+    <h4>Savings Time</h4>
+    <span style="font-size:45px;"><%= @user.time %></span>min
+    </div>
+
+    <div class="box1" style="padding:0 0 30px 30px; width:200px; float:left; margin:0 10px 0 10px;">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+     <h4>Are you busy?</h4>
+     <div class="radio" style="margin-bottom: 10px;">
+     <label><%= f.radio_button :busy, "Busy" %>busy</label>
+     <label><%= f.radio_button :busy, "No" %>no</label>
+     </div>
+      <%= f.submit "submit", class: "btn btn-primary", name: "busy" %>
+    <% end %>
+    </div>
+
+    <div class="box1" style="padding:0 0 70px 30px; width:200px; float:left; margin:0 10px 0 10px;">
+
+    <h4>Refresh page</h4>
+    
+      <script>
+      function koshin(){
+        location.reload();
+      }
+      </script>
+      <input type="button"  value="submit" onclick="koshin()">
+      
+    </div>
+    
+ </div>
+ 
+   <div style="clear: both;"> </div>
+   
+   
+   
+<div style="margin:0 15% 0 15%;">  
+
+
+<table class="table table-bordered table-hover table-condensed" style="margin: 30px 0% 0 0%; font-size:100%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-1" style="font-size:12px">ID</th>    
+      <th class="col-md-3" style="font-size:12px">Student Name</th>
+      <th class="col-md-3" style="font-size:12px">How many time Student has</th>
+      
+      <th class="col-md-5 text-center" style="font-size:12px">編集</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @safes.each do |safe| %>
+
+          <td style="font-size:12px"><%= safe.id %></td>
+          <td style="font-size:20px"><%= safe.student %></td>
+          
+          <% @p = "\"" + safe.student + "\"" %>
+          <% @id = User.find_by(name: safe.student) %>
+          <td style="font-size:20px"><%= @id.time %></td>
+          
+          
+          <td class="text-center" style="zoom:1; padding:10px 0 10px 0;">
+          <%= link_to edit_safe_path(safe), :class => "btn btn-primary" do %>
+          <span style="color:#fff;"><i class="fa fa-pencil-square-o"></i>Application for Complete</span>
+          <% end %>
+          </td>
+          
+   
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= paginate @safes %>
+
+</div>
+
+
+  

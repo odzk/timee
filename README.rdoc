@@ -1,0 +1,7 @@
+== README
+Zaiko Industrial Project
+
+Maintainers:
+
+Kagemasa Obata (jizokm@gmail.com)
+Odysseus Ambut (ody@web-mech.net)

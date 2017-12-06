@@ -1,0 +1,85 @@
+<% provide(:title,"ALL class") %>
+
+<% 
+session.delete(:fowarding_url)
+store_location 
+%>
+    
+
+
+<div class="container-fluid" style="margin-right: 20px; margin-left: 80px;"> 
+<div class="float-left" style=" width:40%;" >
+  
+<h3 class="float-left" style="margin: 30px 15% 0 10%; " >
+ALL Class
+</h3>
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div style="margin:0 10% 0 10%;">  
+
+
+<table class="table table-bordered table-hover table-condensed" style="margin-top: 30px; font-size:60%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-1" style="font-size:12px"><%= sortable "id", "ID" %></th>    
+      <th class="col-md-3" style="font-size:12px"><%= sortable "teacher", "先生" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "student", "生徒" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "student", "生徒の持ち時間" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "status_teacher", "授業状況" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "time", "授業時間" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "photo", "証拠スクショ" %></th>
+      
+      <th class="col-md-1 text-center" style="font-size:12px">編集</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @safes.each do |safe| %>
+
+          <td style="font-size:12px"><%= safe.id %></td>
+          <td style="font-size:12px"><%= safe.teacher %></td>
+          <td style="font-size:12px"><%= safe.student %></td>
+
+
+          <% @p = "\"" + safe.student + "\"" %>
+          <% @id = User.find_by(name: safe.student) %>
+
+
+
+          <td style="font-size:9px"><%= @id.time %></td>
+
+          
+          <td style="font-size:12px"><%= safe.status_teacher %></td>
+          <td style="font-size:12px"><%= safe.time %></td>
+          <td style="font-size:12px"><a href="<%= safe.photo %>"><img src="<%= safe.photo %>" width="50"></a></td>
+          
+          <td class="text-center" style="zoom:0.7; padding:15px 0 0 0;">
+          <%= link_to edit2_safes_path(safe), :class => "btn btn-primary" do %>
+          <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+          </td>
+          
+   
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= paginate @safes %>
+
+</div>
+</div>
+

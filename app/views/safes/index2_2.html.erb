@@ -1,0 +1,518 @@
+<% provide(:title,"セル在庫") %>
+
+<% 
+session.delete(:fowarding_url)
+store_location 
+%>
+    
+
+<div class="row">
+<div class="container-fluid" style="margin-right: 20px; margin-left: 80px;"> 
+
+
+
+<div class="float-left" style=" width:40%;" >
+  
+<h3 class="float-left" style="margin-top: -20px; " >
+  <b><i class='fa fa-cube'></i> セル在庫</b>
+</h3>
+
+<div  class="float-left" style="margin-top: -20px; margin-left:50px; ">
+<b>在庫総数 <span style="font-size:20px;"><%= @safes.count %></span> コ</b>
+</div>
+
+
+<% unless current_user.hyper.blank? %>
+<% if current_user.hyper == "hyper" %>
+<div  class="float-left" style="margin-top: -20px; margin-left:30px; ">
+  
+          <% unless @total_price.blank? %>
+          <b>総仕入額 <span style="font-size:20px;"><%= @total_price.to_s(:delimited) %></span> 円</b>
+          <% else %>
+          <b>総仕入額 <span style="font-size:20px;"><%= @total_price %></span> 円</b>
+          <% end %>
+
+</div>
+<% end %>
+<% end %>
+
+
+<div class="btn-group float-left" style="margin-right: 0px; width:100%; margin-top: 20px;"  >
+<a href="/zaiko" class="btn btn-default"><i class="fa fa-bars"></i> 本体</a>
+<a href="/zaiko-cell" class="btn btn-default"><i class="fa fa-bolt"></i> セル</a>
+<a href="/zaiko-flame" class="btn btn-default"><i class="fa fa-clone"></i> 枠</a>
+<a href="/zaiko-slot" class="btn btn-default"><i class="fa fa-plus"></i> スロット</a>
+</div>
+
+
+
+<div class="btn-group float-left" style="top:20px; width:100%;">
+<%= link_to "CSV出力",csv_output_three_n_safes_path(format: :csv), :class => "btn btn-danger" %>
+</div>
+
+
+<% unless current_user.hyper.blank? %>
+<% if current_user.hyper == "hyper" %>
+<div class="btn-group float-left" style="top:-14px; left:100px; width:100%;">
+<%= link_to "価格含むCSV",csv_output_three_safes_path(format: :csv), :class => "btn btn-danger" %>
+</div>
+<% end %>
+<% end %>
+
+
+
+
+</div>
+
+
+<div class="form-group box26 float-right" style="bottom: 10px; right: 0px; width:50%; margin:0 0 0 0px;"> 
+
+<span class="box-title"><i class="fa fa-search" aria-hidden="true"></i> 検索</span>
+<%= form_tag("safes", method: "get") do %>
+
+<div style="margin:20px 0px 0px 0px;">
+<div style="margin:0 20px 0 20px;" class="float-left">
+<div style="margin:0 20px 0 20px;">
+<%= label_tag :name, "機器名　" %>
+<%= text_field_tag :name, params[:name] %>
+</div>
+<div style="margin:0 20px 0 20px;">
+<%= label_tag :maker, "メーカー" %>
+<%= text_field_tag :maker, params[:maker] %>
+</div>
+</div>
+<div style="margin:0 20px 0 20px;" class="float-left">
+<div style="margin:0 20px 0 20px;">
+<%= label_tag :easy_date_of_input, "入庫日　" %>
+<%= text_field_tag :easy_date_of_input, params[:easy_date_of_input] %>
+</div>
+<div style="margin:0 20px 0 20px;">
+<%= label_tag :easy_date_of_output, "出庫日　" %>
+<%= text_field_tag :easy_date_of_output, params[:easy_date_of_output] %>
+</div>
+</div>
+<div style="margin:20px 40px 0 40px;" class="float-left">
+<%= label_tag :place, "倉庫　　" %>
+<%= text_field_tag :place, params[:place] %>
+</div>
+<%= submit_tag "検索", :class => "btn btn-primary" , :style => "margin:20px 0px 10px 30px; padding-left: 40px; padding-right: 40px;" %>
+
+<%= link_to "リセット", safes_path, :class => "btn btn-danger" , :style => "margin:20px 0px 10px 30px; padding-left: 20px; padding-right: 20px;" %>
+
+<% end %>
+
+</div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+<div class="container-fluid" style="margin-right: 20px; margin-left: 20px;">  
+
+
+<table class="table table-bordered table-hover table-condensed" style="margin-top: 30px; font-size:60%;">
+  <thead class="thead-default">
+    <tr scope="row">
+      <th class="col-md-1" style="font-size:12px"><%= sortable "id", "ID" %></th>    
+      <th class="col-md-2" style="font-size:12px"><%= sortable "maker", "メーカー" %></th>
+      <th class="col-md-1" style="font-size: 12px"><%= sortable "type_machine", "機器" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "name", "機種名" %></th>
+      
+      
+      
+      <% unless current_user.super_admin.blank? %>
+      <% if current_user.super_admin == "super" || current_user.hyper == "hyper" %>
+      <th class="col-md-2" style="font-size:12px"><%= sortable "price_from", "仕入価格" %></th>
+      <% end %>
+      <% end %>
+
+      
+
+      <% unless current_user.hyper.blank? %>
+      <% if current_user.hyper == "hyper" %>
+      <th class="col-md-2" style="font-size:12px"><%= sortable "price_after", "売却価格" %></th>
+      <% end %>
+      <% end %>
+      
+      <% unless current_user.hyper.blank? %>
+      <% if current_user.hyper == "hyper" %>
+      <th class="col-md-2" style="font-size:12px"><%= sortable "benefit", "利益" %></th>
+      <% end %>
+      <% end %>
+      
+      
+      <th class="col-md-1" style="font-size:12px"><%= sortable "place", "倉庫" %></th>
+      <th class="col-md-2" style="font-size:12px"><%= sortable "number", "機器番号" %></th>
+      
+      <th class="col-md-1" style="font-size:12px"><%= sortable "created_at", "入日" %></th>
+      
+      <th class="col-md-2" style="font-size:12px"><%= sortable "from", "仕入先" %></th>
+      <th class="col-md-2" style="font-size:12px"><%= sortable "staff", "入庫担当" %></th>
+      
+      <th class="col-md-1" style="font-size:12px"><%= sortable "date_of_removal", "撤去" %></th>
+      <th class="col-md-1" style="font-size:12px"><%= sortable "date_of_verification", "検定" %></th>
+      <th class="col-md-1" style="font-size:12px"><%= sortable "color_of_panel", "パネ" %></th>
+      
+      <th class="col-md-1" style="font-size:12px">在庫</th>
+      <th class="col-md-2" style="font-size:12px">備考</th>
+      <th class="col-md-1" style="font-size:12px">画①</th>
+      <th class="col-md-1" style="font-size:12px">画②</th>
+      <th class="col-md-1" style="font-size:12px">画③</th>
+      
+      <th class="col-md-1" style="font-size:12px"><%= sortable "paper1", "書①" %></th>
+      <th class="col-md-1" style="font-size:12px"><%= sortable "paper2", "書②" %></th>
+      <th class="col-md-1" style="font-size:12px"><%= sortable "paper3", "書③"%></th>
+      
+      <th class="col-md-1 text-center" style="font-size:12px">編集</th>
+      <th class="col-md-1 text-center" style="font-size:12px">出庫</th>
+      <th class="col-md-1 text-center" style="font-size:12px">Pセ</th>
+      <th class="col-md-1 text-center" style="font-size:12px">削除</th>
+      
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @safes.each do |safe| %>
+        <tr scope="row">
+          <td style="font-size:12px"><%= safe.id %></td>
+          <td style="font-size:11px"><%= safe.maker %></td>   
+          <td style="font-size:11px"><%= safe.type_machine %></td>  
+          <td style="font-size:9px"><%= safe.name %></td>
+      
+      
+      
+          <% unless current_user.super_admin.blank? %>
+          <% if current_user.super_admin == "super" || current_user.hyper == "hyper" %>
+          
+          
+          <% unless safe.price_from.blank? %>
+          <td style="font-size:12px"><%= safe.price_from.to_s(:delimited) %> 円</td>
+          <% else %>
+          <td style="font-size:12px"><%= safe.price_from %> 円</td>
+          <% end %>
+          
+          <% end %>
+          <% end %>
+          
+          
+          <% unless current_user.hyper.blank? %>
+          <% if current_user.hyper == "hyper" %>
+          
+          <% unless safe.price_after.blank? %>
+          <td style="font-size:12px"><%= safe.price_after.to_s(:delimited) %> 円</td>
+          <% else %>
+          <td style="font-size:12px"><%= safe.price_after %> 円</td>
+          <% end %>
+          
+          <% end %>
+          <% end %>
+
+
+
+          <% unless current_user.hyper.blank? %>
+          <% if current_user.hyper == "hyper" %>
+          
+          <% unless safe.benefit.blank? %>
+          <td style="font-size:12px"><%= safe.benefit.to_s(:delimited) %> 円</td>
+          <% else %>
+          <td style="font-size:12px"><%= safe.benefit %> 円</td>
+          <% end %>
+          
+          <% end %>
+          <% end %>
+
+      
+          <td style="font-size:12px"><%= safe.place %></td>
+
+          <!--<td style="font-size:12px">-->
+          <td style="font-size:10px">
+            
+            <% 
+            if safe.number[4, 2] == "1"
+            @alfabet = "E"
+            elsif safe.number[4, 2] == "2"
+            @alfabet = "F"
+            elsif safe.number[4, 2] == "3"
+            @alfabet = "G"
+            elsif safe.number[4, 2] == "4"
+            @alfabet = "H"
+            elsif safe.number[4, 2] == "5"
+            @alfabet = "I"
+            elsif safe.number[4, 2] == "6"
+            @alfabet = "J"
+            elsif safe.number[4, 2] == "7"
+            @alfabet = "K"
+            elsif safe.number[4, 2] == "8"
+            @alfabet = "L"
+            elsif safe.number[4, 2] == "9"
+            @alfabet = "M"
+            elsif safe.number[4, 2] == "10"
+            @alfabet = "N"
+            elsif safe.number[4, 2] == "11"
+            @alfabet = "A"
+            elsif safe.number[4, 2] == "12"
+            @alfabet = "B"
+            elsif safe.number[4, 2] == "13"
+            @alfabet = "C"
+            elsif safe.number[4, 2] == "14"
+            @alfabet = "D"
+            elsif safe.number[4, 2] == "15"
+            @alfabet = "E"
+            elsif safe.number[4, 2] == "16"
+            @alfabet = "F"
+            elsif safe.number[4, 2] == "17"
+            @alfabet = "G"
+            elsif safe.number[4, 2] == "18"
+            @alfabet = "H"
+            elsif safe.number[4, 2] == "19"
+            @alfabet = "I"
+            elsif safe.number[4, 2] == "20"
+            @alfabet = "J"
+            elsif safe.number[4, 2] == "21"
+            @alfabet = "K"
+            elsif safe.number[4, 2] == "22"
+            @alfabet = "L"
+            elsif safe.number[4, 2] == "23"
+            @alfabet = "M"
+            elsif safe.number[4, 2] == "24"
+            @alfabet = "N"
+            else
+            @alfabet = ""
+            end
+            
+            if safe.number[4, 2] == "1"
+            @alfabet2 = "E"
+            elsif safe.number_of_frame[4, 2] == "2"
+            @alfabet2 = "F"
+            elsif safe.number_of_frame[4, 2] == "3"
+            @alfabet2 = "G"
+            elsif safe.number_of_frame[4, 2] == "4"
+            @alfabet2 = "H"
+            elsif safe.number_of_frame[4, 2] == "5"
+            @alfabet2 = "I"
+            elsif safe.number_of_frame[4, 2] == "6"
+            @alfabet2 = "J"
+            elsif safe.number_of_frame[4, 2] == "7"
+            @alfabet2 = "K"
+            elsif safe.number_of_frame[4, 2] == "8"
+            @alfabet2 = "L"
+            elsif safe.number_of_frame[4, 2] == "9"
+            @alfabet2 = "M"
+            elsif safe.number_of_frame[4, 2] == "10"
+            @alfabet2 = "N"
+            elsif safe.number_of_frame[4, 2] == "11"
+            @alfabet2 = "A"
+            elsif safe.number_of_frame[4, 2] == "12"
+            @alfabet2 = "B"
+            elsif safe.number_of_frame[4, 2] == "13"
+            @alfabet2 = "C"
+            elsif safe.number_of_frame[4, 2] == "14"
+            @alfabet2 = "D"
+            elsif safe.number_of_frame[4, 2] == "15"
+            @alfabet2 = "E"
+            elsif safe.number_of_frame[4, 2] == "16"
+            @alfabet2 = "F"
+            elsif safe.number_of_frame[4, 2] == "17"
+            @alfabet2 = "G"
+            elsif safe.number_of_frame[4, 2] == "18"
+            @alfabet2 = "H"
+            elsif safe.number_of_frame[4, 2] == "19"
+            @alfabet2 = "I"
+            elsif safe.number_of_frame[4, 2] == "20"
+            @alfabet2 = "J"
+            elsif safe.number_of_frame[4, 2] == "21"
+            @alfabet2 = "K"
+            elsif safe.number_of_frame[4, 2] == "22"
+            @alfabet2 = "L"
+            elsif safe.number_of_frame[4, 2] == "23"
+            @alfabet2 = "M"
+            elsif safe.number_of_frame[4, 2] == "24"
+            @alfabet2 = "N"
+            else
+            @alfabet2 = ""
+            end
+            
+            
+            if safe.number_of_foundation[4, 2] == "1"
+            @alfabet3 = "E"
+            elsif safe.number_of_foundation[4, 2] == "2"
+            @alfabet3 = "F"
+            elsif safe.number_of_foundation[4, 2] == "3"
+            @alfabet3 = "G"
+            elsif safe.number_of_foundation[4, 2] == "4"
+            @alfabet3 = "H"
+            elsif safe.number_of_foundation[4, 2] == "5"
+            @alfabet3 = "I"
+            elsif safe.number_of_foundation[4, 2] == "6"
+            @alfabet3 = "J"
+            elsif safe.number_of_foundation[4, 2] == "7"
+            @alfabet3 = "K"
+            elsif safe.number_of_foundation[4, 2] == "8"
+            @alfabet3 = "L"
+            elsif safe.number_of_foundation[4, 2] == "9"
+            @alfabet3 = "M"
+            elsif safe.number_of_foundation[4, 2] == "10"
+            @alfabet3 = "N"
+            elsif safe.number_of_foundation[4, 2] == "11"
+            @alfabet3 = "A"
+            elsif safe.number_of_foundation[4, 2] == "12"
+            @alfabet3 = "B"
+            elsif safe.number_of_foundation[4, 2] == "13"
+            @alfabet3 = "C"
+            elsif safe.number_of_foundation[4, 2] == "14"
+            @alfabet3 = "D"
+            elsif safe.number_of_foundation[4, 2] == "15"
+            @alfabet3 = "E"
+            elsif safe.number_of_foundation[4, 2] == "16"
+            @alfabet3 = "F"
+            elsif safe.number_of_foundation[4, 2] == "17"
+            @alfabet3 = "G"
+            elsif safe.number_of_foundation[4, 2] == "18"
+            @alfabet3 = "H"
+            elsif safe.number_of_foundation[4, 2] == "19"
+            @alfabet3 = "I"
+            elsif safe.number_of_foundation[4, 2] == "20"
+            @alfabet3 = "J"
+            elsif safe.number_of_foundation[4, 2] == "21"
+            @alfabet3 = "K"
+            elsif safe.number_of_foundation[4, 2] == "22"
+            @alfabet3 = "L"
+            elsif safe.number_of_foundation[4, 2] == "23"
+            @alfabet3 = "M"
+            elsif safe.number_of_foundation[4, 2] == "24"
+            @alfabet3 = "N"
+            else
+            @alfabet3 = ""
+            end
+            
+            
+            
+            
+            %>
+           セ：<%= @alfabet %> <%= safe.number[-6..-1] %><br>
+           枠：<%= @alfabet2 %> <%= safe.number_of_frame[-6..-1] %><br>
+           基：<%= @alfabet3 %> <%= safe.number_of_foundation[-6..-1] %>
+          </td>         
+            
+           
+          <td style="font-size:11px"><%= safe.created_at.strftime("%m/%d") %></td>
+
+
+          
+          
+          <td style="font-size:9px">
+          <% if safe.status == "出庫済" %>
+          <%= safe.from %>
+          <% else %>
+          <%= safe.from %>
+          <% end %>
+          </td>
+          
+          <td style="font-size:9px">
+          <% if safe.status == "出庫済" %>
+          <%= safe.staff %>
+          <% else %>
+          <%= safe.staff %>
+          <% end %>
+       　 </td>
+
+
+          <td style="font-size:8px"><%= safe.date_of_removal %></td>
+          <td style="font-size:8px"><%= safe.date_of_verification %></td>
+          
+          
+          <td style="font-size:12px"><%= safe.color_of_panel %></td>
+          
+          <% @code = "name \= \'" + safe.name + "\'" %>
+          <% @code2 = "type_machine \= \'" + safe.type_machine + "\'" %>
+          <td style="font-size:9px"><%= Safe.where("#{@code}").where("#{@code2}").where("status = '在庫中'").count %>コ</td>
+          
+          <td style="font-size:9px"><%= safe.remarks %></td>
+
+          <% unless safe.photo.blank? %>
+          <td class="width5vw"><a href="<%= safe.photo %>" ><img src="<%= safe.photo %>" width="30"></a></td>
+          <% else %>
+          <td class="width5vw"><img src="assets/No-image-found.jpg" width="30"></td>
+          <% end %>
+          <% unless safe.photo2.blank? %>
+          <td class="width5vw"><a href="<%= safe.photo2 %>" ><img src="<%= safe.photo2 %>" width="30"></a></td>
+          <% else %>
+          <td class="width5vw"><img src="assets/No-image-found.jpg" width="30"></td>
+          <% end %>
+          <% unless safe.photo3.blank? %>
+          <td class="width5vw"><a href="<%= safe.photo3 %>" ><img src="<%= safe.photo3 %>" width="30"></a></td>
+          <% else %>
+          <td class="width5vw"><img src="assets/No-image-found.jpg" width="30"></td>
+          <% end %>
+          
+           <% if safe.paper1 == "済" %>
+          <td class="width5vw" style="zoom:2;"><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+          <% else %>
+          <td class="width5vw" style="zoom:2;"><i class="fa fa-square-o" aria-hidden="true"></i></td>
+          <% end %>
+          
+          <% if safe.paper2 == "済" %>
+          <td class="width5vw" style="zoom:2;"><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+          <% else %>
+          <td class="width5vw" style="zoom:2;"><i class="fa fa-square-o" aria-hidden="true"></i></td>
+          <% end %>
+          
+          <% if safe.paper3 == "済" %>
+          <td class="width5vw" style="zoom:2;"><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+          <% else %>
+          <td class="width5vw" style="zoom:2;"><i class="fa fa-square-o" aria-hidden="true"></i></td>
+          <% end %>
+          
+          
+          
+          
+          <td class="text-center" style="zoom:0.7; padding:15px 0 0 0;">
+          <%= link_to edit2_safes_path(safe), :class => "btn btn-primary" do %>
+          <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+          </td>
+          
+          <% if safe.status == "出庫済" %>
+            <td class="width5vw" style="zoom:2;"><i class="fa fa-check-square-o" aria-hidden="true"></i></td>
+          <% else %>
+            <td class="text-center" style="zoom:0.7; padding:15px 0 0 0;">
+            <%= link_to edit_safe_path(safe, params: { safe: { status: "出庫済"} } ), :class => "btn btn-primary" do %>
+            <i class="fa fa-sign-out"></i>
+          <% end %>
+            </td>
+          <% end %>
+         
+         <td class="text-center" style="zoom:0.7; padding:15px 0 0 0;">
+          <% @utf81 = safe.name.encode(Encoding::SJIS, :invalid => :replace, :undef => :replace) %>
+          <% @utf8 = ERB::Util.url_encode(@utf81) %>
+          <% @url = "https://www.p-sensor.co.jp/php/search_sale.php?&item=" + @utf8 %>
+          <%= link_to "P", @url, :class => "btn btn-primary" %>
+         </td>
+
+         <td class="text-center" style="zoom:0.7; padding:15px 0 0 0;">
+          <%= link_to  safe ,method: :delete, data: { confirm: "本当にこの在庫データを削除しますか？" }, :class => "btn btn-primary" do %>
+          <i class="fa fa-trash-o"></i>
+          <% end %>
+         </td>
+   
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= paginate @safes %>
+
+</div>
+</div>
+
+
+
+

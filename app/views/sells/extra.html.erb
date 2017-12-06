@@ -1,0 +1,34 @@
+<% provide(:title,"登録") %>
+
+<h4>その他物品を登録</h4>
+
+<nav class="navbar nav_wide navbar_center">
+<div class="right_menu menu_box"></div> 
+
+<div class="right_menu menu_box"><%= link_to "パチンコ", "/sells/new", :class => 'orange' %></div> 
+
+<div class="right_menu menu_box"><%= link_to "スロット", "/sells/slot", :class => 'orange' %></div> 
+
+<div class="right_menu menu_box"><%= link_to "その他", "/sells/extra", :class => 'orange' %></div> 
+
+<div class="right_menu menu_box"></div> 
+</nav>
+
+
+
+
+
+
+<div class="container">
+  <div class="form-center">
+    <div class="box-whitesmoke">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-3">
+
+        <%= render 'shared/sell_form3' %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

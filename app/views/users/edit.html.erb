@@ -1,0 +1,145 @@
+<% provide(:title, "Edit User") %>
+
+<div class="container" style="padding:0 3% 0 3% ;">
+<h2>Edit profile <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">プロフィール編集</span></h2>
+<br>
+
+<div style="width:100%;">
+<div style="width:80%; margin:0 10% 0 10%;"  >
+    
+    
+<!--# 生徒-->
+
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('5MB以下のサイズにしてください。');
+    }
+  });
+</script>
+
+
+  <div>
+   
+   
+    <%#= form_for(@user) do |f| %>
+    <%= form_for @user,:url => {:action => 'update'}, :html => {:multipart => true} do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+ 
+  <br>
+     <p>性別</p>
+      <%#= f.label :name %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :sex, class: 'form-control' %>
+
+
+  <br>
+     <p>name(ユーザーネーム)</p>
+      <%#= f.label :name %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :name, class: 'form-control' %>
+
+  <br>
+     <p>mail (メールアドレス) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.email_field :email, class: 'form-control' %>
+      
+
+  <br>
+     <p>password (パスワード) <p>
+      <%#= f.label :password %>
+
+      <%= f.password_field :password, class: 'form-control' %>
+<!-- -- --> 
+  <br>
+     <p>password2 (確認用パスワード) <p>
+
+      <%#= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+<!-- -- --> 
+  <br>
+     <p>skype-id (スカイプID) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :skype, class: 'form-control' %>
+      
+  <br>
+     <p>user-type (ユーザータイプ) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :type_user, class: 'form-control' %>
+      
+  <br>
+     <p>skill (スキル) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :skill, class: 'form-control' %>
+      
+  <br>
+  
+     <p>former job (前職) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :job, class: 'form-control' %>
+      
+  <br>
+  
+     <p>appeal (アピールポイント) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :appeal, class: 'form-control' %>
+      
+  <br>
+     <p>hobby (趣味) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :hobby, class: 'form-control' %>
+      
+  <br>
+     <p>country (国籍) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :country, class: 'form-control' %>
+      
+      
+  <br>
+     <p>favorite movie (好きな映画) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :movie, class: 'form-control' %>
+      
+  <br>
+     <p>are you busy now? (忙しい？) <p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :busy, class: 'form-control' %>
+      
+  <br>
+
+ 
+<%=f.label :image," image (プロフィール画像)" %>
+      <%= f.file_field :image %>
+
+  <br>
+
+
+
+<%= f.check_box :admin %>
+
+     <br><br><br>
+     
+     
+      <%= f.submit "変更する", class: "btn btn-primary", name: "edit" %>
+    <% end %>
+ 
+ </div>
+
+ 
+   <div style="clear: both;"> </div>
+
+
+
+ </div>
+  </div>

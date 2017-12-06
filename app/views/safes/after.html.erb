@@ -1,0 +1,84 @@
+<div class="col-md-offset-3 col-md-6" style="border: 1px dashed #0080c5; border-radius: 10px; padding:20px 20px 60px 20px;">
+<% if @safes.blank? %>
+
+<h2 class="text-center">レコードが見つかりません</h2>
+<% end %>
+
+
+
+<% @safes.each do |safe| %>
+
+
+<%
+    if safe.type_machine == "本体"
+              @out = "３点一括出庫"
+@color = 'btn btn-primary big_botton btn-info'
+                       elsif safe.type_machine == "セル"
+                      @out = "セルのみ出庫"
+@color = 'btn btn-primary big_botton btn-success'
+                         elsif safe.type_machine == "枠"
+                      @out = "枠のみ出庫"
+@color = 'btn btn-primary big_botton btn-success'
+                      elsif safe.type_machine == "基盤"
+                      @out = "基盤のみ出庫"
+@color = 'btn btn-primary big_botton btn-success'
+                      end
+%>
+
+
+<br>
+<div class="container-fluid" style="border: 1px dashed red; padding-top: 20px; padding-bottom: 10px; ">
+<div style="padding: 20px;" class="center-block">
+
+
+<%if safe.machine == "パチンコ" %>
+<%if !safe.number.nil? %>
+<p>セル番号：　<%= safe.number %></p>
+<% end %>
+<%if !safe.number_of_frame.nil? %>
+<p>枠番号：　<%= safe.number_of_frame %></p>
+<% end %>
+<%if !safe.number_of_foundation.nil? %>
+<p>基盤番号：　<%= safe.number_of_foundation %></p>
+<% end %>
+<% end %>
+
+<%if safe.machine == "スロット" %>
+<%if !safe.number_slot.nil? %>
+<p>機器番号：　<%= safe.number_slot %></p>
+<% end %>
+<% end %>
+
+
+<p>機器：　<%= safe.machine %></p>
+<p>タイプ：　<%= safe.type_machine %></p>
+<p>機種名：　<%= safe.name %></p>
+
+<!--<h5>出庫先：　<%#= params[:staff] %></h5>-->
+<!--<h5>機種：　<%#= safe.machine %></h5>-->
+<!--<h5>種別：　<%#= safe.type_machine %></h5>-->
+<!--<h5>価格：　<%#= safe.price_from %></h5>-->
+<!--<h5>備考：　<%#= safe.remarks %></h5>-->
+
+<p>画像：　<img src="<%= safe.photo %>" width="100"></p>
+
+
+<%#= link_to @out, edit_safe_path(safe, params: { safe: { status: "出庫済"} } ) , :class => @color %>
+
+<%#= link_to '出庫する', edit_safe_path(safe), class: "btn btn-primary", data: { disable_with: "登録中...", confirm: '本当に登録しますか？' } %>
+
+<%#= f.text_field :to , :placeholder => '例：タイヨー', :value => session[:to], class: 'form-control', :checked => true ,:required => true %>
+
+
+<%#= f.submit "登録", class: "btn btn-primary", data: { disable_with: "登録中...", confirm: '本当に登録しますか？' } %>
+<%# end %>
+
+</div>
+</div>
+<%#= link_to "出庫する", safe_path(safe), :class => "btn btn-primary big_botton" %>
+<%#= link_to '出庫する', safe_path(safe), method: :put, :class => "btn btn-primary big_botton" %>
+<%= link_to "出庫する", edit_safe_path(safe), :class => "btn btn-primary big_botton" %>
+<br>
+<% end %>
+</div>
+<%= link_to '戻る', "/", :class => "btn btn-primary big_botton btnred" %>

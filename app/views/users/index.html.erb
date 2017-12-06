@@ -1,0 +1,63 @@
+<% provide(:title,"ユーザー一覧") %>
+
+<%     session.delete(:fowarding_url)
+    store_location
+    %>
+    
+    
+<div class="container">
+
+
+<h3>All User</h3>
+
+<%= link_to "<i class='fa fa-user-circle-o'></i> add".html_safe, new_user_path, class: "btn btn-primary", style: "margin-bottom: 20px;" %>
+
+<table class="table table-bordered table-hover">
+
+<thead>
+
+  <th class="col-md-2">名前</th>
+  <th class="col-md-3">ID</th> 
+  <th class="col-md-3">権限</th>
+  <th class="col-md-3">ロール</th>
+  <th colspan="2" class="col-md-4 text-center">Actions</th>
+
+</thead>
+
+<tbody>
+<% @users.each do |user| %>
+<tr>
+  <td><%= link_to user.name, edit_user_path(user) %></td>
+  <td><%= user.email %></td>
+
+  
+  
+ <% if user.admin? %>
+  <td>中心メンバー</td>
+ <% else %>
+  <td>一般</td>
+<% end %>
+
+ <% if user.type_user == "teacher" %>
+  <td>先生</td>
+ <% else %>
+  <td>生徒</td>
+<% end %>
+
+
+
+
+ 
+  <td class="text-center"><%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user), class: "btn btn-success" %></td>
+
+  <td class="text-center"><%= link_to "<i class='fa fa-trash-o'></i>".html_safe , user ,method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: "btn btn-success" %></td>
+
+</tr>
+
+<% end %>
+</tbody>
+
+  
+</table>
+</div>
+</div>

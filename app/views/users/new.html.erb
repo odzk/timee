@@ -31,15 +31,15 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 <!-- -- --> 
   <br>
-     <%= f.label :SkypeID %>
+     <%= f.label :スカイプID %>
      <b style="color:red;">*</b>
       <%#= f.label :password_confirmation, "Confirmation" %>
       <%= f.text_field :skype, class: 'form-control' %>
 <!-- -- --> 
   <br>
-     <%= f.label :管理者権限 %>
-<%= f.check_box 'admin', {}, true, false %>
-     <br><br><br>
+<%#= f.label :管理者権限 %>
+<%#= f.check_box 'admin', {}, true, false %>
+<br><br>
      
 <%= f.hidden_field :time, :value => 0 %>
 <%= f.hidden_field :type_user, :value => "student" %>

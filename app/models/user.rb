@@ -201,6 +201,7 @@ class User < ActiveRecord::Base
   
   validates :name, presence: true, length:{ maximum: 50 },
   uniqueness: { case_sensitive: false }
+  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   validates :email, presence: true, length:{ maximum: 255 },
@@ -210,49 +211,7 @@ class User < ActiveRecord::Base
   #gem 'bcrypt','3.1.11'とbundle installが必須
 
   validates :password, presence: true, length: { minimum: 6 } ,allow_nil: true, format: { with: /\A[a-z0-9]+\z/i }
-  # presence: true　があるため、新規ユーザーはemptyではNG
-  # ただし、既存ユーザーはすでにデータが存在するため、
-  # allow_nil: true　でemptyでもOK。
 
-  
-#   validates :company_name, presence: true, length:{ maximum: 20 },uniqueness: true
-#   validates :company_name_sounds, presence: true, length:{ maximum: 20 }
-#   validates :company_reception, presence: true, length:{ maximum: 20 }
-#   validates :company_president, presence: true, length:{ maximum: 20 }
-#   validates :company_president_sound, presence: true, length:{ maximum: 20 }
-#   validates :company_post_number, presence: true, length:{ maximum: 20 }
-#   validates :company_place, presence: true, length:{ maximum: 200 }
-#   validates :company_place_detail, presence: true, length:{ maximum: 200 }
-#   validates :company_call_number, presence: true, length:{ maximum: 20 }
-# # validates :company_fax_number, presence: true
-# # validates :company_branch, presence: true
-#   validates :company_type, presence: true, length:{ maximum: 20 }
-#   validates :company_union, presence: true, length:{ maximum: 20 }
-#   validates :company_reception_sound, presence: true, length:{ maximum: 20 }
-#   validates :company_position, presence: true, length:{ maximum: 20 }
-#   validates :company_post_number_contact, presence: true, length:{ maximum: 20 }
-#   validates :company_call_time_from_1, presence: true, length:{ maximum: 5 }
-#   validates :company_call_time_from_2, presence: true, length:{ maximum: 5 }
-#   validates :company_call_time_to_1, presence: true, length:{ maximum: 5 }
-#   validates :company_call_time_to_2, presence: true, length:{ maximum: 5 }
-# # validates :company_fax_number_contact, presence: true
-#   validates :company_call_number_emergency, presence: true, length:{ maximum: 20 }
-# # validates :company_url, presence: true
-#   validates :company_mail_address, presence: true, length:{ maximum: 20 }
-#   validates :company_place_detail_contact, presence: true, length:{ maximum: 200 }
-# # validates :company_pr, presence: true
-
-#   validates :bank_name, presence: true, length:{ maximum: 20 }
-#   validates :bank_branch, presence: true, length:{ maximum: 20 }
-#   validates :bank_username, presence: true, length:{ maximum: 20 }
-#   validates :bank_type, presence: true, length:{ maximum: 20 }
-#   validates :bank_number, presence: true, length:{ maximum: 20 },uniqueness: true, format: { with: /\A[a-z0-9]+\z/i }
-#   validates :money, length:{ maximum: 20 }, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-# #   # after
-
-
-  
-  
 #—————
 #以下はリメンバーのためです。—————
 #—————

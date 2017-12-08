@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
 
 
+get '/signup', to: 'users#new'
+post '/signup', to: 'users#create'
+#signup
+
+
 get '/login', to:'sessions#new'
 post '/login', to:'sessions#create'
 delete '/logout', to:'sessions#destroy'
 
 get '/users/:id/endenter', to: 'users#endenter', as:'endenter_users'
-get '/user/:id/edit2', to: 'users#edit2', as:'edit2_user'
+get '/user/teacher', to: 'users#edit2', as:'edit2_user'
 get '/user/:id/edit3', to: 'users#edit3', as:'edit3_user'
+get '/user/index2', to: 'users#index2', as:'index2_user'
+get '/user/index3', to: 'users#index3', as:'index3_user'
 
 get :search, controller: :search
 get :check, controller: :search
 
+post 'users/pay' => 'users#pay'
 
 root 'static_pages#home'
 
@@ -54,8 +62,6 @@ resources :password_resets,     only: [:new, :create, :edit, :update]
  
 resources :users
 
-resources :makers,     only: [:index, :new, :create, :destroy]
-
 
 resources :safes  do
     collection do
@@ -92,12 +98,6 @@ get '/safes/:id/editing', to:'safes#edit2', as:'edit2_safes'
 
 
 get 'zaiko' => 'safes#index2'  
-get 'zaiko-cell' => 'safes#index2_2'  
-get 'zaiko-flame' => 'safes#index2_3'  
-get 'zaiko-foundation' => 'safes#index2_4'  
-get 'zaiko-slot' => 'safes#index2_5'  
-
-
 
 
 end

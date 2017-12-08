@@ -6,69 +6,96 @@
 
 
 <% if logged_in? %>
-<% if current_user.admin? %>
-
-<%  session.delete(:fowarding_url)
-    store_location
-    %>
-    
 
 
-
-
-<div class="container" style="padding:0 3% 0 3% ;">
-	<h2>Find teachers <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">先生を探す</span></h2>
-<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
-
-        <div class="content">
-				<div class="grid">
-					<% @users.each do |user| %>
-					<% unless user.busy == "busy" %>
-					
-										<figure class="effect-jazz">
-											<img src="<%= user.image %>" alt="img25"/>
-											<figcaption>
-												<h2><%= user.sex %><span><%= user.name %></span></h2>
-												<p>趣味：<%= user.hobby %></p>
-												<p>スキル：<%= user.skill %></p>
-					                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-					                           show more
-					                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-					                        <% end %>
-											</figcaption>	
-										</figure>
-											
-					<% else %>
-										<figure class="mono">
-											<img src="<%= user.image %>" alt="img25"/>
-										<div class="cover-text text-center">
-											<p style="color: #fff;"></p>
-										</div>	
-											<figcaption>
-												<br><br>
-												<h2 style="font-family: 'Gloria Hallelujah', cursive;"><span style="font-size:50px;">Soryy,,,</span><br><br><br> I'm busy now.</h2>
-											</figcaption>
-										</figure>
-											
-											
-					<% end %>
-					<% end %>
-				</div>
-			</div>
-
-
-
-
-
-</div>
-</div>
-<% end %>
+		<% unless current_user.type_user == "teacher"%>
+		<!--student-->
+		<!--student-->
+		<!--student-->
+		<div class="container" style="padding:0 3% 0 3% ;">
+			<h2>Find teachers <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">先生を探す</span></h2>
+		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
+		        <div class="content">
+						<div class="grid">
+							<% @users.each do |user| %>
+							<% if user.busy != "busy" %>
+							
+												<figure class="effect-jazz">
+													<img src="<%= user.image %>" alt="img25"/>
+													<figcaption>
+														<h2><%= user.sex %><span><%= user.name %></span></h2>
+														<p>趣味：<%= user.hobby %></p>
+														<p>スキル：<%= user.skill %></p>
+							                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+							                           show more
+							                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+							                        <% end %>
+													</figcaption>	
+												</figure>
+													
+							<% else %>
+												<figure class="mono">
+													<img src="<%= user.image %>" alt="img25"/>
+												<div class="cover-text text-center">
+													<p style="color: #fff;"></p>
+												</div>	
+													<figcaption>
+														<br><br>
+														<h2 style="font-family: 'Gloria Hallelujah', cursive;"><span style="font-size:50px;">Soryy,,,</span><br><br><br> I'm busy now.</h2>
+													</figcaption>
+												</figure>
+							<% end %>
+							<% end %>
+						</div>
+					</div>
+		</div>
+		</div>
+		<% else %>
+		
+		<!--teacher-->
+		<!--teacher-->
+		<!--teacher-->
+		<p>
+		Thankn you every day!!
+		We will always treat you well.
+		</p>
+		<!--teacher-->
+		<!--teacher-->
+		<!--teacher-->
+		<% end %>
+		
+		
 <% else %>
 
-<div class="center jumbotron">
-<h1 class="text-center" style="margin-bottom: 30px; font-family: 'Audiowide', cursive;"><i class="fa fa-cubes" style="margin-right: 10px;"></i>ZAIKO</h1>
-<%= link_to "ログイン", login_path, class:"btn btn-lg btn-primary" %>
+
+
+
+
+<br>
+
+<div class="center" style="height:400px; width:100%; padding:0 25% 0 25%;">
+
+   
+  
+                <h1 class="navbar-brand" style="zoom:3;">
+                <span style="
+                font-family: 'Quicksand', sans-serif;
+                font-family: 'Nothing You Could Do', cursive;
+                font-family: 'Black Ops One', cursive;
+                , cursive; font-size:40px;">timee.</span>
+                <br>
+                <span style="
+                      font-family: 'Work Sans', sans-serif;
+                , cursive; font-size:3px; position:relative; top:-10px;">Time is Life,Life is Study.</span>
+                
+                </h1>
+
+<%= link_to "新規会員登録", "/signup", class:"btne" , :style => "margin:0 20px 0 0;" %>
+<%= link_to "ログイン", "/login", class:"btne" , :style => "margin:0 20px 0 0;" %>
 <!--未ログインの場合に-->
-</div>
+
+
+
+
 
 <% end %>

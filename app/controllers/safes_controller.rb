@@ -690,40 +690,44 @@ def update
 
                 if @safe.update(safe_params)
                   flash[:success] = "編集完了"
+                  redirect_back_or root_url
                 else
                   flash[:danger] = "権限がないか、既に完了したアクションです。"
                   redirect_back_or root_url
                 end
 
   elsif params[:application]
-
-                      if @safe.status && (@safe.status == "在庫中")
-
           
-                        @student = "\"name = \'" + @safe.student + "\'\""
-                        @student_time = User.where(@student)
-                        
-                        
-                        @safe.update(:staff_two => @staff )
-                        
-                        @safe.update(safe_params)
+                if @safe.update(safe_params)
+                  @teacher = User.find(current_user)
+                  @studentname = @safe.student
+                  @studentid = User.where(:name => @studentname)
+                  @student = User.find(@studentid[0].id)
 
-                        require 'date'
-                        @safe.update(:date_of_out => @today )
-                        
-                       
-                        @safe.update(:easy_date_of_output => @today2 )
-                        
-                        session[:to] = @safe.to
-                              
-                        flash[:success] = "出庫完了"
-                        redirect_back_or root_url
-                      else
-                        flash[:danger] = "権限がないか、既に完了したアクションです。"
-                        redirect_back_or root_url
-                      end
+                  if @teacher.time.blank?
+                    @teachertime = 0
+                  else
+                    @teachertime = @teacher.time
+                  end
+                  @add = @teachertime + @safe.time
+                  @teacher.update(:time => @add )
 
 
+                  if @student.time.blank?
+                    @studenttime = 0
+                  else
+                    @studenttime = @student.time
+                  end
+                  @add2 = @studenttime - @safe.time
+                  @student.update(:time => @add2 ) 
+                  
+                  flash[:success] = "Thank you for teaching!"
+                  redirect_to edit2_user_path
+                else
+                  flash[:danger] = "Erorr occur, something wrong. Please tell us."
+                  redirect_back_or root_url
+                end
+                
   end
 
 end  

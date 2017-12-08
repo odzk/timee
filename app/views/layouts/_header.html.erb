@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-      
+<% if logged_in? %>
 <div id="app" class="container-fullwidth" style="margin:20px 10% 0 10%;">
 <nav class="navbar navbar-expand-lg">
     
@@ -15,55 +15,63 @@
                 , cursive; font-size:3px; position:relative; top:-10px;">Time is Life,Life is Study.</span>
                 
                 </a>
-                
-                
-                
-                <% if logged_in? %>
-                
-                
-                
+
+                <% unless current_user.type_user == "teacher"%>
                     　<ul style=" float:left; color:black; margin:35px 50px 0 0; width:150px;" >
                         <li>
                            <p>
                                <!--Your available TIME-->
-                               <i class="fa fa-clock-o" aria-hidden="true"></i><%= current_user.time/60 %>h　<%= current_user.time % 60 %>m
+                               <span style="
+                font-family: 'Quicksand', sans-serif;
+                font-family: 'Nothing You Could Do', cursive;
+                font-family: 'Black Ops One', cursive;
+                , cursive; ">
+                               <i class="fa fa-hourglass" aria-hidden="true"></i>
+                               <%= current_user.time/60 %>:
+                               <% @mins = current_user.time % 60 %>
+                               <% if @mins % 60 < 10 %>
+                               0<%= @mins %>
+                               <% else %>
+                               <%= @mins %>
+                               <% end %>
+                               </span>
                            </p>
                         </li>
                       </ul>
-                      
+                <% end %>
+                
+                
                       
                 <div id="navbarNavDropdown" class="navbar-collapse collapse" style="width:70%">
                     
-                     
-                     <ul style="zoom:1.5; float:right; margin:30px 50px 0 0;">
+                    <ul style="zoom:1.3; float:right; margin:30px 0px 0 0;">
+                        
+                    <% if current_user.admin? %>
 
-                     
-                     
-                         <% if current_user.admin? %>
-                         <span style="margin:0px 10px 0 0;">
-                            <%=  link_to users_path , :class => "" do %>
-                               <i class="fa fa-users" aria-hidden="true"></i>
-                               <span style="
-                                          font-family: 'Work Sans', sans-serif;
-                                    , cursive; font-size:1px;">User</span>
-                               <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-                            <% end %>
-                            <%=  link_to safes_path , :class => "" do %>
-                               <i class="fa fa-table" aria-hidden="true"></i>
-                               <span style="
-                                          font-family: 'Work Sans', sans-serif;
-                                    , cursive; font-size:1px;">Log</span>
-                            <% end %>
-                            <%= link_to edit_user_path(current_user.id) , :class => "" , :style => "color:black;" do %>
-                               <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-                            <% end %>
-                            </span>
-                         <% end %>
-                      
+                                <span style="margin:0px 10px 0 0;">
+                                <%=  link_to users_path , :class => "" do %>
+                                   <i class="fa fa-users" aria-hidden="true"></i>
+                                   <span style="
+                                              font-family: 'Work Sans', sans-serif;
+                                        , cursive; font-size:1px;">User</span>
+                                   <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+                                <% end %>
+                                <%=  link_to safes_path , :class => "" do %>
+                                   <i class="fa fa-table" aria-hidden="true"></i>
+                                   <span style="
+                                              font-family: 'Work Sans', sans-serif;
+                                        , cursive; font-size:1px;">Log</span>
+                                <% end %>
+                                <%= link_to edit_user_path(current_user.id) , :class => "" , :style => "color:black;" do %>
+                                   <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+                                <% end %>
+                                </span>
+                            
+                            
+                    <% else %>
                       
                        <span style="margin:0px 10px 0 0;">
-                      
-                        <% if current_user.admin? || current_user.type_user == "teacher" %>
+                        <% if current_user.type_user == "teacher" %>
                                 <%=  link_to edit2_user_path(current_user.id) , :class => "" do %>
                                    <i class="fa fa-rocket" aria-hidden="true"></i>
                                    <span style="
@@ -71,9 +79,8 @@
                                         , cursive; font-size:1px;">Dashboard</span>
                                 <% end %>
                         <% end %>
-                              
-                                 
-                        <% if current_user.admin? || current_user.type_user == "student" %>
+                        
+                        <% if current_user.type_user == "student" %>
                                 <%=  link_to  "/" , :class => "" do %>
                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                    <span style="
@@ -90,14 +97,19 @@
                                 <% end %>
                         <% end %>
                         
-                        
                                 <%= link_to edit_user_path(current_user.id) , :class => "" , :style => "color:black;" do %>
                                    <i class="fa fa-user-o" aria-hidden="true"></i>
                                    <span style="
                                               font-family: 'Work Sans', sans-serif;
                                         , cursive; font-size:1px;">Profile</span>
                                 <% end %>
-                                </span>
+                                
+                                
+                                
+                    <% end %>
+                                
+                                
+                                
                                 <span style="margin:0px 20px 0 0;">
                                 <%= link_to "/logout" , :class => "" , :style => "color:black;" , method: :delete do %>
                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -105,24 +117,20 @@
                                               font-family: 'Work Sans', sans-serif;
                                         , cursive; font-size:1px;">Log out</span>
                                 <% end %>
-                        
-                        </span>
-                      </ul>
-                      
-                     
-                      
-                      <% else %>
-                      <li class="right_menu menu_box"><a rel="nofollow" href="/login"><button class="btn btn-lg btn-default"><i class='fa fa-sign-in'></i> ログイン</button></a></li>
-                        <!-- <li><%= link_to "Log in", login_path %></li> -->
-                      <% end %>
-                     
-                   
-                    
-                    
-                    
+                                </span>
+                    </ul>
                 </div>
-                
             </nav>
         </div>
 <div class="margin">
 </div>
+<% else %>
+                  
+                  <!--<li class="right_menu menu_box"><a rel="nofollow" href="/signup"><button class="btn btn-lg btn-default"><i class='fa fa-sign-in'></i> 登録</button></a></li>-->
+                    <!-- <li><%#= link_to "Log in", "/signup" %></li> -->
+                  
+                  <!--<li class="right_menu menu_box"><a rel="nofollow" href="/login"><button class="btn btn-lg btn-default"><i class='fa fa-sign-in'></i> ログイン</button></a></li>-->
+                    <!-- <li><%#= link_to "Log in", login_path %></li> -->
+                    
+                    
+<% end %>

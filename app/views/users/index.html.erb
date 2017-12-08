@@ -10,16 +10,29 @@
 
 <h3>All User</h3>
 
-<%= link_to "<i class='fa fa-user-circle-o'></i> add".html_safe, new_user_path, class: "btn btn-primary", style: "margin-bottom: 20px;" %>
+<%= link_to "<i class='fa fa-user-circle-o'></i> 追加する".html_safe, new_user_path, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+
+<%= link_to "全部".html_safe, users_path, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+<%= link_to "先生".html_safe, index2_user_url, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+<%= link_to "生徒".html_safe, index3_user_url, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+
 
 <table class="table table-bordered table-hover">
 
 <thead>
 
-  <th class="col-md-2">名前</th>
-  <th class="col-md-3">ID</th> 
-  <th class="col-md-3">権限</th>
-  <th class="col-md-3">ロール</th>
+  <th class="col-md-2" style="font-size:8px;">名前</th>
+  <th class="col-md-3" style="font-size:8px;">メール</th> 
+  <th class="col-md-1" style="font-size:8px;">権限</th>
+  <th class="col-md-1" style="font-size:8px;">ロール</th>
+  
+  <th class="col-md-2" style="font-size:8px;">busy</th>
+  <th class="col-md-2" style="font-size:8px;">所持時間</th>
+  
+  <th class="col-md-2" style="font-size:8px;">累計授業数</th>
+  <th class="col-md-2" style="font-size:8px;">累計授業時間</th>
+  
+  
   <th colspan="2" class="col-md-4 text-center">Actions</th>
 
 </thead>
@@ -33,7 +46,7 @@
   
   
  <% if user.admin? %>
-  <td>中心メンバー</td>
+  <td>管理</td>
  <% else %>
   <td>一般</td>
 <% end %>
@@ -44,13 +57,31 @@
   <td>生徒</td>
 <% end %>
 
+ <% if user.busy == "busy" %>
+  <td>Busy</td>
+ <% else %>
+  <td>レッスン可能</td>
+<% end %>
 
+  <td><%= user.time %> 分</td>
+  
+  
 
-
+ <% @totalsafes = Safe.where(:teacher => user.name ).paginate(page: params[:page]) %>
+ <% @totalsafes2 = Safe.where(:student => user.name ).paginate(page: params[:page]) %>
  
-  <td class="text-center"><%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user), class: "btn btn-success" %></td>
+ <% if user.type_user == "teacher" %>
+  　<td><%= @totalsafes.count %> 回</td>
+  　<td><%= @totalsafes.sum(:time) %> 分</td>
+ <% elsif user.type_user == "student" %>
+  　<td><%= @totalsafes2.count %> 回</td>
+  　<td><%= @totalsafes2.sum(:time) %> 分</td>
+  <% end %>
+  　
+ 
+  <td class="text-center"><%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user), class: "btn btn-success", :style =>" color:#fff;" %></td>
 
-  <td class="text-center"><%= link_to "<i class='fa fa-trash-o'></i>".html_safe , user ,method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: "btn btn-success" %></td>
+  <td class="text-center"><%= link_to "<i class='fa fa-trash-o'></i>".html_safe , user ,method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: "btn btn-success", :style =>" color:#fff;" %></td>
 
 </tr>
 

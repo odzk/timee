@@ -8,12 +8,22 @@
 
 <div style="margin:0 3% 0 3%; width:100%;">
 
+
+
+
+<%= form_tag(action: :pay, method: :post) do %>
+   <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="公開キー"></script>
+<% end %>
+
+
+
 <%= form_for(@user) do |f| %>
 <%= f.hidden_field :addtime , :value => 10 %>
 <button class="btn btn-lg btn-success col-md-5 col-xs-5" style="margin: 0 20px 0 20px; width:200px; height:200px; float:left;" name="time"> <i class="fa fa-hourglass" aria-hidden="true"></i> １０分<br><small style="font-size:7px;">( ３００円 )</small>
 <%= f.submit  data: { disable_with: "購入中..." }, :style => 'display:none', name: "time", id: "time" %>
 </button>
 <% end %> 
+
 
 
 <%= form_for(@user) do |f| %>

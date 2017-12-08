@@ -28,6 +28,7 @@ gem 'carrierwave'
 
 
 
+gem 'payjp'
 
 
 #リサイズ

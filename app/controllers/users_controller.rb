@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
-before_action :admin_user
+# before_action :admin_user
  
 
 
   def index
     @users = User.paginate(page: params[:page]) 
   end
+  def index2
+    @users = User.paginate(page: params[:page]).where("type_user = 'teacher'")
+  end
+  def index3
+    @users = User.paginate(page: params[:page]) .where("type_user = 'student'")
+  end
+  
   
   def teacher
     @users = User.paginate(page: params[:page]) 
@@ -41,13 +48,24 @@ before_action :admin_user
   end
   
   def edit2
-  @user = User.find(params[:id])
+  @user = User.find(current_user.id)
   @current = current_user.name
-  @safes = Safe.where(:status_teacher => 'yet').where(:student => @current).paginate(page: params[:page])
+  @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
+  @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   end
   
   def edit3
   @user = User.find(params[:id])
+     
+  end
+  
+  
+  def pay
+    Payjp.api_key = 'sk_test_510d69fe44f5b66ad674eccc'
+    charge = Payjp::Charge.create(
+    :amount => 3500,
+    :card => params['payjp-token'],
+    :currency => 'jpy',)
   end
   
   def update
@@ -76,7 +94,7 @@ before_action :admin_user
       
       @user = User.find(params[:id])
       if @user.update(user_params)
-        redirect_to edit2_user_path(@user)
+        redirect_to edit2_user_path
       end
       
     else
@@ -140,10 +158,12 @@ before_action :admin_user
 
   def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user)
+      params.permit('payjp-token')
   end
   
   def safe_params
     params.require(:safe).permit(:status_teacher, :teacher, :student, :time)
+    
   end
   
   

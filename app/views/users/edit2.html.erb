@@ -3,19 +3,33 @@
 <!--先生ダッシュボード-->
 
 
-  <div style="width:100%; margin:0 15% 0 15%;">
+  <div style="width:100%; margin:0 0% 0 5%; zoom:0.8;">
+    
+    <div style="padding:0 0 30px 0px; width:200px; float:left; margin:0 0px 0 0px;">
+    <div style="padding:0 0 10px 0px; font-size:25px;">Teacher. <%= @user.name %></div>
+    <div style="padding:0 0 10px 0px; font-size:25px;"><img src="<%= @user.image %>" alt="img25" width="150"/></div>
+    <br>
+    </div>
+    
     
     <div class="box1" style="padding:0 0 30px 30px; width:200px; float:left; margin:0 10px 0 10px;">
-    <h4>Savings Time</h4>
-    <span style="font-size:45px;"><%= @user.time %></span>min
+    <h4>Savings</h4>
+    <span style="font-size:45px;">
+
+    <% if @user.time.nil? %>
+    0
+    <% else %>
+    <%= @user.time %>
+    <% end %>
+    </span>mins
     </div>
 
     <div class="box1" style="padding:0 0 30px 30px; width:200px; float:left; margin:0 10px 0 10px;">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_message', object: f.object %>
-     <h4>Are you busy?</h4>
+     <h4>Status</h4>
      <div class="radio" style="margin-bottom: 10px;">
-     <label><%= f.radio_button :busy, "Busy" %>busy</label>
+     <label><%= f.radio_button :busy, "busy" %>busy</label>
      <label><%= f.radio_button :busy, "No" %>no</label>
      </div>
       <%= f.submit "submit", class: "btn btn-primary", name: "busy" %>
@@ -23,17 +37,22 @@
     </div>
 
     <div class="box1" style="padding:0 0 70px 30px; width:200px; float:left; margin:0 10px 0 10px;">
-
-    <h4>Refresh page</h4>
-    
+    <h4>Refresh</h4>
       <script>
       function koshin(){
         location.reload();
       }
       </script>
       <input type="button"  value="submit" onclick="koshin()">
-      
     </div>
+    
+    <div class="box1" style="padding:0 0 50px 30px; width:200px; float:left; margin:0 10px 0 10px;">
+    <h4>Total</h4>
+    <div style="padding:0 0 0px 0px; font-size:15px;">　<%= @totalsafes.count %> lessons<br>
+    　<%= @totalsafes.sum(:time) %> mins</div>
+    </div>
+    
+    
     
  </div>
  
@@ -41,7 +60,7 @@
    
    
    
-<div style="margin:0 15% 0 15%;">  
+<div style="margin:0 15% 0 5%;">  
 
 
 <table class="table table-bordered table-hover table-condensed" style="margin: 30px 0% 0 0%; font-size:100%;">
@@ -49,7 +68,8 @@
     <tr scope="row">
       <th class="col-md-1" style="font-size:12px">ID</th>    
       <th class="col-md-3" style="font-size:12px">Student Name</th>
-      <th class="col-md-3" style="font-size:12px">How many time Student has</th>
+      <th class="col-md-3" style="font-size:12px">Teacher Name</th>
+      <th class="col-md-3" style="font-size:8px">How many mins Student has</th>
       
       <th class="col-md-5 text-center" style="font-size:12px">編集</th>
 
@@ -62,10 +82,18 @@
 
           <td style="font-size:12px"><%= safe.id %></td>
           <td style="font-size:20px"><%= safe.student %></td>
+          <td style="font-size:20px"><%= safe.teacher %></td>
           
           <% @p = "\"" + safe.student + "\"" %>
           <% @id = User.find_by(name: safe.student) %>
-          <td style="font-size:20px"><%= @id.time %></td>
+          <td style="font-size:20px">
+              <% if @id.time.nil? %>
+              0mins
+              <% else %>
+              <%= @id.time %>mins
+              <% end %>
+  
+          </td>
           
           
           <td class="text-center" style="zoom:1; padding:10px 0 10px 0;">

@@ -29,7 +29,7 @@ module ApplicationHelper
 
    def full_title(page_title = '')
     #full_title - method
-    base_title = "在庫管理"
+    base_title = "timee"
      if page_title.empty?
       base_title
      else

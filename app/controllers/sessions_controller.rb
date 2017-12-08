@@ -47,48 +47,16 @@ class SessionsController < ApplicationController
   
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    #該当するemail探す　→variableに入れる
-    #find_byでモデルとやりとり
-    
+
     if user && user.authenticate(params[:session][:password])
-    #その"該当するemail"って、、
-    #ユーザーが存在する？
-    #パスワードあってる？
-    #sessionのパスと、DBのパスは同じ？
-    #(authenticate- モデルのhas_secure_passwordがあるから使える)
-    #つまり、フォームに入れた情報大丈夫？ってこと。
-        if user.activated?
-        #すでに有効アカウント？
+
           log_in user
-          #　セッションヘルパーの、log_in(user)を使ってる
-          # ここで、いわゆる"ログインした"って状態になって。。
-          params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-          #そのセッションにリメンバーはある？チェックした？
-          #before
-          #redirect_to user
-          #showページに飛ぶ
-          #↓↓↓↓↓↓↓
-          #after
           redirect_back_or root_url
-          #redirect_to root_url
-          #元々行きたかった場所に飛ぶ。なければdefaultはshowページ
-        else
-          #まだ有効なアカウントではない。
-          #create an error message.
-          message  = "Account not activated. "
-          message += "アカウント認証のメールを確認してください。"
-          #だからメール認証してくれというメッセージ
-            
-          flash[:warning] = message
-          redirect_to root_url
-          #メッセージ流しつつトップへ戻す。
-        end
+
     else
-    #そもそも入力情報が大丈夫でない
+
       flash.now[:danger] = 'メールアドレスかパスワードが間違っています。'
-      #入力内容確認してください。
       render 'new'
-      #リダイレクト
     end
   end
   

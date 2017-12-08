@@ -1,31 +1,23 @@
-<h3>金銭流動履歴(フロー)</h3>
-<p>一度製作されたフローは編集・削除不可となります</p>
-<p>従って、ここでは全てのサイト内バンクの金銭の移動履歴を見ることができます。</p>
+<div style="margin:0 10% 0 10%;">
 
+<h3>All Salary History</h3>
 
+<br>
 <div class="width_table">
 <table class="table font-small sampleTable small-zoom">
   <thead class="thead-inverse">
     <tr scope="row">
-      
-      <th width="100"><%= "取引内容" %></th>
 
-      <th width="100"><%= "実際に代金が動いた会社" %></th>
+    
+      <th width="100"><%=  "date" %> </th>
+      
+      <th width="100"><%= "Teacher" %></th>
+      <th width="100"><%= "Price" %></th>
 
-      <th width="100"><%= "代金を渡した会社" %></th>
-      <th width="100"><%= "代金を受け取った会社" %></th>
+  
+      <th width="100"><%= "staff" %></th>
       
-      <th width="100"><%= "入金した日時" %></th>
-      <th width="100"><%=  "製作された日時" %> </th>
-      
-      <th width="100"><%= "取引前金額(実際に代金が動いた会社)" %></th>
-      <th width="100"><%= "取引額(実際に代金が動いた会社)" %></th>
-      <th width="100"><%= "取引後金額(実際に代金が動いた会社)" %></th>
-      
-      
-      <th width="100"><%= "スタッフ" %></th>
-      
-      <th width="100"><%= "スタッフメモ" %></th>
+      <th width="100"><%= "memo" %></th>
       
     </tr>
   </thead>
@@ -35,71 +27,30 @@
    
       <tr scope="row">
 
-        <td><%= flow.content %></td>
-
-
-        <td>
-        <% unless flow.company.blank? %>
-        <%= flow.company %>
-        <% end %>
-        </td>
-        
-        
-        <td><%= flow.pass_company %></td>
-        <td><%= flow.recieve_company %></td>
+      
         
         <td>
-        <% if flow.year_date.nil? %>
-        なし
-        <% else %>
-        <%= flow.year_date %>-
-        <%= flow.month_date %>-
-        <%= flow.day_date %>
-        <% end %>
-        </td>
-        
-        
-        <td>
-        <% unless flow.created_at.blank? %>
         <%= flow.created_at.strftime("%y-%m-%d") %>
-        <% end %>
         </td>
         
         <td>
-        <% unless flow.before_price.blank? %>
-        <%= flow.before_price.to_s(:delimited) %>円
-        <% end %>
+        <% @user = User.where(:id => flow.before_price) %>
+        <%= @user[0].name %>
         </td>
         
         <td>
-        <% unless flow.price.blank? %>
-          <%= flow.price.to_s(:delimited) %>円
-        <% end %>
+          <%= flow.price %>yen
+        </td>
+        
+        
+        <td>
+          <%= flow.staff %>
         </td>
         
         <td>
-        <% unless flow.after_price.blank? %>
-        <%= flow.after_price.to_s(:delimited) %>円</td>
-        <% end %>
-        </td>
-        
-
-        
-        <td>
-        <% if flow.staff.nil? %>
-        なし
-        <% else %>
-        <%= flow.staff %>
-        <% end %>
-        </td>
-        
-        <td>
-        <% if flow.memo.nil? %>
-        なし
-        <% else %>
         <%= flow.memo %>
-        <% end %>
         </td>
+        
 
       </tr>
       
@@ -110,4 +61,8 @@
   
  </tbody>
 </table>
-</div>
+
+
+<a type="button" class="btn col-md-offset-1 col-md-5 col-xs-offset-1 " style=" margin:50px 30% 20px 30%; color:black;" href="/user/salary"><i class='fa fa-mail-reply'></i> 戻る</a>
+
+</div></div>

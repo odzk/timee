@@ -17,17 +17,22 @@ def new
 end
 
 def create
-    @user = User.find(params[:id])
-  
-    @flow = Flow.build(flow_params)
-
+    @flow = Flow.new(flow_params)
      if @flow.save
-       flash[:success] = "フロー"
-       redirect_to root_url
+         
+       @user = User.where(:id => @flow.before_price )
+       
+       @flow.update(:price => @user[0].time )
+       @flow.update(:staff => current_user.name )
+       
+       @user[0].update(:time => 0 )
+       
+       flash[:success] = "完了 Done"
+       redirect_to salary_user_path
      else
        @flow = []
-       flash[:danger] = "未入力項目があります。"
-       redirect_to new_sell_path
+       flash[:danger] = "未入力項目があります。 Something wrong"
+       redirect_to salary_user_path
      end
 end
 

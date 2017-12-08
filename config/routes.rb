@@ -16,6 +16,9 @@ get '/user/teacher', to: 'users#edit2', as:'edit2_user'
 get '/user/new2', to: 'users#new2', as:'new2_user'
 get '/user/new3', to: 'users#new3', as:'new3_user'
 
+get '/user/salary', to: 'users#salary', as:'salary_user'
+
+
 get '/user/:id/edit3', to: 'users#edit3', as:'edit3_user'
 get '/user/index2', to: 'users#index2', as:'index2_user'
 get '/user/index3', to: 'users#index3', as:'index3_user'
@@ -66,7 +69,7 @@ resources :password_resets,     only: [:new, :create, :edit, :update]
 #パスワード再設定
  
 resources :users
-
+resources :flows,     only: [:new, :create, :index]
 
 resources :safes  do
     collection do

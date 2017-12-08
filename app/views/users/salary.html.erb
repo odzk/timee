@@ -1,0 +1,63 @@
+<% provide(:title, "salary") %>
+<div class="container">
+ 
+ <h3>Salary</h3>
+ <br>
+ <a href="/flows" class="btn btn-success">All History</a>
+ 
+ <br>
+  <div class="col-md-6 box1">
+   
+   
+    <%= form_for(@salary) do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+
+     <p>ユーザー番号user-id</p>
+      <%#= f.label :email %>
+     <b style="color:red;">*</b>
+      <%= f.text_field :before_price, class: 'form-control' %>
+  <br>
+  
+    <p>メモmemo</p>
+     <b style="color:red;">*</b>
+      <%#= f.label :password_confirmation, "Confirmation" %>
+      <%= f.text_field :memo, class: 'form-control' %>
+<!-- -- --> 
+  <br>
+
+      <%= f.submit "振込ました Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<table class="table table-bordered table-hover" style="margin:100px 10% 0 10% ; width:80%;">
+
+<thead>
+  <th class="col-md-2" style="font-size:8px;">ID</th>
+  <th class="col-md-2" style="font-size:8px;">名前(name)</th>
+  <th class="col-md-2" style="font-size:8px;">所持時間(time)</th>
+
+</thead>
+
+<tbody>
+<% @users.each do |user| %>
+<tr>
+  <td><%= user.id %></td>
+  <td><%= user.name %></td>
+  <td><%= user.time %> min</td>
+  
+</tr>
+
+<% end %>
+</tbody>
+
+  
+</table>

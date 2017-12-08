@@ -36,6 +36,14 @@ class UsersController < ApplicationController
   def new3
     @user = User.new
   end 
+  
+  def salary
+    @users = User.paginate(page: params[:page]).where("type_user = 'teacher'")
+    @salary = Flow.new
+    
+  end 
+  
+  
 
   def create
     @user = User.new(user_params)

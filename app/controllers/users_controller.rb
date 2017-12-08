@@ -12,7 +12,9 @@ class UsersController < ApplicationController
   def index3
     @users = User.paginate(page: params[:page]) .where("type_user = 'student'")
   end
-  
+  def index4
+    @users = User.paginate(page: params[:page]) .where("type_user = 'not-yet-teacher'")
+  end
   
   def teacher
     @users = User.paginate(page: params[:page]) 
@@ -27,8 +29,13 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-  
-
+   
+  def new2
+    @user = User.new
+  end 
+  def new3
+    @user = User.new
+  end 
 
   def create
     @user = User.new(user_params)
@@ -75,7 +82,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       if @user.update(user_params)
         flash[:success] = "成功！"
-        redirect_to edit_user_path(@user)
+        redirect_to users_path
       end
       
       

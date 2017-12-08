@@ -32,15 +32,15 @@ ALL Class
   <thead class="thead-default">
     <tr scope="row">
       <th class="col-md-1" style="font-size:12px"><%= sortable "id", "ID" %></th>    
-      <th class="col-md-3" style="font-size:12px"><%= sortable "teacher", "先生" %></th>
-      <th class="col-md-3" style="font-size:12px"><%= sortable "student", "生徒" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "teacher", "先生(Teacher)" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "student", "生徒(Student)" %></th>
 
-      <th class="col-md-3" style="font-size:12px"><%= sortable "status_teacher", "授業状況" %></th>
-      <th class="col-md-3" style="font-size:12px"><%= sortable "time", "授業時間" %></th>
-      <th class="col-md-3" style="font-size:12px"><%= sortable "photo", "証拠スクショ" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "status_teacher", "授業状況(Status)" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "time", "授業時間(Time［mins］)" %></th>
+      <th class="col-md-3" style="font-size:12px"><%= sortable "photo", "証拠スクショ(evidence)" %></th>
       
-      <th class="col-md-1 text-center" style="font-size:12px">編集</th>
-
+      <th class="col-md-2 text-center" style="font-size:12px">編集(Edit)</th>
+      <th class="col-md-2 text-center" style="font-size:12px">削除(Delete)</th>
 
     </tr>
   </thead>
@@ -65,12 +65,14 @@ ALL Class
           <td style="font-size:12px"><%= safe.time %></td>
           <td style="font-size:12px"><a href="<%= safe.photo %>"><img src="<%= safe.photo %>" width="50"></a></td>
           
-          <td class="text-center" style="zoom:0.7; padding:15px 0 0 0;">
-          <%= link_to edit2_safes_path(safe), :class => "btn btn-primary" do %>
+          <td class="text-center" style="zoom:1; padding:5px 0 0 0; ">
+          <%= link_to edit2_safes_path(safe), :class => "btn btn-primary", :style => "color:#fff;" do %>
           <i class="fa fa-pencil-square-o"></i>
           <% end %>
           </td>
           
+          <td class="text-center" style="padding:5px 0 0 0;"><%= link_to "<i class='fa fa-trash-o'></i>".html_safe , safe ,method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: "btn btn-danger", :style =>" color:#fff; " %></td>
+
    
         </tr>
   <% end %>

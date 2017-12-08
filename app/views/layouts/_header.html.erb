@@ -97,15 +97,15 @@
                                 <% end %>
                         <% end %>
                         
+                        <% if current_user.type_user != "not-yet-teacher" %>
                                 <%= link_to edit_user_path(current_user.id) , :class => "" , :style => "color:black;" do %>
                                    <i class="fa fa-user-o" aria-hidden="true"></i>
                                    <span style="
                                               font-family: 'Work Sans', sans-serif;
                                         , cursive; font-size:1px;">Profile</span>
                                 <% end %>
-                                
-                                
-                                
+                        <% end %>
+
                     <% end %>
                                 
                                 

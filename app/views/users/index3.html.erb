@@ -10,27 +10,31 @@
 
 <h3>All User</h3>
 
-<%= link_to "<i class='fa fa-user-circle-o'></i> 追加する".html_safe, new_user_path, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+<%= link_to "<i class='fa fa-user-circle-o'></i> 生徒を追加する(Add Student)".html_safe, new_user_path, class: "btn btn-success", style: "margin-bottom: 20px; color:#fff;" %>
+<%= link_to "<i class='fa fa-user-circle-o'></i> 先生を追加する(Add Teacher)".html_safe, new3_user_path, class: "btn btn-success", style: "margin-bottom: 20px; color:#fff;" %>
 
-<%= link_to "全部".html_safe, users_path, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
-<%= link_to "先生".html_safe, index2_user_url, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
-<%= link_to "生徒".html_safe, index3_user_url, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
 
+
+<%= link_to "全部(All)".html_safe, users_path, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+<%= link_to "先生(Teacher)".html_safe, index2_user_url, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+<%= link_to "生徒(Student)".html_safe, index3_user_url, class: "btn btn-primary", style: "margin-bottom: 20px; color:#fff;" %>
+
+<%= link_to "未承認の先生(Unapproved teacher)".html_safe, index4_user_url, class: "btn btn-danger", style: "margin-bottom: 20px; color:#fff;" %>
 
 <table class="table table-bordered table-hover">
 
 <thead>
 
-  <th class="col-md-2" style="font-size:8px;">名前</th>
-  <th class="col-md-3" style="font-size:8px;">メール</th> 
-  <th class="col-md-1" style="font-size:8px;">権限</th>
-  <th class="col-md-1" style="font-size:8px;">ロール</th>
+  <th class="col-md-2" style="font-size:8px;">名前(name)</th>
+  <th class="col-md-3" style="font-size:8px;">メール(mail)</th> 
+  <th class="col-md-2" style="font-size:8px;">権限(auth)</th>
+  <th class="col-md-2" style="font-size:8px;">ロール(roll)</th>
   
   <th class="col-md-2" style="font-size:8px;">busy</th>
-  <th class="col-md-2" style="font-size:8px;">所持時間</th>
+  <th class="col-md-2" style="font-size:8px;">所持時間(time)</th>
   
-  <th class="col-md-2" style="font-size:8px;">累計授業数</th>
-  <th class="col-md-2" style="font-size:8px;">累計授業時間</th>
+  <th class="col-md-2" style="font-size:8px;">累計授業数(total class)</th>
+  <th class="col-md-2" style="font-size:8px;">累計授業時間(total time)</th>
   
   
   <th colspan="2" class="col-md-4 text-center">Actions</th>
@@ -46,21 +50,23 @@
   
   
  <% if user.admin? %>
-  <td>管理</td>
+  <td>管理(admin)</td>
  <% else %>
-  <td>一般</td>
+  <td>一般(nomal)</td>
 <% end %>
 
  <% if user.type_user == "teacher" %>
-  <td>先生</td>
+  <td>先生(teacher)</td>
+ <% elsif user.type_user == "student" %>
+  <td>生徒(student)</td>
  <% else %>
-  <td>生徒</td>
+  <td></td>
 <% end %>
 
  <% if user.busy == "busy" %>
   <td>Busy</td>
  <% else %>
-  <td>レッスン可能</td>
+  <td>レッスン可能(Available)</td>
 <% end %>
 
   <td><%= user.time %> 分</td>
@@ -71,11 +77,14 @@
  <% @totalsafes2 = Safe.where(:student => user.name ).paginate(page: params[:page]) %>
  
  <% if user.type_user == "teacher" %>
-  　<td><%= @totalsafes.count %> 回</td>
-  　<td><%= @totalsafes.sum(:time) %> 分</td>
+  　<td><%= @totalsafes.count %> 回(times)</td>
+  　<td><%= @totalsafes.sum(:time) %> 分(mins)</td>
  <% elsif user.type_user == "student" %>
-  　<td><%= @totalsafes2.count %> 回</td>
-  　<td><%= @totalsafes2.sum(:time) %> 分</td>
+  　<td><%= @totalsafes2.count %> 回(times)</td>
+  　<td><%= @totalsafes2.sum(:time) %> 分(mins)</td>
+ <% else %>
+  　<td> </td>
+  　<td> </td>
   <% end %>
   　
  

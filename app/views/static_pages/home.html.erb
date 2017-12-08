@@ -6,14 +6,14 @@
 
 
 <% if logged_in? %>
-
+<% if current_user.type_user != "not-yet-teacher" %>
 
 		<% unless current_user.type_user == "teacher"%>
 		<!--student-->
 		<!--student-->
 		<!--student-->
 		<div class="container" style="padding:0 3% 0 3% ;">
-			<h2>Find teachers <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">先生を探す</span></h2>
+			<h2 style=" font-family: 'Work Sans', sans-serif;" >Find teachers <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">先生を探す</span></h2>
 		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
 		        <div class="content">
 						<div class="grid">
@@ -21,7 +21,7 @@
 							<% if user.busy != "busy" %>
 							
 												<figure class="effect-jazz">
-													<img src="<%= user.image %>" alt="img25"/>
+													<img src="<%= user.image %>" />
 													<figcaption>
 														<h2><%= user.sex %><span><%= user.name %></span></h2>
 														<p>趣味：<%= user.hobby %></p>
@@ -64,7 +64,10 @@
 		<!--teacher-->
 		<% end %>
 		
-		
+<% else %>
+<p>Your application is currently under review, please wait a little longer</p>
+<% end %>
+
 <% else %>
 
 
@@ -93,7 +96,6 @@
 <%= link_to "新規会員登録", "/signup", class:"btne" , :style => "margin:0 20px 0 0;" %>
 <%= link_to "ログイン", "/login", class:"btne" , :style => "margin:0 20px 0 0;" %>
 <!--未ログインの場合に-->
-
 
 
 

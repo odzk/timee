@@ -1955,7 +1955,8 @@ body #cda-remove {
 	margin: 10px 1%;
 	min-width: 320px;
 	max-width: 480px;
-	max-height: 360px;
+	min-height: 300px;
+	max-height: 300px;
 	width: 48%;
 	height: auto;
 	background: #3085a3;
@@ -2965,12 +2966,14 @@ figure.effect-jazz p {
 }
 
 figure.effect-jazz h2 {
-	padding-top: 26%;
+	padding-top: 20%;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
+	font-family: 'Work Sans', sans-serif;
 }
 
 figure.effect-jazz p {
+  font-family: 'Work Sans', sans-serif;
 	padding: 0.5em 2em;
 	text-transform: none;
 	font-size: 0.85em;

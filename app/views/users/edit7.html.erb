@@ -1,0 +1,50 @@
+<center>
+<div class="container" style="padding:0 0 0 0 ;">
+ 
+<h2>10時間のTIMEを購入 </h2>
+<p style=" font-family: 'Work Sans', sans-serif;" >( Price：10,000 yen )</p>
+
+<br>
+
+<div style="margin:0 0 0 0; width:100%;">
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+if (window.name != "xsyz")
+{
+// document.write("読み込み中です。しばらくお待ちください。")
+setTimeout("location.reload()",100);
+window.name = "xsyz";
+}
+
+//-->
+</SCRIPT>
+
+<style>
+#payjp_checkout_box input[type=button] {
+  border:none;
+  margin: 0 0% 0 0 ;
+  display: inline-block;
+  padding: 7px 20px;
+	border-radius: 25px;
+  text-decoration: none;
+  text-align:center;
+  color: #FFF;
+  background-image: -webkit-linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  transition: .4s;
+  zoom: 2.5;
+}
+</style>
+<%= form_tag(action: :purchase4, method: :post) do %>
+<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_63ad9c9e76774db32fd67a27" data-text="チャージする" ></script>
+<% end %>
+
+</div>
+
+<a type="button" class="btn col-md-offset-1 col-md-5 col-xs-offset-1 " style=" margin:50px 30% 20px 30%; color:black;" href="/purchase"><i class='fa fa-mail-reply'></i> 戻る</a>
+
+
+</center>
+</div>
+<div style="clear: both;"> </div>

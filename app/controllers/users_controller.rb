@@ -1,6 +1,76 @@
 class UsersController < ApplicationController
-# before_action :admin_user
+before_action :logged_in_user, only: [:purchase, :purchase2, :purchase3, :purchase4, :show, :index, :index2, :index3, :index4, :new3, :teacher ]
+before_action :student_user, only: [:purchase, :purchase2, :purchase3, :purchase4 , :edit3, :edit4, :edit5, :edit6, :edit7]
+before_action :teacher_now, only: [:show, :endenter ]
+before_action :admin_user, only: [:index, :index2, :index3, :index4, :new3, :salary, :destroy ]
+before_action :teacher_user, only: [:teacher, :edit2 ]
+before_action :correct_user, only: [:edit ]
+ protect_from_forgery except: :purchase
  
+ 
+  def purchase
+    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
+    Payjp::Charge.create(currency: 'jpy', amount: 300, card: params['payjp-token'])
+    
+      @user = User.find(current_user.id)
+    
+        @user.update(:addtime => 10 )
+        @add = @user.addtime + @user.time
+        @user.update(:time => @add )
+        flash[:success] = "購入完了しました"
+        redirect_to edit3_user_path(current_user.id)
+
+  end
+
+  def purchase2
+    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
+    Payjp::Charge.create(currency: 'jpy', amount: 1300, card: params['payjp-token'])
+    
+      @user = User.find(current_user.id)
+    
+        @user.update(:addtime => 60 )
+        @add = @user.addtime + @user.time
+        @user.update(:time => @add )
+        flash[:success] = "購入完了しました"
+        redirect_to edit3_user_path(current_user.id)
+
+  end
+
+  def purchase3
+    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
+    Payjp::Charge.create(currency: 'jpy', amount: 3300, card: params['payjp-token'])
+    
+      @user = User.find(current_user.id)
+    
+        @user.update(:addtime => 180 )
+        @add = @user.addtime + @user.time
+        @user.update(:time => @add )
+        flash[:success] = "購入完了しました"
+        redirect_to edit3_user_path(current_user.id)
+
+  end
+
+  def purchase4
+    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
+    Payjp::Charge.create(currency: 'jpy', amount: 10000, card: params['payjp-token'])
+    
+      @user = User.find(current_user.id)
+    
+        @user.update(:addtime => 600 )
+        @add = @user.addtime + @user.time
+        @user.update(:time => @add )
+        flash[:success] = "購入完了しました"
+        redirect_to edit3_user_path(current_user.id)
+
+  end
+  
+  
+  
+  
+  
+  
+
+
 
 
   def index
@@ -29,13 +99,15 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-   
   def new2
     @user = User.new
   end 
   def new3
     @user = User.new
   end 
+ 
+ 
+ 
   
   def salary
     @users = User.paginate(page: params[:page]).where("type_user = 'teacher'")
@@ -70,18 +142,25 @@ class UsersController < ApplicationController
   end
   
   def edit3
-  @user = User.find(params[:id])
-     
+    
   end
   
+  def edit4
   
-  def pay
-    Payjp.api_key = 'sk_test_510d69fe44f5b66ad674eccc'
-    charge = Payjp::Charge.create(
-    :amount => 3500,
-    :card => params['payjp-token'],
-    :currency => 'jpy',)
   end
+  
+  def edit5
+  
+  end
+  
+  def edit6
+  
+  end
+  
+  def edit7
+
+  end
+
   
   def update
     
@@ -91,17 +170,6 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         flash[:success] = "成功！"
         redirect_to users_path
-      end
-      
-      
-    elsif params[:time]
-      
-      @user = User.find(params[:id])
-      if @user.update(user_params)
-        @add = @user.addtime + @user.time
-        @user.update(:time => @add )
-        flash[:success] = "購入完了しました"
-        redirect_to "/"
       end
       
       
@@ -178,7 +246,9 @@ class UsersController < ApplicationController
   def pay_params
       params.permit('payjp-token')
   end
-  
+
+
+
   def safe_params
     params.require(:safe).permit(:status_teacher, :teacher, :student, :time)
     

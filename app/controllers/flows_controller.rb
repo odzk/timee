@@ -1,8 +1,8 @@
 class FlowsController < ApplicationController
-  before_action :logged_in_user, only:  [:destroy, :help, :edit, :index, :new, :create]
-  # before_action :correct_user, only:  [:destroy, :help, :edit, :index, :new, :create]
-  before_action :admin_user, only: [:destroy, :help, :edit, :index, :new, :create]
-
+  before_action :logged_in_user
+  before_action :admin_user
+  
+  
 def index
     @flows = Flow.paginate(page: params[:page]) 
 end

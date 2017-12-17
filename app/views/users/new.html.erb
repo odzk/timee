@@ -32,7 +32,6 @@
 <!-- -- --> 
   <br>
      <%= f.label :スカイプID %>
-     <b style="color:red;">*</b>
       <%#= f.label :password_confirmation, "Confirmation" %>
       <%= f.text_field :skype, class: 'form-control' %>
 <!-- -- --> 
@@ -44,7 +43,7 @@
 <%= f.hidden_field :time, :value => 30 %>
 <%= f.hidden_field :type_user, :value => "student" %>
 
-      <%= f.submit "変更する", class: "btn btn-primary" %>
+      <%= f.submit "変更する", class: "btn btn-primary", name: "new" %>
     <% end %>
     
     

@@ -13,19 +13,44 @@
 		<!--student-->
 		<!--student-->
 		<div class="container" style="padding:0 3% 0 3% ;">
-			<h2 style=" font-family: 'Work Sans', sans-serif;" >Teachers <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">『今』空いてる先生</span></h2>
+			<h2 style=" font-family: 'Work Sans', sans-serif;" >Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
 		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
 		        <div class="content">
-						<div class="grid">
+						<div class="grid" style=" text-align: center;
+											      margin: auto;">
 							<% @users.each do |user| %>
 							<% if user.busy != "busy" %>
+										<% if user.sex == "men" %>
 							
-												<figure class="effect-jazz">
-													<img src="<%= user.image %>" />
+												<figure class="effect-jazz jazz2">
+													<img src="<%= user.image %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);
+																							background: -webkit-radial-gradient(50% 50%, #fff, #fff);
+																							background: -o-radial-gradient(50% 50%, #fff, #fff);
+																							background: -ms-radial-gradient(50% 50%, #fff, #fff);
+																							background: radial-gradient(50% 50%, #fff, #fff)" />
 													<figcaption>
-														<h2><%= user.sex %><span><%= user.name %></span></h2>
-														<p>趣味：<%= user.hobby %></p>
-														<p>スキル：<%= user.skill %></p>
+														<h2 style="font-size:17px;"><%= user.name %></h2>
+														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
+														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
+							                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+							                           show more
+							                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+							                        <% end %>
+													</figcaption>	
+												</figure>
+												
+										<% else %>
+										
+												<figure class="effect-jazz jazz1">
+													<img src="<%= user.image %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);
+																							background: -webkit-radial-gradient(50% 50%, #fff, #fff);
+																							background: -o-radial-gradient(50% 50%, #fff, #fff);
+																							background: -ms-radial-gradient(50% 50%, #fff, #fff);
+																							background: radial-gradient(50% 50%, #fff, #fff)" />
+													<figcaption>
+														<h2 style="font-size:17px;"><%= user.name %></h2>
+														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
+														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
 							                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
 							                           show more
 							                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
@@ -33,15 +58,16 @@
 													</figcaption>	
 												</figure>
 													
+										<% end %>		
+														
 							<% else %>
-												<figure class="mono">
+												<figure class="mono" style="opacity: 0.5;">
 													<img src="<%= user.image %>"/>
 												<div class="cover-text text-center">
 													<p style="color: #fff;"></p>
-												</div>	
-													<figcaption>
-														<br><br>
-														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100;"><span style="font-size:50px;">Soryy,,,</span><br><br><br> I'm busy now.</h2>
+												</div>
+													<figcaption style="margin-top:20px;">
+														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">Soryy,,,</span><br><br><br> I'm busy now.</h2>
 													</figcaption>
 												</figure>
 							<% end %>

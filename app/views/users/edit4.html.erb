@@ -1,7 +1,7 @@
 <center>
 <div class="container" style="padding:0 0 0 0 ;">
  
-<h2>10分のTIMEを購入 </h2>
+<h2 style=" font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">10分のTIMEを購入 </h2>
 <p style=" font-family: 'Work Sans', sans-serif;" >( Price：300 yen )</p>
 
 <br>
@@ -37,8 +37,10 @@ window.name = "xsyz";
   background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
   transition: .4s;
   zoom: 2.5;
+font-family: ten-mincho, serif; font-style: normal; font-weight: 100;
 }
 </style>
+
 <%= form_tag(action: :purchase, method: :post) do %>
 <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_63ad9c9e76774db32fd67a27" data-text="チャージする" ></script>
 <% end %>

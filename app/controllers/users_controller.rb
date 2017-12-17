@@ -118,13 +118,39 @@ before_action :correct_user, only: [:edit ]
   
 
   def create
-    @user = User.new(user_params)
-   if @user.save
-      flash[:success] = "成功！"
-    redirect_to "/login"
-   else
-     render 'new'
-   end
+    
+    if params[:new]
+    
+        @user = User.new(user_params)
+       if @user.save
+          flash[:success] = "成功！"
+        redirect_to "/login"
+       else
+         render 'new'
+       end
+   
+    elsif params[:new2]
+    
+        @user = User.new(user_params)
+       if @user.save
+          flash[:success] = "成功！"
+        redirect_to "/login"
+       else
+         render 'new2'
+       end
+   
+    elsif params[:new3]
+    
+        @user = User.new(user_params)
+       if @user.save
+          flash[:success] = "成功！"
+        redirect_to "/user/index2"
+       else
+         render 'new3'
+       end
+   
+    end
+   
   end
   
   

@@ -3,31 +3,7 @@
 # end
 
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  
-# before_action :set_permissions
 
-#   def set_permissions
-#     user = User.find(params[:user_id])
-#     CurrentScope.user_permissions = user.permissions
-#   end
-  
-  
-  
-# around_filter :apply_scope 
-# def apply_scope 
-#   Document.where(:user_id => current_user.id).scoping do 
-#   yield 
-# end 
-  
-
-# require File.expand_path('../boot', __FILE__)
-# require 'rails/all'
-# require 'csv'
-# #CSVにため
-  
-  
   protect_from_forgery with: :exception
   #デフォルト
   
@@ -47,6 +23,55 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  def correct_user
+    if logged_in?
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless @user == current_user
+    else
+    redirect_to(root_url) 
+    end
+  end
+    
+  def teacher_user
+    if logged_in?
+    redirect_to(root_url) unless current_user.type_user == "teacher"
+    else
+    redirect_to(root_url) 
+    end
+  end
+
+
+  def teacher_now
+    if logged_in?
+      @user = User.find(params[:id])
+      
+      if @user.type_user == "teacher"
+        
+        if @user.busy == "busy"
+          redirect_to(root_url)
+        else
+          redirect_to(root_url) unless current_user.type_user == "student"
+        end
+       
+      else
+       redirect_to(root_url) 
+      end
+      
+    else
+    redirect_to(root_url) 
+    end
+  end
+  
+  
+  def student_user
+    if logged_in?
+    redirect_to(root_url) unless current_user.type_user == "student"
+    else
+    redirect_to(root_url) 
+    end
+  end
+    
   def admin_user
     if logged_in?
     redirect_to(root_url) unless current_user.admin?

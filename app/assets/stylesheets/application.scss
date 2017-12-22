@@ -15,7 +15,9 @@ body {
   overflow-x: hidden;
   width:100%;
 
-
+font-family: ten-mincho, serif;
+font-style: normal;
+font-weight: 100;
   
 }
 
@@ -1931,7 +1933,7 @@ body #cda-remove {
 
 @media screen and (max-width: 25em) {
 	.codrops-header {
-		font-size: 75%;
+		font-size: 50%;
 	}
 	.codrops-icon span {
 		display: none;
@@ -1942,7 +1944,7 @@ body #cda-remove {
 	clear: both;
 	margin: 0 auto;
 	padding: 1em 0 4em;
-	max-width: 1000px;
+	max-width: 1500px;
 	list-style: none;
 	text-align: center;
 }
@@ -1952,16 +1954,15 @@ body #cda-remove {
 	position: relative;
 	float: left;
 	overflow: hidden;
-	margin: 10px 1%;
-	min-width: 320px;
-	max-width: 480px;
-	min-height: 300px;
-	max-height: 300px;
-	width: 48%;
-	height: auto;
+	margin: 5px 1%;
+
 	background: #3085a3;
 	text-align: center;
 	cursor: pointer;
+	
+  width: 220px;
+  height: 220px;
+  border-radius: 110px;
 }
 
 .grid figure img {
@@ -1970,6 +1971,16 @@ body #cda-remove {
 	min-height: 100%;
 	max-width: 100%;
 	opacity: 0.8;
+  width: 220px;
+  height: 220px;
+  border-radius: 110px;
+object-fit: cover;
+
+text-shadow: 
+    black 1px 1px 10px, black -1px 1px 10px,
+    black 1px -1px 10px, black -1px -1px 10px;
+
+
 }
 
 .mono{
@@ -1981,7 +1992,7 @@ body #cda-remove {
 	padding: 2em;
 	color: #fff;
 	text-transform: uppercase;
-	font-size: 1.25em;
+	font-size: 1em;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
@@ -2026,7 +2037,7 @@ body #cda-remove {
 
 .grid figure p {
 	letter-spacing: 1px;
-	font-size: 68.5%;
+	font-size: 28.5%;
 }
 
 /* Individual effects */
@@ -2041,7 +2052,7 @@ figure.effect-julia {
 
 figure.effect-julia img {
 	max-width: none;
-	height: 400px;
+	height: 200px;
 	-webkit-transition: opacity 1s, -webkit-transform 1s;
 	transition: opacity 1s, transform 1s;
 	-webkit-backface-visibility: hidden;
@@ -2931,6 +2942,11 @@ figure.effect-jazz {
 	background: linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
 }
 
+figure.jazz2 {
+	background: -webkit-linear-gradient(-45deg, #0097db 0%,#009eac 100%);
+	background: linear-gradient(-45deg, #0097db 0%,#009eac 100%);
+}
+
 figure.effect-jazz img {
 	opacity: 0.9;
 }
@@ -2966,7 +2982,7 @@ figure.effect-jazz p {
 }
 
 figure.effect-jazz h2 {
-	padding-top: 20%;
+	padding-top: 10%;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
 	font-family: 'Work Sans', sans-serif;
@@ -3262,4 +3278,56 @@ figure.effect-duke:hover p {
   -webkit-transform: rotateY(360deg);
   -ms-transform: rotateY(360deg);
   transform: rotateY(360deg);
+}
+
+
+
+.deg_btn {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0 30px;
+    font-size: 19px;
+    height: 40px;
+
+    background: #51587b;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    transition: .4s;
+}
+
+.deg_btn:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: none;
+    border-left: solid 21px white;
+    border-bottom: solid 41px transparent;
+    z-index: 1;
+    transition: .4s;
+}
+
+.deg_btn:after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: none;
+    border-left: solid 21px transparent;
+    border-bottom: solid 41px white;
+    z-index: 1;
+    transition: .4s;
+}
+
+.deg_btn:hover:before, .deg_btn:hover:after{
+    border-left-width: 25px;
+}
+
+.deg_btn:hover{
+    background: #2c3148;
 }

@@ -1,7 +1,7 @@
 <% provide(:title, "Edit User") %>
 
-<div class="container" style="padding:0 3% 0 3% ;">
-<h2>Edit profile <span style="font-size:6px; font-family: 'Work Sans', sans-serif;">プロフィール編集</span></h2>
+<div class="container" style="padding:0 3% 0 3% ;  font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">
+<h2 style=" font-family: 'Work Sans', sans-serif;" >Profile <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">プロフィール編集</span></h2>
 <br>
 
 <div style="width:100%;">
@@ -99,7 +99,11 @@
   <br>
 
 <% elsif current_user.admin == true %>
-      
+
+     <p>性別</p>
+      <%#= f.label :name %>
+      <%= f.text_field :sex, class: 'form-control' %>
+  
   <br>
      <p>name(ユーザーネーム)</p>
       <%#= f.label :name %>
@@ -178,27 +182,27 @@
 
 
   <br>
-     <p>name(ユーザーネーム)</p>
+     <p>ユーザーネーム</p>
       <%#= f.label :name %>
      <b style="color:red;">*</b>
       <%= f.text_field :name, class: 'form-control',:readonly => true %>
   <br>
-     <p>mail (メールアドレス) <p>
+     <p>メールアドレス<p>
       <%#= f.label :email %>
      <b style="color:red;">*</b>
       <%= f.email_field :email, class: 'form-control' %>
   <br>
-     <p>password (パスワード) <p>
+     <p>パスワード<p>
       <%#= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 <!-- -- --> 
   <br>
-     <p>password2 (確認用パスワード) <p>
+     <p>確認用パスワード<p>
       <%#= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 <!-- -- --> 
   <br>
-     <p>skype-id (スカイプID) <p>
+     <p>スカイプID<p>
       <%#= f.label :email %>
      <b style="color:red;">*</b>
       <%= f.text_field :skype, class: 'form-control' %>

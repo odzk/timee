@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.4'
+#ruby '2.3.4'
 #ルビーのバージョン決める
 
 #CSSとjquery
@@ -93,6 +93,7 @@ gem 'ransack', '~> 1.8.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'tzinfo-data'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -117,5 +118,5 @@ group :production do
   gem 'sqlite3'
   gem 'rails_12factor'
   
-  gem 'puma', '2.11.1'
+  gem 'puma', '3.11.0'
 end

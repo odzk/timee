@@ -5,6 +5,10 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+.gitignore
+Gemfile
+Gemfile.lock
+
 /.bundle
 
 # Ignore the default SQLite database.

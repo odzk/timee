@@ -1,47 +1,68 @@
 <% provide(:title, "先生の詳細") %>
 
-  <div class="">
+<style>
 
-      <center>
-      <div style="width:100%; margin:0 10% 0 10%;">
+ @media (max-width: 768px) {
+      .text-xs-center {
+              text-align: center;
+       } 
+    }
 
+</style>
+
+  <div class="container">
 
     <%= form_for(@user) do |f| %>
     
-    <%= @user.time %><%= @user.addtime %>
+    <%#= @user.time %><%#= @user.addtime %>
     
-      <div style="position:relative; float:left; width:50%;">
-      <img src="<%= @user.image %>" class="himg" style="width:400px; height:300px; object-fit: cover;">
-      
+      <div class="col-md-6">
+      <img src="<%= @user.image %>" class="himg img-responsive" style="width:400px; height:300px; object-fit: cover;">
+
+      <div class="col-md-12 hidden-xs hidden-sm" style="margin-top: 20px;">
+        <div class="col-md-4">
+          <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
+            <a href="#">
+              <img src="<%= @user.image %>" style="width:100%">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4 ">
+          <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
+            <a href="#">
+              <img src="<%= @user.image %>" style="width:100%">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
+            <a href="#">
+              <img src="<%= @user.image %>" style="width:100%">
+            </a>
+          </div>
+        </div>
+      </div>
 
       </div>
       
       
-      <div style="position:relative; float:right; width:50%;">
-        <div style="position:relative; float:left;">
-      <p style="font-size:50px; 
-      font-family: 'Quicksand', sans-serif;
-      font-family: 'Work Sans', sans-serif;
-      color: rgba(70,40,84,1);"><%= @user.name %></p>
-      <br>
-      <p style="font-size:10px; color: rgba(70,40,84,1);">
-      Nationality：<%= @user.country %><br><br>
-      Skill：<%= @user.skill %><br><br>
-      Hobby：<%= @user.hobby %><br><br>
-      Former Job：<%= @user.job %><br>
+      <div class="col-md-6 text-xs-center">
+      <h1 style="font-size: 300%; font-family: 'Quicksand', sans-serif;"><%= @user.name %></h1>
+      <p style="margin-top: 30px;">
+      <em><p>Description Here</p></em>
+      <i class="fa fa-flag"></i> Nationality：<%= @user.country %><br><br>
+      <i class="fa fa-line-chart"> </i> Skill Level：<%= @user.skill %><br><br>
+      <i class="fa fa-soccer-ball-o"> </i> Hobby：<%= @user.hobby %><br><br>
+      <i class="fa fa-university"> </i>Profession：<%= @user.job %><br>
       </p>
       <hr>
        <%= f.hidden_field :busy, :value => "no"%>
        
        <%= f.submit "→　今すぐ英会話", :style => "" %>
     <% end %>
-    </div>
+
       </div>
-      
-      
+           
       </div>
-      </center>
 
 </div>
-
-<div style="clear: both; height:100px;"> </div>

@@ -2,11 +2,11 @@
 <% if logged_in? %>
 <div id="app" class="container-fullwidth" style="margin:20px 10% 0 10%;">
 <nav class="navbar navbar-expand-lg">
-    
+
                 <a class="navbar-brand" href="/">
-                <img src="../timee-logo.jpg" class="img img-responsive">
+                <img src="../../../timee-logo.jpg" class="img img-responsive">
                 <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;">
-                You NEVER lack TIME to STUDY</p>
+                There is always time to LEARN!</p>
                 </a>
 
                 <% unless current_user.type_user == "teacher"%>
@@ -32,93 +32,58 @@
                         </li>
                       </ul>
                 <% end %>
-                
-                
-                      
-                <div id="navbarNavDropdown" class="navbar-collapse collapse" style="width:70%">
+     
+                <div id="navbarNavDropdown" class="navbar-collapse collapse">
                     
-                    <ul style="zoom:1.3; float:right; margin:30px 0px 0 0;">
+                    <ul class="nav navbar-nav navbar-right" style="font-family: 'Work Sans', sans-serif;">
                         
                     <% if current_user.admin? %>
 
-                                <span style="margin:0px 10px 0 0;">
-                                <%=  link_to users_path , :class => "" do %>
-                                   <i class="fa fa-users" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">User</span>
-                                   <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-                                <% end %>
-                                
-                                <%=  link_to safes_path , :class => "" do %>
-                                   <i class="fa fa-table" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Log</span>
-                                <% end %>
-                                
-                                
-                                <%=  link_to salary_user_path , :class => "" do %>
-                                   <i class="fa fa-jpy" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Salary</span>
-                                <% end %>
-                                
-                                
-                                </span>
+                          <li>  <%=  link_to users_path do %>
+                            <span class="fa fa-users"></span> Users</li>
+                          <% end %>
+
+                          <li>  <%=  link_to safes_path do %>
+                            <span class="fa fa-table"></span> Logs</li>
+                          <% end %>
+
+                          <li>  <%=  link_to salary_user_path do %>
+                            <span class="fa fa-jpy"></span> Salary</li>
+                          <% end %>
                             
                             
                     <% else %>
-                      
-                       <span style="margin:0px 10px 0 0;">
+ 
                         <% if current_user.type_user == "teacher" %>
-                                <%=  link_to edit2_user_path(current_user.id) , :class => "" do %>
-                                   <i class="fa fa-rocket" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Dashboard</span>
-                                <% end %>
-                        <% end %>
-                        
-                        <% if current_user.type_user == "student" %>
-                                <%=  link_to  "/" , :class => "" do %>
-                                   <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Study</span>
-                                   <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-                                <% end %>
-                                <%=  link_to edit3_user_path , :class => "" do %>
-                                   <i class="fa fa-hourglass-half" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Purchase</span>
-                                   <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-                                <% end %>
-                        <% end %>
-                        
-                        <% if current_user.type_user != "not-yet-teacher" %>
-                                <%= link_to edit_user_path(current_user.id) , :class => "" , :style => "color:black;" do %>
-                                   <i class="fa fa-user-o" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Profile</span>
-                                <% end %>
+                          <li>  <%=  link_to edit2_user_path(current_user.id) do %>
+                            <span class="fa fa-rocket"></span> Dashboard</li>
+                          <% end %>
                         <% end %>
 
+                        <% if current_user.type_user == "student" %>
+
+                          <li>  <%=   link_to  "/" do %>
+                            <span class="fa fa-graduation-cap"></span> Study</li>
+                          <% end %>
+
+                          <li>  <%=  link_to edit3_user_path(current_user.id) do %>
+                            <span class="fa fa-hourglass-half"></span> Purchase</li>
+                          <% end %>
+                        <% end %>                         
+
+      
+                        <% if current_user.type_user != "not-yet-teacher" %>
+
+                          <li>  <%=  link_to edit_user_path(current_user.id) do %>
+                            <span class="fa fa-user-o"></span> Profile</span>
+                            <% end %>
+                        <% end %>
                     <% end %>
-                                
-                                
-                                
-                                <span style="margin:0px 20px 0 0;">
-                                <%= link_to "/logout" , :class => "" , :style => "color:black;" , method: :delete do %>
-                                   <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                   <span style="
-                                              font-family: 'Work Sans', sans-serif;
-                                        , cursive; font-size:1px;">Log out</span>
-                                <% end %>
-                                </span>
+
+                            <li>  <%=  link_to "/logout" do %>
+                            <span class="fa fa-sign-out"></span> Log out</span>
+                            <% end %>
+
                     </ul>
                 </div>
             </nav>

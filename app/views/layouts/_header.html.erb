@@ -33,9 +33,17 @@
                       </ul>
                 <% end %>
      
-                <div id="navbarNavDropdown" class="navbar-collapse collapse">
+                <div id="navbarNavDropdown" class="navbar-collapse collapse" style="border-top-left-radius: 80px; background:#f1efef;">
                     
-                    <ul class="nav navbar-nav navbar-right" style="font-family: 'Work Sans', sans-serif;">
+                    <ul class="nav navbar-nav navbar-right">
+
+                    <% unless current_user.type_user == "teacher"%>
+
+                    <li><%=  link_to users_path do %>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i>: 0</li>
+                      <% end %>
+
+                    <% end %>
                         
                     <% if current_user.admin? %>
 

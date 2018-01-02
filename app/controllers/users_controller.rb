@@ -63,15 +63,6 @@ before_action :correct_user, only: [:edit ]
         redirect_to edit3_user_path(current_user.id)
 
   end
-  
-  
-  
-  
-  
-  
-
-
-
 
   def index
     @users = User.paginate(page: params[:page]) 

@@ -26,5 +26,3 @@ public/uploads/safe/photo/
 
 vendor/bundle
 config/database.yml
-
-*.png

@@ -7,26 +7,36 @@
 
 <style>
 
+@media only screen and (max-width: 600px) {
 
-#playground-container {
-    height: 500px;
-    overflow: hidden !important;
-    -webkit-overflow-scrolling: touch;
-}
+.mobile {
+  font-size: 8px;
+
+  }
+
+.pleft {
+  padding-left: 10px !important;
+  }
+
+ .nopadding {
+  padding: 0;
+  margin-top: 0 !important;
+
+ }
+
+ .main-center {
+  padding: 10px 10px !important;
+ }
+} 
+
 .bg {
   background:url('/bg.jpg');
   font-family: 'Oxygen', sans-serif;
 
 }
-
+  
 .main{
   margin:50px 15px;
-}
-
-h1.title { 
-  font-size: 50px;
-  font-family: 'Passion One', cursive; 
-  font-weight: 400; 
 }
 
 hr{
@@ -61,35 +71,14 @@ input::-webkit-input-placeholder {
 }
 .form-control {
     height: auto!important;
-padding: 8px 12px !important;
+/*padding: 8px 12px !important;*/
 }
 .input-group {
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
 }
-#button {
-    border: 1px solid #ccc;
-    margin-top: 28px;
-    padding: 6px 12px;
-    color: #666;
-    text-shadow: 0 1px #fff;
-    cursor: pointer;
-    -moz-border-radius: 3px 3px;
-    -webkit-border-radius: 3px 3px;
-    border-radius: 3px 3px;
-    -moz-box-shadow: 0 1px #fff inset, 0 1px #ddd;
-    -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
-    box-shadow: 0 1px #fff inset, 0 1px #ddd;
-    background: #f5f5f5;
-    background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
-    background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
-}
+
 .main-center{
   margin-top: 30px;
 /*  margin: 0 auto;
@@ -116,47 +105,47 @@ span.input-group-addon i {
 .login-register{
   font-size: 11px;
   text-align: center;
+
+.nomargin {
+  margin: 0 !important;
+  padding: 0 !important;
+  }
 }
 
 </style>
-<div class="bg">
-    <div class="container">
+<div class="bg nopadding">
+    <div class="container nopadding">
       <div class="row main">
         <div class="col-md-12">
-        <div class="main-login main-center col-md-offset-3 col-md-6">
-        <h2 class="text-center">ログインページ</h2>
+        <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
+        <h2 class="text-center hidden-xs">ログインページ</h2>
+        <h4 class="text-center hidden-sm hidden-md hidden-lg">ログインページ</h4>
         <%= form_for(:session, url: login_path) do |f| %>
             
             <div class="form-group">
-              <label for="email" class="cols-md-2 control-label">メールアドレス</label>
-              <div class="cols-md-10">
+              <label for="email">メールアドレス</label>
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                   <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
                 </div>
-              </div>
             </div>
 
             <div class="form-group">
-              <label for="password" class="cols-md-2 control-label">パスワード</label>
-              <div class="cols-md-10">
+              <label for="password">パスワード</label>
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                    <%= f.password_field :password, class: 'form-control', :placeholder => 'パスワード' %>
                 </div>
-              </div>
             </div>
 
             <div class="form-group">
-              <label for="password" class="cols-md-2 control-label">パスワード</label>
-              <div class="cols-md-10">
-                <div class="input-group" style="padding-left: 30px;">
+              <label for="password" class="control-label">パスワード</label>
+                <div class="input-group pleft" style="padding-left: 30px;">
                 <%= f.label :remember_me, class: "checkbox inline" do %>
                 <%= f.check_box :remember_me %>
-                <span>ログイン状態を保存する</span>
+                <span class="mobile">ログイン状態を保存する</span>
                 <% end %>
                 </div>
-              </div>
             </div>
 
             <div class="form-group">

@@ -3,7 +3,9 @@
 <%     session.delete(:fowarding_url)
     store_location
     %>
+</div>
 
+<div style="background: url('bg.jpg'); padding-bottom: 30px;">
 
 <% if logged_in? %>
 <% if current_user.type_user != "not-yet-teacher" %>
@@ -12,8 +14,8 @@
 		<!--student-->
 		<!--student-->
 		<!--student-->
-		<div class="container" style="padding:0 3% 0 3% ;">
-			<h2 style=" font-family: 'Work Sans', sans-serif;" >Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
+		<div class="container" style="padding:0 3% 0 3%;">
+			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center" >Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
 		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
 		        <div class="content">
 						<div class="grid" style=" text-align: center;
@@ -22,41 +24,41 @@
 							<% if user.busy != "busy" %>
 										<% if user.sex == "men" %>
 							
-												<figure class="effect-jazz jazz2">
-													<img src="<%= user.image %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);
-																							background: -webkit-radial-gradient(50% 50%, #fff, #fff);
-																							background: -o-radial-gradient(50% 50%, #fff, #fff);
-																							background: -ms-radial-gradient(50% 50%, #fff, #fff);
-																							background: radial-gradient(50% 50%, #fff, #fff)" />
-													<figcaption>
-														<h2 style="font-size:17px;"><%= user.name %></h2>
-														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
-														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
-							                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-							                           show more
-							                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-							                        <% end %>
-													</figcaption>	
-												</figure>
+				<figure class="effect-jazz jazz2">
+					<img src="<%= user.image %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
+						<figcaption class="hidden-xs">
+							<h2 style="font-size:17px;"><%= user.name %></h2>
+							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
+							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
+                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+                           show more
+                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+                        <% end %>
+						</figcaption>
+					</figure>
+						<div class="hidden-md hidden-sm hidden-lg col-xs-12">
+						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.name %></h2>
+
+						</div>
 												
 										<% else %>
 										
-												<figure class="effect-jazz jazz1">
-													<img src="<%= user.image %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);
-																							background: -webkit-radial-gradient(50% 50%, #fff, #fff);
-																							background: -o-radial-gradient(50% 50%, #fff, #fff);
-																							background: -ms-radial-gradient(50% 50%, #fff, #fff);
-																							background: radial-gradient(50% 50%, #fff, #fff)" />
-													<figcaption>
-														<h2 style="font-size:17px;"><%= user.name %></h2>
-														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
-														<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
-							                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-							                           show more
-							                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-							                        <% end %>
-													</figcaption>	
-												</figure>
+					<figure class="effect-jazz jazz1">
+		<img src="<%= user.image %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
+						<figcaption class="hidden-xs">
+							<h2 style="font-size:17px;"><%= user.name %></h2>
+							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
+							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
+	                    <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+	                       show more
+	                       <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+	                    <% end %>
+						</figcaption>	
+					</figure>
+						<div class="hidden-md hidden-sm hidden-lg col-xs-12">
+						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.name %></h2>
+
+						</div>
 													
 										<% end %>		
 														
@@ -127,3 +129,5 @@
 
 
 <% end %>
+
+</div>

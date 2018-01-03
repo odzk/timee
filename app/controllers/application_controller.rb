@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def not_logged_in_user
+    if logged_in?
+    redirect_to "/"
+    end
+  end
+
+
 
   def correct_user
     if logged_in?

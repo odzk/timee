@@ -14,20 +14,20 @@
                         <li>
                            <p>
                                <!--Your available TIME-->
-                               <span style="
+<!--                                <span style="
                 font-family: 'Quicksand', sans-serif;
                 font-family: 'Nothing You Could Do', cursive;
                 font-family: 'Black Ops One', cursive;
                 , cursive; ">
                                <i class="fa fa-hourglass" aria-hidden="true"></i>
                                <%#= current_user.time/60 %>:
-                               <%# @mins = current_user.time % 60 %>
+                               
                                <%# if @mins % 60 < 10 %>
                                0<%#= @mins %>
                                <%# else %>
                                <%#= @mins %>
                                <%# end %>
-                               </span>
+                               </span> -->
                            </p>
                         </li>
                       </ul>
@@ -37,10 +37,10 @@
                     
                     <ul class="nav navbar-nav navbar-right">
 
-                    <% unless current_user.type_user == "teacher"%>
-
-                    <li><%=  link_to users_path do %>
-                    <i class="fa fa-hourglass" aria-hidden="true"></i>: 0</li>
+                    <% unless current_user.type_user == "teacher" %>
+                    <% @mins = current_user.time % 60 %>
+                    <li><%=  link_to edit3_user_path(current_user.id) do %>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i>: <%= @mins %></li>
                       <% end %>
 
                     <% end %>

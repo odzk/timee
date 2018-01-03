@@ -1,7 +1,7 @@
 /*
  *= require jquery-ui
- *= require easy-autocomplete
- *= require easy-autocomplete.themes
+ * require easy-autocomplete
+ * require easy-autocomplete.themes
  *= require bootstrap-datetimepicker
 */
 
@@ -3228,7 +3228,7 @@ figure.effect-duke:hover p {
 		display: inline-block;
 		float: none;
 		margin: 10px auto;
-		width: 100%;
+		/* width: 100%; */
 	}
 }
 

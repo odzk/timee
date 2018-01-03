@@ -21,15 +21,8 @@ gem 'faker','1.7.3'
 #ページネーション
 gem 'will_paginate', '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
-
-
-
 gem 'carrierwave'
-
-
-
 gem 'payjp'
-
 
 #リサイズ
 gem 'fog', '1.40.0'
@@ -39,32 +32,23 @@ gem 'fog', '1.40.0'
 # Gemfile
 # Pagenation
 gem 'kaminari'
-
 gem 'jquery-ui-rails'
 
 # gem 'zbar', '~> 0.2.2'
-
 
 # gem 'jp_prefecture'
 
 #gemの追加後は、バンドルのインストール
 
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-
-
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
  gem 'mysql2'
 
-
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -9,11 +9,6 @@
 
 @media only screen and (max-width: 600px) {
 
-.mobile {
-  font-size: 8px;
-
-  }
-
 .pleft {
   padding-left: 10px !important;
   }
@@ -123,7 +118,7 @@ span.input-group-addon i {
         <%= form_for(:session, url: login_path) do |f| %>
             
             <div class="form-group">
-              <label for="email">メールアドレス</label>
+              <label for="email" class="hidden-xs">メールアドレス</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                   <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
@@ -131,21 +126,18 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="password">パスワード</label>
+              <label for="password" class="hidden-xs">パスワード</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                    <%= f.password_field :password, class: 'form-control', :placeholder => 'パスワード' %>
                 </div>
             </div>
 
-            <div class="form-group">
-              <label for="password" class="control-label">パスワード</label>
-                <div class="input-group pleft" style="padding-left: 30px;">
-                <%= f.label :remember_me, class: "checkbox inline" do %>
+            <div class="form-group">    
+                <%= f.label :remember_me do %>
                 <%= f.check_box :remember_me %>
-                <span class="mobile">ログイン状態を保存する</span>
+                <span>ログイン状態を保存する</span>
                 <% end %>
-                </div>
             </div>
 
             <div class="form-group">

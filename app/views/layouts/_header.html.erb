@@ -5,7 +5,17 @@
 @media only screen and (max-width: 600px) {
 .mobilemenu {
 	margin-bottom: 30px;
+	margin-top: 20px !important;
 	}
+.mobilemotto {
+	font-size: 8px !important;
+	text-align: center;
+	}
+
+.mobilemargin {
+	margin-top: 0 !important;
+}
+
 }
 
 </style>
@@ -13,14 +23,14 @@
 
 <div class="container-fluid" style="border-bottom: 1px solid #ccc;">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-3 col-xs-12" style="margin-top: 30px;">
+		<div class="col-md-offset-1 col-md-3 col-xs-offset-3 col-xs-6" style="margin-top: 30px;">
  		<img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;">
-	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;">There is always time to LEARN!</p>
+	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;" class="mobilemotto">There is always time to LEARN!</p>
 		</div>
 
 		<% unless current_user.type_user == "teacher"%>
 
-		<div class="col-md-offset-1 col-md-2 col-xs-12" style="margin-top: 40px;">
+		<div class="col-md-offset-1 col-md-2 col-xs-offset-4 col-xs-6 mobilemargin" style="margin-top: 40px;">
 			 <% unless current_user.type_user == "teacher" %>
                     <% @mins = current_user.time % 60 %>
                    	<%=  link_to edit3_user_path(current_user.id) do %>

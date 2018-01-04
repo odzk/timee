@@ -1,110 +1,92 @@
 <!DOCTYPE html>
 <% if logged_in? %>
-<div id="app" class="container-fullwidth" style="margin:20px 10% 0 10%;">
-<nav class="navbar navbar-expand-lg">
 
-                <a class="navbar-brand" href="/">
-                <img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;">
-                <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;">
-                There is always time to LEARN!</p>
-                </a>
+<style>
+@media only screen and (max-width: 600px) {
+.mobilemenu {
+	margin-bottom: 30px;
+	}
+}
 
-                <% unless current_user.type_user == "teacher"%>
-                    　<ul style=" float:left; color:black; margin:35px 50px 0 0; width:150px;" >
-                        <li>
-                           <p>
-                               <!--Your available TIME-->
-<!--                                <span style="
-                font-family: 'Quicksand', sans-serif;
-                font-family: 'Nothing You Could Do', cursive;
-                font-family: 'Black Ops One', cursive;
-                , cursive; ">
-                               <i class="fa fa-hourglass" aria-hidden="true"></i>
-                               <%#= current_user.time/60 %>:
-                               
-                               <%# if @mins % 60 < 10 %>
-                               0<%#= @mins %>
-                               <%# else %>
-                               <%#= @mins %>
-                               <%# end %>
-                               </span> -->
-                           </p>
-                        </li>
-                      </ul>
-                <% end %>
-     
-                <div id="navbarNavDropdown" class="navbar-collapse collapse" style="border-top-left-radius: 80px; background:#f1efef;">
-                    
-                    <ul class="nav navbar-nav navbar-right">
+</style>
 
-                    <% unless current_user.type_user == "teacher" %>
+
+<div class="container-fluid" style="border-bottom: 1px solid #ccc;">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-3 col-xs-12" style="margin-top: 30px;">
+ 		<img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;">
+	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;">There is always time to LEARN!</p>
+		</div>
+
+		<% unless current_user.type_user == "teacher"%>
+
+		<div class="col-md-offset-1 col-md-2 col-xs-12" style="margin-top: 40px;">
+			 <% unless current_user.type_user == "teacher" %>
                     <% @mins = current_user.time % 60 %>
-                    <li><%=  link_to edit3_user_path(current_user.id) do %>
-                    <i class="fa fa-hourglass" aria-hidden="true"></i>: <%= @mins %></li>
-                      <% end %>
-
+                   	<%=  link_to edit3_user_path(current_user.id) do %>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i>: <%= @mins %>
                     <% end %>
-                        
-                    <% if current_user.admin? %>
-
-                          <li>  <%=  link_to users_path do %>
-                            <span class="fa fa-users"></span> Users</li>
-                          <% end %>
-
-                          <li>  <%=  link_to safes_path do %>
-                            <span class="fa fa-table"></span> Logs</li>
-                          <% end %>
-
-                          <li>  <%=  link_to salary_user_path do %>
-                            <span class="fa fa-jpy"></span> Salary</li>
-                          <% end %>
-                            
-                            
-                    <% else %>
- 
-                        <% if current_user.type_user == "teacher" %>
-                          <li>  <%=  link_to edit2_user_path(current_user.id) do %>
-                            <span class="fa fa-rocket"></span> Dashboard</li>
-                          <% end %>
-                        <% end %>
-
-                        <% if current_user.type_user == "student" %>
-
-                          <li>  <%=   link_to  "/" do %>
-                            <span class="fa fa-graduation-cap"></span> Study</li>
-                          <% end %>
-
-                          <li>  <%=  link_to edit3_user_path(current_user.id) do %>
-                            <span class="fa fa-hourglass-half"></span> Purchase</li>
-                          <% end %>
-                        <% end %>                         
-
-      
-                        <% if current_user.type_user != "not-yet-teacher" %>
-
-                          <li>  <%=  link_to edit_user_path(current_user.id) do %>
-                            <span class="fa fa-user-o"></span> Profile</span>
-                            <% end %>
-                        <% end %>
                     <% end %>
+		</div>
+		<% end %>
 
-                            <li>  <%=  link_to "/logout", method: :delete do %>
-                            <span class="fa fa-sign-out"></span> Log out</span>
-                            <% end %>
+		<% if current_user.admin? %>
 
-                    </ul>
-                </div>
-            </nav>
+		<div class="col-md-1">
+		 <%=  link_to users_path do %>
+	      <span class="fa fa-users"></span> Users
+	     <% end %>
+		</div>
+
+		<div class="col-md-1">
+		<%=  link_to safes_path do %>
+        	<span class="fa fa-table"></span> Logs
+      	<% end %>
+		</div>
+
+		<div class="col-md-1">
+		<%=  link_to salary_user_path do %>
+        	<span class="fa fa-jpy"></span> Salary</li>
+     	<% end %>
+		</div>
+
+        <% else %>
+
+        <% if current_user.type_user == "teacher" %>
+
+        <div class="col-md-offset-1 col-md-2 col-xs-12" style="margin-top: 40px;">
+  		 <%=  link_to edit2_user_path(current_user.id) do %>
+            <span class="fa fa-rocket"></span> Dashboard
         </div>
-<div class="margin">
+
+          <% end %>
+        <% end %>
+
+        <% end %>
+
+		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
+			<div class="col-md-3 col-xs-3">
+			<a href="/"><img src="../../book.png" class="img img-responsive" style="width: 20px;"></a>
+			</div>
+
+			<div class="col-md-3 col-xs-3">
+			<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" class="img img-responsive" style="width: 20px;">
+			<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3">
+			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" class="img img-responsive" style="width: 20px;">
+			<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3">
+			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" class="img img-responsive" style="width: 20px;">
+			<% end %>
+			</div>
+		</div>
 </div>
-<% else %>
-                  
-                  <!--<li class="right_menu menu_box"><a rel="nofollow" href="/signup"><button class="btn btn-lg btn-default"><i class='fa fa-sign-in'></i> 登録</button></a></li>-->
-                    <!-- <li><%#= link_to "Log in", "/signup" %></li> -->
-                  
-                  <!--<li class="right_menu menu_box"><a rel="nofollow" href="/login"><button class="btn btn-lg btn-default"><i class='fa fa-sign-in'></i> ログイン</button></a></li>-->
-                    <!-- <li><%#= link_to "Log in", login_path %></li> -->
-                    
-                    
+</div>
+
+
+
 <% end %>

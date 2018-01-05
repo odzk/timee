@@ -7,7 +7,7 @@ a {
 	text-decoration: none !important;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 360px) {
 .mobilemenu {
 	margin-bottom: 30px;
 	margin-top: 20px !important;
@@ -18,7 +18,17 @@ a {
 	}
 
 .mobilemargin {
-	margin-top: 20px !important;
+	margin-top: 30px !important;
+}
+
+.mobilemargintime {
+	margin-top: 35px !important;
+}
+
+
+.mobilecenter {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 }
@@ -28,14 +38,14 @@ a {
 
 <div class="container-fluid" style="border-bottom: 1px solid #ccc;">
 	<div class="row">
-		<div class="col-md-offset-1 col-md-3 col-xs-6" style="margin-top: 30px;">
+		<div class="col-md-offset-1 col-md-3 col-xs-6" style="margin-top: 30px; margin-left: auto; margin-right: auto;">
  		<img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;">
 	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;" class="mobilemotto hidden-xs">There is always time to LEARN!</p>
 		</div>
 
 		<% unless current_user.type_user == "teacher"%>
 
-		<div class="col-md-offset-1 col-md-2 col-xs-offset-2 col-xs-4" style="margin-top: 40px;">
+		<div class="col-md-offset-1 col-md-2 col-xs-6 mobilemargintime" style="margin-top: 40px; margin-left: auto; margin-right: auto;">
 			 <% unless current_user.type_user == "teacher" %>
                     <% @mins = current_user.time % 60 %>
                    	<%=  link_to edit3_user_path(current_user.id) do %>
@@ -80,21 +90,21 @@ a {
         <% end %>
 
 		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
-			<div class="col-md-3 col-xs-3">
+			<div class="col-md-3 col-xs-3 mobilecenter">
 			<a href="/"><img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> 先生を探す</a></span>
 			</div>
 
-			<div class="col-md-3 col-xs-3">
+			<div class="col-md-3 col-xs-3 mobilecenter">
 			<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> 時間チャージ</span>
 			<% end %>
 			</div>
 
-			<div class="col-md-3 col-xs-3">
+			<div class="col-md-3 col-xs-3 mobilecenter">
 			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> プロフィール</span>
 			<% end %>
 			</div>
 
-			<div class="col-md-3 col-xs-3">
+			<div class="col-md-3 col-xs-3 mobilecenter">
 			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> ログアウト</span>
 			<% end %>
 			</div>

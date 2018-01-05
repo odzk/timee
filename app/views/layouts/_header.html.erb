@@ -48,8 +48,8 @@ a {
 		<div class="col-md-offset-1 col-md-2 col-xs-6 mobilemargintime" style="margin-top: 40px; margin-left: auto; margin-right: auto;">
 			 <% unless current_user.type_user == "teacher" %>
                     <% @mins = current_user.time % 60 %>
-                   	<%=  link_to edit3_user_path(current_user.id) do %>
-                    <i class="fa fa-hourglass" aria-hidden="true"></i>: <%= @mins %> <span class="hidden-xs" style="font-size:10px;"> 残時間</span>
+                   	<%=  link_to edit3_user_path(current_user.id), style: "border: 1px solid #ccc; border-radius: 10px; padding: 15px;" do %>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i> 00 : <%= @mins %> <span class="hidden-xs" style="font-size:10px;"> 残時間</span>
                     <% end %>
                     <% end %>
 		</div>

@@ -39,8 +39,9 @@ a {
 <div class="container-fluid" style="border-bottom: 1px solid #ccc;">
 	<div class="row">
 		<div class="col-md-offset-1 col-md-3 col-xs-6" style="margin-top: 30px; margin-left: auto; margin-right: auto;">
+ 		<a href="/">
  		<img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;">
-	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;" class="mobilemotto hidden-xs">There is always time to LEARN!</p>
+	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;" class="mobilemotto hidden-xs">There is always time to LEARN!</p></a>
 		</div>
 
 		<% unless current_user.type_user == "teacher"%>
@@ -91,21 +92,21 @@ a {
 
 		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<a href="/"><img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> 先生を探す</a></span>
+			<a href="/"><img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;先生を探す</a></span>
 			</div>
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> 時間チャージ</span>
+			<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;時間チャージ</span>
 			<% end %>
 			</div>
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> プロフィール</span>
+			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;プロフィール</span>
 			<% end %>
 			</div>
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;"> ログアウト</span>
+			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;ログアウト</span>
 			<% end %>
 			</div>
 		</div>

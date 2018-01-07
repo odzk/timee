@@ -37,13 +37,14 @@ class PasswordResetsController < ApplicationController
 
 
   def update
+    @user = User.find_by(email: params[:password_reset][:email].downcase)
     if params[:user][:password].empty?                  # Case (3)　未入力による失敗した場合
       @user.errors.add(:password, "入力してください。")
       render 'edit'
     elsif @user.update_attributes(user_params)          # Case (4)　成功！した場合
-      log_in @user
+      #log_in @user
       flash[:success] = "パスワードはリセットされました。"
-      redirect_to @user
+      redirect_to "/"
     else
       render 'edit'                                     # Case (2)　変更に失敗した場合
     end
@@ -69,7 +70,7 @@ class PasswordResetsController < ApplicationController
       unless (@user && @user.activated? &&
               @user.authenticated?(:reset, params[:id]))
               #ユーザーが、存在してるし、アクティブなら
-        redirect_to root_url
+        render edit
       end
     end
     

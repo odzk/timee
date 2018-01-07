@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-before_action :logged_in_user, only: [:purchase, :purchase2, :purchase3, :purchase4, :show, :index, :index2, :index3, :index4, :new3, :teacher, :update, :edit]
-before_action :not_logged_in_user, only: [:new , :create, :edit, :update]
+before_action :logged_in_user, only: [:purchase, :purchase2, :purchase3, :purchase4, :show, :index, :index2, :index3, :index4, :new3, :teacher]
+before_action :not_logged_in_user, only: [:new , :create]
 before_action :student_user, only: [:purchase, :purchase2, :purchase3, :purchase4 , :edit3, :edit4, :edit5, :edit6, :edit7]
 before_action :teacher_now, only: [:show, :endenter ]
 before_action :admin_user, only: [:index, :index2, :index3, :index4, :new3, :salary, :destroy ]
 before_action :teacher_user, only: [:teacher, :edit2 ]
-before_action :correct_user, only: [:edit, :update ]
-protect_from_forgery except: :purchase
+before_action :correct_user, only: [:edit ]
+ protect_from_forgery except: :purchase
  
  
   def purchase

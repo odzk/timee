@@ -8,7 +8,7 @@
   </div>
 
 <div class="col-md-offset-1 col-md-6">
-  <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px">
+<!--   <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px"> -->
 </div>
 
 <style>
@@ -90,8 +90,8 @@ input::-webkit-input-placeholder {
   max-width: 400px;*/
     padding: 10px 40px;
 
-  background:#009edf;
-      color: #FFF;
+  background:#f7f8f9;
+      color: #000000;
     text-shadow: none;
   -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
 -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
@@ -99,7 +99,7 @@ box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
 
 }
 span.input-group-addon i {
-    color: #009edf;
+    color: #f7f8f9;
     font-size: 17px;
 }
 
@@ -123,13 +123,14 @@ span.input-group-addon i {
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
-        <h2 class="text-center hidden-xs">ログインページ</h2>
+          <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; ">
+        <h5 class="text-right hidden-xs">ログインページ</h5>
         <%= form_for(:session, url: login_path) do |f| %>
             
             <div class="form-group mmobile">
               <label for="email" class="hidden-xs">メールアドレス</label>
                 <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
                   <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
                 </div>
             </div>
@@ -137,20 +138,14 @@ span.input-group-addon i {
             <div class="form-group">
               <label for="password" class="hidden-xs">パスワード</label>
                 <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
                    <%= f.password_field :password, class: 'form-control', :placeholder => 'パスワード' %>
                 </div>
             </div>
 
-            <div class="form-group">    
-                <%= f.label :remember_me do %>
-                <%= f.check_box :remember_me %>
-                <span>ログイン状態を保存する</span>
-                <% end %>
-            </div>
-
-            <div class="form-group">
-            <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-lg", :value => "ログイン" %>
+            <div class="form-group">   
+            <%= f.submit "ログイン", class: "btn btn-primary btn-md", :value => "ログイン" %>
+                <a href="#" style="float:right;"> Forgot Password?</a>
             </div>
             
           </form>

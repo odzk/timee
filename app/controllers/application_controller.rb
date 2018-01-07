@@ -19,13 +19,13 @@ class ApplicationController < ActionController::Base
     unless logged_in?
     store_location
     #flash[:danger] = "Please log in."
-    redirect_to login_url
+    #redirect_to login_url
     end
   end
 
   def not_logged_in_user
     if logged_in?
-    redirect_to "/"
+    #redirect_to "/"
     end
   end
 

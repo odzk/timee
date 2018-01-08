@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
-  before_action :valid_user,       only: [:edit, :update]
+  #before_action :valid_user,       only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]    # Case (1)　変更の期限
 
 
@@ -37,11 +37,10 @@ class PasswordResetsController < ApplicationController
 
 
   def update
-    @user = User.find_by(email: params[:password_reset][:email].downcase)
     if params[:user][:password].empty?                  # Case (3)　未入力による失敗した場合
       @user.errors.add(:password, "入力してください。")
       render 'edit'
-    elsif @user.update_attributes(user_params)          # Case (4)　成功！した場合
+    elsif @user.update_attributes!(user_params)          # Case (4)　成功！した場合
       #log_in @user
       flash[:success] = "パスワードはリセットされました。"
       redirect_to "/"
@@ -66,13 +65,13 @@ class PasswordResetsController < ApplicationController
     end
 
     # Confirms a valid user.
-    def valid_user
-      unless (@user && @user.activated? &&
-              @user.authenticated?(:reset, params[:id]))
-              #ユーザーが、存在してるし、アクティブなら
-        render edit
-      end
-    end
+    # def valid_user
+    #   unless (@user && @user.activated? &&
+    #           @user.authenticated?(:reset, params[:id]))
+    #           #ユーザーが、存在してるし、アクティブなら
+    #     redirect_to root_url
+    #   end
+    # end
     
     # Checks expiration of reset token.
     def check_expiration

@@ -184,7 +184,7 @@ before_action :correct_user, only: [:edit ]
       @user = User.find(params[:id])
       if @user.update(user_params)
         flash[:success] = "成功！"
-        redirect_to users_path
+        redirect_to "/"
       end
       
       

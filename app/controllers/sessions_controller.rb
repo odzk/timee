@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-before_action :not_logged_in_user, only: [:new , :create]
+before_action :not_logged_in_user, only: [:new , :create, :edit, :update]
 
   def new
 

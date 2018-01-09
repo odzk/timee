@@ -96,7 +96,7 @@ span.input-group-addon i {
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
-        <h4 class="text-right text-center">ログインページ</h4>
+        <h4 class="text-right text-center">プロフィール編集</h4>
         <%= form_for(:session, url: login_path) do |f| %>
 
 
@@ -117,8 +117,6 @@ span.input-group-addon i {
                   <%= f.email_field :name, class: 'form-control', :placeholder => 'ニックネーム' %>
                 </div>
             </div>
-
-
 
             <div class="form-group mmobile">
               <label for="email" class="hidden-xs">メールアドレス</label>
@@ -155,14 +153,7 @@ span.input-group-addon i {
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
-            <!-- submit button -->
+           <!-- submit button -->
 
             <div class="form-group">   
             <%= f.submit "変更する", class: "btn btn-primary btn-md", name: "edit" %>
@@ -175,17 +166,16 @@ span.input-group-addon i {
       </div>
     </div>
 
-</div>
 
 <% end %>
 
-<div class="container" style="padding:0 3% 0 3% ;  font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">
+<!-- <div class="container" style="padding:0 3% 0 3% ;  font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">
 <h2 style=" font-family: 'Work Sans', sans-serif;" >Profile <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">プロフィール編集</span></h2>
 <br>
 
 <div style="width:100%;">
 <div style="width:80%; margin:0 10% 0 5%;"  >
-    
+     -->
 <script type="text/javascript">
   $('#micropost_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
@@ -211,71 +201,129 @@ span.input-group-addon i {
       <%#= f.label :name %>
   <!--   <b style="color:red;">*</b>-->
   <!--    <%#= f.text_field :sex, class: 'form-control' %>-->
-  <!--<br>-->
-     <p>Name</p>
-      <%#= f.label :name %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :name, class: 'form-control',:readonly => true %>
-  <br>
-     <p>Mail<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.email_field :email, class: 'form-control' %>
-  <br>
-     <p>Password<p>
-      <%#= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-<!-- -- --> 
-  <br>
-     <p>password confirmation<p>
-      <%#= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-<!-- -- --> 
-  <br>
-     <p>Skype-ID<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :skype, class: 'form-control' %>
-  <br>
-     <%= f.hidden_field :type_user, :value => "teacher"%>
-  <br>
-     <p>Skill<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :skill, class: 'form-control' %>
-  <br>
-     <p>Former job<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :job, class: 'form-control' %>
-  <br>
-     <p>Appeal<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :appeal, class: 'form-control' %>
-  <br>
-     <p>Hobby<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :hobby, class: 'form-control' %>
-  <br>
-     <p>Country<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :country, class: 'form-control' %>
-  <br>
-     <p>Favorite movie<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :movie, class: 'form-control' %>
-  <br>
-<%=f.label :image," Image" %>
-     <b style="color:red;">*</b>
-  <br>
-<img src="<%= @user.image %>" alt="img25" width="150"/>
-  <br>
-      <%= f.file_field :image %>
-  <br>
+            <div class="form-group mmobile">
+              <label for="email" class="hidden-xs">ニックネーム</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.email_field :name, class: 'form-control', :placeholder => 'ニックネーム' %>
+                </div>
+            </div>
+
+            <div class="form-group mmobile">
+              <label for="email" class="hidden-xs">メールアドレス</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="hidden-xs">パスワード</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
+                   <%= f.password_field :password, class: 'form-control', :placeholder => 'パスワード' %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm" class="hidden-xs">確認用パスワード</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => '確認用パスワード', :required => '' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">スカイプID</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">スキル</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-gear" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :skill, class: 'form-control', :placeholder => 'スキル', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">ジョブ</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-briefcase" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :job, class: 'form-control', :placeholder => 'ジョブ', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">アピール</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-quote-left" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :appeal, class: 'form-control', :placeholder => 'アピール', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">趣味</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-soccer-ball-o" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :hobby, class: 'form-control', :placeholder => '趣味', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">国</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-flag" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :country, class: 'form-control', :placeholder => '国', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">映画</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-film" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :movie, class: 'form-control', :placeholder => '映画', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">画像</label>
+              <div class="cols-md-10">
+                  <%= f.file_field :image, class: 'form-control-file',  :required => ''  %>
+                  <small id="fileHelp" class="form-text text-muted">写真をアップロードしてください。</small>
+              </div>
+            </div>
+
+             <div class="form-group">
+              <label for="username" class="hidden-xs">画像</label>
+              <div class="cols-md-10">
+                  <select class="form-control">
+                    <option></option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+              </div>
+            </div>
+            
 
 <% elsif current_user.admin == true %>
 
@@ -356,36 +404,7 @@ span.input-group-addon i {
   <br>
       <%= f.file_field :image %>
   <br>
-  
-<% elsif current_user.type_user == "student"%>
 
-
-  <br>
-     <p>ユーザーネーム</p>
-      <%#= f.label :name %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :name, class: 'form-control',:readonly => true %>
-  <br>
-     <p>メールアドレス<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.email_field :email, class: 'form-control' %>
-  <br>
-     <p>パスワード<p>
-      <%#= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-<!-- -- --> 
-  <br>
-     <p>確認用パスワード<p>
-      <%#= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-<!-- -- --> 
-  <br>
-     <p>スカイプID<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :skype, class: 'form-control' %>
-      
 <% end %>
 
 
@@ -404,11 +423,3 @@ span.input-group-addon i {
 <% end %>
 
 
-
-<br><br><br>
-<%= f.submit "変更する", class: "btn btn-primary", name: "edit" %>
-<% end %>
- </div>
-   <div style="clear: both;"> </div>
- </div>
- </div>

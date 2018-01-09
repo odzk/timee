@@ -26,6 +26,10 @@
  .main-center {
   padding: 10px 10px !important;
  }
+ .smolFont{
+  font-size: 13px;
+  margin-top: 10px;
+ }
 } 
 .bg {
   background:url('/bg.jpg');
@@ -124,7 +128,7 @@ span.input-group-addon i {
 
             <div class="form-group">   
             <%= f.submit "ログイン", class: "btn btn-primary btn-md", :value => "ログイン" %>
-            <%= link_to "パスワードを忘れた方", new_password_reset_path, { :style => 'float:right;' } %>
+            <%= link_to "パスワードを忘れた方", new_password_reset_path, { :style => 'float:right;' }, :class => 'smolFont' %>
             </div>
             
           </form>

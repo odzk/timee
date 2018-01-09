@@ -1,15 +1,128 @@
-<!--パスワードのリセットフォーム-->
+<% provide(:title,"Forgot Password") %>
 
-<% provide(:title, "Forgot password") %>
-<h1>Forgot password</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
   </div>
+
+<div class="col-md-offset-1 col-md-6">
+<!--   <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px"> -->
 </div>
+
+<style>
+@media only screen and (max-width: 600px) {
+.pleft {
+  padding-left: 10px !important;
+  }
+.mmobile {
+  margin-top: 30px;
+}
+ .nopadding {
+  padding: 0;
+  margin-top: 0 !important;
+ }
+ .main-center {
+  padding: 10px 10px !important;
+ }
+} 
+.bg {
+  background:url('/bg.jpg');
+  font-family: 'Oxygen', sans-serif;
+}
+  
+.main{
+  margin:50px 15px;
+}
+hr{
+  width: 10%;
+  color: #fff;
+}
+.form-group{
+  margin-bottom: 15px;
+}
+label{
+  margin-bottom: 15px;
+}
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+.main-login{
+  background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.form-control {
+    height: auto!important;
+/*padding: 8px 12px !important;*/
+}
+.input-group {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+.main-center{
+  margin-top: 30px;
+/*  margin: 0 auto;
+  max-width: 400px;*/
+    padding: 10px 40px;
+  background:#f7f8f9;
+      color: #000000;
+    text-shadow: none;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+}
+span.input-group-addon i {
+    color: #f7f8f9;
+    font-size: 17px;
+}
+.login-button{
+  margin-top: 5px;
+}
+.login-register{
+  font-size: 11px;
+  text-align: center;
+.nomargin {
+  margin: 0 !important;
+  padding: 0 !important;
+  }
+}
+</style>
+<div class="bg nopadding">
+    <div class="container nopadding">
+      <div class="row main">
+        <div class="col-md-12">
+        <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
+          <img src="../timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; ">
+        <h5 class="text-right hidden-xs">Forgot Password</h5>
+         <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+            
+            <div class="form-group mmobile">
+              <label for="email" class="hidden-xs">メールアドレス</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
+                </div>
+            </div>
+ 
+            <div class="form-group">   
+            <%= f.submit "ログイン", class: "btn btn-primary btn-md" %>
+            </div>
+            
+          </form>
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+</div>
+
+<% end %>

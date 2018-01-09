@@ -1,7 +1,31 @@
 #class User < ApplicationRecord
 class User < ActiveRecord::Base
  
- 
+   attr_accessor :remember_token, :activation_token, :reset_token
+  before_save   :downcase_email
+  #メールアドレス小文字変換
+  
+  before_create :create_activation_digest
+  #一時的なランダム文字列（トークン）を発行
+
+    def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+  
+  # Sends password reset email.
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+    # Returns true if a password reset has expired.
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+    #要求された時刻が、今の２時間前より大きいか？？
+  end
+  #パスワードリセットの期限
+
  
   mount_uploader :picture, PictureUploader
   
@@ -73,13 +97,6 @@ class User < ActiveRecord::Base
 #以下はパスワード再設定のためです。—————
 #以下はメール認証のためです。—————
 #—————  
-
-  attr_accessor :remember_token, :activation_token, :reset_token
-  before_save   :downcase_email
-  #メールアドレス小文字変換
-  
-  before_create :create_activation_digest
-  #一時的なランダム文字列（トークン）を発行
 
 # #—————
 # #以下はマイクロポストのためです。—————
@@ -164,12 +181,7 @@ class User < ActiveRecord::Base
 #   #はほぼ同じ感じ。
   
 #   # 結論、followingは、「だれフォローしてる(特定の１人)(名前やE-mailなどの情報)」っていうだけ
-  
-  
-  
-  
 
-  
   
 #   #フォローされる設定ーーーーーーー
 #   #ーーーーーーーーーーーーーーー
@@ -432,18 +444,8 @@ class User < ActiveRecord::Base
   #   UserMailer.account_activation(self).deliver_now
   # end
 
-  # # Sets the password reset attributes.
-  # def create_reset_digest
-  #   self.reset_token = User.new_token
-  #   update_attribute(:reset_digest,  User.digest(reset_token))
-  #   update_attribute(:reset_sent_at, Time.zone.now)
-  # end
-  
-  # # Sends password reset email.
-  # def send_password_reset_email
-  #   UserMailer.password_reset(self).deliver_now
-  # end
-  
+  # Sets the password reset attributes.
+
   
   
   #   # Returns true if a password reset has expired.

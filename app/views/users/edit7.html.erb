@@ -4,8 +4,8 @@
 <center>
 <div class="container" style="padding:0 0 0 0 ;">
  
-<h2 style=" font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">10時間のTIMEを購入 </h2>
-<p style=" font-family: 'Work Sans', sans-serif;" >( Price：10,000 yen )</p>
+<h2 style=" font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">1時間のTIMEを購入 </h2>
+<p style=" font-family: 'Work Sans', sans-serif;" >( Price：980 yen )</p>
 
 <br>
 
@@ -16,7 +16,7 @@
 if (window.name != "xsyz")
 {
 // document.write("読み込み中です。しばらくお待ちください。")
-setTimeout("location.reload()",100);
+setTimeout("location.reload()",1);
 window.name = "xsyz";
 }
 
@@ -41,7 +41,7 @@ window.name = "xsyz";
 }
 </style>
 <%= form_tag(action: :purchase4, method: :post) do %>
-<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_63ad9c9e76774db32fd67a27" data-text="チャージする" ></script>
+<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_live_5c74343c6c53d312c852d260" data-text="チャージする" ></script>
 <% end %>
 
 </div>

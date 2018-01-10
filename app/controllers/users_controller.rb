@@ -10,7 +10,7 @@ before_action :correct_user, only: [:edit ]
  
  
   def purchase
-    Payjp.api_key = "sk_live_67d52601997396a58a1d4b22a761c9349a973e5e67785dfa46f056e3"
+    Payjp.api_key = "sk_live"
     Payjp::Charge.create(currency: 'jpy', amount: 1, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
@@ -24,7 +24,7 @@ before_action :correct_user, only: [:edit ]
   end
 
   def purchase2
-    Payjp.api_key = "sk_live_67d52601997396a58a1d4b22a761c9349a973e5e67785dfa46f056e3"
+    Payjp.api_key = "sk_live"
     Payjp::Charge.create(currency: 'jpy', amount: 2, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
@@ -43,7 +43,7 @@ before_action :correct_user, only: [:edit ]
   end
 
   def purchase3
-    Payjp.api_key = "sk_live_67d52601997396a58a1d4b22a761c9349a973e5e67785dfa46f056e3"
+    Payjp.api_key = "sk_live"
     Payjp::Charge.create(currency: 'jpy', amount: 3, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
@@ -57,7 +57,7 @@ before_action :correct_user, only: [:edit ]
   end
 
   def purchase4
-    Payjp.api_key = "sk_live_67d52601997396a58a1d4b22a761c9349a973e5e67785dfa46f056e3"
+    Payjp.api_key = "sk_live"
     Payjp::Charge.create(currency: 'jpy', amount: 4, card: params['payjp-token'])
     
       @user = User.find(current_user.id)

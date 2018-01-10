@@ -10,12 +10,12 @@ before_action :correct_user, only: [:edit ]
  
  
   def purchase
-    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
-    Payjp::Charge.create(currency: 'jpy', amount: 300, card: params['payjp-token'])
+    Payjp.api_key = "sk_live"
+    Payjp::Charge.create(currency: 'jpy', amount: 1, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
-        @user.update(:addtime => 10 )
+        @user.update(:addtime => 1800 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
         flash[:success] = "購入完了しました"
@@ -24,12 +24,12 @@ before_action :correct_user, only: [:edit ]
   end
 
   def purchase2
-    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
-    Payjp::Charge.create(currency: 'jpy', amount: 1300, card: params['payjp-token'])
+    Payjp.api_key = "sk_live"
+    Payjp::Charge.create(currency: 'jpy', amount: 2, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
-        @user.update(:addtime => 60 )
+        @user.update(:addtime => 600 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
         flash[:success] = "購入完了しました"
@@ -37,13 +37,18 @@ before_action :correct_user, only: [:edit ]
 
   end
 
+  def contact_us
+      @user = User.all
+
+  end
+
   def purchase3
-    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
-    Payjp::Charge.create(currency: 'jpy', amount: 3300, card: params['payjp-token'])
+    Payjp.api_key = "sk_live"
+    Payjp::Charge.create(currency: 'jpy', amount: 3, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
-        @user.update(:addtime => 180 )
+        @user.update(:addtime => 300 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
         flash[:success] = "購入完了しました"
@@ -52,12 +57,12 @@ before_action :correct_user, only: [:edit ]
   end
 
   def purchase4
-    Payjp.api_key = "sk_test_510d69fe44f5b66ad674eccc"
-    Payjp::Charge.create(currency: 'jpy', amount: 10000, card: params['payjp-token'])
+    Payjp.api_key = "sk_live"
+    Payjp::Charge.create(currency: 'jpy', amount: 4, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
-        @user.update(:addtime => 600 )
+        @user.update(:addtime => 60 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
         flash[:success] = "購入完了しました"

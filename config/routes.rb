@@ -51,7 +51,7 @@ resources :users do
   end
 
 
-
+resources :history
       
 resources :flows,     only: [:new, :create, :index]
 

@@ -119,6 +119,7 @@ before_action :correct_user, only: [:edit ]
     if params[:new]
     
         @user = User.new(user_params)
+        @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
        if @user.save
           flash[:success] = "成功！"
         redirect_to "/login"

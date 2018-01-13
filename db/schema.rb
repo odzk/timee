@@ -97,13 +97,14 @@ ActiveRecord::Schema.define(version: 20180112094817) do
   end
 
   create_table "histories", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.string   "transaction", limit: 255
-    t.integer  "mins",        limit: 4
+    t.integer  "user_id",          limit: 4
+    t.string   "transaction_name", limit: 255
+    t.string   "min_type",         limit: 255
+    t.integer  "mins",             limit: 4
     t.datetime "datetime"
-    t.string   "teacher",     limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "teacher",          limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree

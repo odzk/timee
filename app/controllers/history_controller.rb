@@ -1,12 +1,13 @@
 class HistoryController < ApplicationController
 
-
-
 	def index
-		@user = User.all
-		@history = @user.history.all
 
 	end
 
+	def show
+		@user = User.find(params[:id])
+		@history = History.where(:user_id => params[:id])
+
+	end
 
 end

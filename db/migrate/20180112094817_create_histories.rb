@@ -3,7 +3,8 @@ class CreateHistories < ActiveRecord::Migration
     create_table :histories do |t|
 
       t.references :user, index: true, foreign_key: true
-      t.string :transaction
+      t.string :transaction_name
+      t.string :min_type
       t.integer :mins
       t.datetime :datetime
       t.string :teacher

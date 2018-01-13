@@ -112,22 +112,20 @@ span.input-group-addon i {
             <table class="table table-bordered table-hover">
             <tr class="info">
               <th>Transaction Type</th>
-              <th>Type</th>
               <th>Time (Minutes)</th>
               <th>Date / Time</th>
               <th>Teacher Name</th>
             </tr>
-            <% @history.each do |h| %>
+
             <tr>
-              <td><%= h.transaction_name %></td>
-              <td><%= h.min_type %></td>
-              <td><%= h.mins %></td>
-              <td><%= h.created_at %></td>
-              <td><%= h.teacher %></td>
-            </tr>
-         
-            <% end %>
-     </table>
+              <td>Purcahse Time</td>
+              <td>60 minutes</td>
+              <td><%= DateTime.now %></td>
+              <td>N/A</td>
+
+            </table>
+
+ 
             <div class="form-group">   
             </div>
             

@@ -51,8 +51,11 @@ resources :users do
   end
 
 
+resources :history
 
-      
+get '/history/:id', to: 'history#show', as:'history_student'
+
+
 resources :flows,     only: [:new, :create, :index]
 
 resources :safes

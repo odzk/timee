@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203143417) do
+ActiveRecord::Schema.define(version: 20180112094817) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -95,6 +95,19 @@ ActiveRecord::Schema.define(version: 20171203143417) do
     t.string   "pass_company",    limit: 255
     t.string   "recieve_company", limit: 255
   end
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "user_id",          limit: 4
+    t.string   "transaction_name", limit: 255
+    t.string   "min_type",         limit: 255
+    t.integer  "mins",             limit: 4
+    t.datetime "datetime"
+    t.string   "teacher",          limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
   create_table "inquiries", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -311,6 +324,7 @@ ActiveRecord::Schema.define(version: 20171203143417) do
     t.string   "status",     limit: 255
   end
 
+  add_foreign_key "histories", "users"
   add_foreign_key "microposts", "users"
   add_foreign_key "sells", "users"
 end

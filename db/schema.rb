@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112094817) do
+ActiveRecord::Schema.define(version: 20180114074042) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -136,6 +136,17 @@ ActiveRecord::Schema.define(version: 20180112094817) do
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at", unique: true, using: :btree
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id", using: :btree
+
+  create_table "profile_pics", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.string   "photo1",        limit: 255
+    t.string   "photo2",        limit: 255
+    t.string   "youtube_video", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "profile_pics", ["user_id"], name: "index_profile_pics_on_user_id", using: :btree
 
   create_table "rails", force: :cascade do |t|
     t.string   "generate",         limit: 255
@@ -326,5 +337,6 @@ ActiveRecord::Schema.define(version: 20180112094817) do
 
   add_foreign_key "histories", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "profile_pics", "users"
   add_foreign_key "sells", "users"
 end

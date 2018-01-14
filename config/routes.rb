@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
 get '/signup', to: 'users#new'
 post '/signup', to: 'users#create'
+
+get '/signupteacher', to: 'users#new2'
+post '/signupteacher', to: 'users#create'
 #signup
 get '/contactus', to: 'users#contact_us'
 

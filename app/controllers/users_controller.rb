@@ -37,11 +37,6 @@ before_action :correct_user, only: [:edit ]
 
   end
 
-  def contact_us
-      @user = User.all
-
-  end
-
   def purchase3
     Payjp.api_key = "sk_live"
     Payjp::Charge.create(currency: 'jpy', amount: 3, card: params['payjp-token'])

@@ -7,7 +7,9 @@ post '/signup', to: 'users#create'
 get '/signupteacher', to: 'users#new2'
 post '/signupteacher', to: 'users#create'
 #signup
-get '/contactus', to: 'users#contact_us'
+
+get '/contact_form', to: 'contact_form#new', as: 'new_message'
+post '/contact_form', to: 'contact_form#create', as: 'create_message'
 
 
 get '/login', to:'sessions#new'
@@ -42,6 +44,7 @@ root 'static_pages#home'
 
 resources :account_activations, only: [:edit]
 resources :password_resets,     only: [:new, :create, :edit, :update]
+
 #パスワード再設定
  
 resources :users do

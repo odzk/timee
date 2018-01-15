@@ -10,4 +10,8 @@ class HistoryController < ApplicationController
 
 	end
 
+	def contact_params
+      params.require(:contact_us).permit(:name, :email, :subject, :message)
+  	end
+
 end

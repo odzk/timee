@@ -128,14 +128,14 @@ span.input-group-addon i {
         <div class="main-login main-center col-md-offset-3 col-md-6">
         <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; ">
 
-        <h5 class="text-right">新規会員登録<br>
-        <span style="color:red;">Are you a teacher? <a href="/signupteacher">Click Here</a></span>
+        <h5 class="text-right">
+        <span style="color:red;">Are you a teacher?<br/><a href="/signupteacher">Click Here</a></span>
         </h5>
 
         <%= form_for(@user) do |f| %>
             
             <div class="form-group">
-              <label for="name" class="cols-md-2 control-label">ニックネーム</label>
+              <label for="name" class="cols-md-2 control-label hidden-xs">ニックネーム</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user fa" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -145,7 +145,7 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="email" class="cols-md-2 control-label">メールアドレス</label>
+              <label for="email" class="cols-md-2 control-label hidden-xs">メールアドレス</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -155,7 +155,7 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="username" class="cols-md-2 control-label">スカイプID</label>
+              <label for="username" class="cols-md-2 control-label hidden-xs">スカイプID</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -165,7 +165,7 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="password" class="cols-md-2 control-label">パスワード</label>
+              <label for="password" class="cols-md-2 control-label hidden-xs">パスワード</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -175,7 +175,7 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="confirm" class="cols-md-2 control-label">確認用パスワード</label>
+              <label for="confirm" class="cols-md-2 control-label hidden-xs">確認用パスワード</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>

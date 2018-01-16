@@ -130,7 +130,7 @@ span.input-group-addon i {
         <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; ">
         <h5 class="text-right hidden-xs">Contact Us</h5>
 
-        <%= form_for(new_contact_form_path) do |f| %>
+        <%= form_for(@contact_form, url: new_message_url) do |f| %>
 
          <div class="form-group">
               <label for="name" class="cols-md-2 control-label hidden-xs">Name</label>
@@ -145,8 +145,8 @@ span.input-group-addon i {
               <label for="name" class="cols-md-2 control-label hidden-xs">Email</label>
               <div class="cols-md-10">
                 <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-mail-reply fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                   <input type="email" class="form-control" name="email" placeholder="Enter your email" required="">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :email, class: 'form-control', :placeholder => 'メールアドレス', :required => '' %>
                 </div>
               </div>
          </div>
@@ -155,7 +155,7 @@ span.input-group-addon i {
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-suitcase fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                   <input type="text" class="form-control" name="subject" placeholder="Whats your concern?" required="">
+                  <%= f.text_field :subject, class: 'form-control', :placeholder => '件名', :required => '' %>
                 </div>
               </div>
          </div>
@@ -163,8 +163,7 @@ span.input-group-addon i {
               <label for="name" class="cols-md-2 control-label hidden-xs">Message</label>
               <div class="cols-md-10">
                 <div class="input-group">
-                  <!-- <span class="input-group-addon hidden-xs"><i class="fa fa-envelope-square fa" style="color:#948c8c" aria-hidden="true"></i></span> -->
-                  <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="5" placeholder="Message....."></textarea>
+                  <%= f.text_area(:message, rows: 5, class: "form-control", placeholder: "メッセージ") %>
                 </div>
               </div>
          </div>

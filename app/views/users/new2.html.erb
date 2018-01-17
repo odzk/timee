@@ -1,76 +1,234 @@
-<% provide(:title, "New Teacher") %>
-<div class="container">
- 
- <h3>Application form for New Teacher</h3>
-  <div class="col-md-6">
-   
-   
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_message', object: f.object %>
+<% provide(:title, "Edit User") %>
 
-   <br>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  </div>
 
-     <p>Name</p>
-      <%#= f.label :name %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :name, class: 'form-control' %>
-  <br>
-     <p>Mail<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.email_field :email, class: 'form-control' %>
-  <br>
-     <p>Password<p>
-     <b style="color:red;">*</b>
-      <%= f.password_field :password, class: 'form-control' %>
-<!-- -- --> 
-  <br>
-     <p>password confirmation<p>
-     <b style="color:red;">*</b>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-<!-- -- --> 
-  <br>
-     <p>Skype-ID<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :skype, class: 'form-control' %>
-  <br>
-     <%= f.hidden_field :type_user, :value => "teacher"%>
-  <br>
-     <p>Skill<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :skill, class: 'form-control' %>
-  <br>
-     <p>Former job<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :job, class: 'form-control' %>
-  <br>
-     <p>Appeal<p>
-      <%#= f.label :email %>
-     <b style="color:red;">*</b>
-      <%= f.text_field :appeal, class: 'form-control' %>
-  <br>
-     <p>Hobby<p>
-      <%#= f.label :email %>
-      <%= f.text_field :hobby, class: 'form-control' %>
-  <br>
-     <p>Country<p>
-      <%#= f.label :email %>
-      <%= f.text_field :country, class: 'form-control' %>
-  <br>
-     <p>Favorite movie<p>
-      <%#= f.label :email %>
-      <%= f.text_field :movie, class: 'form-control' %>
-  <br>
-<%=f.label :image," Photo" %>
-     <b style="color:red;">*</b>
-  <br>
-<img src="<%= @user.image %>" width="150"/>
-  <br>
-      <%= f.file_field :image %>
-  <br>
+<style>
+@media only screen and (max-width: 600px) {
+.pleft {
+  padding-left: 10px !important;
+  }
+.mmobile {
+  margin-top: 30px;
+}
+ .nopadding {
+  padding: 0;
+  margin-top: 0 !important;
+ }
+ .main-center {
+  padding: 10px 10px !important;
+ }
+ p.small_font{
+  font-size: 12px;
+}
+} 
+.bg {
+  background:url('/bg.jpg');
+  font-family: 'Oxygen', sans-serif;
+}
+  
+.main{
+  margin:50px 15px;
+}
+hr{
+  width: 10%;
+  color: #fff;
+}
+.form-group{
+  margin-bottom: 15px;
+}
+label{
+  margin-bottom: 15px;
+}
+input,
+input::-webkit-input-placeholder {
+    font-size: 11px;
+    padding-top: 3px;
+}
+.main-login{
+  background-color: #fff;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.form-control {
+    height: auto!important;
+/*padding: 8px 12px !important;*/
+}
+.input-group {
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
+}
+.main-center{
+  margin-top: 30px;
+/*  margin: 0 auto;
+  max-width: 400px;*/
+    padding: 10px 40px;
+  background:#f7f8f9;
+      color: #000000;
+    text-shadow: none;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+}
+span.input-group-addon i {
+    color: #f7f8f9;
+    font-size: 17px;
+}
+.login-button{
+  margin-top: 5px;
+}
+.login-register{
+  font-size: 11px;
+  text-align: center;
+.nomargin {
+  margin: 0 !important;
+  padding: 0 !important;
+  }
+}
+.checkboxv2 input[type=checkbox]{
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -16px;
+}
+</style>
+<div class="bg nopadding">
+    <div class="container nopadding">
+      <div class="row main">
+        <div class="col-md-12">
+        <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
+        <h4 class="text-right text-center">Register as a Teacher</h4> 
+        <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_message', object: f.object %>
+<div class="form-group">
+              <label for="email" class="hidden-xs">Name</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.email_field :name, class: 'form-control', :placeholder => 'Name' %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="hidden-xs">Mail</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.email_field :email, class: 'form-control', :placeholder => 'E-Mail' %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="hidden-xs">Password</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
+                   <%= f.password_field :password, class: 'form-control', :placeholder => 'Password' %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm" class="hidden-xs">Confirm Password</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => 'Confirm Password', :required => '' %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Skype ID</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'Skype ID', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Skill</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-gear" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :skill, class: 'form-control', :placeholder => 'Skill', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Former Job</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-briefcase" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :job, class: 'form-control', :placeholder => 'Former Job', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Appeal</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-quote-left" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :appeal, class: 'form-control', :placeholder => 'Appeal', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Hobby</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-soccer-ball-o" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :hobby, class: 'form-control', :placeholder => 'Hobby', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Country</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-flag" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :country, class: 'form-control', :placeholder => 'Country', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Favorite Movie</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-film" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :movie, class: 'form-control', :placeholder => 'Favorite Movie', :required => ''  %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username" class="hidden-xs">Picture</label>
+              <div class="cols-md-10">
+                  <%= f.file_field :image, class: 'form-control-file',  :required => ''  %>
+                  <small id="fileHelp" class="form-text text-muted">Please add a profile picture</small>
+              </div>
+            </div>
+
+             <div class="form-group">
+              <label for="username" class="hidden-xs">Gender</label>
+              <div class="cols-md-10">
+                  <select class="form-control">
+                    <option></option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+              </div>
+            </div>
 
 
 
@@ -78,9 +236,15 @@
 <%= f.hidden_field :time, :value => 0 %>
 <%= f.hidden_field :type_user, :value => "not-yet-teacher" %>
 
-      <%= f.submit "Submit", class: "btn btn-primary", name: "new2" %>
+       <div class="form-group">   
+            <%= f.submit "Register", class: "btn btn-primary btn-md", name: "edit" %>
+            </div>
+        </form>
+
     <% end %>
+         </div>
+
+      </div>
+      </div>
+    </div>
     
-    
-  </div>
-</div>

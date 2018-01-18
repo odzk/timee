@@ -16,8 +16,14 @@
     
     <%#= @user.time %><%#= @user.addtime %>
     
-      <div class="col-md-6">
-      <img src="<%= @user.image %>" class="himg img-responsive" style="width:400px; height:300px; object-fit: cover;">
+      <div class="col-md-6"><br/>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
 
       <div class="col-md-12 hidden-xs hidden-sm" style="margin-top: 20px;">
         <div class="col-md-4">
@@ -48,17 +54,31 @@
       
       <div class="col-md-6 text-xs-center">
       <h1 style="font-size: 300%; font-family: 'Quicksand', sans-serif;"><%= @user.name %></h1>
-      <p style="margin-top: 30px;">
-      <em><p>Description Here</p></em>
-      <i class="fa fa-flag"></i> Nationality：<%= @user.country %><br><br>
-      <i class="fa fa-line-chart"> </i> Skill Level：<%= @user.skill %><br><br>
-      <i class="fa fa-soccer-ball-o"> </i> Hobbies：<%= @user.hobby %><br><br>
-      <i class="fa fa-university"> </i>Profession：<%= @user.job %><br>
+      <hr> 
+      <p style="margin-top: 25px;">
+      <em><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae lorem vitae urna rhoncus placerat et vitae tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc luctus faucibus sapien, in pretium leo pharetra eu. Etiam enim magna, accumsan posuere egestas vel.</p></em><br/><hr>
+
+      <div class="row">
+          <div class="col-md-6">
+            <i class="fa fa-flag"></i> Nationality：<%= @user.country %><br/><br/>
+          </div>
+          <div class="col-md-6">
+            <i class="fa fa-line-chart"> </i> Skill Level：<%= @user.skill %><br/><br/>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+            <i class="fa fa-soccer-ball-o"> </i> Hobbies：<%= @user.hobby %><br/><br/>
+          </div>
+          <div class="col-md-6">
+          <i class="fa fa-university"> </i>Profession：<%= @user.job %><br/>
+          </div>
+      </div>
       </p>
       <hr>
        <%= f.hidden_field :busy, :value => "no"%>
        
-       <%= f.submit "→　今すぐ英会話", :style => "" %>
+       <%= f.submit "→　今すぐ英会話", :class => "btn btn-primary", :style => "" %>
     <% end %>
 
       </div>

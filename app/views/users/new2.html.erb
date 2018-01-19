@@ -1,4 +1,4 @@
-<% provide(:title, "Edit User") %>
+<% provide(:title, "New Teacher Registration") %>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
@@ -104,131 +104,123 @@ span.input-group-addon i {
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
+        <a href="/">
+        <img src="../../timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; "> </a>
         <h4 class="text-right text-center">Register as a Teacher</h4> 
         <%= form_for(@user) do |f| %>
           <%= render 'shared/error_message', object: f.object %>
-<div class="form-group">
-              <label for="email" class="hidden-xs">Name</label>
+            <div class="form-group">
+              <label for="user_name" class="hidden-xs">Name <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :name, class: 'form-control', :placeholder => 'Name' %>
+                  <%= f.text_field :name, class: 'form-control', :placeholder => 'Name', required: '' %>
                 </div>
             </div>
 
             <div class="form-group">
-              <label for="email" class="hidden-xs">Mail</label>
+              <label for="user_email" class="hidden-xs">Mail <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :email, class: 'form-control', :placeholder => 'E-Mail' %>
+                  <%= f.email_field :email, class: 'form-control', :placeholder => 'E-Mail', required: '' %>
                 </div>
             </div>
 
             <div class="form-group">
-              <label for="password" class="hidden-xs">Password</label>
+              <label for="user_password" class="hidden-xs">Password <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
-                   <%= f.password_field :password, class: 'form-control', :placeholder => 'Password' %>
+                   <%= f.password_field :password, class: 'form-control', :placeholder => 'Password', required: '' %>
                 </div>
             </div>
 
             <div class="form-group">
-              <label for="confirm" class="hidden-xs">Confirm Password</label>
-              <div class="cols-md-10">
-                <div class="input-group">
+              <label for="user_passsword_confirmation" class="hidden-xs">Confirm Password <small style="color: red">[required]</small></label>
+              <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
                   <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => 'Confirm Password', :required => '' %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Skype ID</label>
-              <div class="cols-md-10">
+              <label for="user_skype" class="hidden-xs">Skype ID <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
                   <%= f.text_field :skype, class: 'form-control', :placeholder => 'Skype ID', :required => ''  %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Skill</label>
-              <div class="cols-md-10">
+              <label for="user_skill" class="hidden-xs">Skills</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-gear" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :skill, class: 'form-control', :placeholder => 'Skill', :required => ''  %>
+                  <%= f.text_field :skill, class: 'form-control', :placeholder => 'Skill' %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Former Job</label>
-              <div class="cols-md-10">
+              <label for="user_job" class="hidden-xs">Profession <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-briefcase" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :job, class: 'form-control', :placeholder => 'Former Job', :required => ''  %>
+                  <%= f.text_field :job, class: 'form-control', :placeholder => 'Profession', :required => ''  %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Appeal</label>
-              <div class="cols-md-10">
+              <label for="user_appeal" class="hidden-xs">Describe Yourself Briefly <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-quote-left" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :appeal, class: 'form-control', :placeholder => 'Appeal', :required => ''  %>
+                  <%= f.text_field :appeal, class: 'form-control', :placeholder => 'Descrption', :required => ''  %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Hobby</label>
-              <div class="cols-md-10">
+              <label for="user_hobby" class="hidden-xs">Hobby</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-soccer-ball-o" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :hobby, class: 'form-control', :placeholder => 'Hobby', :required => ''  %>
+                  <%= f.text_field :hobby, class: 'form-control', :placeholder => 'Hobby' %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Country</label>
-              <div class="cols-md-10">
+              <label for="user_country" class="hidden-xs">Country</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-flag" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :country, class: 'form-control', :placeholder => 'Country', :required => ''  %>
+                  <%= f.text_field :country, class: 'form-control', :placeholder => 'Country' %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Favorite Movie</label>
-              <div class="cols-md-10">
+              <label for="user_movie" class="hidden-xs">Favorite Movie</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-film" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :movie, class: 'form-control', :placeholder => 'Favorite Movie', :required => ''  %>
+                  <%= f.text_field :movie, class: 'form-control', :placeholder => 'Favorite Movie' %>
                 </div>
               </div>
-            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">Picture</label>
-              <div class="cols-md-10">
-                  <%= f.file_field :image, class: 'form-control-file',  :required => ''  %>
+              <label for="photo1" class="hidden-xs">Picture</label>
+                  <%= f.file_field :picture, class: 'form-control-file' %>
+                  <%= f.file_field :picture2, class: 'form-control-file' %>
+                  <%= f.file_field :picture3, class: 'form-control-file'  %>
+
                   <small id="fileHelp" class="form-text text-muted">Please add a profile picture</small>
               </div>
-            </div>
+
+            <div class="form-group">
+              <label for="user_youtube" class="hidden-xs">Youtube Video URL</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-youtube" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :youtube_url, class: 'form-control', :placeholder => 'Youtube Video URL'  %>
+                </div>
+              </div>             
 
              <div class="form-group">
-              <label for="username" class="hidden-xs">Gender</label>
-              <div class="cols-md-10">
-                  <select class="form-control">
-                    <option></option>
-                    <option>Male</option>
-                    <option>Female</option>
+              <label for="user_username" class="hidden-xs">Gender <small style="color: red">[required]</small></label>
+                  <select class="form-control" name="user[sex]" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                   </select>
               </div>
-            </div>
 
 
 
@@ -237,7 +229,7 @@ span.input-group-addon i {
 <%= f.hidden_field :type_user, :value => "not-yet-teacher" %>
 
        <div class="form-group">   
-            <%= f.submit "Register", class: "btn btn-primary btn-md", name: "edit" %>
+            <%= f.submit "Register", class: "btn btn-primary btn-md", name: "new2" %>
             </div>
         </form>
 

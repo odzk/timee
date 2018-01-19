@@ -11,7 +11,6 @@ post '/signupteacher', to: 'users#create'
 get '/contact_form', to: 'contact_form#new', as: 'new_message'
 post '/contact_form', to: 'contact_form#create', as: 'create_message'
 
-
 get '/login', to:'sessions#new'
 post '/login', to:'sessions#create'
 delete '/logout', to:'sessions#destroy'

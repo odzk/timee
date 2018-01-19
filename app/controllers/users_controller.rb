@@ -90,6 +90,7 @@ before_action :correct_user, only: [:edit ]
   
   def new
     @user = User.new
+    @history = History.new
   end
   def new2
     @user = User.new

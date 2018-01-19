@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119033925) do
+
+ActiveRecord::Schema.define(version: 20180111042434) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -106,6 +107,7 @@ ActiveRecord::Schema.define(version: 20180119033925) do
   end
 
   create_table "histories", force: :cascade do |t|
+<<<<<<< Updated upstream
     t.integer  "user_id",          limit: 4
     t.string   "transaction_name", limit: 255
     t.string   "min_type",         limit: 255
@@ -117,6 +119,26 @@ ActiveRecord::Schema.define(version: 20180119033925) do
   end
 
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
+=======
+    t.integer  "users_id",    limit: 4
+    t.string   "transaction", limit: 255
+    t.integer  "mins",        limit: 4
+    t.datetime "datetime"
+    t.string   "teacher",     limit: 255
+  end
+
+  add_index "histories", ["users_id"], name: "index_histories_on_users_id", using: :btree
+
+  create_table "history", force: :cascade do |t|
+    t.integer  "users_id",    limit: 4
+    t.string   "transaction", limit: 255
+    t.integer  "mins",        limit: 4
+    t.datetime "datetime"
+    t.string   "teacher",     limit: 255
+  end
+
+  add_index "history", ["users_id"], name: "index_history_on_users_id", using: :btree
+>>>>>>> Stashed changes
 
   create_table "inquiries", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -335,6 +357,7 @@ ActiveRecord::Schema.define(version: 20180119033925) do
     t.integer  "addtime",                            limit: 4
     t.string   "sex",                                limit: 255
     t.string   "youtube_url",                        limit: 255
+
   end
 
   create_table "withdrows", force: :cascade do |t|

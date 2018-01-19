@@ -122,7 +122,7 @@ span.input-group-addon i {
               <label for="email" class="hidden-xs">ニックネーム</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :name, class: 'form-control', :placeholder => 'ニックネーム' %>
+                  <%= f.email_field :name, class: 'form-control', :placeholder => 'ニックネーム', :value => current_user.name %>
                 </div>
             </div>
 
@@ -130,7 +130,7 @@ span.input-group-addon i {
               <label for="email" class="hidden-xs">メールアドレス</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
+                  <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス', :value => current_user.email %>
                 </div>
             </div>
 
@@ -157,7 +157,7 @@ span.input-group-addon i {
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :required => ''  %>
+                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :value => current_user.skype  %>
                 </div>
               </div>
             </div>

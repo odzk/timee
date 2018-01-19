@@ -110,6 +110,11 @@ before_action :correct_user, only: [:edit ]
   
 
   def create
+
+        @photo1 = params[:user][:picture].original_filename
+        @photo2 = params[:user][:picture2].original_filename
+        @photo3 = params[:user][:picture3].original_filename
+        @youtube_video = params[:user][:youtube_url]
     
     if params[:new]
     
@@ -123,8 +128,10 @@ before_action :correct_user, only: [:edit ]
        end
    
     elsif params[:new2]
-    
+
         @user = User.new(user_params)
+        @profile = @user.profile_pic.build(photo1: @photo1, photo2: @photo2, photo3: @photo3, youtube_video: @youtube_video)
+
        if @user.save
           flash[:success] = "成功！"
         redirect_to "/login"
@@ -253,10 +260,9 @@ before_action :correct_user, only: [:edit ]
   ensure
     request.body.rewind
   end
-  
 
   def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url)
   end
   
   def pay_params

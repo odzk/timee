@@ -2,10 +2,27 @@
 
 <style>
 
+.small-icons{
+         width: 75px;
+ }
  @media (max-width: 768px) {
       .btn {
               width: 100% important;
        } 
+    }
+
+@media (max-width: 420px) {
+      .small_font {
+
+            font-size: 17px;
+      }
+
+      .small-icons{
+            width: 40px;
+      }
+      p.small-topic-text{
+            font-size: 10px;
+      }
     }
 
 </style>
@@ -14,40 +31,48 @@
 
 <div class="container text-center">
 
-      <h2 style="font-family: 'Work Sans', sans-serif;">Hello There! My name is Teacher <strong><%= @user.name %></strong>. <br> Thank you for choosing me as your teacher!!</h2>
-      <br>
-      <p style="font-size:10px; color: rgba(70,40,84,1); font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">
-      下の" contact us "ボタンを押して、講師にメッセージを送ってね:)<br><br>
-      メッセージが送れない場合は、以下のSkypeIDから直接連絡してください。<br><br><br><br>
-      
-      </p>
 
+      <h2 style="font-family: 'Work Sans', sans-serif;" class="small_font">ハロー！<strong><%= @user.name %></strong> です！. <br>私を選んでくれてありがとう！</h2>
+      <hr>
       <p>
 
 <div class="col-md-6">
 
 <img src="<%= @user.image %>" class="img-responsive img-thumbnail" style="width:80%;">
-
+<div class="row"><br/><br/></div>
 </div>
 
 <div class="col-md-6">
-      <h2>You can CHAT NOW</h2>
-      <span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-color="#000" style="color:#fff; zoom:2;"></span>
-      <span class="skype-chat" data-color-message="#000"></span>
-      <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
-      
-      
-      <br><br>
-
       </p>
-
-      <h2>or CALL NOW</h2>
+      <strong><h4 style="margin-top: -35px;">どの授業を受けますか？</h4></strong><hr>
+      <div class="row">
+        <div class="col-md-4"><p>
+        <img src="../../travel_english.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><label><input type="checkbox" name = "travel_english">&nbsp 旅行英会話</a></span></p></span></label>
+        </div>
+        <div class="col-md-4"><p>
+        <img src="../../idiomatic_expressions.png" class="small-icons"><span><br/><p class="small-topic-text"><label style="font-size:12px;"><input type="checkbox" name = "travel_english">&nbsp 単語/熟語/フレーズ</a></span></p></label>
+        </div>
+        <div class="col-md-4"><p>
+        <img src="../../business_english.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><label><input type="checkbox" name = "travel_english">&nbsp ビジネス英語</a></span></p></label>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4"><p>
+        <img src="../../daily_english.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><label><input type="checkbox" name = "travel_english">&nbsp 日常英会話</a></span></p></label>
+        </div>
+        <div class="col-md-4"><p>
+          <img src="../../role_playing.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><label><input type="checkbox" name = "travel_english">&nbsp なりきり英会話</a></span></p></label>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+<hr/>
+<!--       <h2>or CALL NOW</h2>
       <a href="skype:<%= @user.skype %>?call"><i class="fa fa-skype fa-5x"></i></a>
 
       <h3 style="font-size:20px; font-family: 'Work Sans', sans-serif;">skype : <%= @user.skype %></h3>
-
+ -->
 </div>
-
 <div class="col-md-offset-3 col-md-6 col-xs-12">
 <a type="button" class="btn" style="color: #000; width: 100%; margin-top: 30px;" href="/"><i class='fa fa-mail-reply'></i> 戻る</a>
 
@@ -58,9 +83,3 @@
 </div>
 
 <div style="clear: both; height:100px;"> </div>
-
-
-
-
-
-  

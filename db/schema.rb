@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114095712) do
+ActiveRecord::Schema.define(version: 20180119033925) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -35,15 +35,6 @@ ActiveRecord::Schema.define(version: 20180114095712) do
   end
 
   create_table "contact_forms", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.string   "subject",    limit: 255
-    t.text     "message",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  create_table "contactus", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
     t.string   "subject",    limit: 255
@@ -162,6 +153,7 @@ ActiveRecord::Schema.define(version: 20180114095712) do
     t.string   "youtube_video", limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "photo3",        limit: 255
   end
 
   add_index "profile_pics", ["user_id"], name: "index_profile_pics_on_user_id", using: :btree
@@ -342,6 +334,7 @@ ActiveRecord::Schema.define(version: 20180114095712) do
     t.string   "image",                              limit: 255
     t.integer  "addtime",                            limit: 4
     t.string   "sex",                                limit: 255
+    t.string   "youtube_url",                        limit: 255
   end
 
   create_table "withdrows", force: :cascade do |t|

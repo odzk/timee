@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20180119033925) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "contactus", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "subject",    limit: 255
+    t.text     "message",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "details", force: :cascade do |t|
     t.string   "company_name",                       limit: 255
     t.datetime "created_at",                                       null: false

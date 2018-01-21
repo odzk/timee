@@ -44,6 +44,7 @@ root 'static_pages#home'
 resources :account_activations, only: [:edit]
 resources :password_resets,     only: [:new, :create, :edit, :update]
 
+
 #パスワード再設定
  
 resources :users do

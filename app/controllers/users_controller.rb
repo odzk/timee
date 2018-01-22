@@ -84,6 +84,7 @@ before_action :correct_user, only: [:edit ]
   
   def show
   @user = User.find(params[:id])
+  @profile_pic = @user.profile_pic
 
   end
   

@@ -13,14 +13,14 @@
   <div class="container">
 
     <%= form_for(@user) do |f| %>
-    
     <%#= @user.time %><%#= @user.addtime %>
     
+
       <div class="col-md-6"><br/>
         <div class="row">
           <div class="col-md-12">
             <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="<%= @user.youtube_url %>" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -29,25 +29,26 @@
         <div class="col-md-4">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <a href="#">
-              <img src="<%= @user.image %>" style="width:100%">
+              <img src="<%= @user.picture %>" style="width:100%">
             </a>
           </div>
         </div>
         <div class="col-md-4 ">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <a href="#">
-              <img src="<%= @user.image %>" style="width:100%">
+              <img src="<%= @user.picture2 %>" style="width:100%">
             </a>
           </div>
         </div>
         <div class="col-md-4">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <a href="#">
-              <img src="<%= @user.image %>" style="width:100%">
+              <img src="<%= @user.picture3 %>" style="width:100%">
             </a>
           </div>
         </div>
       </div>
+
 
       </div>
       
@@ -74,7 +75,7 @@
           <i class="fa fa-university"> </i>Profession：<%= @user.job %><br/>
           </div>
       </div>
-      </p>
+         </p>
       <hr>
        <%= f.hidden_field :busy, :value => "no"%>
        

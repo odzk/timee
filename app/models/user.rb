@@ -32,8 +32,6 @@ class User < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   mount_uploader :picture2, PictureUploader
   mount_uploader :picture3, PictureUploader
-
-
   
   mount_uploader :image, ImageUploader
   

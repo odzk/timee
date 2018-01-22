@@ -29,13 +29,15 @@ gem 'payjp'
 gem 'fog', '1.40.0'
 #本番環境に画像を移すとき用
 #画像アップロードのためーーー
-
+gem 'lightbox2-rails'
 # Gemfile
 # Pagenation
 gem 'kaminari'
 gem 'jquery-ui-rails'
 
 # gem 'zbar', '~> 0.2.2'
+
+gem 'lightbox-bootstrap-rails'
 
 # gem 'jp_prefecture'
 

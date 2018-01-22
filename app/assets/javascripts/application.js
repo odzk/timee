@@ -8,7 +8,7 @@
 //= require_tree .
 //= require bootstrap
 // require search_machine.js
-
+//= require lightbox-bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
 // 日本語化する為ja.jsを読み込む

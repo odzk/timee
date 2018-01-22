@@ -1,4 +1,7 @@
 class CreateHistories < ActiveRecord::Migration
+ 
+ drop_table(:histories, if_exists: true) 
+
   def change
     create_table :histories do |t|
 

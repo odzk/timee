@@ -57,21 +57,21 @@
       <h1 style="font-size: 300%; font-family: 'Quicksand', sans-serif;"><%= @user.name %></h1>
       <hr> 
       <p style="margin-top: 25px;">
-      <em><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae lorem vitae urna rhoncus placerat et vitae tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc luctus faucibus sapien, in pretium leo pharetra eu. Etiam enim magna, accumsan posuere egestas vel.</p></em><br/><hr>
+      <em><p><%= @user.appeal %></p></em><br/><hr>
 
       <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <i class="fa fa-flag"></i> Nationality：<%= @user.country %><br/><br/>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
             <i class="fa fa-line-chart"> </i> Skill Level：<%= @user.skill %><br/><br/>
           </div>
       </div>
       <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <i class="fa fa-soccer-ball-o"> </i> Hobbies：<%= @user.hobby %><br/><br/>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
           <i class="fa fa-university"> </i>Profession：<%= @user.job %><br/>
           </div>
       </div>

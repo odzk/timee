@@ -1,4 +1,7 @@
 class CreateContactForms < ActiveRecord::Migration
+ 
+  drop_table(:contact_forms, if_exists: true)
+ 
   def change
     create_table :contact_forms do |t|
     	t.string :name

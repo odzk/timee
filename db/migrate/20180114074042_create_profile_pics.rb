@@ -1,4 +1,7 @@
 class CreateProfilePics < ActiveRecord::Migration
+  
+  drop_table(:profile_pics, if_exists: true)
+
   def change
     create_table :profile_pics do |t|
       t.references :user, index: true, foreign_key: true

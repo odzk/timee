@@ -113,10 +113,10 @@ before_action :correct_user, only: [:edit ]
 
   def create
 
-        @photo1 = params[:user][:picture].original_filename
-        @photo2 = params[:user][:picture2].original_filename
-        @photo3 = params[:user][:picture3].original_filename
-        @youtube_video = params[:user][:youtube_url]
+        # @photo1 = params[:user][:picture].original_filename
+        # @photo2 = params[:user][:picture2].original_filename
+        # @photo3 = params[:user][:picture3].original_filename
+        # @youtube_video = params[:user][:youtube_url]
     
     if params[:new]
     
@@ -132,7 +132,7 @@ before_action :correct_user, only: [:edit ]
     elsif params[:new2]
 
         @user = User.new(user_params)
-        @profile = @user.profile_pic.build(photo1: @photo1, photo2: @photo2, photo3: @photo3, youtube_video: @youtube_video)
+        #@profile = @user.profile_pic.build(photo1: @photo1, photo2: @photo2, photo3: @photo3, youtube_video: @youtube_video)
 
        if @user.save
           flash[:success] = "成功！"

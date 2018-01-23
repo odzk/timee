@@ -1,0 +1,49 @@
+<% provide(:title,"ERROR 404") %>
+
+
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  </div>
+
+<div class="col-md-offset-1 col-md-6">
+<!--   <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px"> -->
+</div>
+
+<style>
+.bg {
+  background:url('/bg.jpg');
+  font-family: 'Oxygen', sans-serif;
+}
+hr{
+  width: 10%;
+  color: #fff;
+
+}
+img{
+  width: 60%;
+}
+@media only screen and (max-width: 420px) {
+  img.mobileImage{
+    width: 100%;
+ }
+  }
+</style>
+<div class="bg nopadding">
+    <div class="container nopadding">
+      <div class="row main">
+        <div class="col-md-12">
+          <br/> 
+        <div class="row">
+          <div class="col-md-12"><p style="text-align: center;">
+            <img src="../../sorry_404.png" class="mobileImage" alt="Sorry"></p>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4"><a href="/" class="btn btn-danger btn-block" role="button">Back to Home</a></button><br/><br/></div>
+        </div>
+        </div>
+        </div>
+      </div>
+</div>

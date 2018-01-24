@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124032823) do
+ActiveRecord::Schema.define(version: 20180124132158) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -256,6 +256,13 @@ ActiveRecord::Schema.define(version: 20180124032823) do
   end
 
   add_index "sells", ["user_id"], name: "index_sells_on_user_id", using: :btree
+
+  create_table "sks", force: :cascade do |t|
+    t.string   "sk",         limit: 1000
+    t.string   "pk",         limit: 1000
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.datetime "created_at",             null: false

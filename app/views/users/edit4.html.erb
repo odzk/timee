@@ -45,7 +45,7 @@ font-family: ten-mincho, serif; font-style: normal; font-weight: 100;
 </style>
 
 <%= form_tag(action: :purchase, method: :post) do %>
-<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_live" data-text="チャージする" ></script>
+<script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="<%= @pk %>" data-text="チャージする" ></script>
 <% end %>
 
 

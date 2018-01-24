@@ -24,6 +24,7 @@ gem 'will_paginate', '3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave'
 gem 'payjp'
+gem 'mini_magick'
 
 #リサイズ
 gem 'fog', '1.40.0'
@@ -88,7 +89,7 @@ end
 group :development do
   
 #  gem 'sqlite3'
-  gem 'mysql2' 
+#  gem 'mysql2' 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

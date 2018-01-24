@@ -19,32 +19,50 @@
       <div class="col-md-6"><br/>
         <div class="row">
           <div class="col-md-12">
+            <% if @user.youtube_url.present? %>
             <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="<%= @user.youtube_url %>" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="<%= @user.picture %>" allowfullscreen></iframe>
             </div>
-          </div>
+            <% else %>
+            <a href="#">
+              <img src="<%= @user.picture %>" style="width:100%">
+            </a>
+            <% end %>
+            </div>
         </div>
 
       <div class="col-md-12 hidden-xs hidden-sm" style="margin-top: 20px;">
         <div class="col-md-4">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
+            <% if @user.picture.present? %>
             <a href="#">
               <img src="<%= @user.picture %>" style="width:100%">
             </a>
+            <% else %>
+            <img src="../../no_image.png" style="width:100%">
+            <% end %>
           </div>
         </div>
         <div class="col-md-4 ">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
+            <% if @user.picture2.present? %>
             <a href="#">
               <img src="<%= @user.picture2 %>" style="width:100%">
             </a>
+            <% else %>
+            <img src="../../no_image.png" style="width:100%">
+            <% end %>            
           </div>
         </div>
         <div class="col-md-4">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
+            <% if @user.picture3.present? %>
             <a href="#">
               <img src="<%= @user.picture3 %>" style="width:100%">
             </a>
+            <% else %>
+            <img src="../../no_image.png" style="width:100%">
+            <% end %>
           </div>
         </div>
       </div>

@@ -21,12 +21,12 @@
 											      margin: auto;">
 							<% @users.each do |user| %>
 							<% if user.busy != "busy" %>
-										<% if user.sex == "men" %>
+										<% if user.sex == "male" %>
 							
 				<figure class="effect-jazz jazz2">
 					<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
 						<figcaption class="hidden-xs">
-							<h2 style="font-size:17px;"><%= user.name %></h2>
+							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
                         <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
@@ -36,7 +36,7 @@
 						</figcaption>
 					</figure>
 						<div class="hidden-md hidden-sm hidden-lg col-xs-12">
-						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.name %></h2>
+						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.nick %></h2>
 
 						</div>
 												
@@ -45,7 +45,7 @@
 					<figure class="effect-jazz jazz1">
 		<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
 						<figcaption class="hidden-xs">
-							<h2 style="font-size:17px;"><%= user.name %></h2>
+							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
 	                    <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
@@ -55,7 +55,7 @@
 						</figcaption>	
 					</figure>
 						<div class="hidden-md hidden-sm hidden-lg col-xs-12">
-						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.name %></h2>
+						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.nick %></h2>
 
 						</div>
 													

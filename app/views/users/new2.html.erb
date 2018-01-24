@@ -118,6 +118,14 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
+              <label for="user_name" class="hidden-xs">Nickname <small style="color: red">[required]</small></label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-id-card" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :nick, class: 'form-control', :placeholder => 'Nickname', required: '' %>
+                </div>
+            </div>            
+
+            <div class="form-group">
               <label for="user_email" class="hidden-xs">Mail <small style="color: red">[required]</small></label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>

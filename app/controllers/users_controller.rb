@@ -161,6 +161,7 @@ before_action :correct_user, only: [:edit ]
   
   def edit2
   @user = User.find(current_user.id)
+  @history = @user.history
   @current = current_user.name
   @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
@@ -264,7 +265,7 @@ before_action :correct_user, only: [:edit ]
   end
 
   def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url, :nick)
   end
   
   def pay_params

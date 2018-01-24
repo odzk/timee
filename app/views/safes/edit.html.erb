@@ -26,12 +26,12 @@
 <br><br>
 
 <% if @safe.photo.present? %>
-<label for="picture" class="col-md-12" style="padding-left: 0">Screenshot of Evidence<i class="fa fa-picture-o"></i>
+<label for="picture" class="col-md-12" style="padding-left: 0">Screenshot of Class<i class="fa fa-picture-o"></i>
 <%#= @safe.photo  %>
 <img src="<%= @safe.photo %>" style="width: 100px;" >
 </label>
 <% else %>
-<label for="picture" class="col-md-12" style="padding-left: 0">Screenshot of Evidence<i class="fa fa-picture-o"></i>
+<label for="picture" class="col-md-12" style="padding-left: 0">Screenshot of Class<i class="fa fa-picture-o"></i>
 <%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png', class: 'form-control' , :style => 'width:80%;'  %>
 </label>
 <% end %>

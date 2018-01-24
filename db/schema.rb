@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119033925) do
+ActiveRecord::Schema.define(version: 20180124032823) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -230,7 +230,10 @@ ActiveRecord::Schema.define(version: 20180119033925) do
     t.string   "status_teacher",       limit: 255
     t.integer  "time",                 limit: 4
     t.string   "time_photo",           limit: 255
+    t.integer  "user_id",              limit: 4
   end
+
+  add_index "saves", ["user_id"], name: "index_saves_on_user_id", using: :btree
 
   create_table "sells", force: :cascade do |t|
     t.string   "content_type", limit: 255
@@ -344,6 +347,7 @@ ActiveRecord::Schema.define(version: 20180119033925) do
     t.integer  "addtime",                            limit: 4
     t.string   "sex",                                limit: 255
     t.string   "youtube_url",                        limit: 255
+    t.string   "nick",                               limit: 255
   end
 
   create_table "withdrows", force: :cascade do |t|
@@ -358,5 +362,6 @@ ActiveRecord::Schema.define(version: 20180119033925) do
   add_foreign_key "histories", "users"
   add_foreign_key "microposts", "users"
   add_foreign_key "profile_pics", "users"
+  add_foreign_key "saves", "users"
   add_foreign_key "sells", "users"
 end

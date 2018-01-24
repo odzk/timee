@@ -5,8 +5,6 @@ before_action :teacher_user, only: [:edit ]
   
   helper_method :sort_column, :sort_direction
   
-
-
 def index
      @safes = Safe.paginate(page: params[:page])
 end
@@ -28,7 +26,6 @@ def update
 
 @safe = Safe.find(params[:id])
 
-
   if params[:edit]
 
                 if @safe.update(safe_params)
@@ -43,6 +40,7 @@ def update
           
                 if @safe.update(safe_params)
                   @teacher = User.find(current_user)
+                  @teacher_id = @teacher.id
                   @studentname = @safe.student
                   @studentid = User.where(:name => @studentname)
                   @student = User.find(@studentid[0].id)
@@ -54,7 +52,8 @@ def update
                   end
                   @add = @teachertime + @safe.time
                   @teacher.update(:time => @add )
-
+                  @teacher_history = @teacher.history.build(transaction_name: "Student Class", min_type: "+", mins: 30, datetime: DateTime.now, teacher: @student.name)
+                  @teacher_history.save
 
                   if @student.time.blank?
                     @studenttime = 0
@@ -62,12 +61,14 @@ def update
                     @studenttime = @student.time
                   end
                   @add2 = @studenttime - @safe.time
-                  @student.update(:time => @add2 ) 
+                  @student.update(:time => @add2 )
+                  @student_history = @student.history.build(transaction_name: "Class", min_type: "-", mins: 30, datetime: DateTime.now, teacher: @teacher.name)
+                  @student_history.save
                   
                   flash[:success] = "Thank you for teaching!"
                   redirect_to edit2_user_path
                 else
-                  flash[:danger] = "Erorr occur, something wrong. Please tell us."
+                  flash[:danger] = "Something is wrong. Please inform the administrator right away!"
                   redirect_back_or root_url
                 end
                 

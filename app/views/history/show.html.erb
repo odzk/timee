@@ -1,4 +1,4 @@
-<% provide(:title,"Student History") %>
+<% provide(:title,"Transaction History") %>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
@@ -96,9 +96,16 @@ span.input-group-addon i {
 }
 </style>
 
+<% if current_user.type_user == 'student'
+  title = "Student History"
+else
+  title = "Teacher's History"
+end
+%>
+
 <div class="container">
 <div style="margin-top: 30px; margin-bottom: 30px;">
-<span style=" font-family: 'Work Sans', sans-serif; font-size: 30px;" class="hidden-xs">Student History </span><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;" class="mobiletext"> Student History</span>
+<span style=" font-family: 'Work Sans', sans-serif; font-size: 30px;" class="hidden-xs"><%= title %> </span><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;" class="mobiletext"> <%= title %></span>
 </div>
 
 </div>
@@ -108,7 +115,7 @@ span.input-group-addon i {
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-12 nopadding">
-        <h5 class="text-center hidden-xs">Student History</h5>
+        <h5 class="text-center hidden-xs"><%= title %></h5>
             <table class="table table-bordered table-hover">
             <tr class="info">
               <th>Transaction Type</th>

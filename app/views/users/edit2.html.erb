@@ -1,19 +1,89 @@
 <% provide(:title, "Dashboard") %>
 
 <!--先生ダッシュボード-->
+<br/>
+<div class="row">
+  <div class="col-md-3">
+       <div class="thumbnail">
+          <img src="<%= @user.picture %>" alt="...">
+          <div class="caption">
+            <h3 class="text-center">Teacher <%= @user.nick %></h3>
+          </div>
+       </div>
+  </div>
+  <div class="col-md-3">
+
+    <div class="panel panel-info">
+ 
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right fa fa-money"></span>Savings</h2>
+      </div>
+      <div class="panel-body">
+        <% if @user.time.nil? %>
+          0
+          <% else %>
+          <%= @user.time %>
+          <% end %>
+          </span>mins
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-headphones"></span>Status</h2>
+      </div>
+      <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+      <div class="panel-body">
+      <div class="radio" style="margin-bottom: 10px;">
+      <label><%= f.radio_button :busy, "busy" %>busy</label>
+      <label><%= f.radio_button :busy, "No" %>no</label>
+      </div><span>
+      <%= f.submit "submit", class: "btn btn-primary btn-sm", name: "busy" %>
+      </span>
+      <% end %>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Total</h2>
+      </div>
+      <div class="panel-body">
+        <label><%= @totalsafes.count %></label> lessons<br/>
+        <label><%= @totalsafes.sum(:time) %></label> mins
+      </div>
+    </div>
+  </div>
 
 
-  <div style="width:100%; margin:0 0% 0 5%; zoom:0.8;">
+
+
+</div></div>
+
+
+
+
+<!-- original dashboard -->
+<!-- original dashboard -->
+<!-- original dashboard -->
+<!--   <div style="width:100%; margin:0 0% 0 5%; zoom:0.8;">
     
     <div style="padding:0 0 30px 0px; width:200px; float:left; margin:0 0px 0 0px;">
     <div style="padding:0 0 10px 0px; font-size:25px;">Teacher. <%= @user.name %></div>
-    <div style="padding:0 0 10px 0px; font-size:25px;"><img src="<%= @user.picture %>" alt="img25" width="150"/></div>
+    <div style="padding:0 0 10px 0px; font-size:25px;"><img src="<%= @user.image %>" alt="img25" width="150"/></div>
     <br>
     </div>
     
     
     <div class="box1" style="padding:0 0 30px 30px; width:200px; float:left; margin:0 10px 0 10px;">
-    <h4>Time Earned</h4>
+    <h4>Savings</h4>
     <span style="font-size:45px;">
 
     <% if @user.time.nil? %>
@@ -29,17 +99,25 @@
       <%= render 'shared/error_message', object: f.object %>
      <h4>Status</h4>
      <div class="radio" style="margin-bottom: 10px;">
-     <label><%= f.radio_button :busy, "available" %>Available</label>
-     <label><%= f.radio_button :busy, "not available" %>Not Available</label>
-     <label><%= f.radio_button :busy, "on call" %>On A Call</label>
-
+     <label><%= f.radio_button :busy, "busy" %>busy</label>
+     <label><%= f.radio_button :busy, "No" %>no</label>
      </div>
       <%= f.submit "submit", class: "btn btn-primary", name: "busy" %>
     <% end %>
     </div>
+
+    <div class="box1" style="padding:0 0 70px 30px; width:200px; float:left; margin:0 10px 0 10px;">
+    <h4>Refresh</h4>
+      <script>
+      function koshin(){
+        location.reload();
+      }
+      </script>
+      <input type="button"  value="submit" onclick="koshin()">
+    </div>
     
     <div class="box1" style="padding:0 0 50px 30px; width:200px; float:left; margin:0 10px 0 10px;">
-    <h4>Total / Summary</h4>
+    <h4>Total</h4>
     <div style="padding:0 0 0px 0px; font-size:15px;">　<%= @totalsafes.count %> lessons<br>
     　<%= @totalsafes.sum(:time) %> mins</div>
     </div>
@@ -54,31 +132,30 @@
    
 <div style="margin:0 15% 0 5%;">  
 
-
-<table class="table table-bordered table-hover table-condensed" style="margin: 30px 0% 0 0%; font-size:100%;">
-  <thead class="thead-default">
-    <tr scope="row">
-      <th class="col-md-1" style="font-size:12px">ID</th>    
-      <th class="col-md-3" style="font-size:12px">Student Name</th>
-      <th class="col-md-3" style="font-size:12px">Teacher Name</th>
-      <th class="col-md-3" style="font-size:8px">How many mins Student has</th>
-      
-      <th class="col-md-5 text-center" style="font-size:12px">編集</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
+ -->
+<div class="container">
+ <div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered table-hover text-center">
+      <thead class="thead-default">
+      <tr>
+      <th class="info text-center">ID</th>
+      <th class="info text-center">Date / Time</th>
+      <th class="info text-center">Student Name</th>
+      <th class="info text-center">Time Remaining</th>      
+      <th class="info text-center">Status</th>
+      </tr>
+      </thead>
+      <tbody>
 
   <% @safes.each do |safe| %>
 
-          <td style="font-size:12px"><%= safe.id %></td>
-          <td style="font-size:20px"><%= safe.student %></td>
-          <td style="font-size:20px"><%= safe.teacher %></td>
-          
+          <td><%= safe.id %></td>
+          <td><%= safe.created_at %></td>
+          <td><%= safe.student %></td>
           <% @p = "\"" + safe.student + "\"" %>
           <% @id = User.find_by(name: safe.student) %>
-          <td style="font-size:20px">
+          <td>
               <% if @id.time.nil? %>
               0mins
               <% else %>
@@ -88,9 +165,9 @@
           </td>
           
           
-          <td class="text-center" style="zoom:1; padding:10px 0 10px 0;">
+          <td>
           <%= link_to edit_safe_path(safe), :class => "btn btn-primary" do %>
-          <span style="color:#fff;"><i class="fa fa-pencil-square-o"></i>Application for Complete</span>
+          <span style="color:#fff;"><i class="fa fa-pencil-square-o"></i><div class="hidden-xs">Application for Complete</div></span>
           <% end %>
           </td>
           
@@ -99,11 +176,9 @@
   <% end %>
   </tbody>
 </table>
-
-
+</div>
+</div>
+</div>
 <%= paginate @safes %>
 
 </div>
-
-
-  

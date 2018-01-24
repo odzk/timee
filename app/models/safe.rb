@@ -1,5 +1,6 @@
 class Safe < ActiveRecord::Base
 include ActionView::Helpers
+has_many :history
 
 
   def self.to_csv

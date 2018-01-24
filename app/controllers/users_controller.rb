@@ -13,7 +13,7 @@ before_action :correct_user, only: [:edit ]
     secret_key = Sk.find(1)
     sk = secret_key.sk
     Payjp.api_key = sk
-    Payjp::Charge.create(currency: 'jpy', amount: 1, card: params['payjp-token'])
+    Payjp::Charge.create(currency: 'jpy', amount: 24980, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
@@ -29,7 +29,7 @@ before_action :correct_user, only: [:edit ]
     secret_key = Sk.find(1)
     sk = secret_key.sk
     Payjp.api_key = sk
-    Payjp::Charge.create(currency: 'jpy', amount: 2, card: params['payjp-token'])
+    Payjp::Charge.create(currency: 'jpy', amount: 8980, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
@@ -45,7 +45,7 @@ before_action :correct_user, only: [:edit ]
     secret_key = Sk.find(1)
     sk = secret_key.sk
     Payjp.api_key = sk
-    Payjp::Charge.create(currency: 'jpy', amount: 3, card: params['payjp-token'])
+    Payjp::Charge.create(currency: 'jpy', amount: 4780, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     
@@ -61,7 +61,7 @@ before_action :correct_user, only: [:edit ]
     secret_key = Sk.find(1)
     sk = secret_key.sk
     Payjp.api_key = sk
-    Payjp::Charge.create(currency: 'jpy', amount: 4, card: params['payjp-token'])
+    Payjp::Charge.create(currency: 'jpy', amount: 980, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
     

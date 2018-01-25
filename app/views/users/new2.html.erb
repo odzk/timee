@@ -3,6 +3,9 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </div>
 
 <style>
@@ -106,7 +109,7 @@ span.input-group-addon i {
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
         <a href="/">
         <img src="../../timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; "> </a>
-        <h4 class="text-right text-center">Register as a Teacher</h4> 
+        <h4 class="text-right text-center hidden-xs">Register as a Teacher</h4> 
         <%= form_for(@user) do |f| %>
           <%= render 'shared/error_message', object: f.object %>
             <div class="form-group">
@@ -164,6 +167,16 @@ span.input-group-addon i {
                   </select>
               </div>
 
+              <div class="form-group">
+              <div class="cols-md-12">
+
+                  <div class="checkbox">
+                  <label><input type="checkbox" value="agree" name="agreement" required autofocus>I accept the <a href="#" style="color: blue;" data-toggle="modal" data-target="#agreement">Terms & Conditions</a> of the company. </label>
+                    
+                  </div>
+
+            </div>
+
 
 
 <%= f.hidden_field :busy, :value => "busy" %>
@@ -177,6 +190,92 @@ span.input-group-addon i {
 
     <% end %>
          </div>
+ <div class="modal fade" id="agreement" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="color: #000;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center"><strong>Timee Terms & Conditions</strong></h4>
+        </div>
+        <div class="modal-body">
+         <p>This page states the terms of use (“Terms”) under which you (“You”) may use the Timee Website, and Your relationship with Web Mechanics Online Services (“Web Mech”, “we”, or “us”).<br> Please read them carefully as they affect Your rights and liabilities under the law.<br> If You do not agree to these Terms, please do not register for or use the Timee Website. If You have any questions of the Terms, please contact us.</p><br>
+
+        <strong><p>• Binding Agreement</p></strong>
+
+        <br/><p>This Timee Website is provided to you for your use subject to these Terms. These Terms
+          form a binding agreement between you and Web Mech. By accessing or using the Timee
+          Website you agree to accept and/or to be bound by these Terms. You agree to use the
+          Timee Website at your own risk.</p><br><br>
+
+        <strong><p>• Registration</p></strong>
+          
+          <p>To register on the Timee Website, you must be a recognized teacher of Web Mech.<br> 
+          You must ensure that the details provided by you on registration or at any time are<br>
+          correct and complete. You must inform us immediately of any changes to the<br>
+          information that you provided when registering by updating your personal details in<br>
+          order that we can communicate with you effectively.</p><br><br>
+
+        <strong><p>• Password and security</p></strong>
+
+          <p>When you register to use the Timee Website, you will be asked to create a password. <br>
+          In order to prevent fraud, you must keep this password confidential and must not <br>
+          disclose it or share it with anyone.<br><br></p> 
+
+        <strong><p>• Intellectual Property<br></p></strong>
+
+          <p>Timee Website, Timee Content, and all right, title and, interest in and to Timee 
+          Website and Timee Content are the exclusive property of Web Mech. Timee Website and Timee Content are protected by copyright, trade mark,<br><br> database right and other intellectual property rights.<br><br></p>
+
+        <strong><p>• Availability of the Timee Website<br></p></strong>
+
+          <p>Although we offer you the best service possible, we make no promise that the <br>
+          services at the Timee Website will meet your requirements. We cannot guarantee<br>
+          that the Timee Website will be fault-free, error-free, or that Timee Website and server are free of viruses or other harmful mechanisms.<br></p><br>
+         
+        <strong><p>• Your use of the Timee Website<br></p></strong>
+
+          <p>Web Mech hereby grants you a limited, terminable, non-exclusive right to access<br> 
+          and use Timee Website only for your classes. You may not use Timee Website for<br>
+          any of the following purposes:<br><br>
+           (i) aggregating, copying or duplicating in any manner
+          any of the Timee Content or information available from the Timee Website; <br><br>
+        (ii) reproducing any of the Timee Content and curriculum for general use; and <br><br>
+        (iii) making, transmitting or storing electronic copies of materials protected by<br>
+        copyright without the permission of the company.<br></p><br>
+
+        <strong><p>• Your use of Timee Services<br></p></strong>
+
+          <p>The Timee Services may be used only by teachers having classes with students or<br>
+          teachers who are available and/or on-call.<br></p><br>
+
+        <strong><p>• Additional Terms<br> </p></strong>
+
+          <p>Web Mech hereby grants you a limited, terminable, non-exclusive right to access <br>
+          and use the Timee Website for your internal use only. You are responsible for<br>
+          maintaining the confidentiality of your student’s account and profile.<br></p><br>
+
+        <strong><p>• Disclaimers<br></p></strong>
+
+          <p>Web Mech shall not be liable for any loss of information howsoever caused as a<br> 
+          result of any interruption, suspension or termination of the Time Services or of the<br>
+          Timee Content, accuracy or quality of information available or transmitted through<br> 
+          Timee Services.<br></p><br>
+
+        <strong><p>• General <br></p></strong>
+
+          <p>The Timee Website is owned and operated by Web Mechanics Online Services.<br> If 
+          you have any queries, please contact us at: admin@web-mech.net or call us +63 (032) 342 0263</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 
       </div>
       </div>

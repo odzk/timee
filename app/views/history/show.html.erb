@@ -98,8 +98,10 @@ span.input-group-addon i {
 
 <% if current_user.type_user == 'student'
   title = "Student History"
+  t_header = "Teacher's Name"
 else
   title = "Teacher's History"
+  t_header = "Student's Name"
 end
 %>
 
@@ -122,7 +124,7 @@ end
               <th>Type</th>
               <th>Time (Minutes)</th>
               <th>Date / Time</th>
-              <th>Teacher Name</th>
+              <th><%= t_header %></th>
             </tr>
             <% @history.each do |h| %>
             <tr>

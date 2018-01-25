@@ -273,14 +273,11 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">appeal (アピールポイント)</label>
-              <div class="cols-md-10">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-quote-left" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :appeal, class: 'form-control', :placeholder => 'アピールポイント', :required => ''  %>
+                <label for="name" class="control-label hidden-xs">Describe Yourself Briefly</small></label>
+                  <div class="input-group">
+                    <%= f.text_area(:appeal, rows: 5, class: "form-control", placeholder: "Description", :required => '') %>
                 </div>
-              </div>
-            </div>
+           </div>
 
             <div class="form-group">
               <label for="username" class="hidden-xs">hobby (趣味)</label>

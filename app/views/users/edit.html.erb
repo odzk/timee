@@ -104,7 +104,7 @@ span.input-group-addon i {
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
-        <h4 class="text-right text-center">プロフィール編集(EDIT PROFILE)</h4>
+        <h4 class="text-right text-center">プロフィール編集<br/><small>Edit Profile</small></h4>
         <%= form_for(:session, url: login_path) do |f| %>
 
 
@@ -212,7 +212,7 @@ span.input-group-addon i {
               <label for="name" class="hidden-xs">Name</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :name, class: 'form-control', :placeholder => 'Name' %>
+                  <%= f.text_field :name, class: 'form-control', :placeholder => 'Name' %>
                 </div>
             </div>
 
@@ -311,26 +311,32 @@ span.input-group-addon i {
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="image" class="hidden-xs">Image</label>
-              <div class="cols-md-10">
-                  <%= f.file_field :image, class: 'form-control-file',  :required => ''  %>
-                  <small id="fileHelp" class="form-text text-muted">Please select a profile picture</small>
+               <div class="form-group">
+              <label for="photo1" class="hidden-xs">Picture</label>
+                  <%= f.file_field :picture, class: 'form-control-file' %>
+                  <%= f.file_field :picture2, class: 'form-control-file' %>
+                  <%= f.file_field :picture3, class: 'form-control-file'  %>
+
+                  <small id="fileHelp" class="form-text text-muted">Please add a profile picture</small>
               </div>
-            </div>
+
 
              <div class="form-group">
               <label for="gender" class="hidden-xs">Gender</label>
               <div class="cols-md-10">
                   <select class="form-control">
-                    <option></option>
-                    <option>Male</option>
+                    <% if current_user.sex == "Male" || "male" %>
+                      <option>Male</option>
+                      <option>Female</option>
+                    <% else %>
                     <option>Female</option>
-                  </select>
+                    <option>Male</option>
+                  </select><br/><br/>
+                  <% end %>
               </div>
             </div>
              <div class="form-group">   
-            <%= f.submit "Save", class: "btn btn-primary btn-md", name: "edit" %>
+            <%= f.submit "Save", class: "btn btn-primary btn-md", name: "edit", :style => 'margin-top:17px;' %>
             </div>
           </form>
         </div>

@@ -104,7 +104,7 @@ span.input-group-addon i {
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
-        <h4 class="text-right text-center">プロフィール編集</h4>
+        <h4 class="text-right text-center">プロフィール編集(EDIT PROFILE)</h4>
         <%= form_for(:session, url: login_path) do |f| %>
 
 
@@ -209,116 +209,118 @@ span.input-group-addon i {
   <!--   <b style="color:red;">*</b>-->
   <!--    <%#= f.text_field :sex, class: 'form-control' %>-->
             <div class="form-group">
-              <label for="email" class="hidden-xs">name(ユーザーネーム)</label>
+              <label for="name" class="hidden-xs">Name</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :name, class: 'form-control', :placeholder => 'ニックネーム' %>
+                  <%= f.email_field :name, class: 'form-control', :placeholder => 'Name' %>
                 </div>
             </div>
 
             <div class="form-group">
-              <label for="email" class="hidden-xs">mail (メールアドレス)</label>
+              <label for="email" class="hidden-xs">Email</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス' %>
+                  <%= f.email_field :email, class: 'form-control', :placeholder => 'Email' %>
                 </div>
             </div>
 
             <div class="form-group">
-              <label for="password" class="hidden-xs">password (パスワード)</label>
+              <label for="password" class="hidden-xs">Password</label>
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
-                   <%= f.password_field :password, class: 'form-control', :placeholder => 'パスワード' %>
+                   <%= f.password_field :password, class: 'form-control', :placeholder => 'Password' %>
                 </div>
             </div>
 
             <div class="form-group">
-              <label for="confirm" class="hidden-xs">password2 (確認用パスワード)</label>
+              <label for="password_confirmation" class="hidden-xs">Confirm Password</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => '確認用パスワード', :required => '' %>
+                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => 'Confirm Password', :required => '' %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">skype-id (スカイプID)</label>
+              <label for="skype" class="hidden-xs">Skype ID</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :required => ''  %>
+                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'Skype ID', :required => ''  %>
                 </div>
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="username" class="hidden-xs">skill (スキル)</label>
-              <div class="cols-md-10">
+             <div class="form-group">
+              <label for="user_skill" class="hidden-xs">Skills Level / Years of Teaching</label>
                 <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-gear" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :skill, class: 'form-control', :placeholder => 'スキル', :required => ''  %>
-                </div>
+                  <select class="form-control" name="user[skill]" required>
+                    <option value="Less than 1 year">Less than 1 year</option>
+                    <option value="1 - 3 years">1 - 3 years</option>
+                    <option value="3 - 5 years">3 - 5 years</option>
+                    <option value="5 - 10 years">5 - 10 years</option>
+                  </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">former job (前職)</label>
+              <label for="job" class="hidden-xs">Former Job</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-briefcase" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :job, class: 'form-control', :placeholder => '前職', :required => ''  %>
+                  <%= f.text_field :job, class: 'form-control', :placeholder => 'Former Job', :required => ''  %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-                <label for="name" class="control-label hidden-xs">Describe Yourself Briefly</small></label>
+                <label for="appeal" class="control-label hidden-xs">Describe Yourself Briefly</small></label>
                   <div class="input-group">
                     <%= f.text_area(:appeal, rows: 5, class: "form-control", placeholder: "Description", :required => '') %>
                 </div>
            </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">hobby (趣味)</label>
+             <label for="hobby" class="hidden-xs">Hobbies</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-soccer-ball-o" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :hobby, class: 'form-control', :placeholder => '趣味', :required => ''  %>
+                  <%= f.text_field :hobby, class: 'form-control', :placeholder => 'Hobbies', :required => ''  %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">country (国籍)</label>
+              <label for="country" class="hidden-xs">Country</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-flag" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :country, class: 'form-control', :placeholder => '国籍', :required => ''  %>
+                  <%= f.text_field :country, class: 'form-control', :placeholder => 'Country', :required => ''  %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">favorite movie (好きな映画)</label>
+              <label for="movie" class="hidden-xs">Favorite Movie</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-film" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :movie, class: 'form-control', :placeholder => '好きな映画', :required => ''  %>
+                  <%= f.text_field :movie, class: 'form-control', :placeholder => 'Favorite Movie', :required => ''  %>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="username" class="hidden-xs">画像</label>
+              <label for="image" class="hidden-xs">Image</label>
               <div class="cols-md-10">
                   <%= f.file_field :image, class: 'form-control-file',  :required => ''  %>
-                  <small id="fileHelp" class="form-text text-muted">写真をアップロードしてください。</small>
+                  <small id="fileHelp" class="form-text text-muted">Please select a profile picture</small>
               </div>
             </div>
 
              <div class="form-group">
-              <label for="username" class="hidden-xs">画像</label>
+              <label for="gender" class="hidden-xs">Gender</label>
               <div class="cols-md-10">
                   <select class="form-control">
                     <option></option>
@@ -328,7 +330,7 @@ span.input-group-addon i {
               </div>
             </div>
              <div class="form-group">   
-            <%= f.submit "変更する", class: "btn btn-primary btn-md", name: "edit" %>
+            <%= f.submit "Save", class: "btn btn-primary btn-md", name: "edit" %>
             </div>
           </form>
         </div>

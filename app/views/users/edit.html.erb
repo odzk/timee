@@ -106,6 +106,7 @@ span.input-group-addon i {
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
         <h4 class="text-right text-center">プロフィール編集<br/><small>Edit Profile</small></h4>
         <%#= form_for(:session, url: login_path) do |f| %>
+    <%= form_for @user, :url => { :action => 'update'} do |f| %>
 
 
 <% if current_user.type_user == "teacher"%>
@@ -193,7 +194,6 @@ span.input-group-addon i {
 </script>
   <div>
     <%#= form_for(@user) do |f| %>
-    <%= form_for @user, :url => { :action => 'update'} do |f| %>
       <%= render 'shared/error_message', object: f.object %>
 
 <!--先生teacher-->

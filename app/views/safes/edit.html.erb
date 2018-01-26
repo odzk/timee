@@ -31,11 +31,20 @@
       	<hr/>
       	<div class="row">
       		<div class="col-sm-12">
-      			 <div class="form-group">
-				    <label for="duration">Call Duration</label>
-				    <%= f.text_field :time , class: 'form-control' , :style => 'width:100%;', :id => 'duration'%>
-				    <small id="emailHelp" class="form-text text-muted">ex. 0:13:54 → 13  ,  1:23:38 → 83</small>
-				  </div>
+      		<div class="form-group">
+              <label for="user_skill" class="hidden-xs">Call Duration</label>
+                <div class="input-group">
+                  <select class="form-control" name="user[skill]" required>
+                    <option value="Less than 1 year">Less than 1 year</option>
+                    <option value="30 mins">30 mins</option>
+                    <option value="60 mins">60 mins</option>
+                    <option value="90 mins">90 mins</option>
+                    <option value="120 mins">120 mins</option>
+                    <option value="150 mins">150 mins</option>
+                    <option value="180 mins">180 mins</option>
+                  </select>
+              </div>
+            </div>
       		</div>
       	</div>
       	<hr/>

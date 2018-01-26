@@ -215,7 +215,7 @@ before_action :correct_user, only: [:edit ]
       @user = User.find(params[:id])
       if @user.update(user_params)
         flash[:success] = "成功！"
-        redirect_to "/"
+        redirect_to edit_user_path
       end
       
       
@@ -285,7 +285,7 @@ before_action :correct_user, only: [:edit ]
   end
 
   def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url, :nick)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url, :nick, :name2, :display_name)
   end
   
   def pay_params

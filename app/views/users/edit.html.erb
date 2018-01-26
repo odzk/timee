@@ -105,7 +105,7 @@ span.input-group-addon i {
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
         <h4 class="text-right text-center">プロフィール編集<br/><small>Edit Profile</small></h4>
-        <%= form_for(:session, url: login_path) do |f| %>
+        <%#= form_for(:session, url: login_path) do |f| %>
 
 
 <% if current_user.type_user == "teacher"%>
@@ -193,12 +193,8 @@ span.input-group-addon i {
 </script>
   <div>
     <%#= form_for(@user) do |f| %>
-    <%= form_for @user,:url => {:action => 'update'}, :html => {:multipart => true} do |f| %>
+    <%= form_for @user, :url => { :action => 'update'} do |f| %>
       <%= render 'shared/error_message', object: f.object %>
-
-
-
-
 
 <!--先生teacher-->
 
@@ -214,6 +210,39 @@ span.input-group-addon i {
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
                   <%= f.text_field :name, class: 'form-control', :placeholder => 'Name' %>
                 </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="hidden-xs">Alternative Display Name</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :name2, class: "form-control", :placeholder => "Alternative Name to display if you don't want to use your Real Name" %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="hidden-xs">Nick Name</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-user" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :nick, class: 'form-control', :placeholder => 'Nickname' %>
+                </div>
+            </div>
+
+            <% if current_user.display_name == 1 
+              select_name1 = "selected"
+              else
+              select_name2 = "selected"
+            end
+              %>
+
+             <div class="form-group">
+              <label for="user_skill" class="hidden-xs">Choose Name to Display:</label>
+                <div class="input-group">
+                  <select class="form-control" name="user[display_name]">
+                    <option value="1" <%= select_name1 %>><%= current_user.name %></option>
+                    <option value="2" <%= select_name2 %>><%= current_user.name2 %></option>
+                  </select>
+              </div>
             </div>
 
             <div class="form-group">
@@ -237,7 +266,7 @@ span.input-group-addon i {
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => 'Confirm Password', :required => '' %>
+                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => 'Confirm Password' %>
                 </div>
               </div>
             </div>
@@ -252,20 +281,32 @@ span.input-group-addon i {
               </div>
             </div>
 
+            <% if current_user.skill == "Less than 1 year" 
+              level1 = "selected"
+            elsif current_user.skill == "1 - 3 years" 
+              level2 = "selected"
+            elsif current_user.skill == "3 - 5 years"
+              level3 = "selected"
+            else 
+              level4 = "selected"
+            end
+              %>
+
+
              <div class="form-group">
               <label for="user_skill" class="hidden-xs">Skills Level / Years of Teaching</label>
                 <div class="input-group">
                   <select class="form-control" name="user[skill]" required>
-                    <option value="Less than 1 year">Less than 1 year</option>
-                    <option value="1 - 3 years">1 - 3 years</option>
-                    <option value="3 - 5 years">3 - 5 years</option>
-                    <option value="5 - 10 years">5 - 10 years</option>
+                    <option value="Less than 1 year" <%= level1 %>>Less than 1 year</option>
+                    <option value="1 - 3 years" <%= level2 %>>1 - 3 years</option>
+                    <option value="3 - 5 years" <%= level3 %>>3 - 5 years</option>
+                    <option value="5 - 10 years" <%= level4 %>>5 - 10 years</option>
                   </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="job" class="hidden-xs">Former Job</label>
+              <label for="job" class="hidden-xs">Profession</label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-briefcase" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -275,9 +316,9 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-                <label for="appeal" class="control-label hidden-xs">Describe Yourself Briefly</small></label>
+                <label for="appeal" class="control-label hidden-xs">Short Introduction About Youserlf</small></label>
                   <div class="input-group">
-                    <%= f.text_area(:appeal, rows: 5, class: "form-control", placeholder: "Description", :required => '') %>
+                    <%= f.text_area(:appeal, rows: 5, class: "form-control", placeholder: "Please discuss your specialty and what the student can learn from you if they decided to have a class", :required => '') %>
                 </div>
            </div>
 
@@ -320,16 +361,23 @@ span.input-group-addon i {
                   <small id="fileHelp" class="form-text text-muted">Please add a profile picture</small>
               </div>
 
+              <div class="form-group">
+              <label for="user_youtube" class="hidden-xs">Youtube Video URL</label>
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-youtube" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <%= f.text_field :youtube_url, class: 'form-control', :placeholder => 'Youtube Video URL'  %>
+                </div>
+              </div>   
 
              <div class="form-group">
               <label for="gender" class="hidden-xs">Gender</label>
               <div class="cols-md-10">
                   <select class="form-control">
-                    <% if current_user.sex == "Male" || "male" %>
-                      <option>Male</option>
+                    <% if current_user.sex == "male" %>
+                      <option selected>Male</option>
                       <option>Female</option>
                     <% else %>
-                    <option>Female</option>
+                    <option selected=>Female</option>
                     <option>Male</option>
                   </select><br/><br/>
                   <% end %>
@@ -473,16 +521,6 @@ span.input-group-addon i {
 
 <% end %>
 
-
-
-
-
-
-
-
-
-
-
 <% if current_user.admin == true %>
               <label><p class="small_font">admin(管理者権限)</p>
               <%= f.check_box :admin, :class => 'checkbox inline' %></label>
@@ -502,4 +540,4 @@ span.input-group-addon i {
    <div style="clear: both;"> </div>
  </div>
  </div>
- <% end %>
+ <%# end %>

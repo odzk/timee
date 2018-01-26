@@ -16,10 +16,13 @@ before_action :correct_user, only: [:edit ]
     Payjp::Charge.create(currency: 'jpy', amount: 24980, card: params['payjp-token'])
     
       @user = User.find(current_user.id)
-    
         @user.update(:addtime => 1800 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
+
+        @history = @user.history.build(transaction_name: "Purchase Time 30 hours", min_type: "+", mins: 1800, datetime: DateTime.now, teacher: "N/A")
+        @history.save
+
         flash[:success] = "購入完了しました"
         redirect_to edit3_user_path(current_user.id)
 
@@ -36,6 +39,10 @@ before_action :correct_user, only: [:edit ]
         @user.update(:addtime => 600 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
+
+        @history = @user.history.build(transaction_name: "Purchase Time 10 hours", min_type: "+", mins: 600, datetime: DateTime.now, teacher: "N/A")
+        @history.save
+
         flash[:success] = "購入完了しました"
         redirect_to edit3_user_path(current_user.id)
 
@@ -52,6 +59,10 @@ before_action :correct_user, only: [:edit ]
         @user.update(:addtime => 300 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
+
+        @history = @user.history.build(transaction_name: "Purchase Time 5 hours", min_type: "+", mins: 300, datetime: DateTime.now, teacher: "N/A")
+        @history.save
+
         flash[:success] = "購入完了しました"
         redirect_to edit3_user_path(current_user.id)
 
@@ -68,6 +79,10 @@ before_action :correct_user, only: [:edit ]
         @user.update(:addtime => 60 )
         @add = @user.addtime + @user.time
         @user.update(:time => @add )
+
+        @history = @user.history.build(transaction_name: "Purchase Time 1 hour", min_type: "+", mins: 60, datetime: DateTime.now, teacher: "N/A")
+        @history.save
+
         flash[:success] = "購入完了しました"
         redirect_to edit3_user_path(current_user.id)
 
@@ -125,11 +140,20 @@ before_action :correct_user, only: [:edit ]
         # @photo2 = params[:user][:picture2].original_filename
         # @photo3 = params[:user][:picture3].original_filename
         # @youtube_video = params[:user][:youtube_url]
-    
+
+
     if params[:new]
-    
+        @referral_id = params[:user][:referral_id]
         @user = User.new(user_params)
         @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
+       
+        #add reward to teacher who refer the student
+        @user_t = User.find_by(:referral_id =>@referral_id, :type_user => "teacher")
+        reward = @user_t.time + 30
+        @user_t.update(:time => reward)
+        @user_t.history.build(transaction_name: "Student Reward Sign Up", min_type: "+", mins: 30, datetime: DateTime.now, teacher: @user.name)
+        @user_t.save
+
        if @user.save
           flash[:success] = "成功！"
         redirect_to "/login"
@@ -138,8 +162,10 @@ before_action :correct_user, only: [:edit ]
        end
    
     elsif params[:new2]
-
+        ref_id = rand(36**8).to_s(36)
         @user = User.new(user_params)
+        @user.update(:referral_id => ref_id)
+
         #@profile = @user.profile_pic.build(photo1: @photo1, photo2: @photo2, photo3: @photo3, youtube_video: @youtube_video)
 
        if @user.save
@@ -216,6 +242,9 @@ before_action :correct_user, only: [:edit ]
       if @user.update(user_params)
         flash[:success] = "成功！"
         redirect_to edit_user_path
+      else
+        flash[:error] = @user.errors.full_messages
+        redirect_to edit_user_path
       end
       
       
@@ -285,7 +314,7 @@ before_action :correct_user, only: [:edit ]
   end
 
   def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url, :nick, :name2, :display_name)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin, :activated, :skype, :picture, :image, :addtime, :time, :busy, :movie, :country, :hobby, :appeal, :job, :skill, :sex, :type_user, :picture, :picture2, :picture3, :youtube_url, :nick, :name2, :display_name, :referral_id)
   end
   
   def pay_params

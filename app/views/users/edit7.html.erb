@@ -41,6 +41,7 @@ window.name = "xsyz";
 }
 </style>
 <%= form_tag(action: :purchase4, method: :post) do %>
+
 <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="<%= @pk %>" data-text="チャージする" ></script>
 <% end %>
 

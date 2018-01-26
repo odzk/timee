@@ -194,11 +194,11 @@ span.input-group-addon i {
                   </div>
 
             </div>
-
+            <% referral = request.query_parameters 
+            id = referral['referral']%>
             <%= f.hidden_field :time, :value => 30 %>
             <%= f.hidden_field :type_user, :value => "student" %>
-            <%= f.hidden_field :transaction, :value => "Free Trial 30 minutes" %>
-
+            <%= f.hidden_field :referral_id, :value => id %>
 
             <div class="form-group">
             <%= f.submit "登録する", class: "btn btn-primary btn-block btn-lg", name: "new", :value => "登録する" %>

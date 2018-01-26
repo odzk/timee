@@ -162,6 +162,12 @@ span.input-group-addon i {
                 </div>
               </div>
             </div>
+
+              <div class="form-group">
+              <label for="photo1" class="hidden-xs">Picture</label>
+                  <%= f.file_field :picture, class: 'form-control-file' %>
+                  <small id="fileHelp" class="form-text text-muted">Please add a profile picture</small>
+              </div>
             
             <div class="form-group">   
             <%= f.submit "変更する", class: "btn btn-primary btn-md", name: "edit" %>
@@ -376,6 +382,7 @@ span.input-group-addon i {
                     <% if current_user.sex == "male" %>
                       <option selected>Male</option>
                       <option>Female</option>
+                    </select>
                     <% else %>
                     <option selected=>Female</option>
                     <option>Male</option>
@@ -383,6 +390,24 @@ span.input-group-addon i {
                   <% end %>
               </div>
             </div>
+
+           <div class="form-group">
+              <label for="referral_id" class="hidden-xs">Your Referral ID</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                  <%= f.text_field :referral_id, class: 'form-control', disabled: ''  %>
+                </div>
+              </div>
+            </div>
+
+              <div class="form-group">
+              <label for="referral_id" class="hidden-xs">Copy and Paste this URL and send share it to the student you want to invite. Make sure that you copy the complete URL so the rewards will be credited to your account:</label>
+              <div class="cols-md-10">
+                <div class="input-group">
+                <input type="text" class="form-control" value="http://timee-online.com/signup?referral=<%= @current_user.referral_id %>">
+              </div>
+            </div>
+
              <div class="form-group">   
             <%= f.submit "Save", class: "btn btn-primary btn-md", name: "edit", :style => 'margin-top:17px;' %>
             </div>

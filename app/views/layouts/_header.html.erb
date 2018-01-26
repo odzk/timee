@@ -106,7 +106,7 @@ a {
 
 
                    	<%=  link_to history_student_path(current_user.id), style: "border: 1px solid #ccc; border-radius: 10px; padding: 15px;" do %>
-                    <i class="fa fa-hourglass" aria-hidden="true"></i> <%= format('%02d', @hours) %> : <%= format('%02d', @mins) %> <span class="hidden-xs" style="font-size:10px;"> Time Earned</span>
+                    <i class="fa fa-hourglass" aria-hidden="true"></i> <%= format('%02d', @hours) %> : <%= format('%02d', @mins) %> <span class="hidden-xs" style="font-size:10px;">[P<%= number_with_precision((@current_user.time * 2.5), :precision => 2, :delimiter => ',') %>]</span>
                     <% end %>
 
 	                <% else %>
@@ -148,23 +148,23 @@ a {
 
 		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			 <%=  link_to edit2_user_path(current_user.id) do %>
+			 <%=  link_to edit3_user_path(current_user.id) do %>
 			 <img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Dashboard</span>
           	<% end %>
 			</div>
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;時間チャージ</span>
+			<%=  link_to edit2_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Classes</span>
 			<% end %>
 			</div>
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;プロフィール</span>
+			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Edit Profile</span>
 			<% end %>
 			</div>
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;ログアウト</span>
+			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Logout</span>
 			<% end %>
 			</div>
 		</div>

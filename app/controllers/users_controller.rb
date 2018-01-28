@@ -7,6 +7,11 @@ before_action :admin_user, only: [:index, :index2, :index3, :index4, :new3, :sal
 before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
  protect_from_forgery except: :purchase
+
+  def status_online
+    current_user.update(last_seen_at:DateTime.now)
+    render :nothing => true
+  end
  
  
   def purchase

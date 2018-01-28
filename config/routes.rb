@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+#status checker
+get 'status_online', to: 'users#status_online', as: 'status_online'
 
 get '/signup', to: 'users#new'
 post '/signup', to: 'users#create'

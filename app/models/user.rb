@@ -54,6 +54,9 @@ class User < ActiveRecord::Base
     end
   # 画像が重いとエラーだす。
   
+  def is_online?
+  last_seen_at > 5.minutes.ago
+  end
   
 # before_update :calculate_profit
  

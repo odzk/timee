@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126033726) do
+ActiveRecord::Schema.define(version: 20180128103636) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -358,6 +358,7 @@ ActiveRecord::Schema.define(version: 20180126033726) do
     t.string   "name2",                              limit: 255
     t.integer  "display_name",                       limit: 4
     t.string   "referral_id",                        limit: 255
+    t.datetime "last_seen_at"
   end
 
   create_table "withdrows", force: :cascade do |t|

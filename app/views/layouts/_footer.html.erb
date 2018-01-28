@@ -4,3 +4,11 @@
         	<a href="/contact_form" target="_blank"><i class="fa fa-phone"></i> CONTACT US</a>
         </h4>
 </div>
+
+<script>
+  setInterval(function(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", "/status_online", true);
+  xhttp.send();
+}, 2*60*1000);
+</script>

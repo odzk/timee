@@ -148,11 +148,13 @@ before_action :correct_user, only: [:edit ]
         @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
        
         #add reward to teacher who refer the student
+        if @referral_id.present?
         @user_t = User.find_by(:referral_id =>@referral_id, :type_user => "teacher")
         reward = @user_t.time + 30
         @user_t.update(:time => reward)
         @user_t.history.build(transaction_name: "Student Reward Sign Up", min_type: "+", mins: 30, datetime: DateTime.now, teacher: @user.name)
         @user_t.save
+        end
 
        if @user.save
           flash[:success] = "成功！"

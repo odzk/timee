@@ -20,7 +20,7 @@
 						<div class="grid" style=" text-align: center;
 											      margin: auto;">
 							<% @users.each do |user| %>
-							<% if user.busy != "busy" %>
+							<% if user.busy == "available" %>
 										<% if user.sex == "male" %>
 							
 				<figure class="effect-jazz jazz2">
@@ -59,7 +59,20 @@
 
 						</div>
 													
-										<% end %>		
+										<% end %>
+
+							<% elsif user.busy == 'call' %>
+
+							<figure class="mono" style="opacity: 1;">
+													<img src="<%= user.picture %>"/>
+												<div class="cover-text text-center">
+													<p style="color: #fff;"></p>
+												</div>
+													<figcaption style="margin-top:20px;">
+														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">I'M ONLINE<br> BUT ON A<br> CALL....</span></h2>
+													</figcaption>
+												</figure>
+										
 														
 							<% else %>
 												<figure class="mono" style="opacity: 0.5;">
@@ -68,7 +81,7 @@
 													<p style="color: #fff;"></p>
 												</div>
 													<figcaption style="margin-top:20px;">
-														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">Soryy,,,</span><br><br><br> I'm busy now.</h2>
+														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">Sorry...</span><br><br><br> I'm currently offline!</h2>
 													</figcaption>
 												</figure>
 							<% end %>

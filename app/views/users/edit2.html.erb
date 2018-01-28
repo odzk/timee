@@ -16,7 +16,7 @@
     <div class="panel panel-info">
  
       <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right fa fa-money"></span>Savings</h2>
+        <h2 class="panel-title"><span class="pull-right fa fa-money"></span>Total Earnings</h2>
       </div>
       <div class="panel-body">
         <% if @user.time.nil? %>
@@ -39,8 +39,10 @@
       <%= render 'shared/error_message', object: f.object %>
       <div class="panel-body">
       <div class="radio" style="margin-bottom: 10px;">
-      <label><%= f.radio_button :busy, "busy" %>busy</label>
-      <label><%= f.radio_button :busy, "No" %>no</label>
+      <label><%= f.radio_button :busy, "available" %>Available</label>
+      <label><%= f.radio_button :busy, "busy" %>Unavailable</label>
+      <label><%= f.radio_button :busy, "call", disabled: "" %>On a call</label>
+
       </div><span>
       <%= f.submit "submit", class: "btn btn-primary btn-sm", name: "busy" %>
       </span>

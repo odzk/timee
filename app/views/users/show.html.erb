@@ -12,9 +12,7 @@
 
   <div class="container">
 
-    <%= form_for(@user) do |f| %>
-    <%#= @user.time %><%#= @user.addtime %>
-    
+    <%= form_for(@user) do |f| %>    
 
       <div class="col-md-6"><br/>
         <div class="row">
@@ -36,7 +34,7 @@
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <% if @user.picture.present? %>
             <a href="#">
-              <img src="<%= @user.picture %>" style="width:100%">
+              <img src="<%= @user.picture %>" style="height:100px;">
             </a>
             <% else %>
             <img src="../../no_image.png" style="width:100%">
@@ -47,10 +45,10 @@
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <% if @user.picture2.present? %>
             <a href="#">
-              <img src="<%= @user.picture2 %>" style="width:100%">
+              <img src="<%= @user.picture2 %>" style="height:100px;">
             </a>
             <% else %>
-            <img src="../../no_image.png" style="width:100%">
+            <img src="../../no_image.png" style="width:100px">
             <% end %>            
           </div>
         </div>
@@ -58,7 +56,7 @@
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <% if @user.picture3.present? %>
             <a href="#">
-              <img src="<%= @user.picture3 %>" style="width:100%">
+              <img src="<%= @user.picture3 %>" style="height:100px;">
             </a>
             <% else %>
             <img src="../../no_image.png" style="width:100%">

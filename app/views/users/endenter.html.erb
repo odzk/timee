@@ -34,44 +34,51 @@
 
       <h2 style="font-family: 'Work Sans', sans-serif;" class="small_font">ハロー！<strong><%= @user.name %></strong> です！. <br>私を選んでくれてありがとう！</h2>
       <hr>
-      <p>
 
 <div class="col-md-6">
 
-<img src="<%= @user.image %>" class="img-responsive img-thumbnail" style="width:80%;">
-<div class="row"><br/><br/></div>
+<img src="<%= @user.picture %>" class="img-responsive img-thumbnail" style="width:80%;">
+
 </div>
 
 <div class="col-md-6">
-      </p>
-      <strong><h4 style="margin-top: -35px;">どの授業を受けますか？</h4></strong><hr>
-      <div class="row">
-        <div class="col-md-4"><p>
-        <label for="travel_english"><img src="../../travel_english.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><input type="checkbox" id="travel_english" name = "travel_english">&nbsp 旅行英会話</a></span></p></span></label>
+      <strong><h4 style="padding-top: 0;">どの授業を受けますか？</h4></strong><hr>
+
+      <div class="col-md-12">
+        <div class="col-md-4">
+        <label for="travel_english"><img src="../../travel_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="checkbox" id="travel_english" name = "travel_english">&nbsp 旅行英会話</a></p></span></span></label>
         </div>
-        <div class="col-md-4"><p>
-        <label for="idiomatic_expressions" style="font-size:12px;"><img src="../../idiomatic_expressions.png" class="small-icons"><span><br/><p class="small-topic-text" style="font-size: 13px;"><input type="checkbox" id="idiomatic_expressions" name = "idiomatic_expressions">&nbsp 単語/熟語/フレーズ</a></span></p></label>
+
+        <div class="col-md-4">
+        <label for="idiomatic_expressions" style="font-size:12px;"><img src="../../idiomatic_expressions.png" class="small-icons"><span><p class="small-topic-text" style="font-size: 13px;"><input type="checkbox" id="idiomatic_expressions" name = "idiomatic_expressions">&nbsp 単語/熟語/フレーズ</p></a></span></label>
         </div>
-        <div class="col-md-4"><p>
-        <label for="business_english"><img src="../../business_english.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><input type="checkbox" id="business_english" name = "business_english">&nbsp ビジネス英語</a></span></p></label>
+
+        <div class="col-md-4">
+        <label for="business_english"><img src="../../business_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="checkbox" id="business_english" name = "business_english">&nbsp ビジネス英語</a></p></span></label>
+        
         </div>
       </div>
-       <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><p>
-        <label for="daily_english"><img src="../../daily_english.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><input type="checkbox" id="daily_english" name = "daily_english">&nbsp 日常英会話</a></span></p></label>
+
+      <div class="col-md-12">
+
+        <div class="col-md-4">
+        <label for="daily_english"><img src="../../daily_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="checkbox" id="daily_english" name = "daily_english">&nbsp 日常英会話</a></p></span></label>
         </div>
-        <div class="col-md-4"><p>
-          <label for="role_playing"><img src="../../role_playing.png" class="small-icons"><span style="font-size:15px;"><br/><p class="small-topic-text"><input type="checkbox" id="role_playing" name = "role_playing">&nbsp なりきり英会話</a></span></p></label>
+
+        <div class="col-md-4">
+          <label for="role_playing"><img src="../../role_playing.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="checkbox" id="role_playing" name = "role_playing">&nbsp なりきり英会話</a></p></span></label>
         </div>
-        <div class="col-md-2"></div>
-      </div>
+
+        <div class="col-md-4">
+          <label for="role_playing"><img src="../../role_playing.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="checkbox" id="role_playing" name = "role_playing">&nbsp IT English</a></p></span></label>
+        </div>
+</div>
 <hr/>
-<!--       <h2>or CALL NOW</h2>
+      <h2 style="font-family: Open-sans">スタートクラス</h2>
       <a href="skype:<%= @user.skype %>?call"><i class="fa fa-skype fa-5x"></i></a>
 
       <h3 style="font-size:20px; font-family: 'Work Sans', sans-serif;">skype : <%= @user.skype %></h3>
- -->
+
 </div>
 <div class="col-md-offset-3 col-md-6 col-xs-12">
 <a type="button" class="btn" style="color: #000; width: 100%; margin-top: 30px;" href="/"><i class='fa fa-mail-reply'></i> 戻る</a>

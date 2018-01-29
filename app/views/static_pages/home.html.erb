@@ -118,22 +118,18 @@
 
       </div>
       <div class="panel-body">
-      	    <% @students_online.each do |u| %>
       	<div class="col-md-3" style="border: 1px solid #ccc;">
-      	   
-      	       	
-
-      	       <%# if u.last_seen_at.present?
+      		   <% @students_online.each do |u| %>
+      	       <% if u.last_seen_at.present?
       	       		if u.last_seen_at > 5.minutes.ago %>
 
-      	       		<img src="<%= u.picture %>" style="height: 100px;" class="center-block">
+      	       		<img src="<%= u.picture %>" style="width: 100px;" class="center-block">
       	       		<p class="text-center"><%= u.name %></p>
 
-	       		<%# end %>
-	       	<%# end %>
-
-       </div>
+	       		<% end %>
+	       	<% end %>
        <% end %>
+       	  </div>
       </div>
     </div>
 
@@ -150,7 +146,7 @@
 
        		      	<% if u.last_seen_at.present?
       	       			if u.last_seen_at > 5.minutes.ago %>
-      	            <img src="<%= u.picture %>" style="height: 100px;" class="center-block">
+      	            <img src="<%= u.picture %>" style="width: 100px;" class="center-block">
       	       		<p class="text-center"><%= u.name %></p>
 
        		<% end %>
@@ -229,16 +225,3 @@
 <% end %>
 
 </div>
-<!-- <script>
-function openNav() {
-    document.getElementById("mySidenavi").style.width = "250px";
-    document.getElementById("main-with-nav").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-    document.getElementById("mySidenavi").style.width = "0";
-    document.getElementById("main-with-nav").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-}
-</script> -->

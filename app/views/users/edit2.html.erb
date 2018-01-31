@@ -27,7 +27,6 @@
         <h2 class="panel-title"><span class="pull-right fa fa-clock-o"></span>Time Log</h2>
       </div>
       <div class="panel-body">
-        <%= @count_time %> <%= @test_date %>
         <% @time_in.each do |t| %>
         <p><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
         <% end %>

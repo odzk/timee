@@ -17,16 +17,28 @@
         <h2 class="panel-title"><span class="pull-right fa fa-money"></span>Total Earnings</h2>
       </div>
       <div class="panel-body">
-        <% if @user.time.nil? %>
-          0
-          <% else %>
-          <%= @user.time %>
-          <% end %>
-          </span>mins
+        <p><%= @user.time %>mins ~ [P<%= number_with_precision((@user.time * 2.5), :precision => 2, :delimiter => ',') %>]</p>
+        <a href="#" class="btn btn-default">Withdraw Money</a>
       </div>
     </div>
 
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right fa fa-clock-o"></span>Time Log</h2>
+      </div>
+      <div class="panel-body">
+        <%= @count_time %> <%= @test_date %>
+        <% @time_in.each do |t| %>
+        <p><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
+        <% end %>
+        <% @time_out.each do |t| %>
+        <p><strong>Time Out: </strong><%= t.time_out.strftime("%I:%M%p") %></p>
+        <% end %>
+      </div>
+
   </div>
+</div>
+
   <div class="col-md-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -41,7 +53,7 @@
       <label><%= f.radio_button :busy, "call", disabled: "" %>On a call</label>
 
       </div><span>
-      <%= f.submit "submit", class: "btn btn-primary btn-sm", name: "busy" %>
+      <%= f.submit "Submit", class: "btn btn-primary btn-sm", name: "busy" %>
       </span>
       <% end %>
       </div>
@@ -54,7 +66,7 @@
         <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Total</h2>
       </div>
       <div class="panel-body">
-        <label><%= @totalsafes.count %></label> lessons<br/>
+        <label><%= @totalsafes.count %></label> classes<br/>
         <label><%= @totalsafes.sum(:time) %></label> mins
       </div>
     </div>

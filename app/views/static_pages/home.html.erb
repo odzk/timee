@@ -24,13 +24,14 @@
 										<% if user.sex == "male" %>
 							
 				<figure class="effect-jazz jazz2">
+							<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
 						<figcaption class="hidden-xs">
 							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
                         <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
                            show more
-                           <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
+                           <%#=image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
                         <% end %>
 						</figcaption>
 					</figure>
@@ -39,10 +40,12 @@
 
 						</div>
 												
-										<% else %><div class="main-with-nav">
+						<% else %>
+
+						<div class="main-with-nav">
 										
 					<figure class="effect-jazz jazz1">
-		<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
+			<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
 						<figcaption class="hidden-xs">
 							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
@@ -62,13 +65,17 @@
 
 							<% elsif user.busy == 'call' %>
 
-							<figure class="mono" style="opacity: 1;">
-													<img src="<%= user.picture %>"/>
+							<figure class="effect-jazz mono" style="opacity: 1;">
+							
+							<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
 												<div class="cover-text text-center">
 													<p style="color: #fff;"></p>
 												</div>
 													<figcaption style="margin-top:20px;">
 														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">I'M ONLINE<br> BUT ON A<br> CALL....</span></h2>
+							<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+	                       show more
+	                       <% end %>
 													</figcaption>
 												</figure>
 										

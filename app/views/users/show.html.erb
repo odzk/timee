@@ -93,16 +93,24 @@
       </div>
          </p>
       <hr>
-       <%= f.hidden_field :busy, :value => "no"%>
-       
-       <%if current_user.time <= 25 %>
+       <%= f.hidden_field :busy, :value => "call"%>
 
-       <p>Sorry, you don't have enough time to have class. Please <a href="/" class="btn btn-warning">Click Here</a> to purchase time</p>
+       <% if @user.busy == "call" %>
 
+       <p>Sorry I'm having a class with another student. Would you like to schedule a callback?</p>
+
+       <a href="#" class="btn btn-primary" style="color: #fff;">Yes Call Me Back!</a>
 
        <% else %>
+       
+         <% if current_user.time <= 25 %>
 
-       <%= f.submit "→　今すぐ英会話", :class => "btn btn-primary", :style => "" %>
+         <p>Sorry, you don't have enough time to have class. Please <a href="/" class="btn btn-warning">Click Here</a> to purchase time</p>
+
+         <% else %>
+
+         <%= f.submit "→　今すぐ英会話", :class => "btn btn-primary", :style => "" %>
+      <% end %>
     <% end %>
     <% end %>
 

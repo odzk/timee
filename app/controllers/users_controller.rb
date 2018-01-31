@@ -219,7 +219,8 @@ before_action :correct_user, only: [:edit ]
   end
 
   if @count_time.present? 
-   if Time.now.hour >= 18 #incentive will be generated only during 6PM - 12midnight
+  
+  if Time.now.hour >= 18 #incentive will be generated only during 6PM - 12midnight
 
   @earning = @count_time * 0.5
 

@@ -203,6 +203,48 @@ before_action :correct_user, only: [:edit ]
   def edit2
   @user = User.find(current_user.id)
   @history = @user.history
+  @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).first(1)
+  @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
+
+  @time_in.each do |t|
+    @t_in = t.time_in
+  end
+
+  @time_out.each do |t|
+    @t_out = t.time_out
+  end
+
+  if @t_in.present? && @t_out.present?
+  @count_time = (@t_out - @t_in) / 1.minutes
+  end
+
+  if @count_time.present? 
+   if Time.now.hour >= 18 #incentive will be generated only during 6PM - 12midnight
+
+  @earning = @count_time * 0.5
+
+  @earn = @user.time_incentive.build(teacher_name: @user.name, time_out: Time.now, total_earn: @earning)
+  @earn.save
+
+  @time_out.each do |e|
+    @earn_money = e.total_earn
+  end
+
+  if @earn_money.present?
+  @converted_to_time = @earn_money / 2.5
+  @time_add_user = @user.time + @converted_to_time
+
+  if @t_out == @t_out + 1.days
+  @user.update(:time => @time_add_user)
+  @history = @user.history.build(transaction_name: "Time Incentive Reward", min_type: "+", mins: @converted_to_time, datetime: DateTime.now, teacher: "N/A")
+  @history.save
+
+      end
+    end
+  end
+end
+
+
   @current = current_user.name
   @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
@@ -258,6 +300,17 @@ before_action :correct_user, only: [:edit ]
     elsif params[:busy]
       
       @user = User.find(params[:id])
+
+      if params[:user][:busy] == "available"
+      @time_in = @user.time_incentive.build(teacher_name: @user.name, time_in: Time.now)
+      @time_in.save
+
+    elsif params[:user][:busy] == "busy"
+      @time_out = @user.time_incentive.build(teacher_name: @user.name, time_out: Time.now)
+      @time_out.save
+      
+      end
+
       if @user.update(user_params)
         redirect_to edit2_user_path
       end

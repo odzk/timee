@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
  has_many :history
  has_many :profile_pic
  has_many :safe
+ has_many :time_incentive
 
    attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

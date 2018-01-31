@@ -99,7 +99,7 @@
       <hr>
        <%= f.hidden_field :busy, :value => "call"%>
 
-       <% if @user.type_user == "teacher" %>
+       <% if current_user.type_user == "teacher" %>
 
       <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
 

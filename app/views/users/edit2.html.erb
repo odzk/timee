@@ -55,10 +55,9 @@
       <label><%= f.radio_button :busy, "busy" %>Unavailable</label>
       <label><%= f.radio_button :busy, "call", disabled: "" %>On a call</label>
 
-      </div><span>
+      </div>
       <%= f.submit "Submit", class: "btn btn-primary btn-sm", name: "busy" %>
-      </span>
-      <% end %>
+      <% end %><% if @user.busy == "call" %><span style="color:red">STATUS ON CALL!</span><% end %>
       </div>
     </div>
 
@@ -73,8 +72,8 @@
       <% @student_name.each do |s| %>
       <p>Please prepare, student <span style="color:red; font-weight:bold"><%= s.student %></span> is viewing your profile.</p>
       <% end %>
-      </div>
       <% end %>
+        </div>
       </div>
     </div>
   </div>

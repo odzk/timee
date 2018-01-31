@@ -247,7 +247,7 @@ end
 
 
   @current = current_user.name
-  @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
+  @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).first(1)
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
   end

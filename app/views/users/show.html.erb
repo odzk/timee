@@ -119,7 +119,7 @@
 
          <% else %>
 
-         <%= f.submit "→　今すぐ英会話", :class => "btn btn-primary", :style => "" %>
+         <%= f.submit "→　今すぐ英会話", :onclick => "return confirm('Proceed to Class?')", :class => "btn btn-primary", :style => "" %>
       <% end %>
     <% end %>
     <% end %>

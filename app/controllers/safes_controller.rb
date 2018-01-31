@@ -40,6 +40,7 @@ def update
   elsif params[:application]
           
                 if @safe.update(safe_params)
+                  @safe.update(:status_teacher => "done")
                   @teacher = User.find(current_user)
                   @teacher_id = @teacher.id
                   @studentname = @safe.student

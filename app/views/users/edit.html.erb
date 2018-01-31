@@ -339,6 +339,27 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
+              <label for="user_skill" class="hidden-xs">Country</label>
+                <div class="input-group">
+                  <select class="form-control" name="user[country]" required>
+                    <option></option>
+                    <option value="Filipino">Philippines</option>
+                    <option value="Japanese">Japan</option>
+                    <option value="Chinese">China</option>
+                    <option value="Korean">Korea</option>
+                    <option value="Taiwanese">Taiwan</option>
+                  </select>
+              </div>
+            </div>
+
+<!-- 
+            below to be deleted
+            below to be deleted
+            below to be deleted
+            below to be deleted -->
+
+
+<!--             <div class="form-group">
               <label for="country" class="hidden-xs">Country</label>
               <div class="cols-md-10">
                 <div class="input-group">
@@ -347,6 +368,12 @@ span.input-group-addon i {
                 </div>
               </div>
             </div>
+
+ -->
+<!--             above to be deleted
+            above to be deleted
+            above to be deleted
+            above to be deleted -->
 
             <div class="form-group">
               <label for="movie" class="hidden-xs">Favorite Movie</label>
@@ -360,6 +387,7 @@ span.input-group-addon i {
 
                <div class="form-group">
               <label for="photo1" class="hidden-xs">Picture</label>
+                  
                   <%= f.file_field :picture, class: 'form-control-file' %>
                   <%= f.file_field :picture2, class: 'form-control-file' %>
                   <%= f.file_field :picture3, class: 'form-control-file'  %>

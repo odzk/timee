@@ -97,13 +97,17 @@
 
        <% if @user.busy == "call" %>
 
-       <p>Sorry I'm having a class with another student. Would you like to schedule a callback?</p>
+       <p>Sorry I'm having a class with another student. Please check other Online Teachers, they will be happy to teach you as well!</p>
+      <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
 
-       <a href="#" class="btn btn-primary" style="color: #fff;">Yes Call Me Back!</a>
+
+       <!-- <a href="#" class="btn btn-primary" style="color: #fff;">Yes Call Me Back!</a> -->
 
        <% elsif @user.busy == "busy" %>
 
        <p>Sorry I'm currently offline. Please check other Online Teachers, they will be happy to teach you as well!</p>
+        <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
+
 
        <a href="/" class="btn btn-primary" style="color: #fff;">Back</a>
 
@@ -111,7 +115,7 @@
        
          <% if current_user.time <= 25 %>
 
-         <p>Sorry, you don't have enough time to have class. Please <a href="/" class="btn btn-warning">Click Here</a> to purchase time</p>
+         <p>Sorry, you don't have enough time to have class. Please <%=  link_to edit3_user_path(current_user.id) do %><span class="btn btn-danger">Click Here</span><% end %> to purchase time</p>
 
          <% else %>
 

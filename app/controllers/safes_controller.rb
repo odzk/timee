@@ -19,6 +19,7 @@ end
 
 def edit2
     @safe = Safe.find(params[:id])
+    @student_name = Safe.find(params[:id]).first(1)
 
 end
 

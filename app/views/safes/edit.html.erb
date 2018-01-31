@@ -12,7 +12,7 @@
       	<div class="col-sm-12">
       	<label>Student Name:</label> <%= @safe.student %>
       	</div>
-      	<%= form_for(@safe) do |f| %>
+    <%= form_for(@safe) do |f| %>
 		<%= render 'shared/error_message', object: f.object %>
       	</div>
       	<hr/>
@@ -30,11 +30,11 @@
       	</div>
       	<hr/>
       	<div class="row">
-      		<div class="col-sm-12">
+      		<div class="col-sm-2">
       		<div class="form-group">
               <label for="user_skill" class="hidden-xs">Call Duration</label>
                 <div class="input-group">
-                  <select class="form-control" name="user[skill]" required>
+                  <select class="form-control" name="safe[time]" required>
                     <option value="30 mins">30 mins</option>
                     <option value="60 mins">60 mins</option>
                     <option value="90 mins">90 mins</option>
@@ -52,18 +52,20 @@
       		<div class="form-group">
                 <label for="remarks">Student Remarks</label>
                   <div class="input-group">
-                    <%= f.text_area(:remarks, rows: 5, class: "form-control", :id => 'remarks', placeholder: "...", :required => '') %>
+                    <%= f.text_area(:remarks, rows: 5, class: "form-control", :id => 'remarks', placeholder: "Please write down what you discuss with the student", :required => '') %>
                 </div>
            </div>
       		</div>
       	</div>
       	<hr/>
+
+        <%= f.hidden_field :status_teacher, :value => "done"%>
+
       	<div class="row">
       		<div class="col-md-12">
-      			<button class="btn btn-md btn-info"  name="application"> <i class='fa fa-save'></i> SUBMIT
-				<%= f.submit data: { disable_with: "Please wait...", confirm: 'Are you sure？' }, :style => 'display:none', name: "application" %>
-				</button>
-				&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-md btn-danger" href="/" style="color:white;"><i class='fa fa-mail-reply'></i> BACK</a>
+<!-- <button class="btn btn-lg btn-info col-md-5 col-xs-5" style="margin-top: 20px;" name="application"> <i class='fa fa-save'></i> Submit</button> -->
+<%= f.submit 'Submit', :onclick => "return confirm('Are you sure you want to submit?')", :class => 'btn btn-md btn-info', name: "application" %>
+				<%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
       		</div>
       </div>
     </div>

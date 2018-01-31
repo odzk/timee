@@ -27,8 +27,12 @@
         <h2 class="panel-title"><span class="pull-right fa fa-clock-o"></span>Time Log</h2>
       </div>
       <div class="panel-body">
-        <% @time_in.each do |t| %>
+        <% @time_in.each do |t| 
+          if Time.now.hour >= 18 %>
+        <p style="color:green;"><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
+        <% else %>
         <p><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
+          <% end %>
         <% end %>
         <% @time_out.each do |t| %>
         <p><strong>Time Out: </strong><%= t.time_out.strftime("%I:%M%p") %></p>

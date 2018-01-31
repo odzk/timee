@@ -1,4 +1,15 @@
 <% provide(:title,"ユーザー一覧") %>
+<style type="text/css">
+  #tablecom {}
+
+.modal-body {
+  overflow-x: auto;
+}
+</style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <%     session.delete(:fowarding_url)
     store_location
@@ -21,27 +32,92 @@
 
 <%= link_to "未承認の先生(Unapproved teacher)".html_safe, index4_user_url, class: "btn btn-danger", style: "margin-bottom: 20px; color:#fff;" %>
 
+
+
+
+<!-- table area table area
+table area table area
+table area table area
+table area table area -->
+
+
+
 <table class="table table-bordered table-hover">
 
 <thead>
 
-  <th class="col-md-2" style="font-size:8px;">名前(name)</th>
-  <th class="col-md-3" style="font-size:8px;">メール(mail)</th> 
-  <th class="col-md-2" style="font-size:8px;">権限(auth)</th>
-  <th class="col-md-2" style="font-size:8px;">ロール(roll)</th>
-  
-  <th class="col-md-2" style="font-size:8px;">busy</th>
-  <th class="col-md-2" style="font-size:8px;">所持時間(time)</th>
-  
-  <th class="col-md-2" style="font-size:8px;">累計授業数(total class)</th>
-  <th class="col-md-2" style="font-size:8px;">累計授業時間(total time)</th>
-  
-  
-  <th colspan="2" class="col-md-4 text-center">Actions</th>
+  <th class="col-md-1">Complete Details</th>
+  <th class="col-md-3">名前(name)</th>
+  <th class="col-md-5">メール(mail)</th> 
+  <th class="col-md-3">権限(auth)</th>
 
 </thead>
 
 <tbody>
+<% @users.each do |user| %>
+<tr>
+  <td class="text-center"><a href="" type="button" data-toggle="modal" data-target="#tablecom" class="btn btn-success" value="<%= user.id %>"><span class='fa fa-folder-open'></span></td></button>
+  <td><%= link_to user.name, edit_user_path(user) %></td>
+  <td><%= user.email %></td>
+
+  
+  
+ <% if user.admin? %>
+  <td>管理(admin)</td>
+ <% else %>
+  <td>一般(nomal)</td>
+<% end %>
+
+ <!-- ubos ani ang code sa untitled
+  ubos ani ang code sa untitled
+   ubos ani ang code sa untitled
+  -->
+
+
+
+<!-- 
+babaw ani ang code sa untitled
+babaw ani ang code sa untitled
+babaw ani ang code sa untitled -->
+
+</tr>
+
+<% end %>
+</tbody>
+
+  
+</table>
+</div>
+</div>
+ <div class="modal fade bs-example-modal-lg" tabindex="-1" id="tablecom" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="color: #000;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title text-center">Complete Details</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-hover">
+
+            <thead>
+
+            <th>名前(name)</th>
+            <th>メール(mail)</th> 
+            <th>権限(auth)</th>
+            <th>ロール(role)</th>
+            
+            <th>busy</th>
+            <th>所持時間(time)</th>
+            
+            <th>累計授業数(total class)</th>
+            <th>累計授業時間(total time)</th>
+            <th colspan="2" class="text-center">Actions</th>
+
+            </thead>
+<tbody>
+
 <% @users.each do |user| %>
 <tr>
   <td><%= link_to user.name, edit_user_path(user) %></td>
@@ -55,7 +131,11 @@
   <td>一般(nomal)</td>
 <% end %>
 
- <% if user.type_user == "teacher" %>
+ <!-- ubos ani ang code sa untitled
+  ubos ani ang code sa untitled
+   ubos ani ang code sa untitled
+  -->
+  <% if user.type_user == "teacher" %>
   <td>先生(teacher)</td>
  <% elsif user.type_user == "student" %>
   <td>生徒(student)</td>
@@ -86,9 +166,7 @@
   　<td> </td>
   　<td> </td>
   <% end %>
-  　
- 
-  <td class="text-center"><%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user), class: "btn btn-success", :style =>" color:#fff;" %></td>
+  　  <td class="text-center"><%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user), class: "btn btn-success", :style =>" color:#fff;" %></td>
 
   <td class="text-center"><%= link_to "<i class='fa fa-trash-o'></i>".html_safe , user ,method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: "btn btn-success", :style =>" color:#fff;" %></td>
 
@@ -96,8 +174,12 @@
 
 <% end %>
 </tbody>
-
-  
 </table>
-</div>
-</div>
+       </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>

@@ -1,5 +1,9 @@
 <% provide(:title, "先生の詳細") %>
 
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
 <style>
 
  @media (max-width: 768px) {
@@ -33,7 +37,7 @@
         <div class="col-md-4">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <% if @user.picture.present? %>
-            <a href="#">
+            <a href="<%= @user.picture %>" data-lightbox="gallery">
               <img src="<%= @user.picture %>" style="height:100px;">
             </a>
             <% else %>
@@ -44,7 +48,7 @@
         <div class="col-md-4 ">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <% if @user.picture2.present? %>
-            <a href="#">
+            <a href="<%= @user.picture2 %>" data-lightbox="gallery">
               <img src="<%= @user.picture2 %>" style="height:100px;">
             </a>
             <% else %>
@@ -55,7 +59,7 @@
         <div class="col-md-4">
           <div class="thumbnail" style="box-shadow: 5px 10px #ccc;">
             <% if @user.picture3.present? %>
-            <a href="#">
+            <a href="<%= @user.picture3 %>" data-lightbox="gallery">
               <img src="<%= @user.picture3 %>" style="height:100px;">
             </a>
             <% else %>

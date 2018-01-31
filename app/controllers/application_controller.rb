@@ -55,11 +55,11 @@ class ApplicationController < ActionController::Base
       
       if @user.type_user == "teacher"
         
-        if @user.busy == "busy"
-          redirect_to(root_url)
-        else
-          redirect_to(root_url) unless current_user.type_user == "student"
-        end
+        # if @user.busy == "busy"
+        #   redirect_to(root_url)
+        # else
+        #   redirect_to(root_url) unless current_user.type_user == "student"
+        # end
        
       else
        redirect_to(root_url) 

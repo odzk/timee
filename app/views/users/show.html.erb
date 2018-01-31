@@ -99,7 +99,12 @@
       <hr>
        <%= f.hidden_field :busy, :value => "call"%>
 
-       <% if @user.busy == "call" %>
+       <% if @user.type_user == "teacher" %>
+
+      <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
+
+
+       <% elsif @user.busy == "call" %>
 
        <p>Sorry I'm having a class with another student. Please check other Online Teachers, they will be happy to teach you as well!</p>
       <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>

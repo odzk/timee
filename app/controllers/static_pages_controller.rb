@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @users = User.paginate(page: params[:page]).where(type_user: "teacher")
-    @teachers_online = User.where(type_user: "teacher")
+    @teachers_online = User.where(type_user: "teacher").where(busy: "available")
     @students_online = User.where(type_user: "student")
   end
   

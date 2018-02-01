@@ -220,7 +220,7 @@ before_action :correct_user, only: [:edit ]
 
   if @count_time.present? 
   
-  #if Time.now.hour >= 19 #incentive will be generated only during 6PM - 12midnight
+  if Time.now.hour >= 19 #incentive will be generated only during 6PM - 12midnight
 
   @earning = @user.time + (@count_time / 5) #converting incentive time to timee time
 
@@ -230,7 +230,7 @@ before_action :correct_user, only: [:edit ]
   @user.update(:time => @earning)
   @history = @user.history.build(transaction_name: "Total Incentive Time Earned", min_type: "+", mins: @earning, datetime: DateTime.now, teacher: "N/A")
   @history.save
- #end
+ end
 
 end
 

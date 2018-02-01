@@ -222,15 +222,14 @@ before_action :correct_user, only: [:edit ]
   
   #if Time.now.hour >= 19 #incentive will be generated only during 6PM - 12midnight
 
-  @earning = @count_time / 5 #converting incentive time to timee time
+  @earning = @user.time + (@count_time / 5) #converting incentive time to timee time
 
-  @earn = @user.time_incentive.build(teacher_name: @user.name, time_out: Time.now, total_earn: @count_time)
-  @earn.save
+
+  @earn = @user.time_incentive.build(teacher_name: @user.name, total_earn: @count_time)
 
   @user.update(:time => @earning)
   @history = @user.history.build(transaction_name: "Total Incentive Time Earned", min_type: "+", mins: @earning, datetime: DateTime.now, teacher: "N/A")
   @history.save
-
  #end
 
 end
@@ -295,7 +294,7 @@ end
 
     if params[:user][:busy] == "available"
       if @user.busy == "available" 
-
+        #Do nothing to avaoid duplicates
        else
 
       @time_in = @user.time_incentive.build(teacher_name: @user.name, time_in: Time.now)
@@ -304,8 +303,8 @@ end
 
     elsif params[:user][:busy] == "busy"
         if @user.busy == "busy" 
-
-          else
+        # Do nothing to avoid duplicates
+        else
 
         @time_out = @user.time_incentive.build(teacher_name: @user.name, time_out: Time.now)
         @time_out.save

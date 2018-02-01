@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131024638) do
+ActiveRecord::Schema.define(version: 20180201020040) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(version: 20180131024638) do
     t.text     "message",    limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "curriculums", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "details", force: :cascade do |t|

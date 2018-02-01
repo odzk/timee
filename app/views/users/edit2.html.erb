@@ -56,7 +56,7 @@
       <label><%= f.radio_button :busy, "call", disabled: "" %>On a call</label>
 
       </div>
-      <%= f.submit "Submit", class: "btn btn-primary btn-sm", name: "busy" %>
+      <%= f.submit "Submit", class: "btn btn-primary btn-sm", name: "busy", id: "submit_available" %>
       <% end %><% if @user.busy == "call" %><span style="color:red">STATUS ON CALL!</span><% end %>
       </div>
     </div>

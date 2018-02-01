@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :curriculums
 #status checker
 get 'status_online', to: 'users#status_online', as: 'status_online'
 

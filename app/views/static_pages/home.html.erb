@@ -157,7 +157,7 @@
       	<div class="col-md-3" style="border: 1px solid #ccc;">
       		      	<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>    
       	            <img src="<%= user.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center">Teacher: <%= user.nick %></p>
+      	       		<p class="text-center">Teacher <%= user.nick %></p>
       	       		<% end %>
       	       	</div>
       	   <% end %>
@@ -173,7 +173,7 @@
       	<div class="col-md-3" style="border: 1px solid #ccc;">
       		      	<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>    
       	            <img src="<%= user.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center">Teacher: <%= user.nick %></p>
+      	       		<p class="text-center">Teacher <%= user.nick %></p>
       	       		<% end %>
       	       	</div>
       	   <% end %>

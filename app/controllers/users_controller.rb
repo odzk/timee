@@ -206,33 +206,7 @@ before_action :correct_user, only: [:edit ]
   @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
   @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
-  @time_in.each do |t|
-    @t_in = t.time_in
-  end
 
-  @time_out.each do |t|
-    @t_out = t.time_out
-  end
-
-  if @t_in.present? && @t_out.present?
-  @count_time = (@t_out - @t_in) / 1.minutes
-  end
-
-  if @count_time.present? 
-  
-  if Time.now.hour >= 19 #incentive will be generated only during 6PM - 12midnight
-
-  @earning = @user.time + (@count_time / 5) #converting incentive time to timee time
-
-
-  @earn = @user.time_incentive.build(teacher_name: @user.name, total_earn: @count_time)
-
-  @user.update(:time => @earning)
-  @history = @user.history.build(transaction_name: "Total Incentive Time Earned", min_type: "+", mins: @earning, datetime: DateTime.now, teacher: "N/A")
-  @history.save
- end
-
-end
 
 
   @current = current_user.name
@@ -294,9 +268,8 @@ end
 
     if params[:user][:busy] == "available"
       if @user.busy == "available" 
-        #Do nothing to avaoid duplicates
+        #Do nothing to avoid duplicates
        else
-
       @time_in = @user.time_incentive.build(teacher_name: @user.name, time_in: Time.now)
       @time_in.save
        end
@@ -306,9 +279,44 @@ end
         # Do nothing to avoid duplicates
         else
 
-        @time_out = @user.time_incentive.build(teacher_name: @user.name, time_out: Time.now)
-        @time_out.save
-        end
+        @time_out_status = TimeIncentive.order("created_at").last
+        @time_out_status.update(time_out: Time.now)
+
+        @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
+        @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
+
+          @time_in.each do |t|
+    @t_in = t.time_in
+  end
+
+  @time_out.each do |t|
+    @t_out = t.time_out
+  end
+
+  if @t_in.present? && @t_out.present? && @t_out > @t_in
+  @count_time = (@t_out - @t_in) / 1.minutes
+  end
+
+  if @count_time.present?
+
+  @incentive_time = @count_time / 5
+  
+  if @t_in.hour >= 9 #incentive will be generated only during 6PM - 12midnight
+
+  @earning = @user.time + @incentive_time #converting incentive time to timee time
+
+  @earn = TimeIncentive.order("updated_at").last
+
+  @earn.update(total_earn: @count_time)
+
+  @user.update(:time => @earning)
+
+  @history = @user.history.build(transaction_name: "Total Incentive Time Earned", min_type: "+", mins: @incentive_time, datetime: DateTime.now, teacher: "N/A")
+  @history.save
+  end
+ end
+
+  end
       end
 
       if @user.update(user_params)

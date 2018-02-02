@@ -144,6 +144,9 @@ end
             </div>
             
           </form>
+          <% if current_user.type_user == 'teacher' %>
+          <p><small>Note: Incentime Time is different from timee time. So, time earned from  incentive time will show lower than the original time you're logged in. <br>Formula: incentive time = total time (from incentive hours = 6pm - 12 mn) / 5</small></p>
+          <% end %>
         </div>
 
       </div>

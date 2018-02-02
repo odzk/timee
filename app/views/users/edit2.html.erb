@@ -28,8 +28,8 @@
       </div>
       <div class="panel-body">
         <% @time_in.each do |t| 
-          if Time.now.hour >= 18 %>
-        <p style="color:green;"><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
+          if Time.now.hour >= 9 %>
+        <p style="color:green;"><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %> <br>Incentive Time is ACTIVE</p>
         <% else %>
         <p><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
           <% end %>

@@ -1,4 +1,6 @@
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
 
 <br/><br/>
 
@@ -19,25 +21,21 @@
       	<hr/>
       	<div class="row">
       		<div class="col-sm-12">
+        <p>Sample Screenshot. Make sure to include the name and duration of the call!</p>
+        <a href="../../../../screenshot.png" data-lightbox="gallery">
+        <img src="../../../../screenshot.png" class="img img-thumbnail" style="width: 30%; margin-bottom: 30px;" ></a>
+        <br>
 				<label>Screenshot of Class</label> <i class="fa fa-picture-o"></i>
 				<%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png', class: 'form-control-file'  %>
       		</div>
       	</div>
       	<hr/>
       	<div class="row">
-      		<div class="col-sm-2">
+      		<div class="col-sm-12">
       		<div class="form-group">
-              <label for="user_skill" class="hidden-xs">Call Duration</label>
-                <div class="input-group">
-                  <select class="form-control" name="safe[time]" required>
-                    <option value="30 mins">30 mins</option>
-                    <option value="60 mins">60 mins</option>
-                    <option value="90 mins">90 mins</option>
-                    <option value="120 mins">120 mins</option>
-                    <option value="150 mins">150 mins</option>
-                    <option value="180 mins">180 mins</option>
-                  </select>
-              </div>
+              <label for="safe_time">Duration of call<span style="color:red; font-weight: bold;">*</span></label><br>
+                <%= f.text_field :time , :placeholder => 'Should be in mins, example 1 hour and 15 mins ~ 75', class: 'form-control col-md-4' %>
+
             </div>
       		</div>
       	</div>

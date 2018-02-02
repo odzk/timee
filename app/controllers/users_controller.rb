@@ -301,7 +301,7 @@ before_action :correct_user, only: [:edit ]
 
   @incentive_time = @count_time / 5
   
-  if @t_in.hour >= 9 #incentive will be generated only during 6PM - 12midnight
+  if @t_in.hour >= 19 #incentive will be generated only during 6PM - 12midnight
 
   @earning = @user.time + @incentive_time #converting incentive time to timee time
 

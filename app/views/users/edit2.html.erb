@@ -18,7 +18,7 @@
       </div>
       <div class="panel-body">
         <p><%= @user.time %>mins ~ [P<%= number_with_precision((@user.time * 2.5), :precision => 2, :delimiter => ',') %>]</p>
-        <a href="#" class="btn btn-default">Withdraw Money</a>
+        <a href="#" class="btn btn-default" onclick="return confirm('We are still making this system. If you want to withdraw your timee minutes, please use the contact us link below.')">Withdraw Money</a>
       </div>
     </div>
 

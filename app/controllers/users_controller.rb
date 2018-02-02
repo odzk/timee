@@ -267,7 +267,7 @@ before_action :correct_user, only: [:edit ]
       @user = User.find(params[:id])
 
     if params[:user][:busy] == "available"
-      if @user.busy == "available" 
+      if @user.busy == "available" || @user.busy == "call"
         #Do nothing to avoid duplicates
        else
       @time_in = @user.time_incentive.build(teacher_name: @user.name, time_in: Time.now)

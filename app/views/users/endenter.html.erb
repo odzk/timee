@@ -27,7 +27,7 @@
 
 </style>
 
-<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+<!-- <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script> -->
 
 <div class="container text-center">
 
@@ -37,12 +37,21 @@
 
 <div class="col-md-6">
 
-<img src="<%= @user.picture %>" class="img-responsive img-thumbnail" style="width:80%;">
+<img src="<%= @user.picture %>" class="img-responsive img-circle img-thumbnail" style="width:80%;">
+<h2>Teacher <%= @user.nick %></h2>
 
 </div>
 
 <div class="col-md-6">
 
+<p>Make sure that you have skype installed in your PC / MAC or smartphone. To download skype: <a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">Click Here</a></p>
+
+<a href="skype://<%= @user.skype %>" class="btn btn-lg btn-danger" style="color:#fff;"><i class="fa fa-skype"></i> Skype Call Now</a>
+
+<h4>Teacher's Skype ID: <%= @user.skype %></h4>
+
+<p>Teacher is not answering the call?</p>
+<button onclick="return confirm('Are you sure you want to report the Teacher?')">Click Here</button><span> to report</span>
 
 <div class="col-md-offset-3 col-md-6 col-xs-12">
 <a type="button" class="btn" style="color: #000; width: 100%; margin-top: 30px;" href="/"><i class='fa fa-mail-reply'></i> 戻る</a>

@@ -100,7 +100,9 @@
       </div>
       <div class="panel-body">
       <div class="radio" style="margin-bottom: 10px;">
-
+      <% @report.each do |r| %>
+      <p>Student <span style="color:green"><%= r.student_name %></span> reported you for:<span style="color:red"> <%= r.incident_name %></span>. Date: <%= r.created_at %>
+      <% end %>
         </div>
       </div>
     </div>

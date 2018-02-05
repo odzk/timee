@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
  has_many :profile_pic
  has_many :safe
  has_many :time_incentive
-
+ has_many :report_teacher
+ 
    attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   #メールアドレス小文字変換

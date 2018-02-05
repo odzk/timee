@@ -13,6 +13,9 @@ get 'user/course/it', to: 'curriculums#it_english'
 #status checker
 get 'status_online', to: 'users#status_online', as: 'status_online'
 
+#teacher report route
+get 'report/:id', to: 'users#report_teacher', as: 'report_teacher'
+
 get '/signup', to: 'users#new'
 post '/signup', to: 'users#create'
 

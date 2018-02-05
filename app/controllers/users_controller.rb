@@ -8,6 +8,18 @@ before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
  protect_from_forgery except: :purchase
 
+  def report_teacher
+
+    @user = User.find(params[:id])
+    @student = current_user.name
+    @teacher = @user.name
+    @report = @user.report_teacher.build(teacher_name: @teacher, student_name: @student, incident_name: "Not Answering Calls")
+    @report.save
+    flash[:danger] = "Teacher has been reported for not anwering the call! Thank you."
+    redirect_to endenter_users_path(@user)
+
+  end
+
   def status_online
     current_user.update(last_seen_at:DateTime.now)
     render :nothing => true
@@ -141,12 +153,6 @@ before_action :correct_user, only: [:edit ]
 
   def create
 
-        # @photo1 = params[:user][:picture].original_filename
-        # @photo2 = params[:user][:picture2].original_filename
-        # @photo3 = params[:user][:picture3].original_filename
-        # @youtube_video = params[:user][:youtube_url]
-
-
     if params[:new]
         @referral_id = params[:user][:referral_id]
         @user = User.new(user_params)
@@ -207,13 +213,11 @@ before_action :correct_user, only: [:edit ]
   @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
   @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
-  # @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
-  # @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
-
   @current = current_user.name
   @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
+  @report = @user.report_teacher.last(3)
   end
   
   def edit3

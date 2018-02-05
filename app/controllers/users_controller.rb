@@ -312,7 +312,7 @@ before_action :correct_user, only: [:edit ]
 
   @user.update(:time => @earning)
 
-  @history = @user.history.build(transaction_name: "Total Incentive Time Earned", min_type: "+", mins: @incentive_time, datetime: DateTime.now, teacher: "N/A")
+  @history = @user.history.build(transaction_name: "Total Incentive Time Earned: " + @count_time.round(2).to_s + " mins", min_type: "+", mins: @incentive_time, datetime: DateTime.now, teacher: "N/A")
   @history.save
   end
  end

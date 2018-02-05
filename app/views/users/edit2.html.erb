@@ -199,19 +199,25 @@
           <% if @id.time < 15 %>
           <td>Not enough time</td>
 
+          <td>
+          <%= link_to delete_safes_path(safe), :class => "btn btn-primary",  :style => "color: #fff;", :onclick =>"return confirm('Are you sure?')" do %>
+          <i class="fa fa-trash"></i>
+          </td>
+          <% end %>
+
           <% else %>
 
           <td>
           <%= link_to edit_safe_path(safe), :class => "btn btn-primary" do %>
           <span style="color:#fff;"><i class="fa fa-pencil-square-o"></i><span class="hidden-xs">&nbsp;Process</span></span>
-          <% end %>
           </td>
+          <% end %>
 
           <td>
           <%= link_to delete_safes_path(safe), :class => "btn btn-primary",  :style => "color: #fff;", :onclick =>"return confirm('Are you sure?')" do %>
           <i class="fa fa-trash"></i>
-          <% end %>
           </td>
+          <% end %>
           <% end %>
           
    

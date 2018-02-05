@@ -41,10 +41,13 @@
 </div>
 
 <div class="col-md-6">
+<p>If you're not ready to call. You can Chat / Message Teacher <%= @user.nick %> first.</p>
+<span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-text="Chat Me" style="color: #fff;"></span>
+<script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
 
-<p>オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
+<p style="margin-top: 30px;">オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
 
-<a href="skype:<%= @user.skype %>?call" class="btn btn-lg btn-danger" style="color:#fff;"><i class="fa fa-skype"></i> S今すぐ通話</a>
+<a href="skype:<%= @user.skype %>?call" class="btn btn-lg btn-danger" style="color:#fff;"><i class="fa fa-skype"></i> 今すぐ通話</a>
 
 <h4>先生のスカイプID: <%= @user.skype %></h4>
 

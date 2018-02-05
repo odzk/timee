@@ -133,17 +133,16 @@
 
       </div>
       <div class="panel-body">
+      	<% @students_online.each do |u| %>
       	<div class="col-md-3" style="border: 1px solid #ccc;">
-      		   <% @students_online.each do |u| %>
       	       <% if u.last_seen_at.present?
       	       		if u.last_seen_at > 5.minutes.ago %>
       	       		<img src="<%= u.picture %>" style="width: 100px;" class="center-block">
       	       		<p class="text-center"><%= u.name %></p>
-
 	       		<% end %>
 	       	<% end %>
-       <% end %>
        	  </div>
+       	<% end %>
       </div>
     </div>
 
@@ -179,6 +178,19 @@
       	   <% end %>
        </div>
       </div>
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Frequently Asked Questions (FAQ)</h2>
+      </div>
+      <div class="panel-body">
+      	<p><strong>1.) The time log doesn't show Login / Logout</strong></p>
+      	<p>Log out and then log back in.</p>
+      	<p>Possible Cause: The teacher forgot to logout from the last session</p>
+      	<br>
+       </div>
+      </div>
+
     </div>
   </div>
 

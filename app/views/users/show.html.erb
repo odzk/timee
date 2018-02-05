@@ -81,18 +81,18 @@
 
       <div class="row">
           <div class="col-md-12">
-            <i class="fa fa-flag"></i> Nationality：<%= @user.country %><br/><br/>
+            <i class="fa fa-flag"></i> 国籍： <%= @user.country %><br/><br/>
           </div>
           <div class="col-md-12">
-            <i class="fa fa-line-chart"> </i> Skill Level：<%= @user.skill %><br/><br/>
+            <i class="fa fa-line-chart"> </i> 講師経験： <%= @user.skill %><br/><br/>
           </div>
       </div>
       <div class="row">
           <div class="col-md-12">
-            <i class="fa fa-soccer-ball-o"> </i> Hobbies：<%= @user.hobby %><br/><br/>
+            <i class="fa fa-soccer-ball-o"> </i> 趣味: <%= @user.hobby %><br/><br/>
           </div>
           <div class="col-md-12">
-          <i class="fa fa-university"> </i>Profession：<%= @user.job %><br/>
+          <i class="fa fa-university"> </i>職業(前職): <%= @user.job %><br/>
           </div>
       </div>
          </p>
@@ -143,21 +143,21 @@
 
        <% if current_user.type_user == "teacher" %>
 
-      <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
+      <%= link_to '戻る', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
 
 
        <% elsif @user.busy == "call" %>
 
-       <p>Sorry I'm having a class with another student. Please check other Online Teachers, they will be happy to teach you as well!</p>
-      <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
+       <p>すみません！現在、Teacher <%= @user.nick %>は他の生徒と通話中です。他のオンラインの先生を探してみましょう</p>
+      <%= link_to '戻る', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
 
 
        <!-- <a href="#" class="btn btn-primary" style="color: #fff;">Yes Call Me Back!</a> -->
 
        <% elsif @user.busy == "busy" %>
 
-       <p>Sorry I'm currently offline. Please check other Online Teachers, they will be happy to teach you as well!</p>
-        <%= link_to 'Back', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
+       <p>すみません！現在、Teacher <%= @user.nick %>はオフラインです。他のオンライン教師を探しましょう</p>
+        <%= link_to '戻る', url_for(:back), class: "btn btn-md btn-danger", style: "color: #fff;" %>
 
        <% else %>
        

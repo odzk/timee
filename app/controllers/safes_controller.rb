@@ -67,7 +67,7 @@ def update
                   @student_history = @student.history.build(transaction_name: "Class", min_type: "-", mins: 30, datetime: DateTime.now, teacher: @teacher.name)
                   @student_history.save
                   
-                  flash[:success] = "Thank you for teaching!"
+                  flash[:success] = "Thank you for teaching! Timee Time has been added to your account!"
                   redirect_to edit2_user_path
                 else
                   flash[:danger] = "Something is wrong. Please inform the administrator right away!"
@@ -78,6 +78,12 @@ def update
 
 end  
 
+  def delete #faster method than destroy
+    @safe = Safe.find(params[:id])
+    @safe.delete
+      flash[:success] = "Record Successfully Deleted!"
+      redirect_to edit2_user_path
+  end
 
   
   def destroy
@@ -100,9 +106,8 @@ end
   end
    
    
-   
   def safe_params
-    params.require(:safe).permit(:hontai, :name, :staff, :staff2, :type_machine, :number, :number_of_frame, :number_slot, :number_of_foundation, :status, :from, :to, :machine, :price_from, :remarks, :photo, :place, :maker, :year_of_manufacture, :month_of_manufacture, :color_of_panel, :date_of_removal, :date_of_verification, :date_of_out, :paper1, :paper2, :paper3, :photo2, :photo3, :easy_date_of_input,:easy_date_of_output,:price_after,:benefit, :time, :status_teacher)
+    params.require(:safe).permit(:hontai, :name, :staff, :staff2, :type_machine, :number, :number_of_frame, :number_slot, :number_of_foundation, :status, :from, :to, :machine, :price_from, :remarks, :photo, :place, :maker, :year_of_manufacture, :month_of_manufacture, :color_of_panel, :date_of_removal, :date_of_verification, :date_of_out, :paper1, :paper2, :paper3, :photo2, :photo3, :easy_date_of_input,:easy_date_of_output,:price_after,:benefit, :time, :status_teacher, :topic, :notes)
   end
 
 

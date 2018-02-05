@@ -70,7 +70,8 @@ resources :safes
 
 
 get 'safe_before' => 'safes#safe'  
-get 'safe_after' => 'safes#after'  
+get 'safe_after' => 'safes#after'
+get 'safes/:id/delete', to: 'safes#delete', as: 'delete_safes'
 
 get '/analyze' => 'safes#analyze'  
 get '/analyze2' => 'safes#analyze2'  

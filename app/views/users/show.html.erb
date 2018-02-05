@@ -97,7 +97,49 @@
       </div>
          </p>
       <hr>
+
        <%= f.hidden_field :busy, :value => "call"%>
+
+       <% if @user.busy == 'available'  %>
+
+      <strong><h4 style="padding-top: 0; text-align:center">どの授業を受けますか？</h4></strong>
+
+      <div class="col-md-12">
+        <div class="col-md-4 col-xs-6">
+
+        <label for="travel_english"><img src="../../travel_english.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="travel_english" name = "user[topic]" value="Travel English">&nbsp;旅行英会話</label>
+        </div>
+
+        <div class="col-md-4 col-xs-6">
+        <label for="idiomatic_expressions"><img src="../../idiomatic_expressions.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="idiomatic_expressions" name = "user[topic]" value="Idiomatic Expression"><span style="font-size: 12px;">&nbsp;単語/熟語/フレーズ</span></label>
+        </div>
+
+        <div class="col-md-4 col-xs-6">
+        <label for="business_english"><img src="../../business_english.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="business_english" name = "user[topic]" value="Business English">&nbsp;ビジネス英語</label>
+        
+        </div>
+      </div>
+
+      <div class="col-md-12" style="margin-top: 10px;">
+
+        <div class="col-md-4 col-xs-6">
+        <label for="daily_english"><img src="../../daily_english.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="daily_english" name = "user[topic]" value="Daily Enlgish">&nbsp;日常英会話</label>
+        </div>
+
+        <div class="col-md-4 col-xs-6">
+          <label for="role_playing"><img src="../../role_playing.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="role_playing" name = "user[topic]" value="Role Playing">&nbsp;なりきり英会話</label>
+        </div>
+
+        <div class="col-md-4 col-xs-6">
+          <label for="it_english"><img src="../../it_english.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="it_english" name = "user[topic]" value="IT English">&nbsp;IT English</label>
+        </div>
+
+        <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
+          <label for="student_notes">Enter Notes for Teacher: </label>
+          <textarea name="user[notes]" class="form-control" id="student_notes" placeholder="Example: I want to learn the how to make a business call with American companies"></textarea>
+        </div>
+
+        <% end %>
 
        <% if current_user.type_user == "teacher" %>
 
@@ -124,8 +166,9 @@
          <p>Sorry, you don't have enough time to have class. Please <%=  link_to edit3_user_path(current_user.id) do %><span class="btn btn-danger">Click Here</span><% end %> to purchase time</p>
 
          <% else %>
+     
 
-         <%= f.submit "→　今すぐ英会話", :onclick => "return confirm('Proceed to Class?')", :class => "btn btn-primary", :style => "" %>
+         <%= f.submit "→　今すぐ英会話", :onclick => "return confirm('Proceed to Class?')", :class => "btn btn-primary form-control", :style => "margin-top: 20px;" %>
       <% end %>
     <% end %>
     <% end %>

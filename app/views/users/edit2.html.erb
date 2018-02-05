@@ -163,14 +163,17 @@
 <div class="container">
  <div class="row">
   <div class="col-md-12">
-    <table class="table table-bordered table-hover text-center">
+    <table class="table table-bordered table-hover table-compact text-center">
       <thead class="thead-default">
       <tr>
-      <th class="info text-center">ID</th>
-      <th class="info text-center">Date / Time</th>
-      <th class="info text-center">Student Name</th>
-      <th class="info text-center">Time Remaining</th>      
-      <th class="info text-center">Status</th>
+      <th class="info text-center col-md-1">ID</th>
+      <th class="info text-center col-md-2">Time Created</th>
+      <th class="info text-center col-md-2">Student Name</th>
+      <th class="info text-center col-md-1">Time</th>
+      <th class="info text-center col-md-3">Student Notes</th>
+      <th class="info text-center col-md-2">Topic</th>     
+      <th class="info text-center col-md-2">Status</th>
+      <th class="info text-center col-md-1">Del</th>
       </tr>
       </thead>
       <tbody>
@@ -178,25 +181,38 @@
   <% @safes.each do |safe| %>
 
           <td><%= safe.id %></td>
-          <td><%= safe.created_at %></td>
+          <td><%= (safe.created_at).strftime("%I:%M%p") + ' ~ ' + time_ago_in_words(safe.created_at) %></td>
           <td><%= safe.student %></td>
           <% @p = "\"" + safe.student + "\"" %>
           <% @id = User.find_by(name: safe.student) %>
           <td>
               <% if @id.time.nil? %>
-              0mins
+              0 mins
               <% else %>
-              <%= @id.time %>mins
+              <%= @id.time %> mins
               <% end %>
   
           </td>
+          <td><%= safe.notes %></td>
+          <td><%= safe.topic %><a href="#" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
           
-          
+          <% if @id.time < 15 %>
+          <td>Not enough time</td>
+
+          <% else %>
+
           <td>
           <%= link_to edit_safe_path(safe), :class => "btn btn-primary" do %>
-          <span style="color:#fff;"><i class="fa fa-pencil-square-o"></i><div class="hidden-xs">Application for Complete</div></span>
+          <span style="color:#fff;"><i class="fa fa-pencil-square-o"></i><span class="hidden-xs">&nbsp;Process</span></span>
           <% end %>
           </td>
+
+          <td>
+          <%= link_to delete_safes_path(safe), :class => "btn btn-primary",  :style => "color: #fff;", :onclick =>"return confirm('Are you sure?')" do %>
+          <i class="fa fa-trash"></i>
+          <% end %>
+          </td>
+          <% end %>
           
    
         </tr>

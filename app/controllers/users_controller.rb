@@ -203,14 +203,15 @@ before_action :correct_user, only: [:edit ]
   def edit2
   @user = User.find(current_user.id)
   @history = @user.history
+
   @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
   @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
-
-
+  # @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
+  # @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
   @current = current_user.name
-  @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).first(1)
+  @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
   end
@@ -332,6 +333,8 @@ before_action :correct_user, only: [:edit ]
         @safe.update(:student => current_user.name )
         @safe.update(:teacher => @user.name )
         @safe.update(:status_teacher => "yet" )
+        @safe.update(:topic => params[:user][:topic])
+        @safe.update(:notes => params[:user][:notes])
         # @user.update(:busy => "busy" )
         # flash[:success] = "申請しました！"
         redirect_to endenter_users_path(@user)

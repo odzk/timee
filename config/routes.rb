@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  resources :curriculums
+
+
+get '/course/travel', to: 'curriculums#travel_english'
+get '/course/idiomatic', to: 'curriculums#idiomatic_english'
+get '/course/business', to: 'curriculums#business_english'
+get 'course/daily', to: 'curriculums#daily_english'
+get 'course/role_play', to: 'curriculums#role_playing'
+get 'course/it', to: 'curriculums#it_english'
+
 #status checker
 get 'status_online', to: 'users#status_online', as: 'status_online'
 

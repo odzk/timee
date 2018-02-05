@@ -194,7 +194,19 @@
   
           </td>
           <td><%= safe.notes %></td>
-          <td><%= safe.topic %><a href="#" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% if safe.topic == "Travel English" %>
+          <td><%= safe.topic %><a href="course/travel" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% elsif safe.topic == "Idiomatic Expression" %>
+          <td><%= safe.topic %><a href="course/idiomatic" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% elsif safe.topic == "Business English" %>
+          <td><%= safe.topic %><a href="course/business" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% elsif safe.topic == "Daily English" %>
+          <td><%= safe.topic %><a href="course/daily" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% elsif safe.topic == "Role Playing" %>
+          <td><%= safe.topic %><a href="course/role_play" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% elsif safe.topic == "IT English" %>
+          <td><%= safe.topic %><a href="course/it" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>
+          <% end %>
           
           <% if @id.time < 15 %>
           <td>Not enough time</td>

@@ -14,7 +14,7 @@
 		<!--student-->
 		<!--student-->
 		<div class="container" style="padding:0 3% 0 3%;">
-			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center" >Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
+			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center">Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
 		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
 		        <div class="content">
 						<div class="grid" style=" text-align: center;
@@ -25,7 +25,7 @@
 							
 				<figure class="effect-jazz jazz2">
 							<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
-						<figcaption class="hidden-xs">
+						<figcaption>
 							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
@@ -46,7 +46,7 @@
 										
 					<figure class="effect-jazz jazz1">
 			<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
-						<figcaption class="hidden-xs">
+						<figcaption>
 							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
 							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
@@ -118,6 +118,12 @@
       <div class="panel-body">
       <h3>Welcome To Timee!</h3>
       <p>Welcome and thank you for joining timee. We make timee simple and easy to use for teachers and students. If you have any questions, concerns or feedbacks, please let us know by clicking the Contact Us button below.</p>
+
+      <p>For those who want to check how your profile looks in the students side. You can login using a test student account.<br><br>
+      <strong>Username: student@web-mech.net</strong><br>
+      <strong>Password: student1234</strong>
+  	  </p>
+
      	</div>
   	</div>
 
@@ -127,17 +133,16 @@
 
       </div>
       <div class="panel-body">
+      	<% @students_online.each do |u| %>
       	<div class="col-md-3" style="border: 1px solid #ccc;">
-      		   <% @students_online.each do |u| %>
       	       <% if u.last_seen_at.present?
       	       		if u.last_seen_at > 5.minutes.ago %>
       	       		<img src="<%= u.picture %>" style="width: 100px;" class="center-block">
       	       		<p class="text-center"><%= u.name %></p>
-
 	       		<% end %>
 	       	<% end %>
-       <% end %>
        	  </div>
+       	<% end %>
       </div>
     </div>
 
@@ -151,7 +156,7 @@
       	<div class="col-md-3" style="border: 1px solid #ccc;">
       		      	<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>    
       	            <img src="<%= user.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center">Teacher: <%= user.nick %></p>
+      	       		<p class="text-center">Teacher <%= user.nick %></p>
       	       		<% end %>
       	       	</div>
       	   <% end %>
@@ -167,12 +172,25 @@
       	<div class="col-md-3" style="border: 1px solid #ccc;">
       		      	<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>    
       	            <img src="<%= user.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center">Teacher: <%= user.nick %></p>
+      	       		<p class="text-center">Teacher <%= user.nick %></p>
       	       		<% end %>
       	       	</div>
       	   <% end %>
        </div>
       </div>
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Frequently Asked Questions (FAQ)</h2>
+      </div>
+      <div class="panel-body">
+      	<p><strong>1.) The time log doesn't show Login / Logout</strong></p>
+      	<p>Log out and then log back in.</p>
+      	<p>Possible Cause: The teacher forgot to logout from the last session</p>
+      	<br>
+       </div>
+      </div>
+
     </div>
   </div>
 

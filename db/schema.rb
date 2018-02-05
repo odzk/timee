@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201020040) do
+
+ActiveRecord::Schema.define(version: 20180203075839) do
+
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -236,6 +238,8 @@ ActiveRecord::Schema.define(version: 20180201020040) do
     t.integer  "time",                 limit: 4
     t.string   "time_photo",           limit: 255
     t.integer  "user_id",              limit: 4
+    t.string   "topic",                limit: 255
+    t.string   "notes",                limit: 255
   end
 
   add_index "saves", ["user_id"], name: "index_saves_on_user_id", using: :btree

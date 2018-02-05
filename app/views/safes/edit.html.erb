@@ -1,4 +1,6 @@
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
 
 <br/><br/>
 
@@ -19,6 +21,10 @@
       	<hr/>
       	<div class="row">
       		<div class="col-sm-12">
+        <p>Sample Screenshot. Make sure to include the name and duration of the call!</p>
+        <a href="../../../../screenshot.png" data-lightbox="gallery">
+        <img src="../../../../screenshot.png" class="img img-thumbnail" style="width: 30%; margin-bottom: 30px;" ></a>
+        <br>
 				<label>Screenshot of Class</label> <i class="fa fa-picture-o"></i>
 				<%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png', class: 'form-control-file'  %>
       		</div>
@@ -27,11 +33,9 @@
       	<div class="row">
       		<div class="col-sm-12">
       		<div class="form-group">
-            <label for="safe_time" style="margin-top: 10px;">Duration of call<span style="color:red; font-weight: bold;">*</span><small>(mins)（Should be in minutes, example 1 hour 15 mins ~ 75)</small></label>
-              <%= f.text_field :time , :placeholder => 'in minutes', class: 'form-control' , :style => ''%>
 
-
-              </div>
+              <label for="safe_time">Duration of call<span style="color:red; font-weight: bold;">*</span></label><br>
+                <%= f.text_field :time , :placeholder => 'Should be in mins, example 1 hour and 15 mins ~ 75', class: 'form-control col-md-4' %>
             </div>
       		</div>
       	</div>

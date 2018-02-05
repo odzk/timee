@@ -27,8 +27,6 @@
 
 </style>
 
-<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
-
 <div class="container text-center">
 
 
@@ -37,50 +35,25 @@
 
 <div class="col-md-6">
 
-<img src="<%= @user.picture %>" class="img-responsive img-thumbnail" style="width:80%;">
+<img src="<%= @user.picture %>" class="img-responsive img-circle img-thumbnail" style="width:80%;">
+<h2>Teacher <%= @user.nick %></h2>
 
 </div>
 
 <div class="col-md-6">
-      <strong><h4 style="padding-top: 0;">どの授業を受けますか？</h4></strong>
+<p>If you're not ready to call. You can Chat / Message Teacher <%= @user.nick %> first.</p>
+<span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-text="Chat Me" style="color: #fff;"></span>
+<script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
 
-      <div class="col-md-12">
-        <div class="col-md-4">
+<p style="margin-top: 30px;">オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
 
-        <label for="travel_english"><img src="../../travel_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="radio" id="travel_english" name = "radioOpt" onclick="window.open('http://esl.web-mech.net/course/view.php?id=12')">&nbsp 旅行英会話</p></a></span></span></label>
-        </div>
+<a href="skype:<%= @user.skype %>?call" class="btn btn-lg btn-danger" style="color:#fff;"><i class="fa fa-skype"></i> 今すぐ通話</a>
 
-        <div class="col-md-4">
-        <label for="idiomatic_expressions" style="font-size:12px;"><img src="../../idiomatic_expressions.png" class="small-icons"><span><p class="small-topic-text" style="font-size: 13px;"><input type="radio" id="idiomatic_expressions" name = "radioOpt" onclick="window.open('#')">&nbsp 単語/熟語/フレーズ</p></a></span></label>
-        </div>
+<h4>先生のスカイプID: <%= @user.skype %></h4>
 
-        <div class="col-md-4">
-        <label for="business_english"><img src="../../business_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="radio" id="business_english" name = "radioOpt" onclick="window.open('http://esl.web-mech.net/course/view.php?id=8')">&nbsp ビジネス英語</a></p></span></label>
-        
-        </div>
-      </div>
+<p>先生が通話に応答しない場合は？</p>
+<button onclick="return confirm('Are you sure you want to report the Teacher?')">こちらから報告ください</button>
 
-      <div class="col-md-12">
-
-        <div class="col-md-4">
-        <label for="daily_english"><img src="../../daily_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="radio" id="daily_english" name = "radioOpt" onclick="window.open('http://esl.web-mech.net/course/view.php?id=2')">&nbsp 日常英会話</a></p></span></label>
-        </div>
-
-        <div class="col-md-4">
-          <label for="role_playing"><img src="../../role_playing.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="radio" id="role_playing" name = "radioOpt" onclick="window.open('#')">&nbsp なりきり英会話</a></p></span></label>
-        </div>
-
-        <div class="col-md-4">
-          <label for="it_english"><img src="../../it_english.png" class="small-icons"><span style="font-size:15px;"><p class="small-topic-text"><input type="radio" id="it_english" name = "radioOpt" onclick="window.open('http://esl.web-mech.net/course/view.php?id=6')">&nbsp IT English</a></p></span></label>
-        </div>
-</div>
-<hr/>
-      <h2 style="font-family: Open-sans">&#x2193;スタートクラス&#x2193;</h2>
-      <a href="skype:<%= @user.skype %>?call"><img src="../../../skype_call.png" class="img img-responsive center-block"></a>
-
-      <h3 style="font-size:20px; font-family: 'Work Sans', sans-serif;">skype : <%= @user.skype %></h3>
-
-</div>
 <div class="col-md-offset-3 col-md-6 col-xs-12">
 <a type="button" class="btn" style="color: #000; width: 100%; margin-top: 30px;" href="/"><i class='fa fa-mail-reply'></i> 戻る</a>
 

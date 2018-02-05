@@ -117,23 +117,23 @@ end
       <div class="row main">
         <div class="col-md-12">
         <div class="main-login main-center col-md-12 nopadding">
-        <h5 class="text-center hidden-xs"><%= title %></h5>
+        <h5 class="text-center"><%= title %></h5>
         <% if current_user.type_user == 'teacher' %>
         <a href="#" class="btn btn-info">Withdraw Money</a>
         <% end %>
             <table class="table table-bordered table-hover" style="margin-top: 10px;">
             <tr class="info">
-              <th>Transaction Type</th>
-              <th>Type</th>
-              <th>Time (Minutes)</th>
+              <th class="col-md-4">Transaction Type</th>
+              <th class="col-md-1 text-center">Type</th>
+              <th class="col-md-2 text-center">Time (Minutes)</th>
               <th>Date / Time</th>
               <th><%= t_header %></th>
             </tr>
             <% @history.each do |h| %>
             <tr>
               <td><%= h.transaction_name %></td>
-              <td><%= h.min_type %></td>
-              <td><%= h.mins %></td>
+              <td class="text-center"><%= h.min_type %></td>
+              <td class="text-center"><%= h.mins %></td>
               <td><%= h.created_at %></td>
               <td><%= h.teacher %></td>
             </tr>
@@ -144,6 +144,9 @@ end
             </div>
             
           </form>
+          <% if current_user.type_user == 'teacher' %>
+          <p><small>Note: Incentime Time is different from timee time. So, time earned from  incentive time will show lower than the original time you're logged in. <br>Formula: incentive time = total time (from incentive hours = 6pm - 12 mn) / 5</small></p>
+          <% end %>
         </div>
 
       </div>

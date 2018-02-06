@@ -174,6 +174,12 @@
 <div style="margin:0 15% 0 5%;">  
 
  -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <div class="container">
  <div class="row">
   <div class="col-md-12">
@@ -196,7 +202,7 @@
 
           <td><%= safe.id %></td>
           <td><%= (safe.created_at).strftime("%I:%M%p") + ' ~ ' + time_ago_in_words(safe.created_at) %></td>
-          <td><%= safe.student %></td>
+          <td><%= safe.student %><button class="btn btn-success" data-toggle="modal" data-target="#history">Student History</button></td>
           <% @p = "\"" + safe.student + "\"" %>
           <% @id = User.find_by(name: safe.student) %>
           <td>
@@ -251,6 +257,54 @@
   <% end %>
   </tbody>
 </table>
+
+<!-- Modal -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="history" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="panel-heading modal-header">
+          <h4 class="modal-title">Student History</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-compact table-hover table-bordered">
+            <tr>
+              <th>Teacher Name</th>
+              <th>Topic</th>
+              <th>Notes</th>
+              <th>Date</th>
+          </tr>
+
+        <%# @student_history.each do |safe| %>
+
+            <tr>
+              <td><%#= safe.teacher %></td>
+              <td><%#= safe.topic %></td>
+              <td><%#= safe.remarks %></td>
+              <td><%#= safe.created_at %></td>
+            </tr>
+          <%# end %>
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+
+<!-- Modal -->
+
+
 </div>
 </div>
 </div>

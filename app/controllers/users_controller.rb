@@ -155,6 +155,7 @@ before_action :correct_user, only: [:edit ]
 
     if params[:new]
         @referral_id = params[:user][:referral_id]
+        @instagram = params[:user][:instagram]
         @user = User.new(user_params)
         @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
        
@@ -168,6 +169,9 @@ before_action :correct_user, only: [:edit ]
         end
 
        if @user.save
+          if @instagram.present?
+          @user.update(:referral_id => @instagram)
+          end
           flash[:success] = "成功！"
         redirect_to "/login"
        else
@@ -214,6 +218,7 @@ before_action :correct_user, only: [:edit ]
   @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
   @current = current_user.name
+  #@student_history = Safe.where(:student => @student.name)
   @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)

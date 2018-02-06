@@ -155,7 +155,7 @@ span.input-group-addon i {
               </div>
             </div>
 
-            <div class="form-group">
+<!--             <div class="form-group">
               <label for="username" class="cols-md-2 control-label hidden-xs">スカイプID<small style="color: red">[required]</small></label>
               <div class="cols-md-10">
                 <div class="input-group">
@@ -163,7 +163,7 @@ span.input-group-addon i {
                   <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :required => ''  %>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label for="password" class="cols-md-2 control-label hidden-xs">パスワード<small style="color: red">[required]</small></label>
@@ -195,10 +195,13 @@ span.input-group-addon i {
 
             </div>
             <% referral = request.query_parameters 
-            id = referral['referral']%>
+            id = referral['referral']
+            instagram = referral['from'] %>
             <%= f.hidden_field :time, :value => 30 %>
             <%= f.hidden_field :type_user, :value => "student" %>
             <%= f.hidden_field :referral_id, :value => id %>
+            <%= f.hidden_field :instagram, :value => instagram %>
+
 
             <div class="form-group">
             <%= f.submit "登録する", class: "btn btn-primary btn-block btn-lg", name: "new", :value => "登録する" %>

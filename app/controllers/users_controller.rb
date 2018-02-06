@@ -8,6 +8,13 @@ before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
  protect_from_forgery except: :purchase
 
+  def history_class
+    @user = params[:student]
+    @student = User.where(:name => @user)
+    @history_class = Safe.where(:student => @user)
+
+  end
+
   def report_teacher
 
     @user = User.find(params[:id])
@@ -218,7 +225,7 @@ before_action :correct_user, only: [:edit ]
   @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
   @current = current_user.name
-  #@student_history = Safe.where(:student => @student.name)
+  @student_history = Safe.all
   @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)

@@ -1,0 +1,68 @@
+<% provide(:title, "Student Historu Class") %>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+
+<style>
+
+ @media (max-width: 768px) {
+      .text-xs-center {
+              text-align: center;
+       } 
+    }
+
+</style>
+
+  <div class="container">
+
+  	<h3 class="text-center">Student Profile</h3>
+
+      
+       <% @student.each do |u| %>
+      
+      <div class="col-md-12">
+      	   <div class="col-md-12">
+            <p><i class="fa fa-user"></i> Student Name： <%= u.name %></p>
+          </div>
+          <div class="col-md-12">
+            <p><i class="fa fa-flag"></i> Country： <%= u.country %></p>
+          </div>
+          <div class="col-md-12">
+            <p><i class="fa fa-line-chart"> </i> Skill Level： <%= u.skill %></p>
+          </div>
+          <div class="col-md-12">
+            <p><i class="fa fa-soccer-ball-o"> </i> Hobbies: <%#= @user.hobby %></p>
+          </div>
+          <div class="col-md-12">
+          <p><i class="fa fa-university"> </i>Profession: <%#= @user.job %></p>
+      	  </div>
+      	  <% end %>
+  </div>
+
+
+      <div class="col-md-12">
+      	<h3 class="text-center">Student History Class</h3>
+      	<table class="table table-compact table-bordered table-hover">
+      	<tr>
+      		<th>Teacher</th>
+      		<th>Topic</th>
+      		<th>Remarks</th>
+      		<th>Date</th>
+      		<th>Time</th>
+      	</tr>
+      	<% @history_class.each do |h| %>
+      	<tr>
+      		<td><%= h.teacher %></td>
+      		<td><%= h.topic %></td>
+      		<td><%= h.remarks %></td>
+      		<td><%= h.created_at.strftime("%m-%d-%Y") %></td>
+      		<td><%= h.created_at.strftime("%I:%M%p") %></td>
+
+      	</tr>
+      	<% end %>
+
+      	</table>
+        
+        </div>
+      </div>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :curriculums
+get 'student_class/:student', to: 'users#history_class', as: 'student_class'
+
+resources :curriculums
 
 
 get 'user/course/travel', to: 'curriculums#travel_english'

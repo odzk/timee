@@ -37,19 +37,22 @@
           <div class="col-md-12">
           <p><i class="fa fa-university"> </i>Profession: <%#= @user.job %></p>
       	  </div>
+      	  <div class="col-md-12">
+          <p><i class="fa fa-university"> </i>Date Started: <%#= @user.job %></p>
+      	  </div>
       	  <% end %>
   </div>
 
 
       <div class="col-md-12">
       	<h3 class="text-center">Student History Class</h3>
-      	<table class="table table-compact table-bordered table-hover">
+      	<table class="table table-compact table-bordered table-hover" style="margin-top: 20px;">
       	<tr>
-      		<th>Teacher</th>
-      		<th>Topic</th>
-      		<th>Remarks</th>
-      		<th>Date</th>
-      		<th>Time</th>
+      		<th class="col-md-1 warning">Teacher</th>
+      		<th class="col-md-2 warning">Topic</th>
+      		<th class="col-md-3 warning">Notes</th>
+      		<th class="col-md-1 warning">Date</th>
+      		<th class="col-md-1 warning">Time</th>
       	</tr>
       	<% @history_class.each do |h| %>
       	<tr>

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 get 'student_class/:student', to: 'users#history_class', as: 'student_class'
 
+post 'users/:id', to: 'users#tutorial', as: 'tutorial'
+
 resources :curriculums
 
 

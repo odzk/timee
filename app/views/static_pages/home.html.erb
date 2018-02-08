@@ -14,7 +14,7 @@
 		<!--student-->
 		<!--student-->
 		<div class="container" style="padding:0 3% 0 3%;">
-			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center">Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
+			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><i class="fa fa-question-circle btn btn-default" data-toggle="modal" data-target="#welcome">使い方</i><br>Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
 		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
 		        <div class="content">
 						<div class="grid" style=" text-align: center;
@@ -99,6 +99,57 @@
 					</div>
 		</div>
 		</div>
+
+<!-- Modal Test -->
+
+<!-- <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#welcome').modal('show');
+    });
+</script> -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Modal -->
+  <div class="modal fade" id="welcome" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">Welcome to Timee!</h3>
+        </div>
+        <div class="modal-body">
+          <h4 class="text-center">Thank you for signing up!</h4><p>① You have been credited with free 30 minutes of time. To check how much time remains in your account you can click the time at the top of the page. </p><br>
+
+          	<img src="../../time_status.png" class="img img-responsive">
+
+          	<br>
+          	<p>② To start the class, just choose a teacher who is online.</p>
+          	<br>
+          	<img src="../../online_teacher.png" class="img img-responsive">
+          	<br>
+          	<p>③ Choose a Topic and click the Submit button</p>
+          	<img src="../../choose_topic.png" class="img img-responsive">
+          	<br>
+          	<p>④ You can now, chat or call the teacher and start the class</p>
+          	<br>
+          	<img src="../../start_class.png" class="img img-responsive">
+        </div>
+        <div class="modal-footer">        	
+          <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Modal Test -->
+
+
+
 		<% else %>
 		<!--teacher-->
 		<!--teacher-->

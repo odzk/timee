@@ -25,19 +25,14 @@
 
 <thead>
 
-  <th class="col-md-2" style="font-size:8px;">名前(name)</th>
-  <th class="col-md-3" style="font-size:8px;">メール(mail)</th> 
-  <th class="col-md-2" style="font-size:8px;">権限(auth)</th>
-  <th class="col-md-2" style="font-size:8px;">ロール(roll)</th>
-  
-  <th class="col-md-2" style="font-size:8px;">busy</th>
-  <th class="col-md-2" style="font-size:8px;">所持時間(time)</th>
-  
-  <th class="col-md-2" style="font-size:8px;">累計授業数(total class)</th>
-  <th class="col-md-2" style="font-size:8px;">累計授業時間(total time)</th>
-  
-  
-  <th colspan="2" class="col-md-4 text-center">Actions</th>
+  <th class="col-md-2">名前(name)</th>
+  <th class="col-md-3">メール(mail)</th> 
+  <th class="col-md-2">所持時間(time)</th>
+  <th class="col-md-2">累計授業数(total class)</th>
+  <th class="col-md-2">累計授業時間(total time)</th>
+  <th class="col-md-2">Last Seen</th>
+  <th class="col-md-2">Source</th>
+  <th colspan="3" class="col-md-3 text-center">Actions</th>
 
 </thead>
 
@@ -46,32 +41,7 @@
 <tr>
   <td><%= link_to user.name, edit_user_path(user) %></td>
   <td><%= user.email %></td>
-
-  
-  
- <% if user.admin? %>
-  <td>管理(admin)</td>
- <% else %>
-  <td>一般(nomal)</td>
-<% end %>
-
- <% if user.type_user == "teacher" %>
-  <td>先生(teacher)</td>
- <% elsif user.type_user == "student" %>
-  <td>生徒(student)</td>
- <% else %>
-  <td></td>
-<% end %>
-
- <% if user.busy == "busy" %>
-  <td>Busy</td>
- <% else %>
-  <td>レッスン可能(Available)</td>
-<% end %>
-
   <td><%= user.time %> 分</td>
-  
-  
 
  <% @totalsafes = Safe.where(:teacher => user.name ).paginate(page: params[:page]) %>
  <% @totalsafes2 = Safe.where(:student => user.name ).paginate(page: params[:page]) %>
@@ -87,10 +57,14 @@
   　<td> </td>
   <% end %>
   　
- 
+ <td><%= user.last_seen_at %></td>
+ <td><%= user.referral_id %></td>
+
   <td class="text-center"><%= link_to "<i class='fa fa-pencil'></i>".html_safe, edit_user_path(user), class: "btn btn-success", :style =>" color:#fff;" %></td>
 
   <td class="text-center"><%= link_to "<i class='fa fa-trash-o'></i>".html_safe , user ,method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？" }, class: "btn btn-success", :style =>" color:#fff;" %></td>
+
+  <td class="text-center"><button class="btn btn-success"><i class="fa fa-envelope"></i></button></td>
 
 </tr>
 

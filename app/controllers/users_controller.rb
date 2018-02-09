@@ -120,6 +120,7 @@ before_action :correct_user, only: [:edit ]
   end
   def index3
     @users = User.paginate(page: params[:page]) .where("type_user = 'student'")
+
   end
   def index4
     @users = User.paginate(page: params[:page]) .where("type_user = 'not-yet-teacher'")

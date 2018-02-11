@@ -169,7 +169,7 @@ before_action :correct_user, only: [:edit ]
        
         #add reward to teacher who refer the student
         if @referral_id.present?
-        @user_t = User.find_by(:referral_id =>@referral_id, :type_user => "teacher")
+        @user_t = User.find_by(:referral_id =>@referral_id)
         reward = @user_t.time + 30
         @user_t.update(:time => reward)
         @user_t.history.build(transaction_name: "Student Reward Sign Up", min_type: "+", mins: 30, datetime: DateTime.now, teacher: @user.name)

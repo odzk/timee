@@ -165,6 +165,7 @@ before_action :correct_user, only: [:edit ]
           flash[:success] = "成功！"
         redirect_to "/login"
        else
+        flash[:error] = @user.errors.full_messages
          render 'new'
        end
    

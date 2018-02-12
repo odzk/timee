@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :curriculums
+get 'student_class/:student', to: 'users#history_class', as: 'student_class'
+
+resources :curriculums
 
 
 get 'user/course/travel', to: 'curriculums#travel_english'
@@ -12,6 +14,9 @@ get 'user/course/it', to: 'curriculums#it_english'
 
 #status checker
 get 'status_online', to: 'users#status_online', as: 'status_online'
+
+#teacher report route
+get 'report/:id', to: 'users#report_teacher', as: 'report_teacher'
 
 get '/signup', to: 'users#new'
 post '/signup', to: 'users#create'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203075839) do
+ActiveRecord::Schema.define(version: 20180208042548) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -190,6 +190,17 @@ ActiveRecord::Schema.define(version: 20180203075839) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
+
+  create_table "report_teachers", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.string   "teacher_name",  limit: 255
+    t.string   "student_name",  limit: 255
+    t.string   "incident_name", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "report_teachers", ["user_id"], name: "index_report_teachers_on_user_id", using: :btree
 
   create_table "saves", force: :cascade do |t|
     t.string   "status",               limit: 255, default: "在庫中"
@@ -379,6 +390,7 @@ ActiveRecord::Schema.define(version: 20180203075839) do
     t.integer  "display_name",                       limit: 4
     t.string   "referral_id",                        limit: 255
     t.datetime "last_seen_at"
+    t.boolean  "new",                                              default: true
   end
 
   create_table "withdrows", force: :cascade do |t|
@@ -393,6 +405,7 @@ ActiveRecord::Schema.define(version: 20180203075839) do
   add_foreign_key "histories", "users"
   add_foreign_key "microposts", "users"
   add_foreign_key "profile_pics", "users"
+  add_foreign_key "report_teachers", "users"
   add_foreign_key "saves", "users"
   add_foreign_key "sells", "users"
   add_foreign_key "time_incentives", "users"

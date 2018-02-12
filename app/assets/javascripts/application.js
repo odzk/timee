@@ -25,15 +25,15 @@ function OnLinkClick() {
   }
 
 
-document.getElementById('file-input').onchange = function (e) {
-    loadImage(
-        e.target.files[0],
-        function (img) {
-            document.body.appendChild(img);
-        },
-        {maxWidth: 600} // Options
-    );
-};
+// document.getElementById('file-input').onchange = function (e) {
+//     loadImage(
+//         e.target.files[0],
+//         function (img) {
+//             document.body.appendChild(img);
+//         },
+//         {maxWidth: 600} // Options
+//     );
+// };
 
 
 	function entryChange1(){

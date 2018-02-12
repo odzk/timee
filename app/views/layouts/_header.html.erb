@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70797423-33"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-70797423-33');
+</script>
+
 <% if logged_in? %>
 
 <style>
@@ -45,7 +56,7 @@ a {
 	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;" class="mobilemotto hidden-xs">There is always time to LEARN!</p></a>
 		</div>
 
-		<% unless current_user.type_user == "teacher"%>
+		<% unless current_user.type_user == "teacher" %>
 
 		<div class="col-md-offset-1 col-md-2 col-xs-6 mobilemargintime" style="margin-top: 40px; margin-left: auto; margin-right: auto;">
 			 <% unless current_user.type_user == "teacher" %>
@@ -73,28 +84,6 @@ a {
 		</div>
 		<% end %>
 
-		<% if current_user.admin? %>
-
-		<div class="col-md-1">
-		 <%=  link_to users_path do %>
-	      <span class="fa fa-users"></span> Users
-	     <% end %>
-		</div>
-
-		<div class="col-md-1">
-		<%=  link_to safes_path do %>
-        	<span class="fa fa-table"></span> Logs
-      	<% end %>
-		</div>
-
-		<div class="col-md-1">
-		<%=  link_to salary_user_path do %>
-        	<span class="fa fa-jpy"></span> Salary</li>
-     	<% end %>
-		</div>
-
-        <% else %>
-
         <% if current_user.type_user == "teacher" %>
 
         <div class="col-md-offset-1 col-md-2 col-xs-12" style="margin-top: 40px;">
@@ -108,8 +97,6 @@ a {
                     <% end %>
       
                 </div>
-        <% end %>
-
         <% end %>
 
         <% if current_user.type_user == "student" %>
@@ -161,7 +148,8 @@ a {
 		</div>
 
 
-		<% else %>
+		<% elsif current_user.type_user == "student" %>
+			
 
 		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
 			<div class="col-md-3 col-xs-3 mobilecenter">
@@ -182,6 +170,31 @@ a {
 
 			<div class="col-md-3 col-xs-3 mobilecenter">
 			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;ログアウト</span>
+			<% end %>
+			</div>
+		</div>
+
+		<% else %>
+
+		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			 <%=  link_to salary_user_path do %>
+			 <img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Cost</span>
+          	<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			<%=  link_to safes_path do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Logs</span>
+			<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			<%= link_to users_path do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Users</span>
+			<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Logout</span>
 			<% end %>
 			</div>
 		</div>

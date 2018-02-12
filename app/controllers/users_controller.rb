@@ -8,6 +8,25 @@ before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
  protect_from_forgery except: :purchase
 
+  def history_class
+    @user = params[:student]
+    @student = User.where(:name => @user)
+    @history_class = Safe.where(:student => @user)
+
+  end
+
+  def report_teacher
+
+    @user = User.find(params[:id])
+    @student = current_user.name
+    @teacher = @user.name
+    @report = @user.report_teacher.build(teacher_name: @teacher, student_name: @student, incident_name: "Not Answering Calls")
+    @report.save
+    flash[:danger] = "Teacher has been reported for not anwering the call! Thank you."
+    redirect_to endenter_users_path(@user)
+
+  end
+
   def status_online
     current_user.update(last_seen_at:DateTime.now)
     render :nothing => true
@@ -101,6 +120,7 @@ before_action :correct_user, only: [:edit ]
   end
   def index3
     @users = User.paginate(page: params[:page]) .where("type_user = 'student'")
+
   end
   def index4
     @users = User.paginate(page: params[:page]) .where("type_user = 'not-yet-teacher'")
@@ -141,20 +161,15 @@ before_action :correct_user, only: [:edit ]
 
   def create
 
-        # @photo1 = params[:user][:picture].original_filename
-        # @photo2 = params[:user][:picture2].original_filename
-        # @photo3 = params[:user][:picture3].original_filename
-        # @youtube_video = params[:user][:youtube_url]
-
-
     if params[:new]
         @referral_id = params[:user][:referral_id]
+        @instagram = params[:user][:instagram]
         @user = User.new(user_params)
         @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
        
         #add reward to teacher who refer the student
         if @referral_id.present?
-        @user_t = User.find_by(:referral_id =>@referral_id, :type_user => "teacher")
+        @user_t = User.find_by(:referral_id =>@referral_id)
         reward = @user_t.time + 30
         @user_t.update(:time => reward)
         @user_t.history.build(transaction_name: "Student Reward Sign Up", min_type: "+", mins: 30, datetime: DateTime.now, teacher: @user.name)
@@ -162,6 +177,9 @@ before_action :correct_user, only: [:edit ]
         end
 
        if @user.save
+          if @instagram.present?
+          @user.update(:referral_id => @instagram)
+          end
           flash[:success] = "成功！"
         redirect_to "/login"
        else
@@ -208,13 +226,12 @@ before_action :correct_user, only: [:edit ]
   @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
   @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
 
-  # @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
-  # @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
-
   @current = current_user.name
+  @student_history = Safe.all
   @safes = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page])
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
+  @report = @user.report_teacher.last(3)
   end
   
   def edit3

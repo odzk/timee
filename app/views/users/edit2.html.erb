@@ -38,7 +38,7 @@
         <p><strong>Time Out: </strong><%= t.time_out.strftime("%I:%M%p") %></p>
         <% end %>
         <% if Time.now.hour >= 19 %>
-        <p style="color:red; !important;"><small>Incentive Time. Make sure Login time is 6PM to earn incentive.</small></p>
+        <p style="color:red; !important;"><small>Incentive Time. Make sure Login time is 6PM onwards to earn incentive.</small></p>
         <% end %>
       </div>
 
@@ -91,10 +91,24 @@
         <!-- <label><%= @totalsafes.sum(:time) %></label> mins -->
       </div>
     </div>
-  </div>
+
+
+   <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-bell"></span>Alerts</h2>
+      </div>
+      <div class="panel-body">
+      <div class="radio" style="margin-bottom: 10px;">
+      <% @report.each do |r| %>
+      <p>Student <span style="color:green"><%= r.student_name %></span> reported you for:<span style="color:red"> <%= r.incident_name %></span>. Date: <%= r.created_at %>
+      <% end %>
+        </div>
+      </div>
+    </div>
 
 </div>
-
+  </div>
 
 
 <!-- original dashboard -->
@@ -160,6 +174,7 @@
 <div style="margin:0 15% 0 5%;">  
 
  -->
+
 <div class="container">
  <div class="row">
   <div class="col-md-12">
@@ -179,10 +194,10 @@
       <tbody>
 
   <% @safes.each do |safe| %>
-
+          <% @student_name_h = safe.student %>
           <td><%= safe.id %></td>
           <td><%= (safe.created_at).strftime("%I:%M%p") + ' ~ ' + time_ago_in_words(safe.created_at) %></td>
-          <td><%= safe.student %></td>
+          <td><%= safe.student %><%= link_to student_class_path(safe.student), :target => '_blank' do %> <button class="btn btn-warning">Student History</button> <% end %></td>
           <% @p = "\"" + safe.student + "\"" %>
           <% @id = User.find_by(name: safe.student) %>
           <td>
@@ -237,6 +252,7 @@
   <% end %>
   </tbody>
 </table>
+
 </div>
 </div>
 </div>

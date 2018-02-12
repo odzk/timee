@@ -17,6 +17,10 @@
 
 @media only screen and (max-width: 600px) {
 
+.main {
+  margin-top: 0 !important;
+}
+
 .pleft {
   padding-left: 10px !important;
   }
@@ -33,6 +37,7 @@
 
  .main-center {
   padding: 10px 10px !important;
+
  }
 } 
 
@@ -127,16 +132,12 @@ span.input-group-addon i {
         <div class="col-md-12">
         <div class="main-login main-center col-md-offset-3 col-md-6">
         <a href="/">
-        <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; "></a>
-
-        <h5 class="text-right">
-        <span style="color:red;">Are you a teacher?<br/><a href="/signupteacher">Click Here</a></span>
-        </h5>
+        <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; margin-top: 35px; margin-bottom: 20px; "></a>
 
         <%= form_for(@user) do |f| %>
             
             <div class="form-group">
-              <label for="name" class="cols-md-2 control-label hidden-xs">ニックネーム<small style="color: red">[required]</small></label>
+              <label for="name" class="cols-md-2 control-label hidden-xs">ニックネーム<small style="color: red">*</small></label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-user fa" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -146,7 +147,7 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="email" class="cols-md-2 control-label hidden-xs">メールアドレス<small style="color: red">[required]</small></label>
+              <label for="email" class="cols-md-2 control-label hidden-xs">メールアドレス<small style="color: red">*</small></label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -155,18 +156,18 @@ span.input-group-addon i {
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="username" class="cols-md-2 control-label hidden-xs">スカイプID<small style="color: red">[required]</small></label>
+<!--             <div class="form-group">
+              <label for="username" class="cols-md-2 control-label hidden-xs">スカイプID<small style="color: red">*</small></label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
                   <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :required => ''  %>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
-              <label for="password" class="cols-md-2 control-label hidden-xs">パスワード<small style="color: red">[required]</small></label>
+              <label for="password" class="cols-md-2 control-label hidden-xs">パスワード<small style="color: red">*</small></label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -176,7 +177,7 @@ span.input-group-addon i {
             </div>
 
             <div class="form-group">
-              <label for="confirm" class="cols-md-2 control-label hidden-xs">確認用パスワード<small style="color: red">[required]</small></label>
+              <label for="confirm" class="cols-md-2 control-label hidden-xs">確認用パスワード<small style="color: red">*</small></label>
               <div class="cols-md-10">
                 <div class="input-group">
                   <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
@@ -195,16 +196,24 @@ span.input-group-addon i {
 
             </div>
             <% referral = request.query_parameters 
-            id = referral['referral']%>
+            id = referral['referral']
+            instagram = referral['from'] %>
             <%= f.hidden_field :time, :value => 30 %>
             <%= f.hidden_field :type_user, :value => "student" %>
             <%= f.hidden_field :referral_id, :value => id %>
+            <%= f.hidden_field :instagram, :value => instagram %>
+
 
             <div class="form-group">
-            <%= f.submit "登録する", class: "btn btn-primary btn-block btn-lg", name: "new", :value => "登録する" %>
+            <%= f.submit "登録する", class: "btn btn-primary btn-block btn-lg", name: "new", :value => "今すぐ新規登録" %>
             </div>
             
           </form>
+
+          <div class="col-md-12">
+            <p style="text-align: center;">30分の無料トライアルは 登録後に自動的に付与されます。</p>
+          </div>
+
         </div>
 
         <div class="modal fade" id="agreement" role="dialog">

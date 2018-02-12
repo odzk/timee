@@ -1,5 +1,8 @@
 <% provide(:title,"トップページ") %>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <%     session.delete(:fowarding_url)
     store_location
     %>
@@ -14,7 +17,7 @@
 		<!--student-->
 		<!--student-->
 		<div class="container" style="padding:0 3% 0 3%;">
-			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center">Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
+			<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><i class="fa fa-question-circle btn btn-danger" data-toggle="modal" data-target="#welcome">使い方</i><br>Teachers <span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">『今』空いてる先生</span></h2>
 		<!--<h4 style="font-size:15px;">Let's buy teacher's TIME !!</h4>-->
 		        <div class="content">
 						<div class="grid" style=" text-align: center;
@@ -99,6 +102,56 @@
 					</div>
 		</div>
 		</div>
+
+<!-- Modal Test -->
+
+<!-- <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#welcome').modal('show');
+    });
+</script> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="welcome" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">timeeへようこそ！</h3>
+        </div>
+        <div class="modal-body">
+
+          <h4 class="text-center">ご登録ありがとうございます。</h4><p>① タイミーは時間を購入した分だけレッスンが受けれる英会話サービスです。現在キャンペーン中により初回登録は30分無料でご利用頂けます。アカウントに残っている時間を確認するには、ページ上部の残時間をクリックし確認出来ます。 </p><br>
+
+          	<img src="../../time_status.jpg" class="img img-responsive">
+
+          	<br>
+          	<p>② レッスンは好きなタイミングで好きな講師を選択して受講可能です。もちろん面倒な予約は不要です。ライトアップされている講師は待機中ですぐにレッスン可能です。"sorry busy"と表示されている講師は離席中の為、受講出来ません。</p>
+          	<br>
+          	<img src="../../online_teacher.jpg" class="img img-responsive">
+          	<br>
+          	<p>③ どの様なレッスンを受けたいか選択し、”今すぐ英会話を選択”します。</p>
+          	<img src="../../choose_topic.jpg" class="img img-responsive">
+          	<br>
+          	<p>④ 準備が出来てない場合はチャットで連絡、準備が出来たら今すぐ通話。あとは、講師の人たちが皆さんをサポートします。</p>
+          	<br>
+          	<img src="../../start_class.jpg" class="img img-responsive">
+        </div>
+        <div class="modal-footer">        	
+          <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Modal Test -->
+
+
+
 		<% else %>
 		<!--teacher-->
 		<!--teacher-->

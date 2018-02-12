@@ -41,22 +41,33 @@
 <table class="table table-bordered table-hover" style="margin:100px 10% 0 10% ; width:80%;">
 
 <thead>
-  <th class="col-md-2" style="font-size:8px;">ID</th>
-  <th class="col-md-2" style="font-size:8px;">名前(name)</th>
-  <th class="col-md-2" style="font-size:8px;">所持時間(time)</th>
+  <th class="col-md-1">ID</th>
+  <th class="col-md-2">名前(name)</th>
+  <th class="col-md-2">所持時間(time)</th>
+  <th class="col-md-2">Total Cost</th>
 
 </thead>
 
 <tbody>
+<%= @cost = 0 %>
 <% @users.each do |user| %>
+<% @cost = @cost + user.time %>
 <tr>
   <td><%= user.id %></td>
   <td><%= user.name %></td>
   <td><%= user.time %> min</td>
-  
+  <td>Php <%= user.time * 2.5 %></td>
+
 </tr>
 
 <% end %>
+
+
+<tr>
+    <td colspan="3" style="text-align: right; font-weight: bold">Overall Cost</td>
+    <td>Php <%= @cost * 2.5 %></td>
+</tr>
+
 </tbody>
 
   

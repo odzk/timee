@@ -49,6 +49,14 @@ before_action :not_logged_in_user, only: [:new , :create, :edit, :update]
 
       if user.present?
 
+      if user.fb_id.empty?
+
+        flash[:danger] = "The email address you use to login for Facebook is already registered in timee. Please sign in using regular email and password. If you still have problems logging in, contact admin support at support@web-mech.net"
+        
+        redirect_to "/login"
+
+      end
+
       if user && user.authenticate(params[:pass])
     log_in user
     redirect_back_or root_url

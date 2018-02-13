@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
 get 'student_class/:student', to: 'users#history_class', as: 'student_class'
 
+get '/fb', to: 'users#createfb'
+get '/fbpass', to: 'sessions#createfb', as: 'auto_sign'
+
 resources :curriculums
 
 

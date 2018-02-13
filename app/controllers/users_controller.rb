@@ -8,6 +8,24 @@ before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
  protect_from_forgery except: :purchase
 
+ def createfb
+  @name = params[:name]
+  @email = params[:email]
+  @pass = params[:password]
+  @gender = params[:gender]
+  @age = params[:age]
+  @user = User.new(name: @name, email: @email, password: @pass, time: 30, sex: @gender, fb_id: @pass, age: @age, type_user: "student")
+  @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
+  
+  if @user.save
+  flash[:success] = "Success! Welcome to Timee!" 
+  redirect_to auto_sign_path(email: @email, pass: @pass)
+  else
+  flash[:danger] = "You're already Registered Using Facebook. Please sign in."
+  redirect_to "/login"
+  end
+ end
+
   def history_class
     @user = params[:student]
     @student = User.where(:name => @user)

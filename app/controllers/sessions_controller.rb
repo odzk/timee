@@ -43,6 +43,23 @@ before_action :not_logged_in_user, only: [:new , :create, :edit, :update]
   #   end
   # end
   
+
+  def createfb
+    user = User.find_by(email: params[:email].downcase)
+
+      if user.present?
+
+      if user && user.authenticate(params[:pass])
+    log_in user
+    redirect_back_or root_url
+      end
+
+    else
+
+      redirect_to "/signup"
+
+    end
+  end
   
   def create
     user = User.find_by(email: params[:session][:email].downcase)

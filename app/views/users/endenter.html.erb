@@ -40,14 +40,14 @@
 <h2>Teacher <%= @user.nick %></h2>
 
 </div>
-<div class="col-md-6">
-<div class="row">
+
+<div class="col-md-6" style="margin-bottom: 30px;">
     <div class="col-md-6">
         <p>Schedule a call back from the teacher by clicking the button.</p>
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><span class="glyphicon glyphicon-comment"></span> &nbsp Schedule Callback</button>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp Schedule Callback</button>
     </div>
+
     <div class="col-md-6">
-      
         <p>If you're not ready to call. You can Chat / Message Teacher <%= @user.nick %> first.</p>
         <span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-text="Chat Me" style="color: #fff;"></span>
         <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>  
@@ -55,7 +55,7 @@
 </div>
 
 
-<p style="margin-top: 30px;">オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
+<p>オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
 
 <a href="skype:<%= @user.skype %>?call" class="btn btn-lg btn-danger" style="color:#fff;"><i class="fa fa-skype"></i> 今すぐ通話</a>
 

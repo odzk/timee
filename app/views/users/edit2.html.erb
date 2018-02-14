@@ -110,7 +110,8 @@
               <td>No Time In Record</td>
               <% else %>
               <td><%= t.time_in.strftime('%I:%M %p') %></td>
-
+              <% end %>
+              
               <% if t.time_out.nil? %>
               <td>No Time Out Record</td>
               <% else %>
@@ -123,7 +124,7 @@
               <% else %>
               <td>Unable to Calculate Time!</td>
               <% end %>
-              
+
           </tr>
           <% end %>
         </table>

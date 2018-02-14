@@ -43,13 +43,13 @@
 
 <div class="col-md-6" style="margin-bottom: 30px;">
     <div class="col-md-6">
-        <p>Schedule a call back from the teacher by clicking the button.</p>
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp Schedule Callback</button>
+        <p>日時を指定して先生と英会話できます。</p>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp 申し込む</button>
     </div>
 
     <div class="col-md-6">
-        <p>If you're not ready to call. You can Chat / Message Teacher <%= @user.nick %> first.</p>
-        <span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-text="Chat Me" style="color: #fff;"></span>
+        <p>まだ準備ができていませんか？まずはチャットで連絡してみましょう</p>
+        <span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-text="チャットする" style="color: #fff;"></span>
         <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>  
     </div>
 </div>

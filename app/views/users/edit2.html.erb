@@ -111,14 +111,14 @@
               <% else %>
               <td><%= t.time_in.strftime('%I:%M %p') %></td>
               <% end %>
-              
+
               <% if t.time_out.nil? %>
               <td>No Time Out Record</td>
               <% else %>
               <td><%= t.time_out.strftime('%I:%M %p') %></td>
               <% end %>
 
-              <% if t.time_out.present? && t.time_out.present? 
+              <% if t.time_in.present? && t.time_out.present? 
               count_time = (t.time_out - t.time_in) / 1.minutes %>
               <td><%= number_with_precision(count_time, precision: 2) %> mins</td>
               <% else %>

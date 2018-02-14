@@ -241,8 +241,10 @@ before_action :correct_user, only: [:edit ]
   @user = User.find(current_user.id)
   @history = @user.history
 
-  @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
-  @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
+  @time_record = @user.time_incentive.paginate(page: params[:page], :per_page => 10)
+
+  # @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today)
+  # @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today)
 
   @current = current_user.name
   @student_history = Safe.all

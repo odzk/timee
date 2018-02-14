@@ -22,27 +22,6 @@
       </div>
     </div>
 
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right fa fa-clock-o"></span>Time Log</h2>
-      </div>
-      <div class="panel-body">
-        <% @time_in.each do |t| 
-          if Time.now.hour >= 19 %>
-        <p style="color:green;"><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
-        <% else %>
-        <p><strong>Time In:</strong> <%= t.time_in.strftime("%I:%M%p") %></p>
-          <% end %>
-        <% end %>
-        <% @time_out.each do |t| %>
-        <p><strong>Time Out: </strong><%= t.time_out.strftime("%I:%M%p") %></p>
-        <% end %>
-        <% if Time.now.hour >= 19 %>
-        <p style="color:red; !important;"><small>Incentive Time. Make sure Login time is 6PM onwards to earn incentive.</small></p>
-        <% end %>
-      </div>
-
-  </div>
 </div>
 
   <div class="col-md-3">
@@ -106,10 +85,45 @@
         </div>
       </div>
     </div>
-
 </div>
   </div>
 
+<div class="col-md-12">
+      <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h2 class="panel-title"><span class="pull-right fa fa-clock-o"></span>Time Log</h2>
+      </div>
+      <div class="panel-body">
+
+        <table class="table table-compact table-hover table-bordered">
+          <tr>
+            <th>Date</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+            <th>Total Time</th>
+          </tr>
+          <% @time_record.each do |t| %>
+          <tr>
+              <td><%= t.created_at.strftime('%B %e %Y %a') %></td>
+              <td><%= t.time_in.strftime('%I:%M %p') %></td>
+              <% if t.time_out.nil? %>
+              <td>No Time Out Record</td>
+              <% else %>
+              <td><%= t.time_out.strftime('%I:%M %p') %></td>
+              <% end %>
+              <% if t.time_out.present? && t.time_out.present? 
+              count_time = (t.time_out - t.time_in) / 1.minutes %>
+              <td><%= number_with_precision(count_time, precision: 2) %> mins</td>
+              <% else %>
+              <td>Unable to Calculate Time!</td>
+              <% end %>
+          </tr>
+          <% end %>
+        </table>
+         <%= paginate @time_record %>       
+      </div>
+    </div>
+</div>
 
 <!-- original dashboard -->
 <!-- original dashboard -->

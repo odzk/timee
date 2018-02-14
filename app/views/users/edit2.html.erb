@@ -200,7 +200,11 @@
           <td><%= safe.student %><%= link_to student_class_path(safe.student), :target => '_blank' do %> <button class="btn btn-warning">Student History</button> <% end %></td>
           <% @p = "\"" + safe.student + "\"" %>
           <% @id = User.find_by(name: safe.student) %>
+          <% if @id.time.nil? %>
+          <td>0 mins</td>
+          <% else %>
           <td><%= @id.time %> mins</td>
+          <% end %>
           <td><%= safe.notes %></td>
           <% if safe.topic == "Travel English" %>
           <td><%= safe.topic %><a href="course/travel" target="_blank" class="btn btn-success" style="color: #fff;">Click Here</a></td>

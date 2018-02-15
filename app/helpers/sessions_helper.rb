@@ -48,7 +48,7 @@ module SessionsHelper
             
             #if user && user.authenticated?(cookies[:remember_token])
             # ↓↓↓
-            if user && user.authenticated?(:remember, cookies[:remember_token])
+            if user && user.authenticate(cookies[:remember_token]) # temporary fix for some users unable to sign in due to error
             #メール認証のための変更
 
             

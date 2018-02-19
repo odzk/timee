@@ -236,8 +236,9 @@ before_action :correct_user, only: [:edit ]
   def edit
   @user = User.find(params[:id])
   end
-  
+
   def edit2
+
   @user = User.find(current_user.id)
   @history = @user.history
 
@@ -300,7 +301,14 @@ before_action :correct_user, only: [:edit ]
         redirect_to edit_user_path
       end
       
-      
+    elsif params[:skype_update]
+
+
+      @user = User.find(params[:id])
+      @user.update(user_params)
+      flash[:success] = "Skype ID updated, you can now start a class!"
+      redirect_to "/"
+
     elsif params[:busy]
       
       @user = User.find(params[:id])
@@ -309,8 +317,10 @@ before_action :correct_user, only: [:edit ]
       if @user.busy == "available" || @user.busy == "call"
         #Do nothing to avoid duplicates
        else
+
       @time_in = @user.time_incentive.build(teacher_name: @user.name, time_in: Time.now)
       @time_in.save
+
        end
 
     elsif params[:user][:busy] == "busy"
@@ -321,25 +331,45 @@ before_action :correct_user, only: [:edit ]
         @time_out_status = TimeIncentive.order("created_at").last
         @time_out_status.update(time_out: Time.now)
 
-        @time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
-        @time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
+        # auto conversion of time if 5:45PM ~ 5:59PM
 
-          @time_in.each do |t|
+        @time_in = @user.time_incentive
+        @time_out = @user.time_incentive
+
+
+        #@time_in = @user.time_incentive.where("DATE(time_in) = ?", Date.today).last(1)
+        #@time_out = @user.time_incentive.where("DATE(time_out) = ?", Date.today).last(1)
+
+
+  @time_in.each do |t|
     @t_in = t.time_in
   end
+
+  if @t_in.hour == 18 && @t_in.min >= 45
+  @t_in = Time.parse("19:00") # auto convert to Time incentive
+  end 
 
   @time_out.each do |t|
     @t_out = t.time_out
   end
 
+
   if @t_in.present? && @t_out.present? && @t_out > @t_in
+
+    if @t_out >= DateTime.now.midnight
+
+      @t_out = Time.parse("24:00")
+
+    end
+
   @count_time = (@t_out - @t_in) / 1.minutes
   end
 
   if @count_time.present?
 
   @incentive_time = @count_time / 5
-  
+
+
   if @t_in.hour >= 19 #incentive will be generated only during 6PM - 12midnight
 
   @earning = @user.time + @incentive_time #converting incentive time to timee time
@@ -386,6 +416,7 @@ before_action :correct_user, only: [:edit ]
   def endenter
     
     @user = User.find(params[:id])
+    @current_user = current_user
 
   end  
 

@@ -46,9 +46,9 @@
 <div class="col-md-12">
 <% if @current_user.skype.nil? || @current_user.skype.empty? %>
 
-<p><strong>Hi, we noticed that you don't have a Skype ID saved in Timee</strong></p>
+<p><strong>授業を受けるためにはSkypeのIDが必要です。</strong></p>
 
-<p>Before you can start a class, you need to update your Skype ID. If you don't have a Skype ID, you can sign up for free by <a href="#" onclick="window.open('https://www.skype.com/ja/');return false;" style="color:red">clicking this link</a> or https://www.skype.com/ja/</p>
+<p>まだSkypeのアカウントがない方はこちらから取得下さい --> https://www.skype.com/ja/</p>
 <%= form_for(@current_user) do |f| %>
        <div class="form-group">
               <label for="skype" class="cols-md-2 control-label hidden-xs">Skype ID<small style="color: red">*</small></label>
@@ -62,7 +62,7 @@
             </div>
 
       <div class="form-group">
-            <%= f.submit "Submit", class: "btn btn-default btn-lg", name: "skype_update", :value => "Submit" %>
+            <%= f.submit "Submit", class: "btn btn-default btn-lg", name: "skype_update", :value => "送信" %>
             </div>
 <% end %>
 <% else %>

@@ -1,7 +1,14 @@
 <h1>Results Here:</h1>
 <% @result_parsed %>
 
+<% @token = [] %>
 <%= @result_parsed.each do |r| %>
+
+<p>Token Key</p>
+
+<%= @token << r[1] %>
+
+<p>End of Token Key</p>
 
 <%= @id = r[1]['id']
 	@username = r[1]['username']
@@ -12,6 +19,9 @@
  %>
 
  <% end %>
+
+<p>Results Here</p>
+ <%= @token[0] %>
 
 <table class="table table-bordered table-hover">
 	<tr>

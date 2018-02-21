@@ -12,13 +12,19 @@ before_action :correct_user, only: [:edit ]
   @access_token = params[:access_token]
   @user = User.where(:instagram_token => @access_token)
 
+  if @user.blank?
+
+  redirect_to 'https://www.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/insta&response_type=code'
+
+  else
+
   @user.each do |u|
     @email = u.email
     @pass = u.instagram_id
   end
 
   redirect_to auto_sign_insta_path(email: @email, pass: @pass)
-
+ end
  end 
 
 
@@ -36,7 +42,7 @@ before_action :correct_user, only: [:edit ]
       client_id: '40121d95c810426f8138deb395cff7fc',
       client_secret: '9f4014e5160e4dae8abe31c497aa0851',
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000/insta',
+      redirect_uri: 'http://timee-online.com/insta',
       code: @code
     }
   }

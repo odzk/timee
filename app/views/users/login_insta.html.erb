@@ -1,0 +1,13 @@
+<p>Please wait.... Logging you in to timee</p>
+
+<script>
+var url = window.location.href; 
+var hash = url.substring(url.indexOf('#')+1);
+var hash_value = hash.split('=');
+//console.log(hash_value[1]);
+
+window.location.replace('/instaparams?access_token=' + hash_value[1])
+</script>
+
+
+

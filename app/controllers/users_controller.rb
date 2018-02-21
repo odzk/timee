@@ -8,6 +8,99 @@ before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
  protect_from_forgery except: :purchase
 
+ def instaparams
+  @access_token = params[:access_token]
+  @user = User.where(:instagram_token => @access_token)
+
+  @user.each do |u|
+    @email = u.email
+    @pass = u.instagram_id
+  end
+
+  redirect_to auto_sign_insta_path(email: @email, pass: @pass)
+
+ end 
+
+
+ def login_insta
+
+ end 
+
+
+ def createinsta
+
+  @code = params[:code]
+  
+  @options = {
+    body: {
+      client_id: '40121d95c810426f8138deb395cff7fc',
+      client_secret: '9f4014e5160e4dae8abe31c497aa0851',
+      grant_type: 'authorization_code',
+      redirect_uri: 'http://localhost:3000/insta',
+      code: @code
+    }
+  }
+
+  @result = HTTParty.post("https://api.instagram.com/oauth/access_token", @options)
+  @result_parsed = @result.parsed_response
+  @token_array = []
+  @result_parsed.each do |r|
+
+    @token_array << r[1]
+
+    unless r[1]['id'].blank?
+    @id = r[1]['id']
+    @dummy_email = @id + '@instagram.com'
+    end
+
+    unless r[1]['username'].blank?
+    @username = r[1]['username']
+    end
+    
+    unless r[1]['profile_picture'].blank?
+    @profile_picture = r[1]['profile_picture']
+    end
+
+    unless r[1]['full_name'].blank?
+    @full_name = r[1]['full_name']
+    end
+    
+    unless r[1]['bio'].blank?
+    @bio = r[1]['bio']
+    end
+    
+    unless r[1]['website'].blank?
+    @website = r[1]['website']
+    end
+
+  end
+
+    unless @token_array[0].blank?
+    @access_token = @token_array[0]
+    end
+
+  @user = User.new(name: @full_name, email: @dummy_email, password: @id, time: 30, type_user: "student", instagram_token: @access_token)
+  @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
+  
+  if @bio.present?
+    @user.update(instagram_bio: @bio)
+  end
+
+  if @website.present?
+    @user.update(instagram_website: @website)
+  end
+
+
+  if @profile_picture.present?
+    @user.update(instagram_profile_picture: @profile_picture)
+  end
+
+  if @user.save
+  flash[:success] = "Success! Welcome to Timee!" 
+  redirect_to auto_sign_insta_path(email: @dummy_email, pass: @pass)
+  end
+ end
+
  def createfb
   @name = params[:name]
   @email = params[:email]
@@ -345,9 +438,9 @@ before_action :correct_user, only: [:edit ]
     @t_in = t.time_in
   end
 
-  if @t_in.hour == 18 && @t_in.min >= 45
-  @t_in = Time.parse("19:00") # auto convert to Time incentive
-  end 
+  # if @t_in.hour == 18 && @t_in.min >= 45
+  # @t_in = Time.parse("19:00") # auto convert to Time incentive
+  # end 
 
   @time_out.each do |t|
     @t_out = t.time_out
@@ -356,11 +449,11 @@ before_action :correct_user, only: [:edit ]
 
   if @t_in.present? && @t_out.present? && @t_out > @t_in
 
-    if @t_out >= DateTime.now.midnight
+    # if @t_out >= DateTime.now.midnight
 
-      @t_out = Time.parse("24:00")
+    #   @t_out = Time.parse("24:00")
 
-    end
+    # end
 
   @count_time = (@t_out - @t_in) / 1.minutes
   end

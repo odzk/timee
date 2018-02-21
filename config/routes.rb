@@ -5,6 +5,13 @@ get 'student_class/:student', to: 'users#history_class', as: 'student_class'
 get '/fb', to: 'users#createfb'
 get '/fbpass', to: 'sessions#createfb', as: 'auto_sign'
 
+get '/insta', to: 'users#createinsta'
+get '/instapass', to: 'sessions#createinsta', as: 'auto_sign_insta'
+get '/login_insta', to: 'users#login_insta'
+get '/instaparams', to: 'users#instaparams', as: 'instaparams'
+
+get 'debugpage', to: 'users#debugpage', as: 'debugpage'
+
 resources :curriculums
 
 

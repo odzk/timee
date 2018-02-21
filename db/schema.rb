@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212092555) do
+ActiveRecord::Schema.define(version: 20180220074837) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -393,6 +393,12 @@ ActiveRecord::Schema.define(version: 20180212092555) do
     t.boolean  "new",                                              default: true
     t.string   "fb_id",                              limit: 255
     t.integer  "age",                                limit: 4
+    t.string   "instagram_token",                    limit: 1000
+    t.string   "instagram_id",                       limit: 255
+    t.string   "instagram_username",                 limit: 255
+    t.string   "instagram_profile_picture",          limit: 255
+    t.string   "instagram_bio",                      limit: 255
+    t.string   "instagram_website",                  limit: 255
   end
 
   create_table "withdrows", force: :cascade do |t|

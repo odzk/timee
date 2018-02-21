@@ -147,6 +147,31 @@ a {
 			</div>
 		</div>
 
+		<% elsif current_user.type_user == "student" && current_user.country == "Chinese" || "Korean" || "Taiwanese" %>
+
+		<!-- <div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			 <%=  link_to edit3_user_path(current_user.id) do %>
+			 <img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Dashboard</span>
+          	<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			<%=  link_to edit2_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Classes</span>
+			<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Edit Profile</span>
+			<% end %>
+			</div>
+
+			<div class="col-md-3 col-xs-3 mobilecenter">
+			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;Logout</span>
+			<% end %>
+			</div>
+		</div> -->
+
 
 		<% elsif current_user.type_user == "student" %>
 			

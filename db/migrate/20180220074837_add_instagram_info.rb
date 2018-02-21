@@ -1,6 +1,6 @@
 class AddInstagramInfo < ActiveRecord::Migration
   def change
-  	add_column :users, :instagram_token, :string, :limit => 1000
+  	add_column :users, :instagram_token, :string
   	add_column :users, :instagram_id, :string
   	add_column :users, :instagram_username, :string
   	add_column :users, :instagram_profile_picture, :string

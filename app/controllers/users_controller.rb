@@ -108,7 +108,7 @@ before_action :correct_user, only: [:edit ]
   redirect_to auto_sign_insta_path(email: @dummy_email, pass: @pass)
 
   else
-  flash[:danger] = "Login Failed."
+  flash[:danger] = @user.errors.full_messages
   end
  end
 

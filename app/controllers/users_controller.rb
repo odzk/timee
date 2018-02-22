@@ -21,10 +21,12 @@ before_action :correct_user, only: [:edit ]
   @user.each do |u|
     @email = u.email
     @pass = u.instagram_id
+  
   end
 
   redirect_to auto_sign_insta_path(email: @email, pass: @pass)
- end
+
+  end
  end 
 
 
@@ -104,6 +106,9 @@ before_action :correct_user, only: [:edit ]
   if @user.save
   flash[:success] = "Success! Welcome to Timee!" 
   redirect_to auto_sign_insta_path(email: @dummy_email, pass: @pass)
+
+  else
+  flash[:danger] = "Login Failed."
   end
  end
 

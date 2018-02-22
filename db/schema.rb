@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220074837) do
+ActiveRecord::Schema.define(version: 20180222100602) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -201,6 +201,16 @@ ActiveRecord::Schema.define(version: 20180220074837) do
   end
 
   add_index "report_teachers", ["user_id"], name: "index_report_teachers_on_user_id", using: :btree
+
+  create_table "request_calls", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "teacher_name", limit: 255
+    t.string   "student_name", limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "request_calls", ["user_id"], name: "index_request_calls_on_user_id", using: :btree
 
   create_table "saves", force: :cascade do |t|
     t.string   "status",               limit: 255, default: "在庫中"
@@ -414,6 +424,7 @@ ActiveRecord::Schema.define(version: 20180220074837) do
   add_foreign_key "microposts", "users"
   add_foreign_key "profile_pics", "users"
   add_foreign_key "report_teachers", "users"
+  add_foreign_key "request_calls", "users"
   add_foreign_key "saves", "users"
   add_foreign_key "sells", "users"
   add_foreign_key "time_incentives", "users"

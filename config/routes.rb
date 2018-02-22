@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+#student request callback
+get 'request/:id', to: 'users#request_call', as: 'request_call'
+
 get 'student_class/:student', to: 'users#history_class', as: 'student_class'
 
 get '/fb', to: 'users#createfb'

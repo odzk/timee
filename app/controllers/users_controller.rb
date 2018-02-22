@@ -6,7 +6,19 @@ before_action :teacher_now, only: [:show, :endenter ]
 before_action :admin_user, only: [:index, :index2, :index3, :index4, :new3, :salary, :destroy ]
 before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
- protect_from_forgery except: :purchase
+protect_from_forgery except: :purchase
+
+ def request_call
+ 
+  @user = User.find(params[:id])
+  @student = current_user.name
+  @teacher = @user.name
+  @request = @user.request_call.build(teacher_name: @teacher, student_name: @student)
+  @request.save
+  flash[:success] = "You have requested the teacher to call you. Please wait. Thank you!"
+  redirect_to endenter_users_path(@user)
+
+ end
 
  def instaparams
   @access_token = params[:access_token]
@@ -358,6 +370,8 @@ before_action :correct_user, only: [:edit ]
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
   @report = @user.report_teacher.last(3)
+
+
   end
   
   def edit3

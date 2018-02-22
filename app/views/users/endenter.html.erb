@@ -72,9 +72,16 @@
 
 
     <div class="col-md-6">
+
+        <p>今すぐクラスを開始することができます</p>
+        <%= link_to request_call_path(@user) do %>
+        <button onclick="return confirm('Request Teacher to Call Now?')" class="btn btn-lg btn-success"><i class="fa fa-skype"></i> 今すぐ電話して</button>
+        <% end %>
+
+<!--
         <p>日時を指定して先生と英会話できます。</p>
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp 申し込む</button>
-    </div>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp 申し込む</button> -->
+    </div> 
 
     <div class="col-md-6">
         <p>まだ準備ができていませんか？まずはチャットで連絡してみましょう</p>

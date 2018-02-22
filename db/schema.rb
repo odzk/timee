@@ -376,7 +376,7 @@ ActiveRecord::Schema.define(version: 20180220074837) do
     t.string   "picture3",                           limit: 255
     t.string   "skill",                              limit: 255
     t.string   "job",                                limit: 255
-    t.string   "appeal",                             limit: 255
+    t.string   "appeal",                             limit: 2000
     t.string   "hobby",                              limit: 255
     t.string   "country",                            limit: 255
     t.string   "movie",                              limit: 255
@@ -393,7 +393,7 @@ ActiveRecord::Schema.define(version: 20180220074837) do
     t.boolean  "new",                                              default: true
     t.string   "fb_id",                              limit: 255
     t.integer  "age",                                limit: 4
-    t.string   "instagram_token",                    limit: 1000
+    t.string   "instagram_token",                    limit: 255
     t.string   "instagram_id",                       limit: 255
     t.string   "instagram_username",                 limit: 255
     t.string   "instagram_profile_picture",          limit: 255

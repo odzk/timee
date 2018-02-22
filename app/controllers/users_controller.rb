@@ -109,6 +109,7 @@ before_action :correct_user, only: [:edit ]
 
   else
   flash[:danger] = @user.errors.full_messages
+  redirect_to "/login"
   end
  end
 

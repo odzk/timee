@@ -178,12 +178,122 @@ span.input-group-addon i {
   padding: 0 !important;
   }
 }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 </style>
 <div class="bg nopadding">
     <div class="container nopadding">
       <div class="row main">
         <div class="col-md-12">
-        <div class="main-login main-center col-md-offset-3 col-md-6 nopadding">
+        <div class="col-md-5" style="background-color: #7ed8f2;"><br><br><br><br><br>
+          <p class="text-center"><img src="../../logo02.png" width="50%"></p> <br><br><br>
+
+          <b><p style="color: white;">Some Japanese Text here blabla</p></b><br>
+          <button type="button" class="btn btn-danger btn-block">Danger</button><br><br><br>
+        </div>
+
+
+
+
+
+
+        <div class="col-md-7" style="background-color: white;">
+        <h4>Some Japanese Text here</h4><br>
+          <div class="form-group mmobile">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <input type="email" class="form-control" name="email" placeholder="メールアドレス"> <br>    
+                </div>
+            </div>
+            <div class="form-group mmobile">
+                <div class="input-group">
+                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa" style="color:#948c8c" aria-hidden="true"></i></span>
+                  <input type="password" class="form-control" name="password" placeholder="Passowrd"> <br>            
+                </div>
+            </div><br><br>
+
+            <p>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label> &nbsp Remember Password?</p>
+
+            <p class="text-right" style="margin-top: -48px;">Ininsk</p>
+
+            <br><br>
+            <div class="col-md-4">
+            <button type="button" class="btn btn-success btn-block">Login</button></div>
+            <div class="col-md-4">
+            <button type="button" class="btn btn-danger btn-block">Instagram</button></div>
+            <div class="col-md-4">
+            <button type="button" class="btn btn-info btn-block">Facebook</button><br></div>
+            
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+<!-- 
+
+        <div class="main-login main-center col-md-offset-4 col-md-8 nopadding">
           <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; float: left;margin-top: 35px; margin-bottom: 10px; ">
         <h5 class="text-right"><a href = "/signup">ここに登録</a></h5>
         <%= form_for(:session, url: login_path) do |f| %>
@@ -223,7 +333,7 @@ span.input-group-addon i {
 
           
           </form>
-        </div>
+        </div> -->
 
       </div>
       </div>

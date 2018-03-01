@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222100602) do
+ActiveRecord::Schema.define(version: 20180228082552) do
 
   create_table "adds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -203,11 +203,14 @@ ActiveRecord::Schema.define(version: 20180222100602) do
   add_index "report_teachers", ["user_id"], name: "index_report_teachers_on_user_id", using: :btree
 
   create_table "request_calls", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.string   "teacher_name", limit: 255
-    t.string   "student_name", limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",       limit: 4
+    t.string   "teacher_name",  limit: 255
+    t.string   "student_name",  limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "status",        limit: 255
+    t.string   "notes",         limit: 255
+    t.string   "student_skype", limit: 255
   end
 
   add_index "request_calls", ["user_id"], name: "index_request_calls_on_user_id", using: :btree
@@ -386,7 +389,7 @@ ActiveRecord::Schema.define(version: 20180222100602) do
     t.string   "picture3",                           limit: 255
     t.string   "skill",                              limit: 255
     t.string   "job",                                limit: 255
-    t.string   "appeal",                             limit: 2000
+    t.string   "appeal",                             limit: 255
     t.string   "hobby",                              limit: 255
     t.string   "country",                            limit: 255
     t.string   "movie",                              limit: 255
@@ -403,7 +406,7 @@ ActiveRecord::Schema.define(version: 20180222100602) do
     t.boolean  "new",                                              default: true
     t.string   "fb_id",                              limit: 255
     t.integer  "age",                                limit: 4
-    t.string   "instagram_token",                    limit: 255
+    t.string   "instagram_token",                    limit: 1000
     t.string   "instagram_id",                       limit: 255
     t.string   "instagram_username",                 limit: 255
     t.string   "instagram_profile_picture",          limit: 255

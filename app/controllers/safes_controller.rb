@@ -66,7 +66,10 @@ def update
                   @student.update(:time => @add2 )
                   @student_history = @student.history.build(transaction_name: "Class", min_type: "-", mins: 30, datetime: DateTime.now, teacher: @teacher.name)
                   @student_history.save
-                  
+
+                  @request = RequestCall.where(:student_name => @student.name).where(:teacher_name => @teacher.name).where(:notes => nil)
+                  @request.first.update(:notes => 'completed')
+                 #flash[:success] = @request
                   flash[:success] = "Thank you for teaching! Timee Time has been added to your account!"
                   redirect_to edit2_user_path
                 else

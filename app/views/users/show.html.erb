@@ -1,3 +1,12 @@
+<% @safes.each do |p| 
+  if p.status_teacher == 'yet' %>
+    <script type="text/javascript">
+    window.location.href="<%= @user.id %>/endenter"
+    </script>
+  
+ <% end 
+  end %>
+
 <% provide(:title, "先生の詳細") %>
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css">

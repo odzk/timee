@@ -8,14 +8,51 @@ before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
 protect_from_forgery except: :purchase
 
+def mark_complete
+
+  @safes = Safe.where(:student => params[:student_name]).where(:teacher => params[:teacher_name]).where(:status_teacher => 'yet')
+    @safes.each do |s|
+      @id = s.id
+     end
+  flash[:success] = @safes
+  redirect_to edit_safe_path(@id)
+
+end
+
+def delete_request
+    @user = User.find(params[:id])
+    @request = RequestCall.where(:user_id => params[:id]).delete_all
+    redirect_to endenter_users_path(@user)
+end
+
+def accept_call
+
+@accept = RequestCall.find(params[:id])
+@accept.update(:status => 'accepted')
+
+redirect_to edit2_user_path
+
+end
+
+
+def decline_call
+
+end
+
  def request_call
  
   @user = User.find(params[:id])
   @student = current_user.name
   @teacher = @user.name
-  @request = @user.request_call.build(teacher_name: @teacher, student_name: @student)
+  @student_skype = User.where(:name =>@student)
+
+  @student_skype.each do |s|
+    @skype = s.skype
+  end
+
+  @request = @user.request_call.build(teacher_name: @teacher, student_name: @student, student_skype: @skype)
   @request.save
-  flash[:success] = "You have requested the teacher to call you. Please wait. Thank you!"
+  flash[:success] = "You have requested the teacher to call you. Please wait..."
   redirect_to endenter_users_path(@user)
 
  end
@@ -269,6 +306,11 @@ protect_from_forgery except: :purchase
   @user = User.find(params[:id])
   @profile_pic = @user.profile_pic
 
+  @student = current_user.name
+  @teacher = @user.name
+
+  @safes = Safe.where(:student => @student).where(:teacher => @teacher).where(:status_teacher => 'yet')
+
   end
   
   
@@ -370,7 +412,11 @@ protect_from_forgery except: :purchase
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
   @report = @user.report_teacher.last(3)
+  @request = @user.request_call.last(1)
 
+  if params[:student_skype]
+    @student_skype = params[:student_skype]
+  end
 
   end
   
@@ -536,6 +582,14 @@ protect_from_forgery except: :purchase
     
     @user = User.find(params[:id])
     @current_user = current_user
+
+    @request = RequestCall.all
+
+    @request.each do |r|
+
+      @notes = r.notes
+
+    end
 
   end  
 

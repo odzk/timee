@@ -26,10 +26,33 @@
       <div class="panel-heading">
         <h2 class="panel-title"><span class="pull-right fa fa-comment"></span>Requests</h2>
       </div>
-      <div class="panel-body">
-        
+      <div class="panel-body" id="request_display">
+
       </div>
     </div>
+
+<audio id="alert_sound" src="../../alert2.mp3" preload="auto"></audio>
+
+<script>
+setInterval( function() {
+  var url = window.location.href + ' #request_info';
+    $('#request_display').load(url);
+    $('#request_info').show();
+
+    if(($('#request_info').text().length != 0) && $('#pause_alert').length == 0) { document.getElementById('alert_sound').play(); }
+}, 2000);
+
+</script>
+
+<div style="display: none;">
+        <span id="request_info"><% @request.each do |r| %><% if r.status == 'accepted' && r.notes != 'completed' %>
+        <p>Student <span style="color:green"><%= r.student_name %></span>is requesting to call now.</p>
+        <a href="skype:<%= r.student_skype %>" class="btn btn-success form-control" style="color: #fff" id="pause_alert"><i class="fa fa-skype"></i> Click to Call</a>
+        <%= link_to mark_complete_path(:teacher_name => r.teacher_name, :student_name => r.student_name), :style => "color: #fff;" do %>
+        <button class="btn btn-info form-control" style="margin-top:10px;"><i class="fa fa-check"></i> Mark Complete</button><% end %><% elsif r.notes != 'completed' %><p>Student <span style="color:green"><%= r.student_name %></span>is requesting to call now.</p><%= link_to accept_call_path(r.id), :style => "color: #fff;" do %>
+        <button class="btn btn-success">Accept Call</button><% end %><button class="btn btn-danger" style="margin-left: 5px;">Decline Call</button><% end %><% end %></span>
+</div>
+
 
 </div>
 

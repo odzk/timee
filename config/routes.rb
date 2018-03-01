@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
 #student request callback
 get 'request/:id', to: 'users#request_call', as: 'request_call'
+get 'request/delete/:id', to: 'users#delete_request', as: 'delete_request'
+get 'accept/:id', to: 'users#accept_call', as: 'accept_call'
+get 'decline', to: 'users#decline_call', as: 'decline_call'
+get 'complete/:teacher_name/:student_name', to: 'users#mark_complete', as: 'mark_complete'
+
 
 get 'student_class/:student', to: 'users#history_class', as: 'student_class'
 

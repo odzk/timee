@@ -381,7 +381,12 @@
             <div class="col-md-12">
             <button type="submit" name="new" class="btn btn-info btn-block" style="background-color: #3dd9ff; padding: 12px; font-weight: bold; box-shadow: 0px 3px 10px rgba(0,0,0,.50); border-radius: 10px;"><i class="fa fa-sign-in"></i> 上記内容で登録（利用規約に同意する）</button>
 
+            <div class="text-center" style="margin-top: 20px; margin-bottom: 20px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+
             <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background-color: #3b5998; border: 1px solid #133783; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-facebook"></i> Facebookで登録（利用規約に同意する）
+              <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();" style="display: hidden;"></div>
             </button>
 
             <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background: #cd486b; border: 1px solid #d6249f; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-instagram"></i> Instagramで登録（利用規約に同意する）

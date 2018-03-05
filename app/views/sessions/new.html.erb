@@ -234,57 +234,93 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 </style>
-<div class="bg nopadding">
-    <div class="container nopadding">
-      <div class="row main">
-        <div class="col-md-12">
-        <div class="col-md-5" style="background-color: #7ed8f2;"><br><br><br><br><br>
-          <p class="text-center"><img src="../../logo02.png" width="50%"></p> <br><br><br>
 
-          <b><p style="color: white;">Some Japanese Text here blabla</p></b><br>
-          <button type="button" class="btn btn-danger btn-block">Danger</button><br><br><br>
+
+<body style="background-image: url('../../bg.jpg');">
+
+<div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin-bottom: 20px; margin-top: 50px;">
+<span class="text-center center-block" style="font-size: 1.8em; font-weight:bold;"><a href="/"><img src="../../logo01.png" style="height:35px; margin-top: -10px;"> | 新規会員登録</span></a>
+</div>
+
+<div class="container mobile_margin" style="margin-top: 100px; border: 1px solid #eee; padding: 0; box-shadow: 5px 10px #ccc;">
+
+<div class="col-md-5 hidden-xs" style="background-color: #3dd9ff; background-image: url('../../profile_back.jpg'); background-size: cover; height: 550px;">
+          <img src="../../logo02.png" style="width: 50%; margin-top: 190px;" class="center-block">
+          <p style="color: white; background-color: #283b54; width: 50%; margin: 50px auto; padding: 5px; border-radius: 5px;" class="text-center"><img src="../../back.png" style="width: 20px; margin-right: 15px;">ログイン画面に戻る</p>
         </div>
 
+        <div class="col-md-7 mobile_h" style="background-color: #fff; padding: 0; height: 550px;">
 
+          <div class="col-md-12" style="margin-top: 50px; margin-bottom: 50px;">
 
+            <div class="col-md-offset-1 col-md-12 hidden-xs"><p style="font-size: 1.8em; color: #283b54; font-weight: bold;">会員様ログイン</p>
+            </div>
+          </div>
 
+          <div class="col-md-offset-1 col-md-11">
 
+          <div class="col-md-12">
+          <div class="form-group">
+            <style>
+              
+              input[placeholder] {
+                 font-size: 12px;
+                 text-indent: 50px;
+              }
+            </style>
 
-        <div class="col-md-7" style="background-color: white;">
-        <h4>Some Japanese Text here</h4><br>
-          <div class="form-group mmobile">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <input type="email" class="form-control" name="email" placeholder="メールアドレス"> <br>    
+                  <input type="text" class="form-control" style="padding: 15px; background-color: #eee; background-image: url('../../mail.png'); background-repeat: no-repeat; background-size: 20px; background-position: 5% 50%; border-radius: 10px;" name="user[name]" placeholder="メールアドレスを入力してください" id="user_name" required>
+            </div> 
+              <div class="form-group">
+                  <input type="password" class="form-control" style="padding: 15px; background-color: #eee; background-image: url('../../lock.png'); background-repeat: no-repeat; background-size: 20px; background-position:5% 50%; border-radius: 10px;" placeholder="メールアドレスを入力してください" name="user[password]" id="user_password" required>
                 </div>
             </div>
-            <div class="form-group mmobile">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <input type="password" class="form-control" name="password" placeholder="Passowrd"> <br>            
-                </div>
-            </div><br><br>
 
-            <p>
-            <label class="switch">
+            <div class="col-md-12">
+            <label class="switch" style="margin-top: 30px; margin-bottom: 30px;">
               <input type="checkbox">
               <span class="slider round"></span>
-            </label> &nbsp Remember Password?</p>
+            </label><label style="margin-top: 15px; margin-left: 10px;">ログイン状態を保存する</label>
+            <label style="text-align: right; margin-top: 15px; margin-left: 60px;">パスワードをお忘れですか？</label>
+          </div>
 
-            <p class="text-right" style="margin-top: -48px;">Ininsk</p>
+            <div>
+         
+            </div>
 
-            <br><br>
-            <div class="col-md-4">
-            <button type="button" class="btn btn-success btn-block">Login</button></div>
-            <div class="col-md-4">
-            <button type="button" class="btn btn-danger btn-block">Instagram</button></div>
-            <div class="col-md-4">
-            <button type="button" class="btn btn-info btn-block">Facebook</button><br></div>
+            <div class="col-md-12 mobile_t">
+            <div class="col-md-6" style="padding-right: 0;">
+            <button type="submit" name="new" class="btn btn-info btn-block" style="background-color: #3dd9ff; padding: 12px; font-weight: bold; box-shadow: 0 4px 2px -2px rgba(0,0,0,.50); border-radius: 10px 0 0 10px;"><i class="fa fa-sign-in"></i> ログイン</button>
+          </div>
+<!--             <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background-color: #3b5998; border: 1px solid #133783; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-facebook"></i> Facebookで登録（利用規約に同意する）
+            </button> -->
+            <div class="col-md-6" style="padding-left: 0;">
+            <a href="https://www.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/insta&response_type=code" style="text-decoration: none;">
+            <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background: #cd486b; border: 1px solid #d6249f; color: #fff; box-shadow: 0 4px 2px -2px rgba(0,0,0,.50); border-radius: 0 10px 10px 0;"><i class="fa fa-instagram"></i> Instagramでログイン
+            </button>
+            </a>
+           </div>
+
+
+            <div class="col-md-12">
+
+            <div class="text-center" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; background-color: #4267b2; border: 1px solid #4267b2; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 text-center hidden-sm hidden-md hidden-lg">
+          <label style="margin-top: 40px; margin-left: 15px; margin-bottom: 20px;"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 1em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+          </div>
+
+          </div>
             
           </div>
         </div>
+      </div>
 
 
+</div>
 
 
 

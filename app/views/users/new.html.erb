@@ -4,9 +4,56 @@
     <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<script>
+if (window.name != "xsyz")
+{
+setTimeout("location.reload()",1);
+window.name = "xsyz";
+}
+</script>
+
+
+
+<style>
+
+@media only screen and (max-width: 600px) {
+
+.font-m2 {
+  font-size: 0.7em !important;
+}
+
+.font-m {
+  font-size: 1em !important;
+}
+
+.btn-m {
+  font-size: 0.7em;
+}
+
+.mobile_t {
+  margin-top: 80px;
+}
+
+.mobile_h {
+  height: auto !important;
+}
+
+.free_m {
+  text-align: center;
+  padding: 10px;
+  }
+
+.mobile_margin {
+  margin-top: 50 !important;
+  box-shadow: none !important;
+}
+
+}
+</style>
 
 <script>
 
@@ -65,224 +112,8 @@
 
 <!-- End of Facebook Login -->
 
-  </div>
+<div class="modal fade" id="agreement" role="dialog">
 
-<div class="col-md-offset-1 col-md-6">
-<!--   <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px"> -->
-</div>
-
-<style>
-
-@media only screen and (max-width: 600px) {
-
-.main {
-  margin-top: 0 !important;
-}
-
-.pleft {
-  padding-left: 10px !important;
-  }
-
-.mmobile {
-  margin-top: 30px;
-}
-
- .nopadding {
-  padding: 0;
-  margin-top: 0 !important;
-
- }
-
- .main-center {
-  padding: 10px 10px !important;
-
- }
-} 
-
-.bg {
-  background:url('/bg.jpg');
-  font-family: 'Oxygen', sans-serif;
-
-}
-  
-.main{
-  margin:50px 15px;
-}
-
-hr{
-  width: 10%;
-  color: #fff;
-}
-
-.form-group{
-  margin-bottom: 15px;
-}
-
-label{
-  margin-bottom: 15px;
-}
-
-input,
-input::-webkit-input-placeholder {
-    font-size: 11px;
-    padding-top: 3px;
-}
-
-.main-login{
-  background-color: #fff;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
-}
-.form-control {
-    height: auto!important;
-/*padding: 8px 12px !important;*/
-}
-.input-group {
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-}
-
-.main-center{
-  margin-top: 30px;
-/*  margin: 0 auto;
-  max-width: 400px;*/
-    padding: 10px 40px;
-
-  background:#f7f8f9;
-      color: #000000;
-    text-shadow: none;
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
--moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-
-}
-span.input-group-addon i {
-    color: #009edf;
-    font-size: 17px;
-}
-
-.login-button{
-  margin-top: 5px;
-}
-
-.login-register{
-  font-size: 11px;
-  text-align: center;
-
-.nomargin {
-  margin: 0 !important;
-  padding: 0 !important;
-  }
-}
-
-</style>
-
-<div class="bg nopadding">
-    <div class="container nopadding">
-      <div class="row main">
-        <div class="col-md-12">
-        <div class="main-login main-center col-md-offset-3 col-md-6">
-        <a href="/">
-        <img src="timee-logo.jpg" class="img img-responsive" style="width: 100px; margin-top: 35px; margin-bottom: 20px; "></a>
-
-        <%= form_for(@user) do |f| %>
-            
-            <div class="form-group">
-              <label for="name" class="cols-md-2 control-label hidden-xs">ニックネーム<small style="color: red">*</small></label>
-              <div class="cols-md-10">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-user fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                   <%= f.text_field :name, class: 'form-control', :placeholder => 'ニックネーム', :required => '' %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email" class="cols-md-2 control-label hidden-xs">メールアドレス<small style="color: red">*</small></label>
-              <div class="cols-md-10">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-envelope fa" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.email_field :email, class: 'form-control', :placeholder => 'メールアドレス', :required => '' %>
-                </div>
-              </div>
-            </div>
-
-<!--             <div class="form-group">
-              <label for="username" class="cols-md-2 control-label hidden-xs">スカイプID<small style="color: red">*</small></label>
-              <div class="cols-md-10">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-skype" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.text_field :skype, class: 'form-control', :placeholder => 'スカイプID', :required => ''  %>
-                </div>
-              </div>
-            </div> -->
-
-            <div class="form-group">
-              <label for="password" class="cols-md-2 control-label hidden-xs">パスワード<small style="color: red">*</small></label>
-              <div class="cols-md-10">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
-                   <%= f.password_field :password, class: 'form-control', :placeholder => 'パスワード', :required => ''  %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="confirm" class="cols-md-2 control-label hidden-xs">確認用パスワード<small style="color: red">*</small></label>
-              <div class="cols-md-10">
-                <div class="input-group">
-                  <span class="input-group-addon hidden-xs"><i class="fa fa-lock fa-lg" style="color:#948c8c" aria-hidden="true"></i></span>
-                  <%= f.password_field :password_confirmation, class: 'form-control', :placeholder => '確認用パスワード', :required => '' %>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="cols-md-12">
-
-                  <div class="checkbox">
-                  <label><input type="checkbox" value="agree" name="agreement" required autofocus>私は <a href="#" style="color: blue;" data-toggle="modal" data-target="#agreement">利用規約</a> を理解し、同意します。</label>
-                    
-                  </div>
-
-            </div>
-            <% referral = request.query_parameters 
-            id = referral['referral']
-            instagram = referral['from'] %>
-            <%= f.hidden_field :time, :value => 30 %>
-            <%= f.hidden_field :type_user, :value => "student" %>
-            <%= f.hidden_field :referral_id, :value => id %>
-            <%= f.hidden_field :instagram, :value => instagram %>
-
-
-            <div class="form-group">
-            <%= f.submit "登録する", class: "btn btn-primary btn-block btn-lg", name: "new", :value => "今すぐ新規登録" %>
-            </div>
-
-          <div class="text-center" style="margin-top: 20px; margin-bottom: 20px;">
-          <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
-          </div>
-
-          <div class="col-md-12" style="margin-bottom: 20px;">
-          <a href="https://www.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/insta&response_type=code"><img src="instagram.png" style="height: 65px;" class="center-block"></a>
-          </div>
-
-          </form>
-
-          <div class="col-md-12">
-            <p style="text-align: center;">30分の無料トライアルは 登録後に自動的に付与されます。</p>
-          </div>
-
-        </div>
-
-        <div class="modal fade" id="agreement" role="dialog">
     <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
@@ -440,20 +271,114 @@ span.input-group-addon i {
       </div>
       
     </div>
-  </div>
-
-<!--         <div class="col-md-offset-1 col-md-6">
-
-        <img src="main.jpg" class="img img-thumbnail" style="margin-top: 150px;">
-
-        </div> -->
+   </div>
       </div>
-      </div>
+<!--       </div>
     </div>
+</div>  -->
+
+ <%= form_for(@user) do |f| %>
+<body style="background-image: url('../../bg.jpg');">
+
+<div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin-bottom: 20px; margin-top: 50px;">
+<span class="text-center center-block font-m" style="font-size: 1.8em; font-weight:bold;"><a href="/"><img src="../../logo01.png" style="height:35px; margin-top: -10px;"> | 新規会員登録</span></a>
+</div>
+
+<div class="container mobile_margin" style="margin-top: 100px; border: 1px solid #eee; padding: 0; box-shadow: 5px 10px #ccc;">
+
+<div class="col-md-5 hidden-xs" style="background-color: #3dd9ff; background-image: url('../../profile_back.jpg'); background-size: cover; height: 550px;">
+          <a href="/login" style="text-decoration: none;">
+          <img src="../../logo02.png" style="width: 50%; margin-top: 190px;" class="center-block">
+          <p style="color: white; background-color: #283b54; width: 50%; margin: 50px auto; padding: 10px; border-radius: 5px;" class="text-center"><img src="../../back.png" style="width: 20px; margin-right: 15px;">ログイン画面に戻る</p>
+          </a>
+        </div>
+
+        <div class="col-md-7 mobile_h" style="background-color: #fff; padding: 0; height: 550px;">
+
+          <div class="col-md-12" style="background-color: #283b54; margin-top: 30px; margin-bottom: 50px;">
+
+            <div class="col-md-offset-1 col-md-4 hidden-xs" style="background-color: #fff;"><p style="font-size: 1.3em; margin-top: 5px; text-align: center; color: #283b54; font-weight: bold;">新規会員登録</p></div>
+            <div class="col-md-7 free_m font-m2"><p style="font-size: 1em; margin-top: 10px; color: #fff;"><img src="../../icon_select.png" style="height:20px;"> 新規登録完了で30分の無料トライアル！</p></div>
+
+          </div>
+
+          <div class="col-md-offset-1 col-md-11">
+
+          <div class="col-md-6">
+          <div class="form-group">
+            <style>
+              
+              input[placeholder] {
+                 font-size: 12px;
+                 text-indent: 50px;
+              }
+            </style>
+
+                  <input type="text" class="form-control" style="padding: 20px; background-color: #eee; background-image: url('../../icon_nickname.png'); background-repeat: no-repeat; background-size: 20px; background-position:10% 50%; border-radius: 10px;" name="user[name]" placeholder="ニックネーム" id="user_name" required>
+            </div> 
+              <div class="form-group">
+                  <input type="password" class="form-control" style="padding: 20px; background-color: #eee; background-image: url('../../lock.png'); background-repeat: no-repeat; background-size: 20px; background-position:10% 50%; border-radius: 10px;" placeholder="パスワード" name="user[password]" id="user_password" required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+          <div class="form-group">
+                  <input type="email" class="form-control" style="padding: 20px; background-color: #eee; background-image: url('../../mail.png'); background-repeat: no-repeat; background-size: 20px; background-position:10% 50%; border-radius: 10px;" placeholder="メールアドレス" name="user[email]" id="user_email" required>  
+            </div>
+
+            <div class="form-group">
+                  <input type="password" class="form-control" style="padding: 20px; background-color: #eee; background-image: url('../../lock.png'); background-repeat: no-repeat; background-size: 20px; background-position:10% 50%; border-radius: 10px;" placeholder="確認用パスワード" name="user[password_confirmation]" id="user_password_confirmation" required>      
+            </div>
+            </div>
+
+            <p>
+
+            <label style="margin-top: 50px; margin-left: 15px; margin-bottom: 20px;" class="hidden-xs"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 1.3em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+
+            <% referral = request.query_parameters 
+            id = referral['referral']
+            instagram = referral['from'] %>
+            <%= f.hidden_field :time, :value => 30 %>
+            <%= f.hidden_field :type_user, :value => "student" %>
+            <%= f.hidden_field :referral_id, :value => id %>
+            <%= f.hidden_field :instagram, :value => instagram %>
+
+            <div class="col-md-12 mobile_t">
+            <button type="submit" name="new" class="btn btn-info btn-block btn-m" style="background-color: #3dd9ff; padding: 12px; font-weight: bold; box-shadow: 0px 3px 10px rgba(0,0,0,.50); border-radius: 10px;"><i class="fa fa-sign-in"></i> 上記内容で登録（利用規約に同意する）</button>
+
+<!--             <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background-color: #3b5998; border: 1px solid #133783; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-facebook"></i> Facebookで登録（利用規約に同意する）
+            </button> -->
+
+            <a href="https://www.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/insta&response_type=code" style="text-decoration: none;">
+            <button type="button" class="btn btn-default btn-block btn-m" style="padding: 12px; font-weight: bold; background: #cd486b; border: 1px solid #d6249f; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-instagram"></i> Instagramで登録（利用規約に同意する）
+            </button>
+            </a>
+
+
+            <div class="text-center hidden-xs" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; background-color: #4267b2; border: 1px solid #4267b2; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+
+            <div class="text-center hidden-sm hidden-md hidden-lg" style="margin-top: 20px; margin-left: -8px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+
+          <div class="col-xs-12 text-center hidden-sm hidden-md hidden-lg">
+          <label style="margin-top: 40px; margin-left: 15px; margin-bottom: 20px;"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 0.7em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+          </div>
+
+          </div>
+            
+          </div>
+        </div>
+      </div>
+
 
 </div>
 
 <% end %>
+
+
 
   </div>
 </div>

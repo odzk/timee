@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
  has_many :safe
  has_many :time_incentive
  has_many :report_teacher
+ has_many :request_call
  
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email

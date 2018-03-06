@@ -8,10 +8,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<<<<<<< HEAD
+=======
+<script>
+if (window.name != "xsyz")
+{
+setTimeout("location.reload()",1);
+window.name = "xsyz";
+}
+</script>
+
+
+
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
 <style>
 
 @media only screen and (max-width: 600px) {
 
+<<<<<<< HEAD
+=======
+.font-m2 {
+  font-size: 0.7em !important;
+}
+
+.font-m {
+  font-size: 1em !important;
+}
+
+.btn-m {
+  font-size: 0.7em;
+}
+
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
 .mobile_t {
   margin-top: 80px;
 }
@@ -91,6 +119,7 @@
 <!-- End of Facebook Login -->
 
 <div class="modal fade" id="agreement" role="dialog">
+
     <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
@@ -258,14 +287,23 @@
 <body style="background-image: url('../../bg.jpg');">
 
 <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin-bottom: 20px; margin-top: 50px;">
+<<<<<<< HEAD
 <span class="text-center center-block" style="font-size: 1.8em; font-weight:bold;"><a href="/"><img src="../../logo01.png" style="height:35px; margin-top: -10px;"> | 新規会員登録</span></a>
+=======
+<span class="text-center center-block font-m" style="font-size: 1.8em; font-weight:bold;"><a href="/"><img src="../../logo01.png" style="height:35px; margin-top: -10px;"> | 新規会員登録</span></a>
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
 </div>
 
 <div class="container mobile_margin" style="margin-top: 100px; border: 1px solid #eee; padding: 0; box-shadow: 5px 10px #ccc;">
 
 <div class="col-md-5 hidden-xs" style="background-color: #3dd9ff; background-image: url('../../profile_back.jpg'); background-size: cover; height: 550px;">
+<<<<<<< HEAD
+=======
+          <a href="/login" style="text-decoration: none;">
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
           <img src="../../logo02.png" style="width: 50%; margin-top: 190px;" class="center-block">
-          <p style="color: white; background-color: #283b54; width: 50%; margin: 50px auto; padding: 5px; border-radius: 5px;" class="text-center"><img src="../../back.png" style="width: 20px; margin-right: 15px;">ログイン画面に戻る</p>
+          <p style="color: white; background-color: #283b54; width: 50%; margin: 50px auto; padding: 10px; border-radius: 5px;" class="text-center"><img src="../../back.png" style="width: 20px; margin-right: 15px;">ログイン画面に戻る</p>
+          </a>
         </div>
 
         <div class="col-md-7 mobile_h" style="background-color: #fff; padding: 0; height: 550px;">
@@ -273,7 +311,11 @@
           <div class="col-md-12" style="background-color: #283b54; margin-top: 30px; margin-bottom: 50px;">
 
             <div class="col-md-offset-1 col-md-4 hidden-xs" style="background-color: #fff;"><p style="font-size: 1.3em; margin-top: 5px; text-align: center; color: #283b54; font-weight: bold;">新規会員登録</p></div>
+<<<<<<< HEAD
             <div class="col-md-7 free_m"><p style="font-size: 1em; margin-top: 10px; color: #fff;"><img src="../../icon_select.png" style="height:20px;"> 新規登録完了で30分の無料トライアル！</p></div>
+=======
+            <div class="col-md-7 free_m font-m2"><p style="font-size: 1em; margin-top: 10px; color: #fff;"><img src="../../icon_select.png" style="height:20px;"> 新規登録完了で30分の無料トライアル！</p></div>
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
 
           </div>
 
@@ -309,6 +351,7 @@
             <p>
 
             <label style="margin-top: 50px; margin-left: 15px; margin-bottom: 20px;" class="hidden-xs"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 1.3em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+<<<<<<< HEAD
 
             <% referral = request.query_parameters 
             id = referral['referral']
@@ -331,11 +374,43 @@
 
 
             <div class="text-center" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; background-color: #4267b2; border: 1px solid #4267b2; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;">
+=======
+
+            <% referral = request.query_parameters 
+            id = referral['referral']
+            instagram = referral['from'] %>
+            <%= f.hidden_field :time, :value => 30 %>
+            <%= f.hidden_field :type_user, :value => "student" %>
+            <%= f.hidden_field :referral_id, :value => id %>
+            <%= f.hidden_field :instagram, :value => instagram %>
+
+            <div class="col-md-12 mobile_t">
+            <button type="submit" name="new" class="btn btn-info btn-block btn-m" style="background-color: #3dd9ff; padding: 12px; font-weight: bold; box-shadow: 0px 3px 10px rgba(0,0,0,.50); border-radius: 10px;"><i class="fa fa-sign-in"></i> 上記内容で登録（利用規約に同意する）</button>
+
+<!--             <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background-color: #3b5998; border: 1px solid #133783; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-facebook"></i> Facebookで登録（利用規約に同意する）
+            </button> -->
+
+            <a href="https://www.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/insta&response_type=code" style="text-decoration: none;">
+            <button type="button" class="btn btn-default btn-block btn-m" style="padding: 12px; font-weight: bold; background: #cd486b; border: 1px solid #d6249f; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;"><i class="fa fa-instagram"></i> Instagramで登録（利用規約に同意する）
+            </button>
+            </a>
+
+
+            <div class="text-center hidden-xs" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; background-color: #4267b2; border: 1px solid #4267b2; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+
+            <div class="text-center hidden-sm hidden-md hidden-lg" style="margin-top: 20px; margin-left: -8px;">
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
             <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
             </div>
 
           <div class="col-xs-12 text-center hidden-sm hidden-md hidden-lg">
+<<<<<<< HEAD
           <label style="margin-top: 40px; margin-left: 15px; margin-bottom: 20px;"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 1em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+=======
+          <label style="margin-top: 40px; margin-left: 15px; margin-bottom: 20px;"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 0.7em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+>>>>>>> feeeaf6293bae2f1d4ef9662fb2ff0dae0b55b24
           </div>
 
           </div>

@@ -1,0 +1,43 @@
+<h1>Results Here:</h1>
+<% @result_parsed %>
+
+<% @token = [] %>
+<%= @result_parsed.each do |r| %>
+
+<p>Token Key</p>
+
+<%= @token << r[1] %>
+
+<p>End of Token Key</p>
+
+<%= @id = r[1]['id']
+	@username = r[1]['username']
+	@profile_picture = r[1]['profile_picture']
+	@full_name = r[1]['full_name']
+	@bio = r[1]['bio']
+	@website = r[1]['website']
+ %>
+
+ <% end %>
+
+<p>Results Here</p>
+ <%= @token[0] %>
+
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Profile Picture</th>
+		<th>Full Name</th>
+		<th>Bio</th>
+		<th>Website</th>
+	</tr>
+
+	<tr>
+		<td><%= @id %></td>
+		<td><%= @username %></td>
+		<td><img src="<%= @profile_picture %>" style="width:50px;"></td>
+		<td><%= @full_name %></td>
+		<td><%= @bio %></td>
+		<td><%= @website %></td>
+</table>

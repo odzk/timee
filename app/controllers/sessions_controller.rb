@@ -42,7 +42,22 @@ before_action :not_logged_in_user, only: [:new , :create, :edit, :update]
   #     render 'new'
   #   end
   # end
+
+  def createinsta
+    user = User.find_by(email: params[:email].downcase)
   
+    if user 
+    log_in user
+    redirect_back_or root_url
+      
+
+    else
+
+      redirect_to "/signup"
+
+    end
+
+  end
 
   def createfb
     user = User.find_by(email: params[:email].downcase)

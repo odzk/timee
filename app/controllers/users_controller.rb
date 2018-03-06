@@ -6,7 +6,161 @@ before_action :teacher_now, only: [:show, :endenter ]
 before_action :admin_user, only: [:index, :index2, :index3, :index4, :new3, :salary, :destroy ]
 before_action :teacher_user, only: [:teacher, :edit2 ]
 before_action :correct_user, only: [:edit ]
- protect_from_forgery except: :purchase
+protect_from_forgery except: :purchase
+
+def mark_complete
+
+  @safes = Safe.where(:student => params[:student_name]).where(:teacher => params[:teacher_name]).where(:status_teacher => 'yet')
+    @safes.each do |s|
+      @id = s.id
+     end
+  flash[:success] = @safes
+  redirect_to edit_safe_path(@id)
+
+end
+
+def delete_request
+    @user = User.find(params[:id])
+    @request = RequestCall.where(:user_id => params[:id]).delete_all
+    redirect_to endenter_users_path(@user)
+end
+
+def accept_call
+
+@accept = RequestCall.find(params[:id])
+@accept.update(:status => 'accepted')
+
+redirect_to edit2_user_path
+
+end
+
+
+def decline_call
+
+end
+
+ def request_call
+ 
+  @user = User.find(params[:id])
+  @student = current_user.name
+  @teacher = @user.name
+  @student_skype = User.where(:name =>@student)
+
+  @student_skype.each do |s|
+    @skype = s.skype
+  end
+
+  @request = @user.request_call.build(teacher_name: @teacher, student_name: @student, student_skype: @skype)
+  @request.save
+  flash[:success] = "You have requested the teacher to call you. Please wait..."
+  redirect_to endenter_users_path(@user)
+
+ end
+
+ def instaparams
+  @access_token = params[:access_token]
+  @user = User.where(:instagram_token => @access_token)
+
+  if @user.blank?
+
+  redirect_to 'https://www.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/insta&response_type=code'
+
+  else
+
+  @user.each do |u|
+    @email = u.email
+    @pass = u.instagram_id
+  
+  end
+
+  redirect_to auto_sign_insta_path(email: @email, pass: @pass)
+
+  end
+ end 
+
+
+ def login_insta
+
+ end 
+
+
+ def createinsta
+
+  @code = params[:code]
+  
+  @options = {
+    body: {
+      client_id: '40121d95c810426f8138deb395cff7fc',
+      client_secret: '9f4014e5160e4dae8abe31c497aa0851',
+      grant_type: 'authorization_code',
+      redirect_uri: 'http://timee-online.com/insta',
+      code: @code
+    }
+  }
+
+  @result = HTTParty.post("https://api.instagram.com/oauth/access_token", @options)
+  @result_parsed = @result.parsed_response
+  @token_array = []
+  @result_parsed.each do |r|
+
+    @token_array << r[1]
+
+    unless r[1]['id'].blank?
+    @id = r[1]['id']
+    @dummy_email = @id + '@instagram.com'
+    end
+
+    unless r[1]['username'].blank?
+    @username = r[1]['username']
+    end
+    
+    unless r[1]['profile_picture'].blank?
+    @profile_picture = r[1]['profile_picture']
+    end
+
+    unless r[1]['full_name'].blank?
+    @full_name = r[1]['full_name']
+    end
+    
+    unless r[1]['bio'].blank?
+    @bio = r[1]['bio']
+    end
+    
+    unless r[1]['website'].blank?
+    @website = r[1]['website']
+    end
+
+  end
+
+    unless @token_array[0].blank?
+    @access_token = @token_array[0]
+    end
+
+  @user = User.new(name: @full_name, email: @dummy_email, password: @id, time: 30, type_user: "student", instagram_token: @access_token)
+  @history = @user.history.build(transaction_name: "Free Trial 30 minutes", min_type: "+", mins: 30, datetime: DateTime.now, teacher: "N/A")
+  
+  if @bio.present?
+    @user.update(instagram_bio: @bio)
+  end
+
+  if @website.present?
+    @user.update(instagram_website: @website)
+  end
+
+
+  if @profile_picture.present?
+    @user.update(instagram_profile_picture: @profile_picture)
+  end
+
+  if @user.save
+  flash[:success] = "Success! Welcome to Timee!" 
+  redirect_to auto_sign_insta_path(email: @dummy_email, pass: @pass)
+
+  else
+  flash[:danger] = @user.errors.full_messages
+  redirect_to "/login"
+  end
+ end
 
  def createfb
   @name = params[:name]
@@ -152,6 +306,11 @@ before_action :correct_user, only: [:edit ]
   @user = User.find(params[:id])
   @profile_pic = @user.profile_pic
 
+  @student = current_user.name
+  @teacher = @user.name
+
+  @safes = Safe.where(:student => @student).where(:teacher => @teacher).where(:status_teacher => 'yet')
+
   end
   
   
@@ -253,6 +412,12 @@ before_action :correct_user, only: [:edit ]
   @totalsafes = Safe.where(:teacher => @current).paginate(page: params[:page])
   @student_name = Safe.where(:status_teacher => 'yet').where(:teacher => @current).paginate(page: params[:page]).last(1)
   @report = @user.report_teacher.last(3)
+  @request = @user.request_call.last(1)
+
+  if params[:student_skype]
+    @student_skype = params[:student_skype]
+  end
+
   end
   
   def edit3
@@ -345,9 +510,9 @@ before_action :correct_user, only: [:edit ]
     @t_in = t.time_in
   end
 
-  if @t_in.hour == 18 && @t_in.min >= 45
-  @t_in = Time.parse("19:00") # auto convert to Time incentive
-  end 
+  # if @t_in.hour == 18 && @t_in.min >= 45
+  # @t_in = Time.parse("19:00") # auto convert to Time incentive
+  # end 
 
   @time_out.each do |t|
     @t_out = t.time_out
@@ -356,11 +521,11 @@ before_action :correct_user, only: [:edit ]
 
   if @t_in.present? && @t_out.present? && @t_out > @t_in
 
-    if @t_out >= DateTime.now.midnight
+    # if @t_out >= DateTime.now.midnight
 
-      @t_out = Time.parse("24:00")
+    #   @t_out = Time.parse("24:00")
 
-    end
+    # end
 
   @count_time = (@t_out - @t_in) / 1.minutes
   end
@@ -417,6 +582,14 @@ before_action :correct_user, only: [:edit ]
     
     @user = User.find(params[:id])
     @current_user = current_user
+
+    @request = RequestCall.all
+
+    @request.each do |r|
+
+      @notes = r.notes
+
+    end
 
   end  
 

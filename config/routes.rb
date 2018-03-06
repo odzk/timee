@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
 
+#student request callback
+get 'request/:id', to: 'users#request_call', as: 'request_call'
+get 'request/delete/:id', to: 'users#delete_request', as: 'delete_request'
+get 'accept/:id', to: 'users#accept_call', as: 'accept_call'
+get 'decline', to: 'users#decline_call', as: 'decline_call'
+get 'complete/:teacher_name/:student_name', to: 'users#mark_complete', as: 'mark_complete'
+
+
 get 'student_class/:student', to: 'users#history_class', as: 'student_class'
 
 get '/fb', to: 'users#createfb'
 get '/fbpass', to: 'sessions#createfb', as: 'auto_sign'
+
+get '/insta', to: 'users#createinsta'
+get '/instapass', to: 'sessions#createinsta', as: 'auto_sign_insta'
+get '/login_insta', to: 'users#login_insta'
+get '/instaparams', to: 'users#instaparams', as: 'instaparams'
+
+get 'debugpage', to: 'users#debugpage', as: 'debugpage'
 
 resources :curriculums
 

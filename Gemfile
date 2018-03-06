@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'responders', '~>2.4.0'
 gem 'safe_attributes'
 
+gem 'httparty'
+
 #calender
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'

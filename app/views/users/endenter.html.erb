@@ -69,24 +69,84 @@
 
 </div>
 
+<script>
+setInterval( function() {
+  var url = window.location.href + ' #request_status';
+    $('#request_status').load(url); }, 5000);
+
+</script>
 
 
-    <div class="col-md-6">
-        <p>日時を指定して先生と英会話できます。</p>
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp 申し込む</button>
-    </div>
+    <div class="col-md-12">
 
-    <div class="col-md-6">
+        <%#= @user.name %> 
+        <%#= @current_user.name %>
+        <%#= @request.inspect %>
+        <%#= @user.inspect %>
+
+        <% unless @request.blank? %>
+
+        <div class="col-md-12" style="border: 1px solid #ccc; padding:50px;">
+
+        <span id="request_status">
+
+        <% @request.each do |r| %>
+
+        <% if r.teacher_name == @user.name && r.student_name == @current_user.name && r.status != "accepted" %>
+
+        <p class="text-center">Waiting for teacher <%= @user.name %> to answer the call</p>
+
+        <% elsif r.teacher_name == @user.name && r.student_name == @current_user.name && r.status == "accepted" %>
+
+        <p>Teacher <%= @user.name %> <span style="color: green;">accepted</span> the call. If you didn't receive the call, please check your Skype if it's up and running!</p>
+
+        <% end %>
+
+        <p class="text-center" style="margin-top: 20px;">Time Elapse: <%= distance_of_time_in_words(Time.now - r.created_at) %></p>
+
+        <%= link_to delete_request_path, :style => "color: #fff;", :onclick =>"return confirm('Are you sure?')" do %>
+
+        <button class="btn btn-danger form-control">Cancel Request</button>
+
+        <% end %>
+
+        </span>
+        </div>
+
+        <% end %>
+
+
+        <% else %>
+
+        <div class="col-md-12" style="margin-bottom: 50px;">
+        <p>今すぐクラスを開始することができます</p>
+        <%= link_to request_call_path(@user) do %>
+        <button class="btn btn-lg btn-success col-md-12" style="padding: 30px; margin-top: 50px;"><i class="fa fa-phone"></i> 今すぐ電話して</button>
+        </div>
+
+<!--         <div class="col-md-6" style="margin-bottom: 50px;">
         <p>まだ準備ができていませんか？まずはチャットで連絡してみましょう</p>
         <span class="skype-button rounded" data-contact-id="<%= @user.skype %>" data-text="チャットする" style="color: #fff;"></span>
         <script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>  
-    </div>
+        </div> -->
+
+        <p>オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
+
+        <a href="skype:<%= @user.skype %>?call" class="btn btn-info" style="color:#fff;"><i class="fa fa-skype"></i> 今すぐ通話</a>
+
+        <% end %>
+
+        <% end %>
+
+
+<!--
+        <p>日時を指定して先生と英会話できます。</p>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#schedule"><i class="glyphicon glyphicon-comment"></i> &nbsp 申し込む</button> -->
+    </div> 
+
 </div>
 
 
-<p>オンライン英会話を受講するためにはスカイプのダウンロードが必須です。<a href="https://www.skype.com/ja/get-skype/" target="_blank" style="color:red;">ダウンロードはこちら</a></p>
-
-<a href="skype:<%= @user.skype %>?call" class="btn btn-lg btn-danger" style="color:#fff;"><i class="fa fa-skype"></i> 今すぐ通話</a>
 
 <h4>先生のスカイプID: <%= @user.skype %></h4>
 

@@ -81,10 +81,103 @@
 
 
 <style>
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 15px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 2;
+  top: -4px;
+  background-color: white;
+  border: 1px solid #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
  .smolFont{
   float:right;
  }
 @media only screen and (max-width: 600px) {
+
+.btn-login {
+  border-radius: 15px !important;
+  font-size: 0.6em !important;
+}
+
+.btn-insta {
+  border-radius: 15px !important;
+  font-size: 0.6em !important;
+  margin-left: 5px;
+}
+
+.mobile_margin {
+  box-shadow: none !important;
+}
+
+.margin_m {
+  padding:  0;
+}
+
+.font_m {
+  font-size: 0.7em;
+}
+
+.switch {
+  width: 40px;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
 
 .input_m {
   background-color: #fff !important;
@@ -187,68 +280,15 @@ span.input-group-addon i {
   padding: 0 !important;
   }
 }
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
 
-.switch input {display:none;}
 
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
 </style>
 
 <%= form_for(:session, url: login_path) do |f| %>
 <body style="background-image: url('../../bg.jpg');">
 
 <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin-bottom: 20px; margin-top: 50px;">
-<a href="/"><img src="../../logo01.png" style="height:80px;" class="center-block"></a>
+<a href="/"><img src="../../logo01.png" style="height:65px;" class="center-block"></a>
 </div>
 
 <div class="container mobile_margin" style="margin-top: 100px; border: 1px solid #eee; padding: 0; box-shadow: 5px 10px #ccc;">
@@ -287,41 +327,56 @@ input:checked + .slider:before {
                 </div>
             </div>
 
-            <div class="col-md-12 col-xs-12">
             <input name="session[remember_me]" type="hidden" value="0">
+
+            <div class="col-md-12 hidden-xs">
             <label class="switch" style="margin-top: 30px; margin-bottom: 30px;">
               <input type="checkbox" value="1" name="session[remember_me]" id="session_remember_me">
               <span class="slider round"></span>
-            </label><label style="margin-top: 15px; margin-left: 10px;">ログイン状態を保存する</label>
+            </label><label for="session_remember_me" style="margin-top: 15px; margin-left: 10px;">ログイン状態を保存する</label>
             <label style="text-align: right; margin-top: 15px; margin-left: 60px;"><a href="/password_resets/new">パスワードをお忘れですか？</a></label>
           </div>
 
-            <div>
-         
-            </div>
+          <div class="hidden-sm hidden-md hidden-lg row" style="margin-left: 10px;">
+              <label class="switch" style="margin-top: 30px; margin-bottom: 30px;">
+              <input type="checkbox" value="1" name="session[remember_me]" id="session_remember_me">
+              <span class="slider round"></span>
+              </label>
+              <div class="col-xs-5">
+               <p style="font-size: 0.45em; font-weight: bold; margin-top: 30px;">ログイン状態を保存する</p>
+              </div>
 
-            <div class="col-md-12 mobile_t">
-            <div class="col-md-6" style="padding-right: 0;">
-            <button type="submit" name="commit" value="ログイン" class="btn btn-info btn-block" style="background-color: #3dd9ff; padding: 12px; font-weight: bold; box-shadow: 0 4px 2px -2px rgba(0,0,0,.50); border-radius: 10px 0 0 10px;"><i class="fa fa-sign-in"></i> ログイン</button>
+              <div class="col-xs-5">
+                <p style="font-size: 0.45em; font-weight: bold; margin-top: 30px;"><a href="/password_resets/new">パスワードをお忘れですか？</a></p>
+              </div>
           </div>
 
-            <div class="col-md-6" style="padding-left: 0;">
+            <div class="col-md-12 col-xs-12 margin_m">
+            <div class="col-md-6 col-xs-6" style="padding-right: 0;">
+            <button type="submit" name="commit" value="ログイン" class="btn btn-info btn-block btn-login" style="background-color: #3dd9ff; padding: 12px; font-weight: bold; box-shadow: 0 4px 2px -2px rgba(0,0,0,.50); border-radius: 10px 0 0 10px;"><i class="fa fa-sign-in"></i> ログイン</button>
+          </div>
+
+            <div class="col-md-6 col-xs-6" style="padding-left: 0;">
             <a href="https://api.instagram.com/oauth/authorize/?client_id=40121d95c810426f8138deb395cff7fc&redirect_uri=http://timee-online.com/login_insta&response_type=token" style="text-decoration: none;">
-            <button type="button" class="btn btn-default btn-block" style="padding: 12px; font-weight: bold; background: #cd486b; border: 1px solid #d6249f; color: #fff; box-shadow: 0 4px 2px -2px rgba(0,0,0,.50); border-radius: 0 10px 10px 0;"><i class="fa fa-instagram"></i> Instagramでログイン
+            <button type="button" class="btn btn-default btn-block btn-insta" style="padding: 12px; font-weight: bold; background: #cd486b; border: 1px solid #d6249f; color: #fff; box-shadow: 0 4px 2px -2px rgba(0,0,0,.50); border-radius: 0 10px 10px 0;"><i class="fa fa-instagram"></i> Instagramでログイン
             </button>
             </a>
            </div>
 
 
-            <div class="col-md-12">
+            <div class="col-md-12 col-xs-12">
 
-            <div class="text-center fb_reload" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; background-color: #4267b2; border: 1px solid #4267b2; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;">
+            <div class="text-center fb_reload hidden-xs" style="margin-top: 20px; margin-bottom: 20px; font-weight: bold; background-color: #4267b2; border: 1px solid #4267b2; color: #fff; box-shadow: 0px 3px 10px rgba(0,0,0,.50); margin-top: 15px; border-radius: 10px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
+            </div>
+
+            <div class="text-center hidden-sm hidden-md hidden-lg" style="margin-top: 20px; margin-left: -8px;">
             <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false" data-button-type="continue_with" data-use-continue-as="true" id="fb1" scope="public_profile,email" onlogin="checkLoginState();"></div>
             </div>
           </div>
 
           <div class="col-xs-12 text-center hidden-sm hidden-md hidden-lg">
-          <label style="margin-top: 40px; margin-left: 15px; margin-bottom: 20px;"><a href="#" style="color: #283b54; text-decoration: underline; font-size: 1em;" data-toggle="modal" data-target="#agreement" style="color: #283b54;">利用規約を必ずご確認ください</a></label>
+          <label style="margin-top: 40px; margin-left: 15px; margin-bottom: 20px;"><a href="/signup" style="color: #e34883; text-decoration: underline; font-size: 1em;" style="color: #283b54;">会員登録がお済でないお客様はこちら</a></label>
           </div>
           </div>
             

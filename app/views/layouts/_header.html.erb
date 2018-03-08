@@ -47,41 +47,67 @@ a {
 </style>
 
 
-<div class="container-fluid" style="border-bottom: 1px solid #ccc;">
+<div class="container-fluid" style="border-bottom: 1px solid #ccc; margin-top: 20px;">
 
-	<div class="row">
-		<div class="col-md-offset-1 col-md-3 col-xs-6" style="margin-top: 30px; margin-left: auto; margin-right: auto;">
- 		<a href="/">
- 		<img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;">
-	     <p style="font-family: 'Work Sans', sans-serif, cursive; font-size:12px;" class="mobilemotto hidden-xs">There is always time to LEARN!</p></a>
+		<div class="col-md-3 col-xs-6">
+ 		<a href="/"><img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;"></a>
+		</div>
+
+		<div class="col-md-6">
+
+		<input type="text" name="search" placeholder="講師を検索" class="form-control">
+
+		</div>
+
+		<div class="col-md-2" style="text-align: right; margin-left: 80px;">
+
+		<i class="fa fa-question-circle fa-3x"></i>
+
+		</div>
+
+		<div class="row">
+		<div class="col-md-offset-1 col-md-2" style="margin-top: 20px; text-align: center;">
+
+		<div style="padding-bottom: 10px; border-bottom: 4px solid #3dd9ff; width: 70%;">
+
+		<a href="/"><img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;先生を探す</a></span>
+
+		</div>
 		</div>
 
 		<% unless current_user.type_user == "teacher" %>
+		
+		<div class="col-md-2" style="margin-top: 20px;">
 
-		<div class="col-md-offset-1 col-md-2 col-xs-6 mobilemargintime" style="margin-top: 40px; margin-left: auto; margin-right: auto;">
-			 <% unless current_user.type_user == "teacher" %>
-
-			 	<% if current_user.time >= 30 %>
-                    <% @hours = current_user.time / 60 
-                    @mins = (current_user.time) % 60
-                    %>
-
-
-                   	<%=  link_to history_student_path(current_user.id), style: "border: 1px solid #ccc; border-radius: 10px; padding: 15px;" do %>
-                    <i class="fa fa-hourglass" aria-hidden="true"></i> <%= format('%02d', @hours) %> : <%= format('%02d', @mins) %> <span class="hidden-xs" style="font-size:10px;"> 残時間</span>
-                    <% end %>
-
-	                <% else %>
-
-                   	<%=  link_to history_student_path(current_user.id), style: "border: 1px solid #ccc; border-radius: 10px; padding: 15px;" do %>
-                    <i class="fa fa-hourglass" aria-hidden="true"></i> 00:00 <span class="hidden-xs" style="font-size:10px;"> 残時間</span>
-                 <% end %>
-
-                    <% end %>
-                    <% end %>
-
+		<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;時間チャージ</span>
+		<% end %>
 
 		</div>
+
+		<div class="col-md-2" style="margin-top: 20px;">
+		<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;プロフィール</span>
+		<% end %>
+
+		</div>
+
+		<div class="col-md-2" style="margin-top: 20px;">
+
+		<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;ログアウト</span>
+		<% end %>
+
+		</div>
+
+		<div class="col-md-2" style="margin-top: 20px; margin-left: 80px; text-align: right;">
+
+		<% @hours = current_user.time / 60 
+	        @mins = (current_user.time) % 60
+	        %>
+	       	<%=  link_to history_student_path(current_user.id), style: "border: 1px solid #ccc; border-radius: 10px; padding: 10px; background-color: #283b54; color: #fff;" do %>
+	        <i class="fa fa-hourglass" aria-hidden="true"></i> <%= format('%02d', @hours) %> : <%= format('%02d', @mins) %> <span class="hidden-xs" style="font-size:10px;">[P<%= number_with_precision((@current_user.time * 2.5), :precision => 2, :delimiter => ',') %>]</span>
+	        <% end %>		
+
+		</div>
+
 		<% end %>
 
         <% if current_user.type_user == "teacher" %>
@@ -99,30 +125,7 @@ a {
                 </div>
         <% end %>
 
-        <% if current_user.type_user == "student" %>
-
-		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
-			<div class="col-md-3 col-xs-3 mobilecenter">
-			<a href="/"><img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;先生を探す</a></span>
-			</div>
-
-			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;時間チャージ</span>
-			<% end %>
-			</div>
-
-			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;プロフィール</span>
-			<% end %>
-			</div>
-
-			<div class="col-md-3 col-xs-3 mobilecenter">
-			<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;ログアウト</span>
-			<% end %>
-			</div>
-		</div>
-
-		<% elsif current_user.type_user  == "teacher" %>
+		<% if current_user.type_user  == "teacher" %>
 
 		<div class="col-md-5 col-xs-12 mobilemenu" style="margin-top: 40px;">
 			<div class="col-md-3 col-xs-3 mobilecenter">

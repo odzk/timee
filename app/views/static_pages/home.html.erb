@@ -1,398 +1,100 @@
 <% provide(:title,"トップページ") %>
 
+<% session.delete(:fowarding_url)
+    store_location %>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
+<style>
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.img-container:hover .image {
+  opacity: 0.7;
+}
+
+.img-container:hover .middle {
+  opacity: 1;
+}
+
+.img-text {
+  background-color: #e34883;
+  color: white;
+  font-size: 10px;
+  padding: 5px 15px;
+  border-radius: 15px;
+}
+</style>
 
 
-<%     session.delete(:fowarding_url)
-    store_location
-    %>
+
 </div>
 <div style="background: url('bg.jpg'); padding-bottom: 30px;">
 
 <% if logged_in? %>
-<% if current_user.type_user != "not-yet-teacher" %>
 
-		<% unless current_user.type_user == "teacher"%>
+		<% if current_user.type_user == "student" %>
 
 		<div class="container">
 
-
 							<% @users.each do |user| %>
 							<% if user.busy == "available" %>
-										<% if user.sex == "male" %>
 
-      <div class="col-md-3" style="margin-top: 20px;">
+      <div class="col-md-3 img-container" style="margin-top: 20px;">
          <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-        <img src="<%= user.picture %>" class="img img-responsive img-circle center-block" style="width: 80%; border: 8px solid #f8f8fa; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-          <p style="font-family: Quicksand; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %><p>
+        <img src="<%= user.picture %>" class="img img-responsive img-circle center-block image" style="width: 200px; height: 200px; border: 8px solid #f8f8fa; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <div class="middle">
+            <div class="img-text">今すぐ電話する</div>
+          </div>
+          <p style="font-family: Quicksand; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
           <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; "><i class="fa fa-check-circle"></i> 受講可！</p>
+          </div>
+
+        <% end %> <!-- end of link_to -->
+
+        <% elsif user.busy == "busy" %>
+
+      <div class="col-md-3 img-container" style="margin-top: 20px;">
+        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+        <img src="<%= user.picture %>" class="img img-responsive img-circle center-block image" style="width: 200px; height: 200px; border: 8px solid #f8f8fa; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -webkit-filter: grayscale(100%); filter: grayscale(100%);">
+<!--           <div class="middle">
+            <div class="img-text">今すぐ電話する</div>
+          </div> -->
+          <p style="font-family: Quicksand; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; -webkit-filter: grayscale(100%); filter: grayscale(100%); "><i class="fa fa-exclamation-triangle"></i> 退席中</p>
+          </div>
         <% end %>
-      </div>
-
-                  <div class="content">
-            <div class="grid">
 							
-				<figure class="effect-jazz jazz2">
-							<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
-						<figcaption>
-							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
-							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
-							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
-                        <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-                           show more
-                           <%#=image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-                        <% end %>
-						</figcaption>
-					</figure>
-						<div class="hidden-md hidden-sm hidden-lg col-xs-12">
-						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.nick %></h2>
+      <% end %> <!-- user.busy -->
 
-						</div>
-												
-						<% else %>
+    <% end %> <!-- @users.each -->
 
-						<div class="main-with-nav">
+  <% end %> <!-- current_user.type_user -->
+<% end %> <!-- logged_in -->
 
-        <div class="col-md-2">
 
-        <p>Test</p>
-      </div>
-										
-					<figure class="effect-jazz jazz1">
-			<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
-						<figcaption>
-							<h2 style="font-size:17px;">Teacher <%= user.nick %></h2>
-							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">趣味：</span><%= user.hobby %></p>
-							<p style="font-size:8px;"><span style="font-size:6px; font-family: ten-mincho, serif; font-style: normal; font-weight: 100;">スキル：</span><%= user.skill %></p>
-	                    <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-	                       show more
-	                       <%#= image_tag '/assets/1.png', width: 136, height: 67, alt: 'a face that is unnervingly happy'%>
-	                    <% end %>
-						</figcaption>	
-					</figure>
-						<div class="hidden-md hidden-sm hidden-lg col-xs-12">
-						<h2 style=" font-family: 'Work Sans', sans-serif;" class="text-center"><%= user.nick %></h2>
+    <%# elsif user.busy == 'call' %>
 
-						</div>
-													
-										<% end %>
-
-							<% elsif user.busy == 'call' %>
-
-							<figure class="effect-jazz mono" style="opacity: 1;">
-							
-							<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
-												<div class="cover-text text-center">
-													<p style="color: #fff;"></p>
-												</div>
-													<figcaption style="margin-top:20px;">
-														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">I'M ONLINE<br> BUT ON A<br> CALL....</span></h2>
-							<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-	                       show more
-	                       <% end %>
-													</figcaption>
-												</figure>
-										
-														
-							<% else %>
-								<figure class="effect-jazz mono" style="opacity: 1;">
-							<img src="<%= user.picture %>" style="padding: 5px; background: -moz-radial-gradient(50% 50%, #fff, #fff);background: -webkit-radial-gradient(50% 50%, #fff, #fff); background: -o-radial-gradient(50% 50%, #fff, #fff); background: -ms-radial-gradient(50% 50%, #fff, #fff); background: radial-gradient(50% 50%, #fff, #fff)" />
-												<div class="cover-text text-center">
-													<p style="color: #fff;"></p>
-												</div>
-													<figcaption style="margin-top:20px;">
-														<h2 style="font-family: 'Gloria Hallelujah', cursive; font-weight: 100; font-size:10px;"><span style="font-size:20px;">Sorry...</span><br><br><br> I'm currently offline!</h2>
-							<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
-	                       show more
-	                       <% end %>
-									</figcaption>
-								</figure>
-							<% end %>
-							<% end %>
-						</div>
-					</div>
-		</div>
-		</div>
-
-<!-- Modal Test -->
-
-<!-- <script type="text/javascript">
-    $(window).on('load',function(){
-        $('#welcome').modal('show');
-    });
-</script> -->
-
-  <!-- Modal Instruction -->
-  <div class="modal fade" id="welcome" role="dialog">
-    <div class="modal-dialog modal-lg">
-    
-      <!-- Modal content-->
-
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title text-center">timeeへようこそ！</h3>
-        </div>
-        <div class="modal-body">
-
-          <h4 class="text-center">ご登録ありがとうございます。</h4><p>① タイミーは時間を購入した分だけレッスンが受けれる英会話サービスです。現在キャンペーン中により初回登録は30分無料でご利用頂けます。アカウントに残っている時間を確認するには、ページ上部の残時間をクリックし確認出来ます。 </p><br>
-
-          	<img src="../../time_status.jpg" class="img img-responsive">
-
-          	<br>
-          	<p>② レッスンは好きなタイミングで好きな講師を選択して受講可能です。もちろん面倒な予約は不要です。ライトアップされている講師は待機中ですぐにレッスン可能です。"sorry busy"と表示されている講師は離席中の為、受講出来ません。</p>
-          	<br>
-          	<img src="../../online_teacher.jpg" class="img img-responsive">
-          	<br>
-          	<p>③ どの様なレッスンを受けたいか選択し、”今すぐ英会話を選択”します。</p>
-          	<img src="../../choose_topic.jpg" class="img img-responsive">
-          	<br>
-          	<p>④ 準備が出来てない場合はチャットで連絡、準備が出来たら今すぐ通話。あとは、講師の人たちが皆さんをサポートします。</p>
-          	<br>
-          	<img src="../../start_class.jpg" class="img img-responsive">
-        </div>
-        <div class="modal-footer">        	
-          <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
- <!-- Modal Instruction -->
-  <div class="modal fade" id="request" role="dialog">
-    <div class="modal-dialog modal-lg">
-    
-      <!-- Modal content-->
-
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title text-center">Request for Teacher</h3>
-        </div>
-        <div class="modal-body">
-
-          <h4 class="text-center">We are now requesting a teacher for you!</h4>
-          <h3 class="text-center">Notifying all teachers. Please wait.....</h3>
-          <%= @all_teachers.count %>
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar"
-            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%;">
-             80%
-            </div>
+     <!--  <div class="col-md-3 img-container" style="margin-top: 20px;">
+         <%#= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
+        <img src="<%#= user.picture %>" class="img img-responsive img-circle center-block image" style="width: 200px; height: 200px; border: 8px solid #f8f8fa; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <div class="middle">
+            <div class="img-text">今すぐ電話する</div>
           </div>
-        </div>
-        <div class="modal-footer">          
-          <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+          <p style="font-family: Quicksand; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%#= user.name %></p>
+          <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; "><i class="fa fa-check-circle"></i> 受講可！</p>
+        <%# end %>
+      </div> -->
 
-<!-- Modal Test -->
-
-
-
-		<% else %>
-		<!--teacher-->
-		<!--teacher-->
-		<!--teacher-->
-		<p>
-		<br/>
-
-		<div class="container" style="padding:0 3% 0 3%;">
-
-		<div class ="row">
-			<div class = "col-md-12"><p>
-		
-		    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Announcement</h2>
-      </div>
-      <div class="panel-body">
-      <h3>Welcome To Timee!</h3>
-      <p>Welcome and thank you for joining timee. We make timee simple and easy to use for teachers and students. If you have any questions, concerns or feedbacks, please let us know by clicking the Contact Us button below.</p>
-
-      <p>For those who want to check how your profile looks in the students side. You can login using a test student account.<br><br>
-      <strong>Username: student@web-mech.net</strong><br>
-      <strong>Password: student1234</strong>
-  	  </p>
-
-     	</div>
-  	</div>
-
-      <div class="panel panel-info">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Students Online</h2>
-
-      </div>
-      <div class="panel-body">
-      	<% @students_online.each do |u| %>
-      	<div class="col-md-3" style="border: 1px solid #ccc;">
-      	       <% if u.last_seen_at.present?
-      	       		if u.last_seen_at > 5.minutes.ago %>
-      	       		<img src="<%= u.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center"><%= u.name %></p>
-	       		<% end %>
-	       	<% end %>
-       	  </div>
-       	<% end %>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Teachers Online</h2>
-
-      </div>
-      <div class="panel-body">
-      	<% @teachers_online.each do |user| %>
-      	<div class="col-md-3" style="border: 1px solid #ccc;">
-      		      	<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>    
-      	            <img src="<%= user.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center">Teacher <%= user.nick %></p>
-      	       		<% end %>
-      	       	</div>
-      	   <% end %>
-       </div>
-      </div>
-
-    <div class="panel panel-danger">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>All Teachers Registered</h2>
-      </div>
-      <div class="panel-body">
-      	<% @users.each do |user| %>
-      	<div class="col-md-3" style="border: 1px solid #ccc;">
-      		      	<%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>    
-      	            <img src="<%= user.picture %>" style="width: 100px;" class="center-block">
-      	       		<p class="text-center">Teacher <%= user.nick %></p>
-      	       		<% end %>
-      	       	</div>
-      	   <% end %>
-       </div>
-      </div>
-
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Frequently Asked Questions (FAQ)</h2>
-      </div>
-      <div class="panel-body">
-      	<p><strong>1.) The time log doesn't show Login / Logout</strong></p>
-      	<p>Log out and then log back in.</p>
-      	<p>Possible Cause: The teacher forgot to logout from the last session</p>
-      	<br>
-        <p><strong>2.) Incentive Time is not adding to my account.</strong></p>
-        <p>When you sign in during incentive time, you have make sure that <strong>Time Log</strong> display the Time In and Time Out. If your status is "Available" but no Time In display (during incentive time). It will not be recorded in the system. Possible cause for this is you forgot to click "Unavailable" during your last session. Solution: Click "Unavailable" and hit submit then change the status back to "Available". Your Time Log should now display the Time In.
-        <br>
-        <p><strong>3.) Callback Button for Students</strong></p>
-        <p>You can now callback students who wish to have a class by click the Callback Button. Students needs to update their skype id first though.</p>
-        <img src="../../callback.jpg" class="img img-responsive">
-        <br>
-        <p>If the student still didn't update their skype id. This is what you see in the dashboard.</p>
-        <img src="../../no_callback.jpg" class="img img-responsive">
-        <br>
-       </div>
-      </div>
-
-      <div class="panel panel-info">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Curriculums</h2>
-      </div>
-      <div class="panel-body">
-        <div class="row text-center">
-        <div class="col-md-12">
-          <div class="col-md-2">
-           <a href="user/course/travel" target="_blank"><label for="travel_english"><img src="../../travel_english.png" class="img img-responsive center-block" style="width: 50px;">Travel English</label></a>
-            </div>
-            <div class="col-md-2">
-           <a href="user/course/idiomatic" target="_blank"><label for="idiomatic_expressions"><img src="../../idiomatic_expressions.png" class="img img-responsive center-block" style="width: 50px;">Idiomatic <br>Expression</label></a>
-            </div>
-            <div class="col-md-2">
-           <a href="user/course/business" target="_blank"><label for="business_english"><img src="../../business_english.png" class="img img-responsive center-block" style="width: 50px;">Business English</label></a>
-            </div>
-            <div class="col-md-2">
-           <a href="user/course/daily" target="_blank"><label for="daily_english"><img src="../../daily_english.png" class="img img-responsive center-block" style="width: 50px;">Daily English</label></a>
-            </div>
-            <div class="col-md-2">
-           <a href="user/course/role_play" target="_blank"><label for="free_conversation"><img src="../../free_conversation.png" class="img img-responsive center-block" style="width: 50px;">Free Conversation</label></a>
-            </div>
-            <div class="col-md-2">
-           <a href="user/course/it" target="_blank"><label for="it_english"><img src="../../it_english.png" class="img img-responsive center-block" style="width: 50px;">IT English</label></a>
-            </div>
-          </div>
-          </div>
-        </div>
-        <br>
-       </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-		</div>
-		</div>
-		</p>
-		</div>
-	</body>
-		<!--teacher-->
-		<!--teacher-->
-		<!--teacher-->
-		<% end %>
-		
-<% else %>
-<div class="col-md-12">
-
-<div class="panel panel-success">
-      <div class="panel-heading">
-        <h2 class="panel-title"><span class="pull-right glyphicon glyphicon-th-list"></span>Announcement</h2>
-      </div>
-      <div class="panel-body">
-      <h3>Welcome To Timee!</h3>
-      <p>Welcome and thank you for joining timee. We make timee simple and easy to use for teachers and students. If you have any questions, concerns or feedbacks, please let us know by clicking the Contact Us button below.</p>
-
-
-	<p style="text-align: center">Your application is currently under review, please complete your Teacher's Profile by clicking the profile menu at the top. Thank you</p>
-     	</div>
-  	</div>
-
-<% end %>
-
-<% else %>
-
-</div>
-
-
-
-
-<br>
-
-<div class="center" style="height:400px; width:100%; padding:0 25% 0 25%;">
-
-   
-  
-                <h1 class="navbar-brand" style="zoom:3;">
-                <span style="
-                font-family: 'Quicksand', sans-serif;
-                font-family: 'Nothing You Could Do', cursive;
-                font-family: 'Black Ops One', cursive;
-                , cursive; font-size:40px;">timee.</span>
-                <br>
-                <span style="
-                      font-family: 'Work Sans', sans-serif;
-                , cursive; font-size:3px; position:relative; top:-10px;">You NEVER lack TIME to STUDY</span>
-                
-                </h1>
-
-<%= link_to "新規会員登録", "/signup", class:"btne" , :style => "margin:0 20px 0 0;" %>
-<%= link_to "ログイン", "/login", class:"btne" , :style => "margin:0 20px 0 0;" %>
-<!--未ログインの場合に-->
-
-</div>
-
-
-
-<% end %>
 
 </div>

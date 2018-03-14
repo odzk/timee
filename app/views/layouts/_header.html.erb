@@ -68,7 +68,15 @@ a {
 		<div class="row">
 		<div class="col-md-offset-1 col-md-2" style="margin-top: 20px; text-align: center;">
 
+		<% if current_page?('/') %>
+
 		<div style="padding-bottom: 10px; border-bottom: 4px solid #3dd9ff; width: 70%;">
+
+		<% else %>
+
+		<div style="padding-bottom: 10px;">
+
+		<% end %>
 
 		<a href="/"><img src="../../book.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;先生を探す</a></span>
 
@@ -77,24 +85,57 @@ a {
 
 		<% unless current_user.type_user == "teacher" %>
 		
-		<div class="col-md-2" style="margin-top: 20px;">
+		<div class="col-md-2" style="margin-top: 20px; text-align: center;">
+
+		<% if request.original_url.include? "purchase"  %>
+
+		<div style="padding-bottom: 10px; border-bottom: 4px solid #3dd9ff; width: 70%;">
+
+		<% else %>
+		
+		<div style="padding-bottom: 10px;">
+		
+		<% end %>
 
 		<%=  link_to edit3_user_path(current_user.id) do %><img src="../../clock.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;時間チャージ</span>
 		<% end %>
 
 		</div>
+		</div>
 
-		<div class="col-md-2" style="margin-top: 20px;">
+		<div class="col-md-2" style="margin-top: 20px; text-align: center;">
+		<% if request.original_url.include? "edit"  %>
+
+		<div style="padding-bottom: 10px; border-bottom: 4px solid #3dd9ff; width: 70%;">
+
+		<% else %>
+		
+		<div style="padding-bottom: 10px;">
+		
+		<% end %>
+
 		<%=  link_to edit_user_path(current_user.id) do %> <img src="../../user.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;プロフィール</span>
 		<% end %>
 
 		</div>
 
-		<div class="col-md-2" style="margin-top: 20px;">
+		</div>
+
+		<div class="col-md-2" style="margin-top: 20px; text-align: center;">
+		<% if request.original_url.include? "logout"  %>
+
+		<div style="padding-bottom: 10px; border-bottom: 4px solid #3dd9ff; width: 70%;">
+
+		<% else %>
+		
+		<div style="padding-bottom: 10px;">
+		
+		<% end %>
 
 		<%=  link_to "/logout", method: :delete do %><img src="../../logout.png" style="width: 20px;"><span class="hidden-xs" style="font-size:10px;">&nbsp;&nbsp;ログアウト</span>
 		<% end %>
 
+		</div>
 		</div>
 
 		<div class="col-md-2" style="margin-top: 20px; margin-left: 80px; text-align: right;">

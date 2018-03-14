@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox-plus-jquery.min.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
 
 <style>
 
@@ -23,11 +25,15 @@
 
 </style>
 
+<body style="font-family: Quicksand;">
+
+<div style="background-color: #f9f9f9; margin-top: 0; border-top: 2px solid #e9e9e9; padding-bottom: 60px;">
+
   <div class="container">
 
     <%= form_for(@user) do |f| %>    
 
-      <div class="col-md-6"><br/>
+      <div class="col-md-6" style="margin-top: 20px;"><br/>
         <div class="row">
           <div class="col-md-12">
             <% if @user.youtube_url.present? %>
@@ -36,7 +42,7 @@
             </div>
             <% else %>
             <a href="#">
-              <img src="<%= @user.picture %>" style="width:100%">
+              <img src="<%= @user.picture %>" style="height:400px; width:400px;" class="img img-responsive img-circle img-thumbnail center-block">
             </a>
             <% end %>
             </div>
@@ -143,10 +149,10 @@
           <label for="it_english"><img src="../../it_english.png" class="img img-responsive center-block" style="width: 50px;"><input type="radio" id="it_english" name = "user[topic]" value="IT English">&nbsp;IT English</label>
         </div>
 
-        <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
+<!--         <div class="col-md-12 col-xs-12" style="margin-top: 20px;">
           <label for="student_notes">Enter Notes for Teacher: </label>
           <textarea name="user[notes]" class="form-control" id="student_notes" placeholder="Example: I want to learn the how to make a business call with American companies"></textarea>
-        </div>
+        </div> -->
 
         <% end %>
 
@@ -177,7 +183,7 @@
          <% else %>
      
 
-         <%= f.submit "→　今すぐ英会話", :onclick => "return confirm('Proceed to Class?')", :class => "btn btn-primary form-control", :style => "margin-top: 20px;" %>
+         <%= f.submit "→　今すぐ英会話", :class => "btn btn-primary form-control", :style => "margin-top: 20px;" %> <!-- :onclick => "return confirm('Proceed to Class?')" -->
       <% end %>
     <% end %>
     <% end %>
@@ -187,3 +193,5 @@
       </div>
 
 </div>
+</div>
+</body>

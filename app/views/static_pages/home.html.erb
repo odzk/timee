@@ -5,8 +5,27 @@
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
 
 <style>
+
+@media only screen and (max-width: 600px) {
+
+.mobile_underline {
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 20px !important;
+}
+
+.image {
+  width: 50px !important;
+  height: 50px !important;
+  border: none !important;
+  margin-left: 20px !important;
+  margin-right: 0 !important;
+}
+
+}
 
 .middle {
   transition: .5s ease;
@@ -37,7 +56,6 @@
 </style>
 
 </div>
-
 <!-- <script type="text/javascript">
     $(window).on('load',function(){
         $('#welcome').modal('show');
@@ -87,34 +105,58 @@
 
 		<% if current_user.type_user == "student" %>
 
-		<div class="container">
+		<div class="container" style="padding:0">
 
 							<% @users.each do |user| %>
 							<% if user.busy == "available" %>
-
-      <div class="col-md-3 img-container" style="margin-top: 20px;">
+      <div class="col-md-3 col-xs-12 mobile_underline" style="padding:0">
+      <div class="col-md-12 img-container col-xs-3" style="margin-top: 20px; padding: 0;">
          <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
         <img src="<%= user.picture %>" class="img img-responsive img-circle center-block image" style="width: 200px; height: 200px; border: 8px solid #f8f8fa; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-          <div class="middle">
+          <div class="middle hidden-xs">
             <div class="img-text">今すぐ電話する</div>
           </div>
-          <p style="font-family: Quicksand; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+        </div>
+          <div class="col-md-12 hidden-xs">
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
           <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; "><i class="fa fa-check-circle"></i> 受講可！</p>
           </div>
 
+          <div class="col-md-12 col-xs-4 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1em; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          </div>
+
+          <div class="col-md-12 col-xs-5 hidden-sm hidden-md hidden-lg" style="margin-top: 35px;">
+          <p class="center-block" style="font-size: 0.7em; text-align: center; background-color: #3dd9ff; width: 100%; padding: 1px; border-radius: 5px; color: #fff;"><i class="fa fa-check-circle"></i> 受講可！</p>
+          </div>
+        </div>
         <% end %> <!-- end of link_to -->
 
         <% elsif user.busy == "busy" %>
 
-      <div class="col-md-3 img-container" style="margin-top: 20px;">
+      <div class="col-md-3 col-xs-12 mobile_underline" style="padding:0">
+      <div class="col-md-12 img-container col-xs-3" style="margin-top: 20px; padding: 0;">
         <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
         <img src="<%= user.picture %>" class="img img-responsive img-circle center-block image" style="width: 200px; height: 200px; border: 8px solid #f8f8fa; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); -webkit-filter: grayscale(100%); filter: grayscale(100%);">
 <!--           <div class="middle">
             <div class="img-text">今すぐ電話する</div>
           </div> -->
-          <p style="font-family: Quicksand; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+        </div>
+          <div class="col-md-12 hidden-xs">
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
           <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; -webkit-filter: grayscale(100%); filter: grayscale(100%); "><i class="fa fa-exclamation-triangle"></i> 退席中</p>
           </div>
+
+           <div class="col-md-12 col-xs-4 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1em; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          </div>
+
+          <div class="col-md-12 col-xs-5 hidden-sm hidden-md hidden-lg" style="margin-top: 35px;">
+          <p class="center-block" style="font-size: 0.7em; text-align: center; background-color: #3dd9ff; width: 100%; padding: 1px; border-radius: 5px; color: #fff;"><i class="fa fa-check-circle"></i> 受講可！</p>
+          </div>
+
+        </div>
+      </div>
         <% end %>
 							
       <% end %> <!-- user.busy -->

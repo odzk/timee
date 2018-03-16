@@ -99,7 +99,7 @@
 
 
 
-<div style="background: url('bg.jpg'); background-size: auto; background-repeat: repeat; padding-bottom: 30px;">
+<div style="background-image: url('bg.jpg'); background-repeat: repeat; padding-bottom: 30px;">
 
 <% if logged_in? %>
 
@@ -109,6 +109,7 @@
 
 							<% @users.each do |user| %>
 							<% if user.busy == "available" %>
+
       <div class="col-md-3 col-xs-12 mobile_underline" style="padding:0">
       <div class="col-md-12 img-container col-xs-3" style="margin-top: 20px; padding: 0;">
          <%= link_to user_path(user) , :class => "" , :style => "color:black;" do %>
@@ -129,8 +130,10 @@
           <div class="col-md-12 col-xs-5 hidden-sm hidden-md hidden-lg" style="margin-top: 35px;">
           <p class="center-block" style="font-size: 0.7em; text-align: center; background-color: #3dd9ff; width: 100%; padding: 1px; border-radius: 5px; color: #fff;"><i class="fa fa-check-circle"></i> 受講可！</p>
           </div>
-        </div>
+  
         <% end %> <!-- end of link_to -->
+
+      </div>
 
         <% elsif user.busy == "busy" %>
 
@@ -156,7 +159,6 @@
           </div>
 
         </div>
-      </div>
         <% end %>
 							
       <% end %> <!-- user.busy -->
@@ -165,7 +167,7 @@
 
   <% end %> <!-- current_user.type_user -->
 <% end %> <!-- logged_in -->
-
+</div>
 
     <%# elsif user.busy == 'call' %>
 

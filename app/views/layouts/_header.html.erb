@@ -84,9 +84,22 @@ a {
  		<a href="/"><img src="../../../timee-logo.jpg" class="img img-responsive" width="100px;"></a>
 		</div>
 
-		<div class="col-md-3 col-xs-6 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
+		<div class="col-md-3 col-xs-4 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
  		<a href="/"><img src="../../../logo02.png" class="img img-responsive" width="80px;"></a>
 		</div>
+
+		<div class="col-xs-offset-1 col-xs-5 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
+		
+		<% @hours = current_user.time / 60 
+	        @mins = (current_user.time) % 60
+	        %>
+	       	<%=  link_to history_student_path(current_user.id), style: "border: 1px solid #fff; border-radius: 10px; padding: 6px 40px 6px 40px; background-color: #fff; color: #3dd9ff;" do %>
+	        <i class="fa fa-hourglass" aria-hidden="true"></i> <%= format('%02d', @hours) %> : <%= format('%02d', @mins) %> <span class="hidden-xs" style="font-size:10px;">[P<%= number_with_precision((@current_user.time * 2.5), :precision => 2, :delimiter => ',') %>]</span>
+	        <% end %>		
+
+		</div>
+
+		<div class="col-xs-2 hidden-sm hidden-md hidden-lg text-center" style="margin-top: 20px;"><i class="fa fa-search fa-2x" style="color: #3dd9ff; background-color: #fff; padding: 8px; border-radius: 10px;"></i></div>
 
 		<div class="col-md-6 hidden-xs">
 

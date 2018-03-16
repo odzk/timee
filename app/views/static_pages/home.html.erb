@@ -99,7 +99,7 @@
 
 
 
-<div style="background: url('bg.jpg'); padding-bottom: 30px;">
+<div style="background: url('bg.jpg'); background-size: auto; padding-bottom: 30px;">
 
 <% if logged_in? %>
 
@@ -118,12 +118,12 @@
           </div>
         </div>
           <div class="col-md-12 hidden-xs">
-          <p style="font-family: Noto Sans; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.nick %></p>
           <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; "><i class="fa fa-check-circle"></i> 受講可！</p>
           </div>
 
           <div class="col-md-12 col-xs-4 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
-          <p style="font-family: Noto Sans; text-align: center; font-size: 1em; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1em; font-weight: bold; color: #283b54;" class="center-block"><%= user.nick %></p>
           </div>
 
           <div class="col-md-12 col-xs-5 hidden-sm hidden-md hidden-lg" style="margin-top: 35px;">
@@ -143,16 +143,16 @@
           </div> -->
         </div>
           <div class="col-md-12 hidden-xs">
-          <p style="font-family: Noto Sans; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1.2em; margin-top: 10px; font-weight: bold; color: #283b54;" class="center-block"><%= user.nick %></p>
           <p class="center-block" style="text-align: center; background-color: #3dd9ff; width: 50%; padding: 3px; border-radius: 10px; color: #fff; -webkit-filter: grayscale(100%); filter: grayscale(100%); "><i class="fa fa-exclamation-triangle"></i> 退席中</p>
           </div>
 
            <div class="col-md-12 col-xs-4 hidden-sm hidden-md hidden-lg" style="margin-top: 30px;">
-          <p style="font-family: Noto Sans; text-align: center; font-size: 1em; font-weight: bold; color: #283b54;" class="center-block"><%= user.name %></p>
+          <p style="font-family: Noto Sans; text-align: center; font-size: 1em; font-weight: bold; color: #283b54;" class="center-block"><%= user.nick %></p>
           </div>
 
           <div class="col-md-12 col-xs-5 hidden-sm hidden-md hidden-lg" style="margin-top: 35px;">
-          <p class="center-block" style="font-size: 0.7em; text-align: center; background-color: #3dd9ff; width: 100%; padding: 1px; border-radius: 5px; color: #fff;"><i class="fa fa-check-circle"></i> 受講可！</p>
+          <p class="center-block" style="font-size: 0.7em; text-align: center; background-color: #3dd9ff; width: 100%; padding: 1px; border-radius: 5px; color: #fff;  -webkit-filter: grayscale(100%); filter: grayscale(100%);"><i class="fa fa-exclamation-triangle"></i> 退席中</p>
           </div>
 
         </div>
